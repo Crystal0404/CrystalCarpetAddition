@@ -1,0 +1,8 @@
+{
+  "cca.category.CrystalCarpetAddition": "CrystalCarpetAddition",
+
+  "cca.rule.MagicBox.name": "MagicBox/CCESuppressor",
+  "cca.rule.MagicBox.desc": "Control whether CastSuppressor(CCESuppressor) is available",
+  "cca.rule.CEnderPearlChunkLoading.name": "CEnderPearlChunkLoading",
+  "cca.rule.CEnderPearlChunkLoading.desc": "Fix EnderPearlChunkLoading from carpet-extra"
+}
