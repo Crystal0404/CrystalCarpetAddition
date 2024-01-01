@@ -1,0 +1,8 @@
+{
+  "cca.category.CrystalCarpetAddition": "CrystalCarpetAddition",
+
+  "cca.rule.MagicBox.name": "魔法盒子/强转抑制器",
+  "cca.rule.MagicBox.desc": "控制基于类型转换的更新抑制是否可用",
+  "cca.rule.CEnderPearlChunkLoading.name": "C珍珠加载",
+  "cca.rule.CEnderPearlChunkLoading.desc": "carpet-extra修复版珍珠加载"
+}

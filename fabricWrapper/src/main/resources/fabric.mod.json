@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "id": "${mod_id}",
+  "version": "0.0.1",
+  "icon": "assets/${mod_id}/icon.png",
+  "name": "${mod_name}",
+  "description": "${mod_description}",
+  "authors": [
+    {
+      "name": "Crystal_0404",
+      "contact": {
+        "homepage": "https://github.com/Crystal0404"
+      }
+    }
+  ],
+  "contact": {
+    "homepage": "${mod_homepage}",
+    "issues": "${mod_sources}/issues",
+    "sources": "${mod_sources}"
+  },
+  "license": "LGPL-3.0",
+  "environment": "*",
+  "depends": {
+    "carpet": "*",
+    "fabric": "*",
+    "magiclib": ">=${magiclib_dependency}"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "crystal0404.crystalcarpetaddition.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [
+    "Rule.CEnderPearlChunkLoading.CEnderPearlChunkLoadingMixin",
+    "Rule.MagicBox.MagicBoxMixin"
+  ],
+  "client": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
