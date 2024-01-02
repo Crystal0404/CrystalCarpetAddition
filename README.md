@@ -2,6 +2,8 @@
 
   *经过数次跳票，终于做出来了!*
 
+  这是一个Carpet的拓展, 包含一些有趣的功能, 默认所有规则设置均与Minecraft原版一致, 不会产生任何变化
+
   **我使用了MagicLib的SettingManager管理规则, 使用方法与Carpet基本相同,你只需要用```/cca```代替```/carpet```即可, 规则保存在```cca.conf```中**
 
   **操作命令是```/cca``` 不是 ```/carpet```**
@@ -45,4 +47,4 @@ C没有特殊含义, 只为和Carpet-Extra的功能作区分
 
   也可以使用```/magiclib setDefault language <你的语言>``` 来设置默认语言
   
-  不会有1.19.4一下的版本, 至少暂时是这样的
+  不会有Minecraft1.19.4以下的版本, 至少暂时是这样的
