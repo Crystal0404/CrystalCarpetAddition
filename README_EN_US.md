@@ -1,6 +1,6 @@
 ## Crystal Carpet Additon
     
-  [中文](https://github.com/Crystal0404/CrystalCarpetAddition/blob/master/README.md) / *English*
+  [中文](https://github.com/Crystal0404/CrystalCarpetAddition) / *English*
 
   *I have finally completed it!*
 
