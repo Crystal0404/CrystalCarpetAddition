@@ -54,6 +54,7 @@ dependencies {
     // Development environment
     minecraft("com.mojang:minecraft:${project.minecraft_version}")
     mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
+    modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 
     // Annotation processor
     modApi("org.projectlombok:lombok:${project.lombok_version}")
