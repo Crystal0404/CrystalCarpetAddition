@@ -6,5 +6,5 @@
   "cca.rule.CEnderPearlChunkLoading.name": "CEnderPearlChunkLoading",
   "cca.rule.CEnderPearlChunkLoading.desc": "Fix EnderPearlChunkLoading from carpet-extra",
   "cca.rule.ItemShadowing.name": "ItemShadowing",
-  "cca.rule.ItemShadowing.desc": "It has a shadow!"
+  "cca.rule.ItemShadowing.desc": "It has a shadow!(Use the ItemStack code in section 1.16.5)"
 }
