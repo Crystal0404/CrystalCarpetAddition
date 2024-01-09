@@ -1,4 +1,4 @@
-package crystal0404.crystalcarpetaddition.mixin.Rule.ItemStack;
+package crystal0404.crystalcarpetaddition.mixin.Rule.ItemShadowing;
 
 import com.llamalad7.mixinextras.injector.WrapWithCondition;
 import crystal0404.crystalcarpetaddition.CCASettings;
@@ -18,7 +18,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 
 @Mixin(ScreenHandler.class)
-public class ItemStackMixin {
+public abstract class ItemShadowingMixin {
     @Final
     @Shadow
     public DefaultedList<Slot> slots = DefaultedList.of();
@@ -34,7 +34,7 @@ public class ItemStackMixin {
             at = @At(value = "INVOKE", target = "Lnet/minecraft/screen/slot/Slot;setStack(Lnet/minecraft/item/ItemStack;)V", ordinal = 4)
     )
     private boolean RemoveMixin(Slot instance, net.minecraft.item.ItemStack stack){
-        return !CCASettings.ItemStack;
+        return !CCASettings.ItemShadowing;
     }
     @Inject(
             method = "internalOnSlotClick(IILnet/minecraft/screen/slot/SlotActionType;Lnet/minecraft/entity/player/PlayerEntity;)V",
@@ -44,7 +44,7 @@ public class ItemStackMixin {
         slot3 = this.slots.get(slotIndex);
         playerInventory = player.getInventory();
         itemStack2 = playerInventory.getStack(button);
-        if(CCASettings.ItemStack){
+        if(CCASettings.ItemShadowing){
             slot3.setStack(itemStack2);
         }
     }

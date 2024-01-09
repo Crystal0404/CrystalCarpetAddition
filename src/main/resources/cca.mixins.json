@@ -4,7 +4,7 @@
   "package": "crystal0404.crystalcarpetaddition.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
-    "Rule.ItemStack.ItemStackMixin",
+    "Rule.ItemShadowing.ItemShadowingMixin",
     "Rule.CEnderPearlChunkLoading.CEnderPearlChunkLoadingMixin",
     "Rule.MagicBox.MagicBoxMixin"
   ],

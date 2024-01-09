@@ -13,5 +13,5 @@ public class CCASettings {
     @Rule(categories = CCA)
     public static boolean CEnderPearlChunkLoading = false;
     @Rule(categories = CCA)
-    public static  boolean ItemStack = false;
+    public static boolean ItemShadowing = false;
 }
