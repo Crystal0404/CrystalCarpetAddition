@@ -13,7 +13,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(ShulkerBoxBlock.class)
-public class MagicBoxMixin {
+public abstract class MagicBoxMixin {
     @Inject(method = "getComparatorOutput", at = @At("HEAD"), cancellable = true)
     private void ShulkerBoxBlockMixin(BlockState state, World world, BlockPos pos, CallbackInfoReturnable<Integer> cir){
         if(CCASettings.MagicBox){
