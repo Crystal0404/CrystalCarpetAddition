@@ -44,6 +44,19 @@ C没有特殊含义, 只为和Carpet-Extra的功能作区分
 - 验证器: 严格(不区分大小写)
 
 
+### 物品分身(ItemShadowing)
+
+重新引入1.16.5物品栏之间交换的逻辑, 使得[物品分身](https://www.bilibili.com/video/BV1cL4y1B75R)这项技术可以使用
+
+注: 由于Minecraft项目结构的改变, 视频中代码演示仅作参考, CCA实际实现可能略有不同
+
+- 分类: ```CrystalCarpetAddition```
+- 类型: ```布尔值```
+- 默认值: ```false```
+- 参考值: ```flase``` ```true```
+- 验证器: 严格(不区分大小写)
+
+
 ## 其他
   切换语言使用```/magiclib language <你的语言>```
 
