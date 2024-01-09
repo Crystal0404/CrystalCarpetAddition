@@ -41,6 +41,20 @@ C has no special meaning, only for differentiation
 - Validators: Strict(Case-insensitive)
 
 
+### ItemShadowing
+Use the ItemStack code in section 1.16.5, You can watch this video for its purpose.
+
+[Click on me to jump to the video](https://youtu.be/mTeYwq7HaEA)
+
+Note: I don't know how to translate this sentence. If you have any questions, please refer to the [Chinese README](https://github.com/Crystal0404/CrystalCarpetAddition) :(
+
+- Categories: ```CrystalCarpetAddition```
+- Type: ```Boolean```
+- Default value: ```false```
+- Options: ```flase``` ```true```
+- Validators: Strict(Case-insensitive)
+
+
 ## Other
   Use ```/magiclib language <language>``` to switch languages
 
