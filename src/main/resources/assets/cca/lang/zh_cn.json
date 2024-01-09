@@ -6,5 +6,5 @@
   "cca.rule.CEnderPearlChunkLoading.name": "C珍珠加载",
   "cca.rule.CEnderPearlChunkLoading.desc": "carpet-extra修复版珍珠加载",
   "cca.rule.ItemShadowing.name": "物品分身",
-  "cca.rule.ItemShadowing.desc": "它有一个影子!(使用了部分1.16.5的ItemStack逻辑)"
+  "cca.rule.ItemShadowing.desc": "它有一个影子! (使用了部分1.16.5的ItemStack逻辑)"
 }
