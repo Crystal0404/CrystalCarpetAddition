@@ -57,7 +57,7 @@ ext {
     }
 }
 
-setVersion("${project.mod_version}.${project.getVersionPatch([])}+${project.getVersionGit([])}-${project.getVersionType()}")
+setVersion("${project.mod_version}")
 
 tasks.register("cleanPreprocessSources") {
     it.group("${project.mod_id}")
