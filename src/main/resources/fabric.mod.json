@@ -23,6 +23,9 @@
   "entrypoints": {
     "main": [
       "crystal0404.crystalcarpetaddition.CrystalCarpetAddition"
+    ],
+    "client": [
+      "crystal0404.crystalcarpetaddition.CrystalCarpetAdditionClient"
     ]
   },
   "mixins": [
