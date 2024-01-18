@@ -1,14 +1,12 @@
 package crystal0404.crystalcarpetaddition;
 
+import crystal0404.crystalcarpetaddition.network.CCANetwork;
 import net.fabricmc.api.ClientModInitializer;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 
 public class CrystalCarpetAdditionClient implements ClientModInitializer {
-    public static final Logger LOGGER = LogManager.getLogger(CCAReference.getModName());
     @Override
     public void onInitializeClient() {
-
+        CCANetwork.registerS2CPacks();
     }
 }
