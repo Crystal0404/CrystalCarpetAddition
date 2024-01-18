@@ -4,7 +4,7 @@ import top.hendrixshen.magiclib.carpet.api.annotation.Rule;
 
 public class CCASettings {
     private static final String CCA = "CrystalCarpetAddition";
-    private static final String NETWORK = "CCANetworkProtocol";
+    private static final String NETWORK = "Network";
     @Rule(categories = CCA)
     //#if MC >=12002
     public static boolean MagicBox = false;

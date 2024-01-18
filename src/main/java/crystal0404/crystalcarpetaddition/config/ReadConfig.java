@@ -33,8 +33,6 @@ public class ReadConfig {
                 Config config = gson.fromJson(stringBuilder.toString(), Config.class);
                 MOD_BLACK_LIST = config.getBlack_list();
                 PLAYER_INFO = config.isPlayer_info();
-                System.out.println(MOD_BLACK_LIST);
-                System.out.println(PLAYER_INFO);
             }catch (JsonSyntaxException e){
                 File f = new File(file_path);
                 f.delete();

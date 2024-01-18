@@ -2,6 +2,7 @@ package crystal0404.crystalcarpetaddition.mixin.Rule.CCANetworkProtocol;
 
 import crystal0404.crystalcarpetaddition.CCASettings;
 import crystal0404.crystalcarpetaddition.network.CCANetwork;
+import crystal0404.crystalcarpetaddition.network.Server.CheckModList;
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.network.ClientConnection;
@@ -29,12 +30,13 @@ public abstract class CCANetworkProtocolMixin {
         if (CCASettings.CCANetworkProtocol){
             // 判断是否是carpet假人
             if (connection.getAddress() != null){
-                // 发一个空包
                 if (ServerPlayNetworking.canSend(player, CCANetwork.HELLO)){
+                    // 发一个空包, 传输相关字段
                     ServerPlayNetworking.send(player, CCANetwork.HELLO, PacketByteBufs.create());
+                    CheckModList.setConnection(connection);
                 }else {
+                    // 断开连接
                     ServerPlayNetworkHandler dis = new ServerPlayNetworkHandler(server, connection, player);
-                    // 断开连接以及一些字体样式
                     dis.disconnect(Text.literal("Please install CrystalCarpetAddition!\n")
                             .setStyle(Style.EMPTY.withColor(TextColor.parse("aqua")))
                             .append(Text.literal("https://modrinth.com/mod/crystalcarpetaddition")

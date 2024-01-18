@@ -1,6 +1,7 @@
 package crystal0404.crystalcarpetaddition;
 
 import crystal0404.crystalcarpetaddition.config.Regconfig;
+import crystal0404.crystalcarpetaddition.network.CCANetwork;
 import net.fabricmc.api.ModInitializer;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -16,5 +17,6 @@ public class CrystalCarpetAddition implements ModInitializer {
                 CCAExtension.getSettingsManager(),
                 new CCAExtension()
         );
+        CCANetwork.registerC2SPacks();
     }
 }
