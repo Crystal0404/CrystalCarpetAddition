@@ -1,10 +1,13 @@
 {
   "cca.category.CrystalCarpetAddition": "CrystalCarpetAddition",
+  "cca.category.Network": "Network",
 
   "cca.rule.MagicBox.name": "MagicBox/CCESuppressor",
   "cca.rule.MagicBox.desc": "Control whether CastSuppressor(CCESuppressor) is available",
   "cca.rule.CEnderPearlChunkLoading.name": "CEnderPearlChunkLoading",
   "cca.rule.CEnderPearlChunkLoading.desc": "Fix EnderPearlChunkLoading from carpet-extra",
   "cca.rule.ItemShadowing.name": "ItemShadowing",
-  "cca.rule.ItemShadowing.desc": "It has a shadow! (Use the ItemStack code in section 1.16.5)"
+  "cca.rule.ItemShadowing.desc": "It has a shadow! (Use the ItemStack code in section 1.16.5)",
+  "cca.rule.CCANetworkProtocol.name": "CCANetworkProtocol",
+  "cca.rule.CCANetworkProtocol.desc": "CCA's network protocol, Used to implement mod blacklists,\n For instructions, please refer to the github README."
 }
