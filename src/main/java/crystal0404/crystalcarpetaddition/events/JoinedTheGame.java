@@ -45,7 +45,9 @@ import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.network.ServerPlayNetworkHandler;
+import net.minecraft.text.Style;
 import net.minecraft.text.Text;
+import net.minecraft.text.TextColor;
 
 public class JoinedTheGame implements ServerPlayConnectionEvents.Join{
     @Override
@@ -56,7 +58,11 @@ public class JoinedTheGame implements ServerPlayConnectionEvents.Join{
         if (ServerPlayNetworking.canSend(handler.player, CCANetwork.HELLO)){
             ServerPlayNetworking.send(handler.player ,CCANetwork.HELLO, PacketByteBufs.create());
         }else {
-            handler.disconnect(Text.literal("ummmmm"));
+            handler.disconnect(Text.literal("Please install CrystalCarpetAddition!\n")
+                    .setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0x55FFFF)))
+                    .append(Text.literal("https://modrinth.com/mod/crystalcarpetaddition")
+                            .setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0x55FF55))
+                                    .withUnderline(true))));
         }
     }
 }
