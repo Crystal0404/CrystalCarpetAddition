@@ -15,9 +15,7 @@ public class JoinedTheGame implements ServerConfigurationConnectionEvents.Config
 
     @Override
     public void onSendConfiguration(ServerConfigurationNetworkHandler handler, MinecraftServer server) {
-        System.out.println(handler.getDebugProfile());
         if (CCASettings.CCANetworkProtocol) {
-            // 判断是否是carpet假人
             if (ServerConfigurationNetworking.canSend(handler, CCANetwork.HELLO)) {
                     // 发一个空包, 传输相关字段
                     ServerConfigurationNetworking.send(handler, CCANetwork.HELLO, PacketByteBufs.create());
