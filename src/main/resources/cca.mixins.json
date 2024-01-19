@@ -11,7 +11,6 @@
   "client": [
   ],
   "server": [
-    "Rule.CCANetworkProtocol.CCANetworkProtocolMixin"
   ],
   "injectors": {
     "defaultRequire": 1
