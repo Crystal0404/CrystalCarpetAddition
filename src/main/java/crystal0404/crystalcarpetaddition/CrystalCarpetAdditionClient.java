@@ -1,6 +1,5 @@
 package crystal0404.crystalcarpetaddition;
 
-
 import crystal0404.crystalcarpetaddition.network.CCANetwork;
 import net.fabricmc.api.ClientModInitializer;
 //#if MC < 12002

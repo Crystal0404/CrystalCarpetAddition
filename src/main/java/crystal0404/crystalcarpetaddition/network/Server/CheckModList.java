@@ -22,6 +22,7 @@ package crystal0404.crystalcarpetaddition.network.Server;
 //$$         String get_mod_json = buf.readString();
 //$$         Collection<String> mod_list = gson.fromJson(get_mod_json, ModList.class).getMod_list();
 //$$         if (ReadConfig.PLAYER_INFO){
+//$$             CrystalCarpetAddition.LOGGER.info(server.getPlayerManager());
 //$$             CrystalCarpetAddition.LOGGER.info(get_mod_json);
 //$$         }
 //$$         for (String string : ReadConfig.MOD_BLACK_LIST) {
