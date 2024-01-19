@@ -1,5 +1,6 @@
 {
   "cca.category.CrystalCarpetAddition": "CrystalCarpetAddition",
+  "cca.category.Network": "网络",
 
   "cca.rule.MagicBox.name": "魔法盒子/强转抑制器",
   "cca.rule.MagicBox.desc": "控制基于类型转换的更新抑制是否可用",
