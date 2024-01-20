@@ -1,5 +1,8 @@
 ## Crystal Carpet Additon
 
+ > [!CAUTION]
+ > CCA网络协议还在开发中, 目前可能导致通过velocity无法正常进入游戏,谨慎使用
+
   *中文* / [English](https://github.com/Crystal0404/CrystalCarpetAddition/blob/master/README_EN_US.md) 
 
   *经过数次跳票，终于做出来了!*

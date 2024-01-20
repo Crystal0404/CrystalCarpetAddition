@@ -1,4 +1,7 @@
 ## Crystal Carpet Additon
+
+> [!CAUTION]
+> The CCA network protocol is still under development, and may currently cause the game to be unable to enter the game properly through velocity, so use it with caution
     
   [中文](https://github.com/Crystal0404/CrystalCarpetAddition) / *English*
 
