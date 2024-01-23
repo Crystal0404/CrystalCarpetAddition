@@ -8,6 +8,6 @@
   "cca.rule.CEnderPearlChunkLoading.desc": "carpet-extra修复版珍珠加载",
   "cca.rule.ItemShadowing.name": "物品分身",
   "cca.rule.ItemShadowing.desc": "它有一个影子! (使用了部分1.16.5的ItemStack逻辑)",
-  "cca.rule.CCANetworkProtocol.name": "CCA网络协议",
-  "cca.rule.CCANetworkProtocol.desc": "CCA的网络协议, 用于实现MOD黑名单, 使用说明请查看github的README."
+  "cca.rule.CCAProtocol.name": "CCA协议",
+  "cca.rule.CCAProtocol.desc": "CCA协议, 用于实现MOD黑名单, 使用说明请查看github的README."
 }

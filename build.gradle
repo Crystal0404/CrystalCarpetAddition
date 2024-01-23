@@ -1,21 +1,16 @@
 plugins {
     id("maven-publish")
-    id("fabric-loom").version("1.4-SNAPSHOT").apply(false)
+    id("fabric-loom").version("1.5-SNAPSHOT").apply(false)
     id("org.ajoberstar.grgit").version("5.2.0")
     id("com.replaymod.preprocess").version("SNAPSHOT")
 }
 
 preprocess {
     def mc1194 = createNode("1.19.4", 1_19_04, "yarn")
-    def mc1201 = createNode("1.20.1", 1_20_01, "yarn")
-    def mc1202 = createNode("1.20.2", 1_20_02, "yarn")
     def mc1204 = createNode("1.20.4", 1_20_04, "yarn")
 
-    mc1194.link(mc1201, null)
-    mc1201.link(mc1202, null)
-    mc1202.link(mc1204, null)
+    mc1194.link(mc1204, null)
 }
-
 ext {
     env = System.getenv()
 

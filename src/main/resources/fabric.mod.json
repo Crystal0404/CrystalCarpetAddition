@@ -26,13 +26,16 @@
     ],
     "client": [
       "crystal0404.crystalcarpetaddition.CrystalCarpetAdditionClient"
+    ],
+    "server": [
+      "crystal0404.crystalcarpetaddition.CrystalCarpetAdditionServer"
     ]
   },
   "mixins": [
     "${mod_id}.mixins.json"
   ],
   "depends": {
-    "fabric-api": "*",
+    "fabric-networking-api-v1": "*",
     "carpet": "*",
     "fabric": "*",
     "magiclib-${minecraft_version_id}": ">=${magiclib_dependency}",
