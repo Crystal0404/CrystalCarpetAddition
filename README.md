@@ -64,8 +64,9 @@ C没有特殊含义, 只为和Carpet-Extra的功能作区分
 
 
 ### CCA协议(CCAProtocol)
+**请不要使用任何方式破坏这个功能, 我上传这个功能的代码目的是为了分享, 提供给有需要的朋友们, 重新创造一个不被投影打印机等客户端mod破坏的Minecraft**
 
-用于实现模组黑名单, 使用文档稍后上传
+用于实现模组黑名单  [使用文档](https://github.com/Crystal0404/CrystalCarpetAddition/blob/master/doc/CCAProtocol.md)
 
 它完美支持1.20.4及以上版本(代码理论上支持1.20.2和1.20.3)
 
