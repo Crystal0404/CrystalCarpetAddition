@@ -1,7 +1,5 @@
 ## Crystal Carpet Additon
 
-> [!CAUTION]
-> The CCA network protocol is still under development, and may currently cause the game to be unable to enter the game properly through velocity, so use it with caution
     
   [中文](https://github.com/Crystal0404/CrystalCarpetAddition) / *English*
 
@@ -21,6 +19,7 @@ A [Carpet mod](https://github.com/gnembon/fabric-carpet) (fabric-carpet) extensi
 |------------|----------|-----------------|----------------------------------------------------------------------------------------------------|
 | MagicLib   | Required | Client / Server | [Github](https://github.com/Hendrix-Shen/MagicLib) / [Modrinth](https://modrinth.com/mod/magiclib) |
 | Carpet     | Required | Client / Server | [Github](https://github.com/gnembon/fabric-carpet) / [Modrinth](https://modrinth.com/mod/carpet)   |
+| Fabric-API | Required | Client / Server | [Github](https://github.com/FabricMC/fabric) / [Modrinth](https://modrinth.com/mod/fabric-api)     |
 
 ## Rule List
 ### MagicBox
@@ -36,6 +35,8 @@ Control whether [CastSuppressor(CCESuppressor)](https://www.bilibili.com/read/cv
 The enderPearlChunkLoading function of [Carpet-Extra](https://github.com/gnembon/carpet-extra) is not working, it is an alternative
 
 C has no special meaning, only for differentiation
+
+**Carpet-Extra used my fix, so I removed it in 1.20.4 and above**
 
 - Categories: ```CrystalCarpetAddition```
 - Type: ```Boolean```
@@ -56,6 +57,29 @@ Note: I don't know how to translate this sentence. If you have any questions, pl
 - Default value: ```false```
 - Options: ```flase``` ```true```
 - Validators: Strict(Case-insensitive)
+
+
+### CCAProtocol
+
+Used to implement the mod blacklist, using the documentation to upload later
+
+Version 1.20.4 and above will work fine
+
+Version 1.19.4 has a bug working with Velocity etc, which is caused by fabric-api and I won't fix it for now.
+
+- Categories: ```Network```
+- Type: ```Boolean```
+- Default value: ```false```
+- Options: ```flase``` ```true```
+- Validators: Strict(Case-insensitive)
+
+
+## Supported versions
+Please note that the version that is not written here is an unsupported version, 
+and the issue of the unsupported version will be closed unconditionally, and it will be updated at any time!
+
+- Minecraft 1.19.4
+- Minecraft 1.20.4
 
 
 ## Other
