@@ -60,8 +60,9 @@ Note: I don't know how to translate this sentence. If you have any questions, pl
 
 
 ### CCAProtocol
+**Please don't break this feature in any way, I uploaded the code for this feature to share, to provide it to friends in need, to recreate a Minecraft that is not broken by client mods such as Litematica-printer**
 
-Used to implement the mod blacklist, using the documentation to upload later
+Used to implement the mod blacklist  [Use documentation](https://github.com/Crystal0404/CrystalCarpetAddition/blob/master/doc/CCAProtocol.md)
 
 Version 1.20.4 and above will work fine
 
