@@ -17,10 +17,12 @@
 
 ## 依赖库
 
-| 依赖       | 类型 | 环境        | 链接                                                                                                 |
-|----------|----|-----------|----------------------------------------------------------------------------------------------------|
-| MagicLib | 必选 | 客户端 / 服务端 | [Github](https://github.com/Hendrix-Shen/MagicLib) / [Modrinth](https://modrinth.com/mod/magiclib) |
-| Carpet   | 必选 | 客户端 / 服务端 | [Github](https://github.com/gnembon/fabric-carpet) / [Modrinth](https://modrinth.com/mod/carpet)   |
+| 依赖         | 类型 | 环境        | 链接                                                                                                 |
+|------------|----|-----------|----------------------------------------------------------------------------------------------------|
+| MagicLib   | 必选 | 客户端 / 服务端 | [Github](https://github.com/Hendrix-Shen/MagicLib) / [Modrinth](https://modrinth.com/mod/magiclib) |
+| Carpet     | 必选 | 客户端 / 服务端 | [Github](https://github.com/gnembon/fabric-carpet) / [Modrinth](https://modrinth.com/mod/carpet)   |
+| Fabric-API | 必选 | 客户端 / 服务端 | [Github](https://github.com/FabricMC/fabric) / [Modrinth](https://modrinth.com/mod/fabric-api)     |
+
 
 ## 规则列表
 ### 魔法盒子(MagicBox)
