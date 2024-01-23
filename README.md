@@ -29,6 +29,8 @@
 ### 魔法盒子(MagicBox)
 控制是否可以使用[强转抑制器](https://www.bilibili.com/read/cv24323749)
 
+是的, 它是CCA的第一个功能!
+
 - 分类: ```CrystalCarpetAddition```
 - 类型: ```布尔值```
 - 默认值: Minecraft >= 1.20.2 ```false```  Minecraft < 1.20.2 ```true```
@@ -39,6 +41,8 @@
 移植并修复自[Carpet-Extra](https://github.com/gnembon/carpet-extra)的enderPearlChunkLoading
 
 C没有特殊含义, 只为和Carpet-Extra的功能作区分
+
+**1.20.4的[Carpet-Extra](https://github.com/gnembon/carpet-extra)应用了我的修复, 为了防止冲突, 我在1.20.4及以后的版本中移除了它**
 
 - 分类: ```CrystalCarpetAddition```
 - 类型: ```布尔值```
@@ -58,6 +62,27 @@ C没有特殊含义, 只为和Carpet-Extra的功能作区分
 - 默认值: ```false```
 - 参考值: ```flase``` ```true```
 - 验证器: 严格(不区分大小写)
+
+
+### CCA协议(CCAProtocol)
+
+用于实现模组黑名单, 使用文档稍后上传
+
+它完美支持1.20.4及以上版本(代码理论上支持1.20.2和1.20.3)
+
+它在1.19.4原版情况下可以正常工作, 但是与Velocity等一起工作时会出现问题, 这个是由Fabric-API引起的问题, 我暂时不会去修复它. 
+
+- 分类: ```网络```
+- 类型: ```布尔值```
+- 默认值: ```false```
+- 参考值: ```flase``` ```true```
+- 验证器: 严格(不区分大小写)
+
+## 支持版本
+请注意, 没有写在这里的版本为不受支持版本, 不受支持版本的issues会无条件直接关闭, 它会随时更新!
+
+- Minecraft 1.19.4
+- Minecraft 1.20.4
 
 
 ## 其他
