@@ -64,6 +64,7 @@ dependencies {
     modImplementation("top.hendrixshen.magiclib:magiclib-${project.minecraft_version.replace(".", "_")}:${project.magiclib_version}") {
         exclude(group: "curse.maven", module: "malilib-303119")
     }
+    modImplementation("net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}")
 
     // Misc
     runtimeOnly(project(path: ":fabricWrapper"))

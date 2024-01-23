@@ -14,7 +14,6 @@ import java.util.Collection;
 
 public class ReadConfig {
     public static Collection<String> MOD_BLACK_LIST;
-    public static boolean PLAYER_INFO;
     private static final String file_path = FabricLoader.getInstance().getConfigDir() + "/CrystalCarpetAddition/CrystalCarpetAddition.json";
     public static void read_config() throws IOException {
         // 读取配置文件
@@ -32,7 +31,6 @@ public class ReadConfig {
             try {
                 Config config = gson.fromJson(stringBuilder.toString(), Config.class);
                 MOD_BLACK_LIST = config.getBlack_list();
-                PLAYER_INFO = config.isPlayer_info();
             }catch (JsonSyntaxException e){
                 File f = new File(file_path);
                 f.delete();
