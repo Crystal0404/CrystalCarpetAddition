@@ -61,15 +61,9 @@ dependencies {
     annotationProcessor("org.projectlombok:lombok:${project.lombok_version}")
 
     // Dependency
-// masa的maven炸了, 导致这个依赖下载有问题
-//    modImplementation("top.hendrixshen.magiclib:magiclib-${project.minecraft_version.replace(".", "_")}:${project.magiclib_version}") {
-//        exclude(group: "curse.maven", module: "malilib-303119")
-//    }
-    modImplementation("maven.modrinth:magiclib:${project.magiclib_version}")
-    modImplementation("maven.modrinth:carpet:${project.carpet_version}")
-    modImplementation("maven.modrinth:modmenu:${project.modmenu}")
-
-    modImplementation("curse.maven:malilib-303119:${project.malilib_id}")
+    modImplementation("top.hendrixshen.magiclib:magiclib-${project.minecraft_version.replace(".", "_")}:${project.magiclib_version}") {
+        exclude(group: "curse.maven", module: "malilib-303119")
+    }
 
     modImplementation("net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}")
 
