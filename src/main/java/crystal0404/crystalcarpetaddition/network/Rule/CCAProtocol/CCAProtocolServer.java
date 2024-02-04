@@ -18,8 +18,7 @@ import net.minecraft.text.Text;
 public class CCAProtocolServer {
     // 玩家进入游戏时调用(在1.20.2经过群组服时调用这个会有问题)
     public static void playerJoinGame(ServerPlayNetworkHandler handler){
-        System.out.println("CCA正在运行");
-        System.out.println(handler.player.toString().contains("ServerPlayerEntity"));
+
         // 没开启相关设置, 跳过执行
         if (!CCASettings.CCAProtocol){return;}
 
