@@ -58,7 +58,7 @@ public class CCAProtocolClient {
         // 检查是否有不允许的模组(正则表达式咕咕咕咕咕...)
         if (true){
             for (String s : allMod) {
-                String mod = s.substring(0, allMod.toString().indexOf(" "));
+                String mod = s.substring(0, s.indexOf(" "));
                 if (blackList.contains(mod)){
                     Text title = Text.literal("CrystalCarpetAddition").setStyle(Style.EMPTY.withColor(0x55FFFF).withBold(true));
                     Text reason = Text.literal("You can't use ").setStyle(Style.EMPTY.withColor(0x55FF55))
