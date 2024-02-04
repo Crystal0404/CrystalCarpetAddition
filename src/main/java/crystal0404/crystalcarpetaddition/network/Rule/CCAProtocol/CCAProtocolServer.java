@@ -16,7 +16,7 @@ import net.minecraft.text.Style;
 import net.minecraft.text.Text;
 
 public class CCAProtocolServer {
-    // 玩家进入游戏时调用(在1.20.2经过群组服时调用这个会有问题)
+    // 玩家进入游戏时调用(在1.20.2以下经过群组服时调用这个会有问题)
     public static void playerJoinGame(ServerPlayNetworkHandler handler){
 
         // 没开启相关设置, 跳过执行
