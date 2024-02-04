@@ -26,7 +26,7 @@ public class ConfigInit {
             CrystalCarpetAddition.LOGGER.info("The configuration file has been generated!");
             // 序列化配置
             Collection<String> empty_config = new ArrayList<>();
-            Config config1 = new Config(empty_config);
+            Config config1 = new Config(empty_config, false, false);
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
             // 写入默认配置
             try (Writer writer = new FileWriter(file_path)){
