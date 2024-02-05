@@ -22,7 +22,8 @@
   "environment": "*",
   "depends": {
     "carpet": "*",
-    "fabric": "*",
+    "fabric-api": "*",
+    "fabric": ">=0.15.0",
     "magiclib": ">=${magiclib_dependency}"
   }
 }
