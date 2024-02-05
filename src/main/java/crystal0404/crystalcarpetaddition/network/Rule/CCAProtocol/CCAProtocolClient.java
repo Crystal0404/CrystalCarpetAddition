@@ -55,16 +55,26 @@ public class CCAProtocolClient {
             SEND = sendMod.toJson(new C2SSendModList(allMod));
         }
 
-        // 检查是否有不允许的模组(正则表达式咕咕咕咕咕...)
-        if (true){
+        // 检查是否有不允许的模组, else中是正则表达式模式, 默认是id必须完全匹配
+        if (!regex){
             for (String s : allMod) {
                 String mod = s.substring(0, s.indexOf(" "));
                 if (blackList.contains(mod)){
-                    Text title = Text.literal("CrystalCarpetAddition").setStyle(Style.EMPTY.withColor(0x55FFFF).withBold(true));
-                    Text reason = Text.literal("You can't use ").setStyle(Style.EMPTY.withColor(0x55FF55))
-                            .append(Text.literal(mod).setStyle(Style.EMPTY.withColor(0xFF5555).withUnderline(true)))
-                            .append(Text.literal(" in this server!").setStyle(Style.EMPTY.withColor(0x55FF55)));
-                    disconnect(client, title, reason);
+                    haveBlackListMod(client, mod);
+                    break;
+                }
+            }
+        }else {
+            for (String s : allMod) {
+                boolean breakThis = false;
+                for (String b : blackList) {
+                    if (s.matches(b)){
+                        breakThis = true;
+                        haveBlackListMod(client, s.substring(0, s.indexOf(" ")));
+                        break;
+                    }
+                }
+                if (breakThis){
                     break;
                 }
             }
@@ -80,6 +90,15 @@ public class CCAProtocolClient {
             client.disconnect();
             client.setScreen(new DisconnectedScreen(new MultiplayerScreen(new TitleScreen()), title, reason));
         });
+    }
+
+    // 发现黑名单模组断开连接
+    private static void haveBlackListMod(MinecraftClient client, String mod){
+        Text title = Text.literal("CrystalCarpetAddition").setStyle(Style.EMPTY.withColor(0x55FFFF).withBold(true));
+        Text reason = Text.literal("You can't use ").setStyle(Style.EMPTY.withColor(0x55FF55))
+                .append(Text.literal(mod).setStyle(Style.EMPTY.withColor(0xFF5555).withUnderline(true)))
+                .append(Text.literal(" in this server!").setStyle(Style.EMPTY.withColor(0x55FF55)));
+        disconnect(client, title, reason);
     }
 
     // 向服务器发送数据包要等到客户端的join事件完成加载, 不然是不能发送的, 这个函数注册在ClientPlayConnectionEventsJoin
