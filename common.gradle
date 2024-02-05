@@ -190,7 +190,8 @@ processResources {
                 "mod_license"         : project.mod_license,
                 "mod_name"            : project.mod_name,
                 "mod_sources"         : project.mod_sources,
-                "mod_version"         : project.version
+                "mod_version"         : project.version,
+                "fabric_api_version"  : project.fabric_api_version
         ])
     }
 
