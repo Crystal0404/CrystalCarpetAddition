@@ -21,4 +21,8 @@ public class CCASettings {
     public static boolean ItemShadowing = false;
     @Rule(categories = NETWORK)
     public static boolean CCAProtocol = false;
+    //#if MC >= 12004
+    @Rule(categories = CCA)
+    public static boolean ComparatorCanPlaceAboveAir = false;
+    //#endif
 }
