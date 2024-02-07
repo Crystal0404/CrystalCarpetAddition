@@ -23,7 +23,7 @@ public class CCAProtocolServer {
         if (!CCASettings.CCAProtocol){return;}
 
         // 不是真玩家, 跳过执行
-        if (!handler.player.toString().contains("ServerPlayerEntity")){return;}
+        if (handler.player.toString().contains("EntityPlayerMPFake")){return;}
 
         // 判断是否可以发送数据包, 不能发送就踢出服务器
         if (!ServerPlayNetworking.canSend(handler.player, CCANetwork.HELLO)){
