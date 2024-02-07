@@ -32,7 +32,7 @@ public class ReadConfig {
             Gson gson = new Gson();
             try {
                 Config config = gson.fromJson(stringBuilder.toString(), Config.class);
-                MOD_BLACK_LIST = config.getBlack_list();
+                MOD_BLACK_LIST = config.getBlackList();
                 GET_MOD = config.isGetModList();
                 REGEX = config.isRegex();
             }catch (JsonSyntaxException e){

@@ -9,6 +9,7 @@
     "Rule.MagicBox.MagicBoxMixin"
   ],
   "client": [
+    "Rule.WhatIsThis.Happy"
   ],
   "server": [
   ],

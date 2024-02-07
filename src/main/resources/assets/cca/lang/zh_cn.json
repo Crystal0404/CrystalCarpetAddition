@@ -9,5 +9,7 @@
   "cca.rule.ItemShadowing.name": "物品分身",
   "cca.rule.ItemShadowing.desc": "它有一个影子! (使用了部分1.16.5的ItemStack逻辑)",
   "cca.rule.CCAProtocol.name": "CCA协议",
-  "cca.rule.CCAProtocol.desc": "CCA协议, 用于实现MOD黑名单, 使用说明请查看github的README."
+  "cca.rule.CCAProtocol.desc": "CCA协议, 用于实现MOD黑名单, 使用说明请查看github的README.",
+  "cca.rule.ComparatorCanPlaceAboveAir.name": "比较器可\"浮空\"放置",
+  "cca.rule.ComparatorCanPlaceAboveAir.desc": "把比较器掉落为物品的行为修改至与1.20.1版本一致."
 }

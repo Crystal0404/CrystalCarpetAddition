@@ -74,6 +74,15 @@ Version 1.19.4 has a bug working with Velocity etc, which is caused by fabric-ap
 - Options: ```flase``` ```true```
 - Validators: Strict(Case-insensitive)
 
+### ComparatorCanPlaceAboveAir
+
+Changed the code for comparators to drop items to match version 1.20.1.(Opening a trapdoor will not cause the comparator to drop as an item)
+
+- Categories: ```CrystalCarpetAddition```
+- Type: ```Boolean```
+- Default value: ```false```
+- Options: ```flase``` ```true```
+- Validators: Strict(Case-insensitive)
 
 ## Supported versions
 Please note that the version that is not written here is an unsupported version, 
