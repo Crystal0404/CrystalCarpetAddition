@@ -9,14 +9,17 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.Calendar;
+import java.util.Random;
 
 @Mixin(SplashTextResourceSupplier.class)
 public abstract class Happy {
     @Unique
     Calendar calendar = Calendar.getInstance();
+    @Unique
+    Random random = new Random();
     @Inject(method = "get", at = @At("RETURN"), cancellable = true)
     private void SplashTextResourceSupplierMixin(CallbackInfoReturnable<SplashTextRenderer> cir){
-        if (calendar.get(Calendar.MONTH) == Calendar.MARCH && calendar.get(Calendar.DAY_OF_MONTH) == 25){
+        if (calendar.get(Calendar.MONTH) == Calendar.MARCH && calendar.get(Calendar.DAY_OF_MONTH) == 25 && random.nextInt(3) == 2){
             cir.setReturnValue(new SplashTextRenderer("Happy birthday Crystal0404!!!"));
         }
     }
