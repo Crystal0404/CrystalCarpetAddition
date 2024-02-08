@@ -2,7 +2,7 @@ package crystal0404.crystalcarpetaddition.config;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
-import crystal0404.crystalcarpetaddition.CrystalCarpetAddition;
+import crystal0404.crystalcarpetaddition.CCAReference;
 import net.fabricmc.loader.api.FabricLoader;
 
 import java.io.File;
@@ -38,7 +38,7 @@ public class ReadConfig {
             }catch (JsonSyntaxException e){
                 File f = new File(file_path);
                 f.delete();
-                CrystalCarpetAddition.LOGGER.error("Abnormal configuration file read!Looks like your configuration is not correct!");
+                CCAReference.getLogger().error("Abnormal configuration file read!Looks like your configuration is not correct!");
                 throw new RuntimeException(e);
             }
         }

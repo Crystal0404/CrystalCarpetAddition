@@ -1,8 +1,8 @@
 package crystal0404.crystalcarpetaddition.network.Rule.CCAProtocol;
 
 import com.google.gson.Gson;
+import crystal0404.crystalcarpetaddition.CCAReference;
 import crystal0404.crystalcarpetaddition.CCASettings;
-import crystal0404.crystalcarpetaddition.CrystalCarpetAddition;
 import crystal0404.crystalcarpetaddition.config.ReadConfig;
 import crystal0404.crystalcarpetaddition.network.CCANetwork;
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
@@ -27,7 +27,7 @@ public class CCAProtocolServer {
 
         // 判断是否可以发送数据包, 不能发送就踢出服务器
         if (!ServerPlayNetworking.canSend(handler.player, CCANetwork.HELLO)){
-            CrystalCarpetAddition.LOGGER.info("The packet failed to be sent and the player may not have CCA installed");
+            CCAReference.getLogger().info("The packet failed to be sent and the player may not have CCA installed");
             handler.disconnect(Text.literal("\nPlease install CrystalCarpetAddition!\n")
                     .setStyle(Style.EMPTY.withColor(0x55FFFF))
                     .append(Text.literal("https://modrinth.com/mod/crystalcarpetaddition")
@@ -49,6 +49,6 @@ public class CCAProtocolServer {
             PacketSender sender
     ){
         String info = buf.readString();
-        CrystalCarpetAddition.LOGGER.info(info);
+        CCAReference.getLogger().info(info);
     }
 }

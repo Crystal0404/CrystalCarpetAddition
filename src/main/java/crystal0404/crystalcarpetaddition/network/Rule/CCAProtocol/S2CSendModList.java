@@ -13,11 +13,6 @@ class S2CSendModList {
     private boolean Send;
     @Setter
     private boolean Regex;
-    private final int version = 2;
-
-    public S2CSendModList(){
-        // 无参构造函数, 用于获取version
-    }
 
     public S2CSendModList(Collection<String> blackList, boolean send, boolean regex) {
         BlackList = blackList;
@@ -27,11 +22,10 @@ class S2CSendModList {
 
     @Override
     public String toString() {
-        return "SendModList{" +
+        return "S2CSendModList{" +
                 "BlackList=" + BlackList +
                 ", Send=" + Send +
                 ", Regex=" + Regex +
-                ", version=" + version +
                 '}';
     }
 }
