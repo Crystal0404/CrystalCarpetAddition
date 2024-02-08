@@ -32,18 +32,6 @@ public class CCAProtocolClient {
         Collection<String> blackList = gson.fromJson(info, S2CSendModList.class).getBlackList();
         boolean regex = gson.fromJson(info, S2CSendModList.class).isRegex();
         boolean send = gson.fromJson(info, S2CSendModList.class).isSend();
-        int version = gson.fromJson(info, S2CSendModList.class).getVersion();
-
-        // 检查版本
-        if (version != new S2CSendModList().getVersion()){
-            Text title = Text.literal("CrystalCarpetAddition").setStyle(Style.EMPTY.withColor(0x55FFFF).withBold(true));
-            Text reason = Text.literal("The CCA protocol version is incorrect, please try to change the CrystalCarpetAddition.")
-                    .setStyle(Style.EMPTY.withColor(0xFF5555))
-                    .append(Text.literal("\nhttps://modrinth.com/mod/crystalcarpetaddition")
-                            .setStyle(Style.EMPTY.withColor(0x55FF55).withUnderline(true)));
-            disconnect(client, title, reason);
-            return;
-        }
 
         // 获取模组列表, 并转化成String
         Collection<String> allMod = new ArrayList<>();

@@ -39,5 +39,4 @@ public class CCAExtension implements CarpetExtensionCompatApi {
 
     }
 
-
 }

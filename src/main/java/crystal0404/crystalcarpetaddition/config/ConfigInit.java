@@ -2,7 +2,7 @@ package crystal0404.crystalcarpetaddition.config;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import crystal0404.crystalcarpetaddition.CrystalCarpetAddition;
+import crystal0404.crystalcarpetaddition.CCAReference;
 import net.fabricmc.loader.api.FabricLoader;
 
 import java.io.File;
@@ -19,11 +19,11 @@ public class ConfigInit {
         // 创建配置文件夹和文件
         File dir = new File(dir_path);
         if (dir.mkdir()){
-            CrystalCarpetAddition.LOGGER.info("The configuration folder is created!");
+            CCAReference.getLogger().info("The configuration folder is created!");
         }
         File config = new File(file_path);
         if (config.createNewFile()){
-            CrystalCarpetAddition.LOGGER.info("The configuration file has been generated!");
+            CCAReference.getLogger().info("The configuration file has been generated!");
             // 序列化配置
             Collection<String> empty_config = new ArrayList<>();
             Config config1 = new Config(empty_config, false, false);
