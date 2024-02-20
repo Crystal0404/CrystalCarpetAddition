@@ -4,30 +4,19 @@ import com.llamalad7.mixinextras.injector.WrapWithCondition;
 import crystal0404.crystalcarpetaddition.CCASettings;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.item.ItemStack;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.slot.Slot;
 import net.minecraft.screen.slot.SlotActionType;
-import net.minecraft.util.collection.DefaultedList;
-import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
-import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
 
 @Mixin(ScreenHandler.class)
 public abstract class ItemShadowingMixin {
-    @Final
-    @Shadow
-    public DefaultedList<Slot> slots = DefaultedList.of();
-    @Unique
-    Slot slot3;
-    @Unique
-    net.minecraft.item.ItemStack itemStack2;
-    @Unique
-    PlayerInventory playerInventory;
 
     @WrapWithCondition(
             method = "internalOnSlotClick(IILnet/minecraft/screen/slot/SlotActionType;Lnet/minecraft/entity/player/PlayerEntity;)V",
@@ -38,14 +27,12 @@ public abstract class ItemShadowingMixin {
     }
     @Inject(
             method = "internalOnSlotClick(IILnet/minecraft/screen/slot/SlotActionType;Lnet/minecraft/entity/player/PlayerEntity;)V",
-            at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/player/PlayerInventory;setStack(ILnet/minecraft/item/ItemStack;)V", ordinal = 1)
+            at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/player/PlayerInventory;setStack(ILnet/minecraft/item/ItemStack;)V", ordinal = 1),
+            locals = LocalCapture.CAPTURE_FAILSOFT
     )
-    private void internalOnSlotClickMixin(int slotIndex, int button, SlotActionType actionType, PlayerEntity player, CallbackInfo ci){
-        slot3 = this.slots.get(slotIndex);
-        playerInventory = player.getInventory();
-        itemStack2 = playerInventory.getStack(button);
-        if(CCASettings.ItemShadowing){
-            slot3.setStack(itemStack2);
+    private void internalOnSlotClickMixin(int slotIndex, int button, SlotActionType actionType, PlayerEntity player, CallbackInfo ci, PlayerInventory playerInventory, ItemStack itemStack5, Slot slot){
+        if (CCASettings.ItemShadowing){
+            slot.setStack(itemStack5);
         }
     }
 }
