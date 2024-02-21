@@ -30,9 +30,17 @@ public abstract class ItemShadowingMixin {
             at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/player/PlayerInventory;setStack(ILnet/minecraft/item/ItemStack;)V", ordinal = 1),
             locals = LocalCapture.CAPTURE_FAILSOFT
     )
-    private void internalOnSlotClickMixin(int slotIndex, int button, SlotActionType actionType, PlayerEntity player, CallbackInfo ci, PlayerInventory playerInventory, ItemStack itemStack5, Slot slot){
+    //#if MC <= 12001
+    private void internalOnSlotClickMixin(int slotIndex, int button, SlotActionType actionType, PlayerEntity player, CallbackInfo ci, PlayerInventory playerInventory, Slot slot3, ItemStack itemStack2){
         if (CCASettings.ItemShadowing){
-            slot.setStack(itemStack5);
+            slot3.setStack(itemStack2);
         }
     }
+    //#elseif MC >= 12004
+    //$$ private void internalOnSlotClickMixin(int slotIndex, int button, SlotActionType actionType, PlayerEntity player, CallbackInfo ci, PlayerInventory playerInventory, ItemStack itemStack5, Slot slot){
+    //$$     if (CCASettings.ItemShadowing){
+    //$$         slot.setStack(itemStack5);
+    //$$     }
+    //$$ }
+    //#endif
 }
