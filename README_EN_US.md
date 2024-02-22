@@ -36,7 +36,7 @@ The enderPearlChunkLoading function of [Carpet-Extra](https://github.com/gnembon
 
 C has no special meaning, only for differentiation
 
-**Carpet-Extra used my fix, so I removed it in 1.20.4 and above**
+If Carpet-Extra's enderPearlChunkLoading isn't working, try switching to this
 
 - Categories: ```CrystalCarpetAddition```
 - Type: ```Boolean```
@@ -88,11 +88,23 @@ Changed the code for comparators to drop items to match version 1.20.1.(Opening 
 - Options: ```flase``` ```true```
 - Validators: Strict(Case-insensitive)
 
+
+### NoBatSpawn
+
+Makes bats no longer spawn.
+
+- Categories: ```CrystalCarpetAddition```
+- Type: ```Boolean```
+- Default value: ```false```
+- Options: ```flase``` ```true```
+- Validators: Strict(Case-insensitive)
+
 ## Supported versions
 Please note that the version that is not written here is an unsupported version, 
 and the issue of the unsupported version will be closed unconditionally, and it will be updated at any time!
 
 - Minecraft 1.19.4
+- Minecraft 1.20.1
 - Minecraft 1.20.4
 
 
