@@ -11,5 +11,7 @@
   "cca.rule.CCAProtocol.name": "CCA协议",
   "cca.rule.CCAProtocol.desc": "CCA协议, 用于实现MOD黑名单, 使用说明请查看github的README.",
   "cca.rule.ComparatorCanPlaceAboveAir.name": "比较器可\"浮空\"放置",
-  "cca.rule.ComparatorCanPlaceAboveAir.desc": "把比较器掉落为物品的行为修改至与1.20.1版本一致."
+  "cca.rule.ComparatorCanPlaceAboveAir.desc": "把比较器掉落为物品的行为修改至与1.20.1版本一致.",
+  "cca.rule.NoBatSpawn.name": "禁用蝙蝠生成",
+  "cca.rule.NoBatSpawn.desc": "让你的世界不再生成烦人的蝙蝠."
 }
