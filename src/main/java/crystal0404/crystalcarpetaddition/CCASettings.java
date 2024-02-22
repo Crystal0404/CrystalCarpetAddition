@@ -12,10 +12,8 @@ public class CCASettings {
     public static boolean MagicBox = true;
     //#endif
 
-    //#if MC < 12004
     @Rule(categories = CCA)
     public static boolean CEnderPearlChunkLoading = false;
-    //#endif
 
     @Rule(categories = CCA)
     public static boolean ItemShadowing = false;
@@ -25,4 +23,7 @@ public class CCASettings {
     //$$ @Rule(categories = CCA)
     //$$ public static boolean ComparatorCanPlaceAboveAir = false;
     //#endif
+
+    @Rule(categories = CCA)
+    public static boolean NoBatSpawn = false;
 }
