@@ -1,4 +1,3 @@
-//#if MC < 12004
 package crystal0404.crystalcarpetaddition.carpet_extra.utils;
 
 import java.util.Comparator;
@@ -12,7 +11,7 @@ import net.minecraft.world.World;
 
 public class ChunkUtils
 {
-    public static final ChunkTicketType<ChunkPos> ENDER_PEARL_TICKET = ChunkTicketType.create("ender_pearl", Comparator.comparingLong(ChunkPos::toLong), 2);
+    public static final ChunkTicketType<ChunkPos> ENDER_PEARL_TICKET = ChunkTicketType.create("ender_pearl", Comparator.comparingLong(ChunkPos::toLong), 3);
 
     public static void addEnderPearlChunkTicket(Entity entity)
     {
@@ -30,4 +29,3 @@ public class ChunkUtils
         }
     }
 }
-//#endif

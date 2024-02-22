@@ -6,7 +6,8 @@
   "mixins": [
     "Rule.CEnderPearlChunkLoading.CEnderPearlChunkLoadingMixin",
     "Rule.ItemShadowing.ItemShadowingMixin",
-    "Rule.MagicBox.MagicBoxMixin"
+    "Rule.MagicBox.MagicBoxMixin",
+    "Rule.NoBatSpawn.NoBatSpawnMixin"
   ],
   "client": [
     "Rule.WhatIsThis.Happy"
