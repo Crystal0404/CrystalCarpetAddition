@@ -41,7 +41,7 @@
 
 C没有特殊含义, 只为和Carpet-Extra的功能作区分
 
-**1.20.4的[Carpet-Extra](https://github.com/gnembon/carpet-extra)应用了我的修复, 为了防止冲突, 我在1.20.4及以后的版本中移除了它**
+如果Carpet-Extra的珍珠加载没有正常工作, 可以试试换用这个
 
 - 分类: ```CrystalCarpetAddition```
 - 类型: ```布尔值```
@@ -93,10 +93,24 @@ C没有特殊含义, 只为和Carpet-Extra的功能作区分
 - 参考值: ```flase``` ```true```
 - 验证器: 严格(不区分大小写)
 
+
+
+### 禁用蝙蝠生成(NoBatSpawn)
+
+让你的世界不再生成烦人的蝙蝠.
+
+- 分类: ```CrystalCarpetAddition```
+- 类型: ```布尔值```
+- 默认值: ```false```
+- 参考值: ```flase``` ```true```
+- 验证器: 严格(不区分大小写)
+
+
 ## 支持版本
 请注意, 没有写在这里的版本为不受支持版本, 不受支持版本的issues会无条件直接关闭, 它会随时更新!
 
 - Minecraft 1.19.4
+- Minecraft 1.20.1
 - Minecraft 1.20.4
 
 
