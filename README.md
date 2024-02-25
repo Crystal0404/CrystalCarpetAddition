@@ -1,5 +1,7 @@
 ## Crystal Carpet Additon
 
+**因为一些人对我个人以及这个mod的辱骂, 本模组无限期停止维护**
+
   *中文* / [English](https://github.com/Crystal0404/CrystalCarpetAddition/blob/master/README_EN_US.md) 
 
   *经过数次跳票，终于做出来了!*
