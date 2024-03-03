@@ -4,13 +4,11 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.util.Collection;
+@Setter
 @Getter
 class Config {
-    @Setter
     private Collection<String> BlackList;
-    @Setter
     private boolean GetModList;
-    @Setter
     private boolean Regex;
 
     public Config(Collection<String> black_list, boolean getModList, boolean regex) {

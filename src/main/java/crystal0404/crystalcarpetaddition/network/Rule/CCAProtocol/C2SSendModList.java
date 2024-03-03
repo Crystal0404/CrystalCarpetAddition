@@ -5,9 +5,9 @@ import lombok.Setter;
 
 import java.util.Collection;
 
+@Setter
 @Getter
 class C2SSendModList {
-    @Setter
     private Collection<String> ModList;
 
     public C2SSendModList(Collection<String> modList) {
