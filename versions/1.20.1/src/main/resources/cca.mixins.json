@@ -4,11 +4,10 @@
   "package": "crystal0404.crystalcarpetaddition.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
-    "Rule.NoBatSpawn.NoBatSpawnMixin",
     "Rule.CEnderPearlChunkLoading.CEnderPearlChunkLoadingMixin",
-    "Rule.ComparatorCanPlaceAboveAir.ComparatorCanPlaceAboveAirMixin",
     "Rule.ItemShadowing.ItemShadowingMixin",
-    "Rule.MagicBox.MagicBoxMixin"
+    "Rule.MagicBox.MagicBoxMixin",
+    "Rule.NoBatSpawn.NoBatSpawnMixin"
   ],
   "client": [
     "Rule.WhatIsThis.Happy"

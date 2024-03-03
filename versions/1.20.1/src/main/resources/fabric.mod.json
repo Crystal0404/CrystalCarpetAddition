@@ -35,7 +35,7 @@
     "${mod_id}.mixins.json"
   ],
   "depends": {
-    "fabric-api": ">=${fabric_api_version}",
+    "fabric-api": "*",
     "carpet": "*",
     "fabric": ">=0.15.0",
     "magiclib-${minecraft_version_id}": ">=${magiclib_dependency}",

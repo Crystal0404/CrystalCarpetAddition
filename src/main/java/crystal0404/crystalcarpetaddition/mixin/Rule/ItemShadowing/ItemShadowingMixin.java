@@ -31,16 +31,16 @@ public abstract class ItemShadowingMixin {
             locals = LocalCapture.CAPTURE_FAILSOFT
     )
     //#if MC <= 12001
-    private void internalOnSlotClickMixin(int slotIndex, int button, SlotActionType actionType, PlayerEntity player, CallbackInfo ci, PlayerInventory playerInventory, Slot slot3, ItemStack itemStack2){
-        if (CCASettings.ItemShadowing){
-            slot3.setStack(itemStack2);
-        }
-    }
-    //#elseif MC >= 12004
-    //$$ private void internalOnSlotClickMixin(int slotIndex, int button, SlotActionType actionType, PlayerEntity player, CallbackInfo ci, PlayerInventory playerInventory, ItemStack itemStack5, Slot slot){
+    //$$ private void internalOnSlotClickMixin(int slotIndex, int button, SlotActionType actionType, PlayerEntity player, CallbackInfo ci, PlayerInventory playerInventory, Slot slot3, ItemStack itemStack2){
     //$$     if (CCASettings.ItemShadowing){
-    //$$         slot.setStack(itemStack5);
+    //$$         slot3.setStack(itemStack2);
     //$$     }
     //$$ }
+    //#elseif MC >= 12004
+    private void internalOnSlotClickMixin(int slotIndex, int button, SlotActionType actionType, PlayerEntity player, CallbackInfo ci, PlayerInventory playerInventory, ItemStack itemStack5, Slot slot){
+        if (CCASettings.ItemShadowing){
+            slot.setStack(itemStack5);
+        }
+    }
     //#endif
 }
