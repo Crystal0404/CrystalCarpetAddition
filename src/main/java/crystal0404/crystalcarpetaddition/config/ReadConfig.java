@@ -12,6 +12,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Collection;
 
+@SuppressWarnings("all")
 public class ReadConfig {
     public static Collection<String> MOD_BLACK_LIST;
     public static boolean GET_MOD;
