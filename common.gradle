@@ -8,6 +8,7 @@ import org.objectweb.asm.tree.LdcInsnNode
 apply(plugin: "maven-publish")
 apply(plugin: "fabric-loom")
 apply(plugin: "com.replaymod.preprocess")
+apply(plugin: "com.github.hierynomus.license")
 
 int mcVersion = 1
 
@@ -207,6 +208,42 @@ java {
 jar {
     from("${rootDir}/LICENSE")
 }
+
+// https://github.com/hierynomus/license-gradle-plugin
+license {
+    // use "gradle licenseFormat" to apply license headers
+    header = rootProject.file('HEADER.txt')
+    include '**/*.java'
+    skipExistingHeaders = true
+
+    headerDefinitions {
+        // ref: https://github.com/mathieucarbou/license-maven-plugin/blob/4c42374bb737378f5022a3a36849d5e23ac326ea/license-maven-plugin/src/main/java/com/mycila/maven/plugin/license/header/HeaderType.java#L48
+        // modification: add a newline at the end
+        SLASHSTAR_STYLE_NEWLINE {
+            firstLine = "/*"
+            beforeEachLine = " * "
+            endLine = " */" + System.lineSeparator()
+            afterEachLine = ""
+            skipLinePattern = null
+            firstLineDetectionPattern = "(\\s|\\t)*/\\*.*\$"
+            lastLineDetectionPattern = ".*\\*/(\\s|\\t)*\$"
+            allowBlankLines = false
+            isMultiline = true
+            padLines = false
+        }
+    }
+    mapping {
+        java = 'SLASHSTAR_STYLE_NEWLINE'
+    }
+    ext {
+        name = project.mod_name
+        author = 'Crystal_0404'
+        year = Calendar.getInstance().get(Calendar.YEAR).toString()
+    }
+}
+classes.dependsOn licenseFormatMain
+testClasses.dependsOn licenseFormatTest
+
 
 publishing {
     publications {
