@@ -39,6 +39,11 @@ repositories {
     }
 
     maven {
+        name("Fallen Maven")
+        url("https://maven.fallenbreath.me/releases")
+    }
+
+    maven {
         name("Masa Maven")
         url("https://masa.dy.fi/maven")
     }
@@ -65,8 +70,10 @@ dependencies {
     modImplementation("top.hendrixshen.magiclib:magiclib-${project.minecraft_version.replace(".", "_")}:${project.magiclib_version}") {
         exclude(group: "curse.maven", module: "malilib-303119")
     }
-
     modImplementation("net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}")
+
+    // Jar in Jar
+    include(modImplementation("me.fallenbreath:conditional-mixin:0.4.1"))
 
     // Misc
     runtimeOnly(project(path: ":fabricWrapper"))
