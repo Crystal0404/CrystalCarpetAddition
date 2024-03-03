@@ -1,3 +1,23 @@
+/*
+ * This file is part of the Crystal Carpet Addition project, licensed under the
+ * GNU General Public License v3.0
+ *
+ * Copyright (C) 2024  Crystal_0404 and contributors
+ *
+ * Crystal Carpet Addition is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Crystal Carpet Addition is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Crystal Carpet Addition.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
 package crystal0404.crystalcarpetaddition.network.Rule.CCAProtocol;
 
 import com.google.gson.Gson;
@@ -33,17 +53,17 @@ public class CCAProtocolClient {
         boolean regex = gson.fromJson(info, S2CSendModList.class).isRegex();
         boolean send = gson.fromJson(info, S2CSendModList.class).isSend();
 
-        // 获取模组列表, 并转化成String
+        // Get a list of mods and convert them to Strings
         Collection<String> allMod = new ArrayList<>();
         FabricLoader.getInstance().getAllMods().forEach(mod -> allMod.add(mod.toString()));
 
-        // 把模组列表发送给服务器
+        // Send the list of mods to the server
         if (send){
             Gson sendMod = new GsonBuilder().setPrettyPrinting().create();
             SEND = sendMod.toJson(new C2SSendModList(allMod));
         }
 
-        // 检查是否有不允许的模组, else中是正则表达式模式, 默认是id必须完全匹配
+        // Check if there are any mods that are not allowed, the other is the regular expression pattern, the default is that the id must match exactly
         if (!regex){
             for (String s : allMod) {
                 String mod = s.substring(0, s.indexOf(" "));
@@ -69,7 +89,7 @@ public class CCAProtocolClient {
         }
     }
 
-    // 断开连接
+    // disconnect
     private static void disconnect(MinecraftClient client, Text title, Text reason){
         client.execute(() -> {
             if (client.world != null){
@@ -80,7 +100,7 @@ public class CCAProtocolClient {
         });
     }
 
-    // 发现黑名单模组断开连接
+    // The blacklisted module was found to be disconnected
     private static void haveBlackListMod(MinecraftClient client, String mod){
         Text title = Text.literal("CrystalCarpetAddition").setStyle(Style.EMPTY.withColor(0x55FFFF).withBold(true));
         Text reason = Text.literal("You can't use ").setStyle(Style.EMPTY.withColor(0x55FF55))
@@ -89,7 +109,7 @@ public class CCAProtocolClient {
         disconnect(client, title, reason);
     }
 
-    // 向服务器发送数据包要等到客户端的join事件完成加载, 不然是不能发送的, 这个函数注册在ClientPlayConnectionEventsJoin
+    // Sending packets to the server cannot be sent until the client's join event is loaded, which is registered in ClientPlayConnectionEventsJoin
     public static void send(){
         if (SEND != null && ClientPlayNetworking.canSend(CCANetwork.MOD)){
             ClientPlayNetworking.send(CCANetwork.MOD, PacketByteBufs.create().writeString(SEND));
