@@ -18,7 +18,7 @@
     "issues": "${mod_sources}/issues",
     "sources": "${mod_sources}"
   },
-  "license": "GPLv3",
+  "license": "${mod_license}",
   "environment": "*",
   "entrypoints": {
     "main": [
