@@ -22,6 +22,8 @@ package crystal0404.crystalcarpetaddition.mixin.Rule.ItemShadowing;
 
 import com.llamalad7.mixinextras.injector.WrapWithCondition;
 import crystal0404.crystalcarpetaddition.CCASettings;
+import me.fallenbreath.conditionalmixin.api.annotation.Condition;
+import me.fallenbreath.conditionalmixin.api.annotation.Restriction;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.ItemStack;
@@ -34,7 +36,13 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
-
+@Restriction(
+        conflict = {
+                // Carpet-Fixes
+                @Condition(type = Condition.Type.MIXIN,
+                value = "carpetfixes.mixins.reIntroduced.ScreenHandler_itemShadowingMixin")
+        }
+)
 @Mixin(ScreenHandler.class)
 public abstract class ItemShadowingMixin {
 
