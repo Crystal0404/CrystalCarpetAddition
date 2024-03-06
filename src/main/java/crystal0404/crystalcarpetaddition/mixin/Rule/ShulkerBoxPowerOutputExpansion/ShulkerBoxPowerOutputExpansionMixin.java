@@ -20,7 +20,6 @@
 
 package crystal0404.crystalcarpetaddition.mixin.Rule.ShulkerBoxPowerOutputExpansion;
 
-import crystal0404.crystalcarpetaddition.CCAReference;
 import crystal0404.crystalcarpetaddition.CCASettings;
 import crystal0404.crystalcarpetaddition.utils.ShulkerBoxClour.ColourMap;
 import net.minecraft.block.entity.BlockEntity;
