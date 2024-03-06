@@ -27,6 +27,7 @@ public class CCASettings {
     private static final String CCA = "CrystalCarpetAddition";
     private static final String NETWORK = "Network";
     private static final String CREATIVE = "CreativeTools";
+
     @Rule(categories = CCA)
     //#if MC >=12002
     public static boolean MagicBox = false;
@@ -39,8 +40,10 @@ public class CCASettings {
 
     @Rule(categories = CCA)
     public static boolean ItemShadowing = false;
+
     @Rule(categories = NETWORK)
     public static boolean CCAProtocol = false;
+
     //#if MC >= 12004
     @Rule(categories = CCA)
     public static boolean ComparatorCanPlaceAboveAir = false;
@@ -51,6 +54,7 @@ public class CCASettings {
 
     @Rule(categories = CREATIVE)
     public static boolean ShulkerBoxPowerOutputExpansion = false;
+
     @Rule(categories = CREATIVE)
     public static ColourMap.Colour ShulkerBoxPowerOutputExpansionColour = ColourMap.Colour.PINK;
 }
