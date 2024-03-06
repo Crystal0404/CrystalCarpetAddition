@@ -47,7 +47,7 @@ public class ShulkerBoxPowerOutputExpansionMixin {
         ) {
             Inventory inventory = (Inventory) entity;
             int num = 0;
-            for (int i = 0; i < inventory.size(); i++) {
+            for (int i = 0; num != 15 && i < inventory.size(); i++) {
                 ItemStack itemStack = inventory.getStack(i);
                 if (itemStack.isEmpty()) continue;
                 num += 1;

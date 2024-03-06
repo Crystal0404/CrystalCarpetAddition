@@ -38,9 +38,11 @@ import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
 @Restriction(
         conflict = {
-                // Carpet-Fixes
-                @Condition(type = Condition.Type.MIXIN,
-                value = "carpetfixes.mixins.reIntroduced.ScreenHandler_itemShadowingMixin")
+                // Carpet-fix
+                @Condition(
+                        type = Condition.Type.MIXIN,
+                        value = "carpetfixes.mixins.reIntroduced.ScreenHandler_itemShadowingMixin"
+                )
         }
 )
 @Mixin(ScreenHandler.class)
