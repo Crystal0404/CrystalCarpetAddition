@@ -7,7 +7,9 @@
     "Rule.CEnderPearlChunkLoading.CEnderPearlChunkLoadingMixin",
     "Rule.ItemShadowing.ItemShadowingMixin",
     "Rule.MagicBox.MagicBoxMixin",
-    "Rule.NoBatSpawn.NoBatSpawnMixin"
+    "Rule.NoBatSpawn.NoBatSpawnMixin",
+    "Rule.ShulkerBoxPowerOutputExpansion.ShulkerBoxPowerOutputExpansionMixin",
+    "Rule.EndermanCannotPickUpBlocksInNether.EndermanCannotPickUpBlocksInNetherMixin"
   ],
   "client": [
     "Rule.WhatIsThis.Happy"

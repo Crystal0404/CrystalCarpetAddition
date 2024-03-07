@@ -23,6 +23,7 @@ package crystal0404.crystalcarpetaddition;
 import crystal0404.crystalcarpetaddition.utils.ShulkerBoxClour.ColourMap;
 import top.hendrixshen.magiclib.carpet.api.annotation.Rule;
 
+
 public class CCASettings {
     private static final String CCA = "CrystalCarpetAddition";
     private static final String NETWORK = "Network";
@@ -48,6 +49,9 @@ public class CCASettings {
     @Rule(categories = CCA)
     public static boolean ComparatorCanPlaceAboveAir = false;
     //#endif
+
+    @Rule(categories = CCA)
+    public static boolean EndermanCannotPickUpBlocksInNether = false;
 
     @Rule(categories = CCA)
     public static boolean NoBatSpawn = false;

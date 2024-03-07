@@ -6,6 +6,7 @@
   "mixins": [
     "Rule.CEnderPearlChunkLoading.CEnderPearlChunkLoadingMixin",
     "Rule.ComparatorCanPlaceAboveAir.ComparatorCanPlaceAboveAirMixin",
+    "Rule.EndermanCannotPickUpBlocksInNether.EndermanCannotPickUpBlocksInNetherMixin",
     "Rule.ItemShadowing.ItemShadowingMixin",
     "Rule.MagicBox.MagicBoxMixin",
     "Rule.NoBatSpawn.NoBatSpawnMixin",
