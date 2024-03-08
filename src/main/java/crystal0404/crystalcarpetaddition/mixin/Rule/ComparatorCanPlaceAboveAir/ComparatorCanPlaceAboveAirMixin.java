@@ -22,7 +22,6 @@ package crystal0404.crystalcarpetaddition.mixin.Rule.ComparatorCanPlaceAboveAir;
 
 import crystal0404.crystalcarpetaddition.CCASettings;
 import net.minecraft.block.AbstractRedstoneGateBlock;
-import net.minecraft.block.BlockEntityProvider;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.ComparatorBlock;
 import net.minecraft.util.math.BlockPos;
@@ -35,7 +34,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @SuppressWarnings("all")
 @Mixin(ComparatorBlock.class)
-public abstract class ComparatorCanPlaceAboveAirMixin extends AbstractRedstoneGateBlock implements BlockEntityProvider {
+public abstract class ComparatorCanPlaceAboveAirMixin extends AbstractRedstoneGateBlock {
     protected ComparatorCanPlaceAboveAirMixin(Settings settings) {
         super(settings);
     }
