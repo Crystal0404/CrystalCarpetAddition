@@ -22,6 +22,8 @@ package crystal0404.crystalcarpetaddition.mixin.Rule.CEnderPearlChunkLoading;
 
 import crystal0404.crystalcarpetaddition.CCASettings;
 import crystal0404.crystalcarpetaddition.carpet_extra.utils.ChunkUtils;
+import me.fallenbreath.conditionalmixin.api.annotation.Condition;
+import me.fallenbreath.conditionalmixin.api.annotation.Restriction;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.projectile.thrown.EnderPearlEntity;
@@ -31,6 +33,9 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+@Restriction(
+        require = @Condition(value = "minecraft", versionPredicates = "<1.20.4")
+)
 @SuppressWarnings("all")
 @Mixin(EnderPearlEntity.class)
 public abstract class CEnderPearlChunkLoadingMixin extends Entity {

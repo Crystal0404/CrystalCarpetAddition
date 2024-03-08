@@ -22,6 +22,8 @@ package crystal0404.crystalcarpetaddition;
 
 import crystal0404.crystalcarpetaddition.utils.ShulkerBoxClour.ColourMap;
 import top.hendrixshen.magiclib.carpet.api.annotation.Rule;
+import top.hendrixshen.magiclib.dependency.api.annotation.Dependencies;
+import top.hendrixshen.magiclib.dependency.api.annotation.Dependency;
 
 
 public class CCASettings {
@@ -36,19 +38,29 @@ public class CCASettings {
     //$$ public static boolean MagicBox = true;
     //#endif
 
-    @Rule(categories = CCA)
+    @Rule(
+            categories = CCA,
+            dependencies = @Dependencies(and = @Dependency(value = "minecraft", versionPredicate = "<1.20.4"))
+    )
     public static boolean CEnderPearlChunkLoading = false;
 
     @Rule(categories = CCA)
     public static boolean ItemShadowing = false;
 
-    @Rule(categories = NETWORK)
+    @Rule(
+            categories = NETWORK,
+            dependencies = @Dependencies(not = {
+                    @Dependency(value = "fabricproxy-lite", versionPredicate = "<2.6.0"),
+                    @Dependency(value = "fabric_proxy")
+            })
+    )
     public static boolean CCAProtocol = false;
 
-    //#if MC >= 12004
-    @Rule(categories = CCA)
+    @Rule(
+            categories = CCA,
+            dependencies = @Dependencies(and = @Dependency(value = "minecraft", versionPredicate = ">=1.20.4"))
+    )
     public static boolean ComparatorCanPlaceAboveAir = false;
-    //#endif
 
     @Rule(categories = CCA)
     public static boolean EndermanCannotPickUpBlocksInNether = false;

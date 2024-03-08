@@ -5,11 +5,11 @@
   "compatibilityLevel": "JAVA_17",
   "mixins": [
     "Rule.CEnderPearlChunkLoading.CEnderPearlChunkLoadingMixin",
+    "Rule.EndermanCannotPickUpBlocksInNether.EndermanCannotPickUpBlocksInNetherMixin",
     "Rule.ItemShadowing.ItemShadowingMixin",
     "Rule.MagicBox.MagicBoxMixin",
     "Rule.NoBatSpawn.NoBatSpawnMixin",
-    "Rule.ShulkerBoxPowerOutputExpansion.ShulkerBoxPowerOutputExpansionMixin",
-    "Rule.EndermanCannotPickUpBlocksInNether.EndermanCannotPickUpBlocksInNetherMixin"
+    "Rule.ShulkerBoxPowerOutputExpansion.ShulkerBoxPowerOutputExpansionMixin"
   ],
   "client": [
     "Rule.WhatIsThis.Happy"
