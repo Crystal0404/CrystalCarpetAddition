@@ -33,9 +33,10 @@ public class ChunkUtils
 {
     public static final ChunkTicketType<ChunkPos> ENDER_PEARL_TICKET = ChunkTicketType.create("ender_pearl", Comparator.comparingLong(ChunkPos::toLong), 3);
 
-    public static void addEnderPearlChunkTicket(Entity entity, Vec3d velocity)
+    public static void addEnderPearlChunkTicket(Entity entity)
     {
         World world = entity.getEntityWorld();
+        Vec3d velocity = entity.getVelocity();
 
         if (world instanceof ServerWorld &&
             (Math.abs(velocity.x) > 0.001 || Math.abs(velocity.z) > 0.001))
