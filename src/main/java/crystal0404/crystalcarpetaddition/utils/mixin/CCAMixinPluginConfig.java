@@ -32,8 +32,12 @@ public class CCAMixinPluginConfig extends RestrictiveMixinConfigPlugin {
     private static final Logger LOGGER = CCAReference.getLogger();
     @Override
     protected void onRestrictionCheckFailed(String mixinClassName, String reason){
-        LOGGER.info("[CCA] {}", mixinClassName);
-        LOGGER.info("[CCA] {}", reason);
+//        LOGGER.error(mixinClassName);
+//        LOGGER.error(reason);
+        // This interface is not perfect, it is a temporary code, and the log output may be incorrect
+        if (!reason.matches(String.format(".*%s.*", mixinClassName))) {
+            LOGGER.warn("[CCA] \"{}\" is disabled because of \"{}\"", mixinClassName, reason);
+        }
     }
     @Override
     public String getRefMapperConfig() {
