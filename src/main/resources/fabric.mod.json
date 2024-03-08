@@ -35,6 +35,7 @@
     "${mod_id}.mixins.json"
   ],
   "depends": {
+    "mixinextras": ">=0.3.2",
     "fabric-api": ">=${fabric_api_version}",
     "carpet": "*",
     "fabric": ">=0.15.0",

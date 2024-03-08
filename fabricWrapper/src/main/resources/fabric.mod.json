@@ -21,6 +21,7 @@
   "license": "${mod_license}",
   "environment": "*",
   "depends": {
+    "mixinextras": ">=0.3.2",
     "carpet": "*",
     "fabric-api": "*",
     "fabric": ">=0.15.0",
