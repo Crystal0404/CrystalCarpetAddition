@@ -34,7 +34,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-@SuppressWarnings("all")
+@SuppressWarnings("all")  // If you need to debug, you should delete this line
 @Mixin(ThrownEntity.class)
 public abstract class CEnderPearlChunkLoadingMixin extends Entity {
 
