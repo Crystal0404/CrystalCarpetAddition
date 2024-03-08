@@ -11,7 +11,11 @@ A [Carpet mod](https://github.com/gnembon/fabric-carpet) (fabric-carpet) extensi
 
   **Operation command:```/cca```**
 
+## A message for our English-speaking friends
 
+You may have found that the English instructions here are not very good, including the documentation because English is not my everyday language, if you want to make a better translation of this mod, please feel free to submit a PR to me : )
+
+For some reason, the only way you can reach me is on Github, so if you have any questions, you can just open an issue!
 
 ## Dependencies
 
@@ -99,6 +103,41 @@ Makes bats no longer spawn.
 - Options: ```flase``` ```true```
 - Validators: Strict(Case-insensitive)
 
+
+### EndermanCannotPickUpBlocksInNether
+
+Protect your nether terrain from being destroyed by Enderman and prevent a large number of Endermen from not despawning after picking up blocks.
+
+- 分类: ```CrystalCarpetAddition```
+- Type: ```Boolean```
+- Default value: ```false```
+- Options: ```flase``` ```true```
+- Validators: Strict(Case-insensitive)
+
+
+### ShulkerBoxPowerOutputExpansion
+
+Modify the output logic of the comparator detection ShulkerBox
+
+The number of inventory occupied is the number output!
+
+- 分类: ```CreativeTools```
+- Type: ```Boolean```
+- Default value: ```false```
+- Options: ```flase``` ```true```
+- Validators: Strict(Case-insensitive)
+
+
+### ShulkerBoxPowerOutputExpansionColour
+
+Specifies the color of the ShulkerBox in effect for the Shulker Box Power Output Expansion(Pink by default).
+
+- 分类: ```CreativeTools```
+- Type: ```enum```
+- Default value: ```pink```
+- Options: It's too much, I'm too lazy to write XD
+- Validators: Strict(Case-insensitive)
+
 ## Supported versions
 Please note that the version that is not written here is an unsupported version, 
 and the issue of the unsupported version will be closed unconditionally, and it will be updated at any time!
@@ -121,5 +160,3 @@ and the issue of the unsupported version will be closed unconditionally, and it 
 
   For translation errors, please refer to the Chinese README for accuracy
 
-   
-  
