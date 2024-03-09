@@ -37,7 +37,8 @@ public class ShulkerBoxPowerOutputExpansionMixin {
     @Inject(
             method = "calculateComparatorOutput(Lnet/minecraft/block/entity/BlockEntity;)I",
             at = @At(value = "RETURN", ordinal = 0),
-            cancellable = true)
+            cancellable = true
+    )
     private static void calculateComparatorOutputMixin(BlockEntity entity, CallbackInfoReturnable<Integer> cir) {
         if (
                 CCASettings.ShulkerBoxPowerOutputExpansion

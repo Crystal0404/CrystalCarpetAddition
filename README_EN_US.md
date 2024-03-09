@@ -108,7 +108,7 @@ Makes bats no longer spawn.
 
 Protect your nether terrain from being destroyed by Enderman and prevent a large number of Endermen from not despawning after picking up blocks.
 
-- 分类: ```CrystalCarpetAddition```
+- Categories: ```CrystalCarpetAddition```
 - Type: ```Boolean```
 - Default value: ```false```
 - Options: ```flase``` ```true```
@@ -121,7 +121,7 @@ Modify the output logic of the comparator detection ShulkerBox
 
 The number of inventory occupied is the number output!
 
-- 分类: ```CreativeTools```
+- Categories: ```CreativeTools```
 - Type: ```Boolean```
 - Default value: ```false```
 - Options: ```flase``` ```true```
@@ -132,7 +132,7 @@ The number of inventory occupied is the number output!
 
 Specifies the color of the ShulkerBox in effect for the Shulker Box Power Output Expansion(Pink by default).
 
-- 分类: ```CreativeTools```
+- Categories: ```CreativeTools```
 - Type: ```enum```
 - Default value: ```pink```
 - Options: It's too much, I'm too lazy to write XD
