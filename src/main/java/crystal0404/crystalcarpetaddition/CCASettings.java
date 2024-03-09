@@ -50,7 +50,7 @@ public class CCASettings {
     @Rule(
             categories = NETWORK,
             dependencies = @Dependencies(not = {
-                    @Dependency(value = "fabricproxy-lite", versionPredicate = "<2.6.0"),
+                    @Dependency(value = "fabricproxy-lite", versionPredicate = "<=2.6.0"),
                     @Dependency(value = "fabric_proxy")
             })
     )
