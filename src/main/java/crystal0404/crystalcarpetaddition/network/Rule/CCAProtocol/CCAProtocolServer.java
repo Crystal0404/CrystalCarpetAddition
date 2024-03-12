@@ -34,16 +34,19 @@ import net.minecraft.server.network.ServerPlayNetworkHandler;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.Style;
 import net.minecraft.text.Text;
+import top.hendrixshen.magiclib.util.FabricUtil;
 
 public class CCAProtocolServer {
     // Called when the player enters the game (this will be problematic when passing through the group server below 1.20.2)
     public static void playerJoinGame(ServerPlayNetworkHandler handler){
+        // These two mods are in conflict
+        if (FabricUtil.isModLoaded("fabric_proxy") || FabricUtil.isModLoaded("fabricproxy-lite", "<=2.6.0")) return;
 
         // If the relevant settings are not enabled, the execution is skipped
-        if (!CCASettings.CCAProtocol){return;}
+        if (!CCASettings.CCAProtocol) return;
 
         // Not a real player, skip execution
-        if (handler.player.toString().contains("EntityPlayerMPFake")){return;}
+        if (handler.player.toString().contains("EntityPlayerMPFake")) return;
 
         // Determine whether the packet can be sent, and kick the server if it can't
         if (!ServerPlayNetworking.canSend(handler.player, CCANetwork.HELLO)){
