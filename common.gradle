@@ -73,7 +73,7 @@ dependencies {
     modImplementation("net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}")
 
     // Jar in Jar
-    include(modImplementation("me.fallenbreath:conditional-mixin:0.5.0"))
+    include(modImplementation("me.fallenbreath:conditional-mixin:0.5.1"))
 
     // Misc
     runtimeOnly(project(path: ":fabricWrapper"))
