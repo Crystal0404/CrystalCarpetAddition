@@ -25,7 +25,7 @@ CrystalCarpetAdditon will automatically disable the ability to disable conflicts
 
 If the feature is still in the list of rules but doesn't work, you can change something to make it work again
 
-If it doesn't exist in the rules list, it won't work in your game at all and will be removed
+If it's not in your rules list, the feature won't work in your game, so it's disabled and hidden
 
 For more information, see Crystal Carpet Additon's [Wiki](https://github.com/Crystal0404/CrystalCarpetAddition/wiki)
 
