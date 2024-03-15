@@ -57,7 +57,7 @@ body:
   - type: input
     id: mod-version
     attributes:
-      label: TemplateMod version
+      label: CrystalCarpetAddition version
       description: The TemplateMod version(s) where this bug occurs in.
       placeholder: 1.2.3
     validations:
