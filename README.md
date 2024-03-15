@@ -14,6 +14,19 @@
 
   **操作命令是```/cca``` 不是 ```/carpet```**
 
+## 为什么我在游戏里找不到我想要的功能, 或者开启的功能不生效?
+
+**请先检查规则列表是否有相关说明**
+
+CrystalCarpetAdditon会自动禁用关闭和其它模组造成冲突的功能来保证其它没有冲突的功能可以正常工作.
+
+如果这个功能依旧在规则列表中只是没有生效, 说明可以通过修改一些东西让它重新工作
+
+如果它不存在规则列表中, 说明这个功能它完全无法在你的游戏中工作而被移除
+
+详细信息请查阅CrystalCarpetAdditon的[Wiki](https://github.com/Crystal0404/CrystalCarpetAddition/wiki)
+
+Wiki中有可以帮助你解决冲突的相关信息
 
 ## 依赖库
 
@@ -41,7 +54,7 @@
 
 C没有特殊含义, 只为和Carpet-Extra的功能作区分
 
-如果Carpet-Extra的珍珠加载没有正常工作, 可以试试换用这个
+**1.20.4的[Carpet-Extra](https://github.com/gnembon/carpet-extra)应用了我的修复, 为了防止冲突, 我在1.20.4及以后的版本中移除了它**
 
 - 分类: ```CrystalCarpetAddition```
 - 类型: ```布尔值```
@@ -84,6 +97,8 @@ C没有特殊含义, 只为和Carpet-Extra的功能作区分
 
 
 ### 比较器可"浮空"放置(ComparatorCanPlaceAboveAir)
+
+*注: 只有Minecraft1.20.4以上有这个功能*
 
 把比较器掉落为物品的行为修改到与1.20.1一致(打开活版门不会让比较器掉落为物品)
 
