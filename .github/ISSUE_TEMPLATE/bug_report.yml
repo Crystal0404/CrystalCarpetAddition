@@ -58,7 +58,7 @@ body:
     id: mod-version
     attributes:
       label: CrystalCarpetAddition version
-      description: The TemplateMod version(s) where this bug occurs in.
+      description: The CrystalCarpetAddition version(s) where this bug occurs in.
       placeholder: 1.2.3
     validations:
       required: true
