@@ -17,6 +17,20 @@ You may have found that the English instructions here are not very good, includi
 
 For some reason, the only way you can reach me is on Github, so if you have any questions, you can just open an issue!
 
+## Why can't I find the feature I want in the game, or the feature I turned on doesn't work?
+
+**Check the list of rules for descriptions**
+
+CrystalCarpetAdditon will automatically disable the ability to disable conflicts with other mods to ensure that other non-conflicting features work properly.
+
+If the feature is still in the list of rules but doesn't work, you can change something to make it work again
+
+If it doesn't exist in the rules list, it won't work in your game at all and will be removed
+
+For more information, see Crystal Carpet Additon's [Wiki](https://github.com/Crystal0404/CrystalCarpetAddition/wiki)
+
+The wiki has information that can help you resolve conflicts
+
 ## Dependencies
 
 | Dependency | Type     | Environment     | Link                                                                                               |
@@ -40,7 +54,7 @@ The enderPearlChunkLoading function of [Carpet-Extra](https://github.com/gnembon
 
 C has no special meaning, only for differentiation
 
-If Carpet-Extra's enderPearlChunkLoading isn't working, try switching to this
+**Carpet-Extra used my fix, so I removed it in 1.20.4 and above**
 
 - Categories: ```CrystalCarpetAddition```
 - Type: ```Boolean```
