@@ -66,8 +66,11 @@ public abstract class ItemShadowingMixin {
                     ordinal = 1
             )
     )
-    private void internalOnSlotClickMixin(int slotIndex, int button, SlotActionType actionType, PlayerEntity player, CallbackInfo ci,
-                                          @Local(ordinal = 0) Slot slot, @Local(ordinal = 0) ItemStack itemStack) {
+    private void internalOnSlotClickMixin(int slotIndex, int button, SlotActionType actionType, PlayerEntity player,
+                                          CallbackInfo ci,
+                                          @Local(ordinal = 0) Slot slot,
+                                          @Local(ordinal = 0) ItemStack itemStack
+    ) {
         if (CCASettings.ItemShadowing) {
             slot.setStack(itemStack);
         }
