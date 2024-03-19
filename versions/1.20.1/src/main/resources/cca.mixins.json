@@ -12,6 +12,7 @@
     "Rule.ShulkerBoxPowerOutputExpansion.ShulkerBoxPowerOutputExpansionMixin"
   ],
   "client": [
+    "Rule.KeepMessage.keepMessageMixin",
     "Rule.WhatIsThis.Happy"
   ],
   "server": [

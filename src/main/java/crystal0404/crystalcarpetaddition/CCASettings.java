@@ -68,6 +68,12 @@ public class CCASettings {
     @Rule(categories = CCA)
     public static boolean NoBatSpawn = false;
 
+    @Rule(
+            categories = CCA,
+            dependencies = @Dependencies(and = @Dependency(value = "minecraft", versionPredicate = ">=1.20.4"))
+    )
+    public static boolean KeepMessage = false;
+
     @Rule(categories = CREATIVE)
     public static boolean ShulkerBoxPowerOutputExpansion = false;
 

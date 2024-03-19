@@ -20,17 +20,14 @@
 
 package crystal0404.crystalcarpetaddition.events;
 
-import crystal0404.crystalcarpetaddition.network.Rule.CCAProtocol.CCAProtocolClient;
 import crystal0404.crystalcarpetaddition.utils.message.MessageHelper;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayConnectionEvents;
-import net.fabricmc.fabric.api.networking.v1.PacketSender;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayNetworkHandler;
 
-public class ClientPlayConnectionEventsJoin implements ClientPlayConnectionEvents.Join {
+public class ClientPlayConnectionEventsDisconnect implements ClientPlayConnectionEvents.Disconnect {
     @Override
-    public void onPlayReady(ClientPlayNetworkHandler handler, PacketSender sender, MinecraftClient client) {
-        CCAProtocolClient.send();
-        MessageHelper.send(client);
+    public void onPlayDisconnect(ClientPlayNetworkHandler handler, MinecraftClient client) {
+        MessageHelper.clear();
     }
 }
