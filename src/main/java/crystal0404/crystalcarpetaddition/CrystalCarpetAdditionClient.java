@@ -20,6 +20,7 @@
 
 package crystal0404.crystalcarpetaddition;
 
+import crystal0404.crystalcarpetaddition.events.ClientPlayConnectionEventsDisconnect;
 import crystal0404.crystalcarpetaddition.events.ClientPlayConnectionEventsJoin;
 import crystal0404.crystalcarpetaddition.network.CCANetwork;
 import net.fabricmc.api.ClientModInitializer;
@@ -29,6 +30,7 @@ public class CrystalCarpetAdditionClient implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
         ClientPlayConnectionEvents.JOIN.register(new ClientPlayConnectionEventsJoin());
+        ClientPlayConnectionEvents.DISCONNECT.register(new ClientPlayConnectionEventsDisconnect());
         CCANetwork.registerS2C();
     }
 }
