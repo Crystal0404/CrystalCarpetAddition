@@ -33,6 +33,8 @@ public class CCAReference {
     @Getter
     private static final String modName = "@MOD_NAME@";
     @Getter
+    private static final String protocolIdentifier = "@MOD_IDENTIFIER@-@PROTOCOL_VERSION@";
+    @Getter
     private static final String modNameCurrent = FabricLoader.getInstance().getModContainer(modIdentifierCurrent).orElseThrow(RuntimeException::new).getMetadata().getName();
     @Getter
     private static final String modVersion = FabricLoader.getInstance().getModContainer(modIdentifierCurrent).orElseThrow(RuntimeException::new).getMetadata().getVersion().getFriendlyString();
