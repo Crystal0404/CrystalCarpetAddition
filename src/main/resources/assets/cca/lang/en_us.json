@@ -20,5 +20,7 @@
   "cca.rule.ShulkerBoxPowerOutputExpansionColour.name": "ShulkerBoxPowerOutputExpansionColour",
   "cca.rule.ShulkerBoxPowerOutputExpansionColour.desc": "Specifies the color of the ShulkerBox in effect for the Shulker Box Power Output Expansion(Pink by default).",
   "cca.rule.EndermanCannotPickUpBlocksInNether.name": "EndermanCannotPickUpBlocksInNether",
-  "cca.rule.EndermanCannotPickUpBlocksInNether.desc": "Protect your nether terrain from being destroyed by Enderman and prevent a large number of Endermen from not despawning after picking up blocks."
+  "cca.rule.EndermanCannotPickUpBlocksInNether.desc": "Protect your nether terrain from being destroyed by Enderman and prevent a large number of Endermen from not despawning after picking up blocks.",
+  "cca.rule.KeepMessage.name": "KeepMessage",
+  "cca.rule.KeepMessage.desc": "Chat messages are not lost when switching servers with /server"
 }

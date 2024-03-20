@@ -20,5 +20,7 @@
   "cca.rule.ShulkerBoxPowerOutputExpansionColour.name": "潜影盒红石信号输出拓展颜色设置",
   "cca.rule.ShulkerBoxPowerOutputExpansionColour.desc": "设置潜影盒红石信号输出拓展生效的潜影盒颜色(默认粉色).",
   "cca.rule.EndermanCannotPickUpBlocksInNether.name": "末影人不能在下界拾取方块",
-  "cca.rule.EndermanCannotPickUpBlocksInNether.desc": "保护你的下界地形不被末影人破坏, 并且防止大量末影人因拾取方块不消失从而造成卡顿."
+  "cca.rule.EndermanCannotPickUpBlocksInNether.desc": "保护你的下界地形不被末影人破坏, 并且防止大量末影人因拾取方块不消失从而造成卡顿.",
+  "cca.rule.KeepMessage.name": "保留聊天信息",
+  "cca.rule.KeepMessage.desc": "使用/server切换服务器时, 不会丢失聊天信息."
 }
