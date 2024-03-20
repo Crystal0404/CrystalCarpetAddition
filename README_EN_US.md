@@ -152,6 +152,19 @@ Specifies the color of the ShulkerBox in effect for the Shulker Box Power Output
 - Options: It's too much, I'm too lazy to write XD
 - Validators: Strict(Case-insensitive)
 
+
+### KeepMessage
+
+*Only Minecraft 1.20.4 and above have this feature*
+
+Chat messages are not lost when switching servers with ```/server```
+
+- Categories: ```CrystalCarpetAddition```
+- Type: ```Boolean```
+- Default value: ```false```
+- Options: ```flase``` ```true```
+- Validators: Strict(Case-insensitive)
+
 ## Supported versions
 Please note that the version that is not written here is an unsupported version, 
 and the issue of the unsupported version will be closed unconditionally, and it will be updated at any time!
