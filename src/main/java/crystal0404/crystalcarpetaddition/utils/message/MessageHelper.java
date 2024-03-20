@@ -31,12 +31,11 @@ import java.util.List;
 public class MessageHelper {
     private final static List<Text> messageList = new ArrayList<>();
 
-    private static boolean canAdd = true;
-
     public static void addMessage(Text text) {
-        if (!CCASettings.KeepMessage) return;
-
-        if (!canAdd) return;
+        if (disable()) {
+            if (!messageList.isEmpty()) clear();
+            return;
+        }
 
         messageList.add(text);
         while (messageList.size() > 100) {
@@ -49,19 +48,15 @@ public class MessageHelper {
     }
 
     public static void send(MinecraftClient client) {
-        if (!notDisable()) {
-            if (!messageList.isEmpty()) clear();
-            return;
-        }
+        if (disable()) return;
 
         if (client.player == null) return;
 
-        canAdd = false;
-        messageList.forEach(text -> client.player.sendMessage(text));
-        canAdd = true;
+        List<Text> send = new ArrayList<>(messageList);
+        clear();
+        send.forEach(text -> client.player.sendMessage(text));
     }
-
-    private static boolean notDisable() {
-        return CCASettings.KeepMessage && FabricUtil.isModLoaded("minecraft", ">=1.20.4");
+    private static boolean disable() {
+        return !CCASettings.KeepMessage || !FabricUtil.isModLoaded("minecraft", ">=1.20.4");
     }
 }

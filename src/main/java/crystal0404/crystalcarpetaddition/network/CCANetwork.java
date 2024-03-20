@@ -28,8 +28,8 @@ import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.util.Identifier;
 
 public class CCANetwork {
-    public static final Identifier HELLO = new Identifier(CCAReference.getModIdentifierCurrent(), "hello");
-    public static final Identifier MOD = new Identifier(CCAReference.getModIdentifierCurrent(), "mod");
+    public static final Identifier HELLO = new Identifier(CCAReference.getProtocolIdentifier(), "hello");
+    public static final Identifier MOD = new Identifier(CCAReference.getProtocolIdentifier(), "mod");
     public static void registerS2C(){
         ClientPlayNetworking.registerGlobalReceiver(HELLO, CCAProtocolClient::checkMod);
     }
