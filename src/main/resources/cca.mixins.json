@@ -1,0 +1,14 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "crystal0404.crystalcarpetaddition.mixins",
+  "plugin": "crystal0404.crystalcarpetaddition.utils.CCAMixinConfigPlugin",
+  "compatibilityLevel": "{{COMPATIBILITY_LEVEL}}",
+  "mixins": [
+  ],
+  "client": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
