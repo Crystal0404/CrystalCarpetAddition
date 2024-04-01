@@ -5,6 +5,8 @@
   "plugin": "crystal0404.crystalcarpetaddition.utils.CCAMixinConfigPlugin",
   "compatibilityLevel": "{{COMPATIBILITY_LEVEL}}",
   "mixins": [
+    "rule.CEnderPearlChunkLoading.EnderPearlEntityMixin",
+    "rule.MagicBox.ShulkerBoxBlockMixin"
   ],
   "client": [
   ],
