@@ -22,6 +22,7 @@ package crystal0404.crystalcarpetaddition;
 
 import carpet.api.settings.Rule;
 import crystal0404.crystalcarpetaddition.settings.conditions.CEnderPearlChunkLoading;
+import crystal0404.crystalcarpetaddition.settings.conditions.ComparatorCanPlaceAboveAir;
 
 public class CCASettings {
     private static final String CCA = "CCA";
@@ -37,4 +38,19 @@ public class CCASettings {
             conditions = CEnderPearlChunkLoading.class
     )
     public static boolean CEnderPearlChunkLoading = false;
+
+    @Rule(categories = CCA)
+    public static boolean ItemShadowing = false;
+
+    @Rule(
+            categories = CCA,
+            conditions = ComparatorCanPlaceAboveAir.class
+    )
+    public static boolean ComparatorCanPlaceAboveAir = false;
+
+    @Rule(categories = CCA)
+    public static boolean NoBatSpawn = false;
+
+    @Rule(categories = CCA)
+    public static boolean EndermanCannotPickUpBlocksInNether = false;
 }
