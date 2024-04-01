@@ -18,34 +18,14 @@
  * along with Crystal Carpet Addition.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package crystal0404.crystalcarpetaddition.utils;
+package crystal0404.crystalcarpetaddition.settings.conditions;
 
-import crystal0404.crystalcarpetaddition.CrystalCarpetAdditionMod;
-import me.fallenbreath.conditionalmixin.api.mixin.RestrictiveMixinConfigPlugin;
+import carpet.api.settings.Rule;
+import crystal0404.crystalcarpetaddition.utils.FabricVersionChecker;
 
-import java.util.List;
-import java.util.Set;
-
-public class CCAMixinConfigPlugin extends RestrictiveMixinConfigPlugin {
+public class CEnderPearlChunkLoading implements Rule.Condition {
     @Override
-    protected void onRestrictionCheckFailed(String mixinClassName, String reason) {
-        if (!reason.matches(".*%s.*".formatted(mixinClassName))) {
-            CrystalCarpetAdditionMod.LOGGER.warn("[CCA] \"{}\" is disabled because of \"{}\"", mixinClassName, reason);
-        }
-    }
-
-    @Override
-    public String getRefMapperConfig() {
-        return null;
-    }
-
-    @Override
-    public void acceptTargets(Set<String> myTargets, Set<String> otherTargets) {
-
-    }
-
-    @Override
-    public List<String> getMixins() {
-        return null;
+    public boolean shouldRegister() {
+        return FabricVersionChecker.isLoad("CEnderPearlChunkLoading", "minecraft", "<1.20.4");
     }
 }

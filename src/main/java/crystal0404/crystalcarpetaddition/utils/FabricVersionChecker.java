@@ -21,31 +21,32 @@
 package crystal0404.crystalcarpetaddition.utils;
 
 import crystal0404.crystalcarpetaddition.CrystalCarpetAdditionMod;
-import me.fallenbreath.conditionalmixin.api.mixin.RestrictiveMixinConfigPlugin;
+import me.fallenbreath.conditionalmixin.api.util.VersionChecker;
 
-import java.util.List;
-import java.util.Set;
+/**
+ * Encapsulated from conditional-mixin
+ */
+public class FabricVersionChecker {
+    /**
+     * Check whether the modId satisfies the version Predicate
+     */
+    public static boolean isLoad(String modId, String versionPredicate) {
+        return VersionChecker.doesModVersionSatisfyPredicate(modId, versionPredicate);
+    }
 
-public class CCAMixinConfigPlugin extends RestrictiveMixinConfigPlugin {
-    @Override
-    protected void onRestrictionCheckFailed(String mixinClassName, String reason) {
-        if (!reason.matches(".*%s.*".formatted(mixinClassName))) {
-            CrystalCarpetAdditionMod.LOGGER.warn("[CCA] \"{}\" is disabled because of \"{}\"", mixinClassName, reason);
+    /**
+    * It will have some log output
+    */
+    public static boolean isLoad(String ruleName, String modId, String versionPredicate) {
+        if (VersionChecker.doesModVersionSatisfyPredicate(modId, versionPredicate)) {
+            return true;
         }
-    }
-
-    @Override
-    public String getRefMapperConfig() {
-        return null;
-    }
-
-    @Override
-    public void acceptTargets(Set<String> myTargets, Set<String> otherTargets) {
-
-    }
-
-    @Override
-    public List<String> getMixins() {
-        return null;
+        CrystalCarpetAdditionMod.LOGGER.warn(
+                "[CCA] Rule \"{}\" is disabled, Because \"{}\" does not meet condition \"{}\"",
+                ruleName,
+                modId,
+                versionPredicate
+        );
+        return false;
     }
 }

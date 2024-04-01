@@ -20,19 +20,21 @@
 
 package crystal0404.crystalcarpetaddition;
 
-import net.fabricmc.api.ModInitializer;
-import net.fabricmc.loader.api.FabricLoader;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import carpet.api.settings.Rule;
+import crystal0404.crystalcarpetaddition.settings.conditions.CEnderPearlChunkLoading;
 
-public class CrystalCarpetAdditionMod implements ModInitializer {
-    public static final String MOD_ID = "cca";
-    public static final String MOD_NAME = "Crystal Carpet Addition";
-    public static String version;
-    public static Logger LOGGER = LoggerFactory.getLogger(MOD_NAME);
-    @Override
-    public void onInitialize() {
-        version = FabricLoader.getInstance().getModContainer(MOD_ID).orElseThrow(RuntimeException::new).getMetadata().getVersion().getFriendlyString();
-        CCAExtension.init();
-    }
+public class CCASettings {
+    private static final String CCA = "CCA";
+    @Rule(categories = CCA)
+    //#if MC > 12001
+    public static boolean MagicBox = false;
+    //#else
+//$$     public static boolean MagicBox = true;
+    //#endif
+
+    @Rule(
+            categories = CCA,
+            conditions = CEnderPearlChunkLoading.class
+    )
+    public static boolean CEnderPearlChunkLoading = false;
 }

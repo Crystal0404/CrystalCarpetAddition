@@ -1,0 +1,12 @@
+cca:
+  category:
+    CCA: CCA
+
+  rule:
+    MagicBox:
+      name: MagicBox/CCESuppressor
+      desc: Control whether CastSuppressor(CCESuppressor) is available
+
+    CEnderPearlChunkLoading:
+      name: CEnderPearlChunkLoading
+      desc: Fix EnderPearlChunkLoading from carpet-extra
