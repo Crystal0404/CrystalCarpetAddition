@@ -6,7 +6,11 @@
   "compatibilityLevel": "{{COMPATIBILITY_LEVEL}}",
   "mixins": [
     "rule.CEnderPearlChunkLoading.EnderPearlEntityMixin",
-    "rule.MagicBox.ShulkerBoxBlockMixin"
+    "rule.ComparatorCanPlaceAboveAir.ComparatorBlockMixin",
+    "rule.EndermanCannotPickUpBlocksInNether.EndermanEntity$PickUpBlockGoalMixin",
+    "rule.ItemShadowing.ScreenHandlerMixin",
+    "rule.MagicBox.ShulkerBoxBlockMixin",
+    "rule.NoBatSpwan.BatEntityMixin"
   ],
   "client": [
   ],

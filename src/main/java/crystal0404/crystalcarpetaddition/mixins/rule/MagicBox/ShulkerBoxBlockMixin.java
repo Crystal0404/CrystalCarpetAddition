@@ -38,8 +38,7 @@ public abstract class ShulkerBoxBlockMixin {
             at = @At("RETURN")
     )
     private int getComparatorOutputMixin(int original, @Local(argsOnly = true) World world, @Local(argsOnly = true) BlockPos pos) {
-        return CCASettings.MagicBox?
-                ScreenHandler.calculateComparatorOutput((Inventory) world.getBlockEntity(pos)):
-                original;
+        return CCASettings.MagicBox ?
+                ScreenHandler.calculateComparatorOutput((Inventory) world.getBlockEntity(pos)) : original;
     }
 }
