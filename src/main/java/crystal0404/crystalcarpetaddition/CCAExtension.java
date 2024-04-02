@@ -24,6 +24,7 @@ import carpet.CarpetExtension;
 import carpet.CarpetServer;
 import carpet.api.settings.SettingsManager;
 import carpet.utils.Translations;
+import net.minecraft.server.network.ServerPlayerEntity;
 
 import java.util.Map;
 

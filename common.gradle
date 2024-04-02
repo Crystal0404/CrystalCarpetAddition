@@ -38,11 +38,11 @@ dependencies {
 
 	// runtime mods
 	modRuntimeOnly "maven.modrinth:modmenu:${project.modmenu_versions}"
-	modRuntimeOnly "net.fabricmc.fabric-api:fabric-api:${project.fabric_api}"
 
 	// dependencies
 	include(modImplementation("me.fallenbreath:conditional-mixin-fabric:${project.conditionalmixin_version}"))
 	modImplementation "carpet:fabric-carpet:${project.carpet_versions}"
+	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api}"
 }
 
 String MIXIN_CONFIG_PATH = 'cca.mixins.json'
