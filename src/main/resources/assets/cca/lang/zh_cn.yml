@@ -26,3 +26,13 @@ cca:
     EndermanCannotPickUpBlocksInNether:
       name: 末影人不能在下界拾取方块
       desc: 保护你的下界地形不被末影人破坏, 并且防止大量末影人因拾取方块不消失从而造成卡顿.
+
+    ShulkerBoxPowerOutputExpansion:
+      name: 潜影盒红石信号输出拓展
+      desc: |-
+        修改比较器检测潜影盒输出信号强度的逻辑
+        占用物品栏的数量就是输出信号的强度
+
+    ShulkerBoxPowerOutputExpansionColour:
+      name: 潜影盒红石信号输出拓展颜色设置
+      desc: 设置潜影盒红石信号输出拓展生效的潜影盒颜色(默认粉色).

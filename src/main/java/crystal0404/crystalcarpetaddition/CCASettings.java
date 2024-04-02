@@ -23,6 +23,7 @@ package crystal0404.crystalcarpetaddition;
 import carpet.api.settings.Rule;
 import crystal0404.crystalcarpetaddition.settings.conditions.CEnderPearlChunkLoading;
 import crystal0404.crystalcarpetaddition.settings.conditions.ComparatorCanPlaceAboveAir;
+import crystal0404.crystalcarpetaddition.utils.ShulkerBoxUtils.ColourMap;
 
 public class CCASettings {
     private static final String CCA = "CCA";
@@ -53,4 +54,10 @@ public class CCASettings {
 
     @Rule(categories = CCA)
     public static boolean EndermanCannotPickUpBlocksInNether = false;
+
+    @Rule(categories = CCA)
+    public static boolean ShulkerBoxPowerOutputExpansion = false;
+
+    @Rule(categories = CCA)
+    public static ColourMap.Colour ShulkerBoxPowerOutputExpansionColour = ColourMap.Colour.PINK;
 }

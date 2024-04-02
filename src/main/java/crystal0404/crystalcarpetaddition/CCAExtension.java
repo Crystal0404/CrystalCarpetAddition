@@ -42,6 +42,10 @@ public class CCAExtension implements CarpetExtension {
         CCASettingsManager.parseSettingsClass(CCASettings.class);
     }
     @Override
+    public String version() {
+        return CrystalCarpetAdditionMod.version;
+    }
+    @Override
     public SettingsManager extensionSettingsManager() {
         return CCASettingsManager;
     }

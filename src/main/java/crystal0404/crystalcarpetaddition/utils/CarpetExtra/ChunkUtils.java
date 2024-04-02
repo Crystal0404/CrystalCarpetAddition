@@ -18,7 +18,7 @@
  * along with Crystal Carpet Addition.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package crystal0404.crystalcarpetaddition.utils.carpetExtra;
+package crystal0404.crystalcarpetaddition.utils.CarpetExtra;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.server.world.ChunkTicketType;
