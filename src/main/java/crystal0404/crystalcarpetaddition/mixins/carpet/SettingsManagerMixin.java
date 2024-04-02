@@ -20,10 +20,13 @@
 
 package crystal0404.crystalcarpetaddition.mixins.carpet;
 
+import carpet.CarpetSettings;
 import carpet.api.settings.SettingsManager;
 import carpet.utils.Messenger;
 import carpet.utils.TranslationKeys;
 import crystal0404.crystalcarpetaddition.CrystalCarpetAdditionMod;
+import me.fallenbreath.conditionalmixin.api.annotation.Condition;
+import me.fallenbreath.conditionalmixin.api.annotation.Restriction;
 import net.minecraft.server.command.ServerCommandSource;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
@@ -36,10 +39,10 @@ import java.util.Objects;
 
 import static carpet.utils.Translations.tr;
 
+@Restriction(require = @Condition("carpet"))  // Maybe something else will be stuffed in the future?
 @Mixin(value = SettingsManager.class, remap = false)
 public abstract class SettingsManagerMixin {
     @Shadow @Final private String fancyName;
-
     @Inject(
             method = "listAllSettings",
             at = @At(
@@ -51,11 +54,31 @@ public abstract class SettingsManagerMixin {
             )
     )
     private void listAllSettingsMixin(ServerCommandSource source, CallbackInfoReturnable<Integer> cir) {
-        if (Objects.equals(this.fancyName, "Carpet Mod")) {
+        if (!Objects.equals(this.fancyName, CrystalCarpetAdditionMod.MOD_NAME)) {
             String msg = "g %s %s: %s".formatted(
                  CrystalCarpetAdditionMod.MOD_NAME,
                  tr(TranslationKeys.VERSION),
                  CrystalCarpetAdditionMod.version
+            );
+            Messenger.m(source, msg);
+        }
+    }
+
+    // This should only be added to "/cca" to prevent someone from repeating it
+    @Inject(
+            method = "listAllSettings",
+            at = @At(
+                    value = "INVOKE",
+                    target = "Lcarpet/utils/Messenger;m(Lnet/minecraft/server/command/ServerCommandSource;[Ljava/lang/Object;)V",
+                    ordinal = 0
+            )
+    )
+    private void listAllSettingsMixin_carpet(ServerCommandSource source, CallbackInfoReturnable<Integer> cir) {
+        if (Objects.equals(this.fancyName, CrystalCarpetAdditionMod.MOD_NAME)) {
+            String msg = "g %s %s: %s".formatted(
+                    "Carpet Mod",
+                    tr(TranslationKeys.VERSION),
+                    CarpetSettings.carpetVersion
             );
             Messenger.m(source, msg);
         }

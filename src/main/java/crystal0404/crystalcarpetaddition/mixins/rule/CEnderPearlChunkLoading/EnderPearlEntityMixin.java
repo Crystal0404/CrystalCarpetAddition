@@ -33,9 +33,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-@Restriction(
-        require = @Condition(value = "minecraft", versionPredicates = "<1.20.4")
-)
+@Restriction(require = @Condition(value = "minecraft", versionPredicates = "<1.20.4"))
 @Mixin(EnderPearlEntity.class)
 public abstract class EnderPearlEntityMixin extends ThrownItemEntity {
     public EnderPearlEntityMixin(EntityType<? extends ThrownItemEntity> entityType, World world) {

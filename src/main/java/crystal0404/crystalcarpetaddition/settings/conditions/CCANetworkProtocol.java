@@ -18,25 +18,22 @@
  * along with Crystal Carpet Addition.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package crystal0404.crystalcarpetaddition;
+package crystal0404.crystalcarpetaddition.settings.conditions;
 
-import crystal0404.crystalcarpetaddition.config.ConfigInit;
-import crystal0404.crystalcarpetaddition.network.CCANetwork;
-import net.fabricmc.api.ModInitializer;
+import carpet.api.settings.Rule;
+import crystal0404.crystalcarpetaddition.CrystalCarpetAdditionMod;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.fabricmc.loader.api.FabricLoader;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
-public class CrystalCarpetAdditionMod implements ModInitializer {
-    public static final String MOD_ID = "cca";
-    public static final String MOD_NAME = "Crystal Carpet Addition";
-    public static String version;
-    public static Logger LOGGER = LoggerFactory.getLogger(MOD_NAME);
+@Environment(value = EnvType.CLIENT)
+public class CCANetworkProtocol implements Rule.Condition {
     @Override
-    public void onInitialize() {
-        version = FabricLoader.getInstance().getModContainer(MOD_ID).orElseThrow(RuntimeException::new).getMetadata().getVersion().getFriendlyString();
-        ConfigInit.init();
-        CCANetwork.init();
-        CCAExtension.init();
+    public boolean shouldRegister() {
+        if (FabricLoader.getInstance().getEnvironmentType() == EnvType.CLIENT) {
+            CrystalCarpetAdditionMod.LOGGER.warn("[CCA] Rule \"CCANetworkProtocol\" is disabled, Because it doesn't run on the client!");
+            return false;
+        }
+        return true;
     }
 }
