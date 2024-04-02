@@ -21,7 +21,7 @@
 package crystal0404.crystalcarpetaddition.mixins.rule.CEnderPearlChunkLoading;
 
 import crystal0404.crystalcarpetaddition.CCASettings;
-import crystal0404.crystalcarpetaddition.utils.carpetExtra.ChunkUtils;
+import crystal0404.crystalcarpetaddition.utils.CarpetExtra.ChunkUtils;
 import me.fallenbreath.conditionalmixin.api.annotation.Condition;
 import me.fallenbreath.conditionalmixin.api.annotation.Restriction;
 import net.minecraft.entity.EntityType;
