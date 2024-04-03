@@ -18,22 +18,15 @@
  * along with Crystal Carpet Addition.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package crystal0404.crystalcarpetaddition.settings.conditions;
+package crystal0404.crystalcarpetaddition.api.CCANetorkProtocol;
 
-import carpet.api.settings.Rule;
-import crystal0404.crystalcarpetaddition.CrystalCarpetAdditionMod;
-import crystal0404.crystalcarpetaddition.utils.FabricVersionChecker;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.loader.api.FabricLoader;
+import crystal0404.crystalcarpetaddition.network.CCANetworkProtocol.CCANetworkProtocolServer;
 
-public class CCANetworkProtocol implements Rule.Condition {
-    @Override
-    public boolean shouldRegister() {
-        if (!FabricVersionChecker.isLoad("CCANetworkProtocol", "fabric-api", "*")) return false;
-        if (FabricLoader.getInstance().getEnvironmentType() == EnvType.CLIENT) {
-            CrystalCarpetAdditionMod.LOGGER.warn("[CCA] Rule \"CCANetworkProtocol\" is disabled, Because it doesn't run on the client!");
-            return false;
-        }
-        return true;
+/**
+ * Use this method to register callbacks
+ */
+public class CCANetworkProtocolAPI {
+    public static void register(GetClientModMap callback) {
+        CCANetworkProtocolServer.register(callback);
     }
 }

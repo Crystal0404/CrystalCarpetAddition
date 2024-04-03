@@ -18,22 +18,18 @@
  * along with Crystal Carpet Addition.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package crystal0404.crystalcarpetaddition.settings.conditions;
+package crystal0404.crystalcarpetaddition.api.CCANetorkProtocol;
 
-import carpet.api.settings.Rule;
-import crystal0404.crystalcarpetaddition.CrystalCarpetAdditionMod;
-import crystal0404.crystalcarpetaddition.utils.FabricVersionChecker;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.loader.api.FabricLoader;
+import net.minecraft.server.MinecraftServer;
+import net.minecraft.server.network.ServerPlayNetworkHandler;
+import net.minecraft.server.network.ServerPlayerEntity;
 
-public class CCANetworkProtocol implements Rule.Condition {
-    @Override
-    public boolean shouldRegister() {
-        if (!FabricVersionChecker.isLoad("CCANetworkProtocol", "fabric-api", "*")) return false;
-        if (FabricLoader.getInstance().getEnvironmentType() == EnvType.CLIENT) {
-            CrystalCarpetAdditionMod.LOGGER.warn("[CCA] Rule \"CCANetworkProtocol\" is disabled, Because it doesn't run on the client!");
-            return false;
-        }
-        return true;
-    }
+import java.util.HashMap;
+
+/**
+ * This is the interface exposed by CCA,
+ * which calls back the mod information of the client through the CCANetworkProtocol when the player enters the game
+ */
+public interface GetClientModMap {
+    void getMod(MinecraftServer server, ServerPlayerEntity player, ServerPlayNetworkHandler handler, HashMap<String, String> modMap);
 }

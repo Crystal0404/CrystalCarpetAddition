@@ -18,22 +18,29 @@
  * along with Crystal Carpet Addition.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package crystal0404.crystalcarpetaddition.settings.conditions;
+package crystal0404.crystalcarpetaddition.network.CCANetworkProtocol;
 
-import carpet.api.settings.Rule;
-import crystal0404.crystalcarpetaddition.CrystalCarpetAdditionMod;
-import crystal0404.crystalcarpetaddition.utils.FabricVersionChecker;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.loader.api.FabricLoader;
+import java.util.HashMap;
 
-public class CCANetworkProtocol implements Rule.Condition {
+class ClientModList {
+    private HashMap<String, HashMap<String, String>> ClientModMap;
+
+    public ClientModList(HashMap<String, HashMap<String, String>> clientModMap) {
+        ClientModMap = clientModMap;
+    }
+
     @Override
-    public boolean shouldRegister() {
-        if (!FabricVersionChecker.isLoad("CCANetworkProtocol", "fabric-api", "*")) return false;
-        if (FabricLoader.getInstance().getEnvironmentType() == EnvType.CLIENT) {
-            CrystalCarpetAdditionMod.LOGGER.warn("[CCA] Rule \"CCANetworkProtocol\" is disabled, Because it doesn't run on the client!");
-            return false;
-        }
-        return true;
+    public String toString() {
+        return "ClientModList{" +
+                "ClientModMap=" + ClientModMap +
+                '}';
+    }
+
+    public HashMap<String, HashMap<String, String>> getClientModMap() {
+        return ClientModMap;
+    }
+
+    public void setClientModMap(HashMap<String, HashMap<String, String>> clientModMap) {
+        ClientModMap = clientModMap;
     }
 }
