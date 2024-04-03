@@ -20,35 +20,31 @@
 
 package crystal0404.crystalcarpetaddition.config;
 
-import java.util.Collection;
 import java.util.HashMap;
 
 class Config {
-    private Collection<HashMap<String, String>> BlackList;
+    private HashMap<String, String> BlackMap;
     private boolean PrintModList;
-    private boolean Regex;
 
-    public Config(Collection<HashMap<String, String>> blackList, boolean printModList, boolean regex) {
-        BlackList = blackList;
+    public Config(HashMap<String, String> blackMap, boolean printModList) {
+        BlackMap = blackMap;
         PrintModList = printModList;
-        Regex = regex;
     }
 
     @Override
     public String toString() {
         return "Config{" +
-                "BlackList=" + BlackList +
+                "BlackMap=" + BlackMap +
                 ", PrintModList=" + PrintModList +
-                ", Regex=" + Regex +
                 '}';
     }
 
-    public Collection<HashMap<String, String>> getBlackList() {
-        return BlackList;
+    public HashMap<String, String> getBlackMap() {
+        return BlackMap;
     }
 
-    public void setBlackList(Collection<HashMap<String, String>> blackList) {
-        BlackList = blackList;
+    public void setBlackMap(HashMap<String, String> blackMap) {
+        BlackMap = blackMap;
     }
 
     public boolean isPrintModList() {
@@ -57,13 +53,5 @@ class Config {
 
     public void setPrintModList(boolean printModList) {
         PrintModList = printModList;
-    }
-
-    public boolean isRegex() {
-        return Regex;
-    }
-
-    public void setRegex(boolean regex) {
-        Regex = regex;
     }
 }

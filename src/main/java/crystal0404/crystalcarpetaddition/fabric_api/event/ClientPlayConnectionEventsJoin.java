@@ -18,22 +18,17 @@
  * along with Crystal Carpet Addition.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package crystal0404.crystalcarpetaddition.settings.conditions;
+package crystal0404.crystalcarpetaddition.fabric_api.event;
 
-import carpet.api.settings.Rule;
-import crystal0404.crystalcarpetaddition.CrystalCarpetAdditionMod;
-import crystal0404.crystalcarpetaddition.utils.FabricVersionChecker;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.loader.api.FabricLoader;
+import crystal0404.crystalcarpetaddition.network.CCANetworkProtocol.CCANetworkProtocolClient;
+import net.fabricmc.fabric.api.client.networking.v1.ClientPlayConnectionEvents;
+import net.fabricmc.fabric.api.networking.v1.PacketSender;
+import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.network.ClientPlayNetworkHandler;
 
-public class CCANetworkProtocol implements Rule.Condition {
+public class ClientPlayConnectionEventsJoin implements ClientPlayConnectionEvents.Join {
     @Override
-    public boolean shouldRegister() {
-        if (!FabricVersionChecker.isLoad("CCANetworkProtocol", "fabric-api", "*")) return false;
-        if (FabricLoader.getInstance().getEnvironmentType() == EnvType.CLIENT) {
-            CrystalCarpetAdditionMod.LOGGER.warn("[CCA] Rule \"CCANetworkProtocol\" is disabled, Because it doesn't run on the client!");
-            return false;
-        }
-        return true;
+    public void onPlayReady(ClientPlayNetworkHandler handler, PacketSender sender, MinecraftClient client) {
+        CCANetworkProtocolClient.clientPlayerJoin(client);
     }
 }

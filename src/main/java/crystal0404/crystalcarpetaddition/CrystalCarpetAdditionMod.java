@@ -20,8 +20,11 @@
 
 package crystal0404.crystalcarpetaddition;
 
+import crystal0404.crystalcarpetaddition.api.CCANetorkProtocol.CCANetworkProtocolAPI;
 import crystal0404.crystalcarpetaddition.config.ConfigInit;
+import crystal0404.crystalcarpetaddition.fabric_api.FabricAPI;
 import crystal0404.crystalcarpetaddition.network.CCANetwork;
+import net.fabricmc.api.EnvType;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.loader.api.FabricLoader;
 import org.slf4j.Logger;
@@ -36,6 +39,7 @@ public class CrystalCarpetAdditionMod implements ModInitializer {
     public void onInitialize() {
         version = FabricLoader.getInstance().getModContainer(MOD_ID).orElseThrow(RuntimeException::new).getMetadata().getVersion().getFriendlyString();
         ConfigInit.init();
+        FabricAPI.init();
         CCANetwork.init();
         CCAExtension.init();
     }

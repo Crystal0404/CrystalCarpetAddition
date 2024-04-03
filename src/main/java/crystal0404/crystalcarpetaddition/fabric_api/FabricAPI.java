@@ -18,22 +18,25 @@
  * along with Crystal Carpet Addition.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package crystal0404.crystalcarpetaddition.settings.conditions;
+package crystal0404.crystalcarpetaddition.fabric_api;
 
-import carpet.api.settings.Rule;
-import crystal0404.crystalcarpetaddition.CrystalCarpetAdditionMod;
+import crystal0404.crystalcarpetaddition.fabric_api.event.ClientPlayConnectionEventsJoin;
+import crystal0404.crystalcarpetaddition.fabric_api.event.ServerPlayConnectionEventsJoin;
 import crystal0404.crystalcarpetaddition.utils.FabricVersionChecker;
 import net.fabricmc.api.EnvType;
+import net.fabricmc.fabric.api.client.networking.v1.ClientPlayConnectionEvents;
+import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
 import net.fabricmc.loader.api.FabricLoader;
 
-public class CCANetworkProtocol implements Rule.Condition {
-    @Override
-    public boolean shouldRegister() {
-        if (!FabricVersionChecker.isLoad("CCANetworkProtocol", "fabric-api", "*")) return false;
-        if (FabricLoader.getInstance().getEnvironmentType() == EnvType.CLIENT) {
-            CrystalCarpetAdditionMod.LOGGER.warn("[CCA] Rule \"CCANetworkProtocol\" is disabled, Because it doesn't run on the client!");
-            return false;
+public class FabricAPI {
+    public static void init() {
+        if (!FabricVersionChecker.isLoad("fabric-api", "*")) return;
+        if (FabricLoader.getInstance().getEnvironmentType() == EnvType.SERVER) {
+            // server
+            ServerPlayConnectionEvents.JOIN.register(new ServerPlayConnectionEventsJoin());
+        }else {
+            // client
+            ClientPlayConnectionEvents.JOIN.register(new ClientPlayConnectionEventsJoin());
         }
-        return true;
     }
 }

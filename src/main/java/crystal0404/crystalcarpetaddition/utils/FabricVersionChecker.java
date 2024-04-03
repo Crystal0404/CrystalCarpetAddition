@@ -35,8 +35,9 @@ public class FabricVersionChecker {
     }
 
     /**
-    * It will have some log output
-    */
+     * This is for my own use
+     * Others please use the one above
+     */
     public static boolean isLoad(String ruleName, String modId, String versionPredicate) {
         if (VersionChecker.doesModVersionSatisfyPredicate(modId, versionPredicate)) {
             return true;

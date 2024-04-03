@@ -36,9 +36,8 @@ import java.util.HashMap;
 
 public class ReadConfig {
     private final static Logger LOGGER = CrystalCarpetAdditionMod.LOGGER;
-    public static Collection<HashMap<String, String>> BLACKLIST;
+    public static HashMap<String, String> BLACKLIST;
     public static boolean CAN_PRINT_MOD;
-    public static boolean IS_REGEX;
     private static final String file_path = FabricLoader.getInstance().getConfigDir() + "/CrystalCarpetAddition/CrystalCarpetAddition.json";
     @SuppressWarnings("all")
     public static void readConfig() throws IOException {
@@ -52,9 +51,8 @@ public class ReadConfig {
             Gson gson = new Gson();
             try {
                 Config config = gson.fromJson(stringBuilder.toString(), Config.class);
-                BLACKLIST = config.getBlackList();
+                BLACKLIST = config.getBlackMap();
                 CAN_PRINT_MOD = config.isPrintModList();
-                IS_REGEX = config.isRegex();
             }catch (JsonSyntaxException e) {
                 File file = new File(file_path);
                 file.delete();
