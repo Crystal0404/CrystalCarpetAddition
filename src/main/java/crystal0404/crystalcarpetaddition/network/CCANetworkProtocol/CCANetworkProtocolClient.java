@@ -21,7 +21,7 @@
 package crystal0404.crystalcarpetaddition.network.CCANetworkProtocol;
 
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+import crystal0404.crystalcarpetaddition.CCASettings;
 import crystal0404.crystalcarpetaddition.CrystalCarpetAdditionMod;
 import crystal0404.crystalcarpetaddition.network.CCANetwork;
 import crystal0404.crystalcarpetaddition.utils.FabricVersionChecker;
@@ -38,6 +38,7 @@ import net.minecraft.client.gui.screen.multiplayer.MultiplayerScreen;
 import net.minecraft.client.network.ClientPlayNetworkHandler;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.text.Text;
+import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 
 import java.util.HashMap;
@@ -48,10 +49,11 @@ public class CCANetworkProtocolClient {
     public static void client(
             MinecraftClient client,
             ClientPlayNetworkHandler handler,
-            PacketByteBuf buf,
+            @NotNull PacketByteBuf buf,
             PacketSender sender
     ) {
         String info = buf.readString();
+        if (CCASettings.CCADebug) LOGGER.debug("buf: \"{}\"", info);
         Gson gson = new Gson();
         HashMap<String, String> blackMap = gson.fromJson(info, SendBlackMod.class).getBlackModMap();
 
@@ -78,7 +80,7 @@ public class CCANetworkProtocolClient {
         }
     }
 
-    private static void disconnect(MinecraftClient client, Text reason) {
+    private static void disconnect(@NotNull MinecraftClient client, Text reason) {
         client.execute(() -> {
             if (client.world != null) {
                 client.world.disconnect();
@@ -88,10 +90,11 @@ public class CCANetworkProtocolClient {
         });
     }
 
+    // Send the client mod information to the server
     public static void clientPlayerJoin(MinecraftClient client) {
         if (!ClientPlayNetworking.canSend(CCANetwork.MOD)) return;
         if (client.player == null) return;
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        Gson gson = new Gson();
         HashMap<String, HashMap<String, String>> map = new HashMap<>();
         HashMap<String, String> modMap = new HashMap<>();
         FabricLoader.getInstance().getAllMods().forEach(mod ->

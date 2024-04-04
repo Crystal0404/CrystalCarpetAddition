@@ -42,3 +42,7 @@ cca:
       desc: |- 
         It is used by the server to obtain the list of client mods, implement the mod blacklist and other functions.
         For more information, please refer to the Github README
+
+    CCADebug:
+      name: CCADebug
+      desc: Print debug logs (non-developers can ignore them)

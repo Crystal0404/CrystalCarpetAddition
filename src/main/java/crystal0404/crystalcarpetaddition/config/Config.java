@@ -25,10 +25,12 @@ import java.util.HashMap;
 class Config {
     private HashMap<String, String> BlackMap;
     private boolean PrintModList;
+    private boolean Kick;
 
-    public Config(HashMap<String, String> blackMap, boolean printModList) {
+    public Config(HashMap<String, String> blackMap, boolean printModList, boolean kick) {
         BlackMap = blackMap;
         PrintModList = printModList;
+        Kick = kick;
     }
 
     @Override
@@ -36,6 +38,7 @@ class Config {
         return "Config{" +
                 "BlackMap=" + BlackMap +
                 ", PrintModList=" + PrintModList +
+                ", Kick=" + Kick +
                 '}';
     }
 
@@ -53,5 +56,13 @@ class Config {
 
     public void setPrintModList(boolean printModList) {
         PrintModList = printModList;
+    }
+
+    public boolean isKick() {
+        return Kick;
+    }
+
+    public void setKick(boolean kick) {
+        Kick = kick;
     }
 }
