@@ -86,6 +86,8 @@ Version 1.20.4 and above will work fine
 
 Version 1.19.4 has a bug working with Velocity etc, which is caused by fabric-api and I won't fix it for now.
 
+**If something goes wrong, try deleting the profile and restarting**
+
 - Categories: ```Network```
 - Type: ```Boolean```
 - Default value: ```false```
