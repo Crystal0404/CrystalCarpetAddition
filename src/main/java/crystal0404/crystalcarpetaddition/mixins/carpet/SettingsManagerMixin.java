@@ -50,7 +50,8 @@ public abstract class SettingsManagerMixin {
                     target = "Lcarpet/utils/Messenger;m(Lnet/minecraft/server/command/ServerCommandSource;[Ljava/lang/Object;)V",
                     ordinal = 0,
                     shift = At.Shift.BY,
-                    by = 1
+                    by = 1,
+                    remap = true
             )
     )
     private void listAllSettingsMixin(ServerCommandSource source, CallbackInfoReturnable<Integer> cir) {
