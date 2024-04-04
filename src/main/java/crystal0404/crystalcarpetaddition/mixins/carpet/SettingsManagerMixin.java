@@ -20,7 +20,6 @@
 
 package crystal0404.crystalcarpetaddition.mixins.carpet;
 
-import carpet.CarpetSettings;
 import carpet.api.settings.SettingsManager;
 import carpet.utils.Messenger;
 import carpet.utils.TranslationKeys;
@@ -60,26 +59,6 @@ public abstract class SettingsManagerMixin {
                  CrystalCarpetAdditionMod.MOD_NAME,
                  tr(TranslationKeys.VERSION),
                  CrystalCarpetAdditionMod.version
-            );
-            Messenger.m(source, msg);
-        }
-    }
-
-    // This should only be added to "/cca" to prevent someone from repeating it
-    @Inject(
-            method = "listAllSettings",
-            at = @At(
-                    value = "INVOKE",
-                    target = "Lcarpet/utils/Messenger;m(Lnet/minecraft/server/command/ServerCommandSource;[Ljava/lang/Object;)V",
-                    ordinal = 0
-            )
-    )
-    private void listAllSettingsMixin_carpet(ServerCommandSource source, CallbackInfoReturnable<Integer> cir) {
-        if (Objects.equals(this.fancyName, CrystalCarpetAdditionMod.MOD_NAME)) {
-            String msg = "g %s %s: %s".formatted(
-                    "Carpet Mod",
-                    tr(TranslationKeys.VERSION),
-                    CarpetSettings.carpetVersion
             );
             Messenger.m(source, msg);
         }
