@@ -15,6 +15,7 @@
     "rule.ShulkerBoxPowerOutputExpansion.ScreenHandleMixin"
   ],
   "client": [
+    "rule.WhatIsThis.Happy"
   ],
   "injectors": {
     "defaultRequire": 1,

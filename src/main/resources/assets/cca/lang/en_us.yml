@@ -1,6 +1,9 @@
 cca:
   category:
     CCA: CCA
+    Network: Network
+    Creative: Creative Tools
+    MCTweaks: MC Tweaks
 
   rule:
     MagicBox:

@@ -1,6 +1,9 @@
 cca:
   category:
     CCA: CCA
+    Network: 网络
+    Creative: 创造工具
+    MCTweaks: MC调整
 
   rule:
     MagicBox:

@@ -28,7 +28,11 @@ import crystal0404.crystalcarpetaddition.utils.ShulkerBoxUtils.ColourMap;
 
 public class CCASettings {
     private static final String CCA = "CCA";
-    @Rule(categories = CCA)
+    private static final String NETWORK = "Network";
+    private static final String CREATIVE = "Creative";
+    private static final String MC_TWEAKS = "MCTweaks";
+
+    @Rule(categories = {CCA, MC_TWEAKS})
     //#if MC > 12001
     public static boolean MagicBox = false;
     //#else
@@ -36,34 +40,34 @@ public class CCASettings {
     //#endif
 
     @Rule(
-            categories = CCA,
+            categories = {CCA, MC_TWEAKS},
             conditions = CEnderPearlChunkLoading.class
     )
     public static boolean CEnderPearlChunkLoading = false;
 
-    @Rule(categories = CCA)
+    @Rule(categories = {CCA, MC_TWEAKS})
     public static boolean ItemShadowing = false;
 
     @Rule(
-            categories = CCA,
+            categories = {CCA, MC_TWEAKS},
             conditions = ComparatorCanPlaceAboveAir.class
     )
     public static boolean ComparatorCanPlaceAboveAir = false;
 
-    @Rule(categories = CCA)
+    @Rule(categories = {CCA, MC_TWEAKS})
     public static boolean NoBatSpawn = false;
 
-    @Rule(categories = CCA)
+    @Rule(categories = {CCA, MC_TWEAKS})
     public static boolean EndermanCannotPickUpBlocksInNether = false;
 
-    @Rule(categories = CCA)
+    @Rule(categories = {CCA, CREATIVE})
     public static boolean ShulkerBoxPowerOutputExpansion = false;
 
-    @Rule(categories = CCA)
+    @Rule(categories = {CCA, CREATIVE})
     public static ColourMap.Colour ShulkerBoxPowerOutputExpansionColour = ColourMap.Colour.PINK;
 
     @Rule(
-            categories = CCA,
+            categories = {CCA, NETWORK},
             conditions = CCANetworkProtocol.class
     )
     public static boolean CCANetworkProtocol = false;
