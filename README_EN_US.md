@@ -80,7 +80,7 @@ Note: I don't know how to translate this sentence. If you have any questions, pl
 
 **Please don't break this feature in any way, I uploaded the code for this feature to share, to provide it to friends in need, to recreate a Minecraft that is not broken by client mods such as Litematica-printer**
 
-Used to get client mod information and some other features (Mod blacklist), it has an interface for other mods to use
+Used to get client mod information and some other features (Mod blacklist), it has an interface for other mods to use. [Use documentation](https://github.com/Crystal0404/CrystalCarpetAddition/wiki/CCANetworkProtocol)
 
 Version 1.20.4 and above will work fine
 
