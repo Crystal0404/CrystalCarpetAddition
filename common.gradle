@@ -41,6 +41,7 @@ dependencies {
 
 	// dependencies
 	include(modImplementation("me.fallenbreath:conditional-mixin-fabric:${project.conditionalmixin_version}"))
+	include(implementation(annotationProcessor("io.github.llamalad7:mixinextras-fabric:${project.mixinextras_version}")))
 	modImplementation "carpet:fabric-carpet:${project.carpet_versions}"
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api}"
 }

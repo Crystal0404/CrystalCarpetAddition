@@ -44,6 +44,9 @@ import org.slf4j.Logger;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Stop, this is not the place you should be : (
+ */
 public class CCANetworkProtocolClient {
     private static final Logger LOGGER = CrystalCarpetAdditionMod.LOGGER;
     public static void client(

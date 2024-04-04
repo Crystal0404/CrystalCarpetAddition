@@ -40,6 +40,9 @@ import org.slf4j.Logger;
 
 import java.util.*;
 
+/**
+ * Stop, this is not the place you should be : (
+ */
 public class CCANetworkProtocolServer {
     private static final Logger LOGGER = CrystalCarpetAdditionMod.LOGGER;
     private static final Set<GetClientModMap> CALL = new HashSet<>();

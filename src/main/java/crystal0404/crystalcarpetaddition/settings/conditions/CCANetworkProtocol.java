@@ -41,7 +41,7 @@ public class CCANetworkProtocol implements Rule.Condition {
             CrystalCarpetAdditionMod.LOGGER.warn(
                     "You look like you're using Waterfall or BungeeCord"
                     + "CCANetworkProtocol may not work properly,"
-                    +"please consider switching to Velocity or disabling CCANetworkProtocol"
+                    + "please consider switching to Velocity or disabling CCANetworkProtocol"
             );
         }
         if (FabricLoader.getInstance().getEnvironmentType() == EnvType.CLIENT) {
