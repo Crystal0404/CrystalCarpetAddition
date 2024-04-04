@@ -20,11 +20,9 @@
 
 package crystal0404.crystalcarpetaddition;
 
-import crystal0404.crystalcarpetaddition.api.CCANetorkProtocol.CCANetworkProtocolAPI;
 import crystal0404.crystalcarpetaddition.config.ConfigInit;
 import crystal0404.crystalcarpetaddition.fabric_api.FabricAPI;
 import crystal0404.crystalcarpetaddition.network.CCANetwork;
-import net.fabricmc.api.EnvType;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.loader.api.FabricLoader;
 import org.slf4j.Logger;

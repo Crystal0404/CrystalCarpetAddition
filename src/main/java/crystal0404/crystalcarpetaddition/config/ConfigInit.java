@@ -31,7 +31,6 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Writer;
-import java.util.ArrayList;
 import java.util.HashMap;
 
 public class ConfigInit {
@@ -60,7 +59,7 @@ public class ConfigInit {
             LOGGER.info("The configuration file has been generated!");
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
             try (Writer writer = new FileWriter(file_path)) {
-                writer.write(gson.toJson(new Config(new HashMap<>(), false)));
+                writer.write(gson.toJson(new Config(new HashMap<>(), false, true)));
             }
         }
     }

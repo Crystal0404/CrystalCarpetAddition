@@ -22,6 +22,7 @@ package crystal0404.crystalcarpetaddition.network.CCANetworkProtocol;
 
 import carpet.patches.EntityPlayerMPFake;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import crystal0404.crystalcarpetaddition.CCASettings;
 import crystal0404.crystalcarpetaddition.CrystalCarpetAdditionMod;
 import crystal0404.crystalcarpetaddition.api.CCANetorkProtocol.GetClientModMap;
@@ -37,17 +38,15 @@ import net.minecraft.server.network.ServerPlayNetworkHandler;
 import net.minecraft.server.network.ServerPlayerEntity;
 import org.slf4j.Logger;
 
-import java.util.ArrayList;
-import java.util.Collection;
+import java.util.*;
 
 public class CCANetworkProtocolServer {
-    private static final Collection<GetClientModMap> CALL = new ArrayList<>();
-    public static void register(GetClientModMap getClientModMap) {
-        if (!CALL.contains(getClientModMap)) {
-            CALL.add(getClientModMap);
-        }
-    }
     private static final Logger LOGGER = CrystalCarpetAdditionMod.LOGGER;
+    private static final Set<GetClientModMap> CALL = new HashSet<>();
+    public static void register(GetClientModMap getClientModMap) {
+        if (CCASettings.CCADebug) LOGGER.debug("\"{}\" register", getClientModMap.toString());
+        CALL.add(getClientModMap);
+    }
     public static void playerJoinGame(ServerPlayNetworkHandler handler) {
         if (!CCASettings.CCANetworkProtocol) return;
 
@@ -55,7 +54,7 @@ public class CCANetworkProtocolServer {
 
         if (!ServerPlayNetworking.canSend(handler.getPlayer(), CCANetwork.HELLO)) {
             LOGGER.info("The packet failed to be sent and the player may not have CCA installed");
-            handler.disconnect(MessagePresets.INSTALLATION);
+            if (ReadConfig.CAN_KICK) handler.disconnect(MessagePresets.INSTALLATION);
             return;
         }
         Gson gson = new Gson();
@@ -63,6 +62,7 @@ public class CCANetworkProtocolServer {
         ServerPlayNetworking.send(handler.getPlayer(), CCANetwork.HELLO, PacketByteBufs.create().writeString(send));
     }
 
+    // Received a list of mods from the client
     public static void server(
             MinecraftServer server,
             ServerPlayerEntity player,
@@ -71,12 +71,13 @@ public class CCANetworkProtocolServer {
             PacketSender sender
     ) {
         if (!CCASettings.CCANetworkProtocol) return;
-        String clientMod = buf.readString();
-        if (ReadConfig.CAN_PRINT_MOD) LOGGER.info(clientMod);
-        Gson gson = new Gson();
-        ClientModList clientModList = gson.fromJson(clientMod, ClientModList.class);
-        CALL.forEach(c -> {
-            c.getMod(server, player, handler, clientModList.getClientModMap().get(player.getName().getString()));
-        });
+        String info = buf.readString();
+        if (CCASettings.CCADebug) LOGGER.debug("buf: \"{}\"", info);
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        ClientModList clientModList = gson.fromJson(info, ClientModList.class);
+        if (ReadConfig.CAN_PRINT_MOD) LOGGER.info(gson.toJson(clientModList));
+        CALL.forEach(c ->
+            c.getMod(server, player, handler, clientModList.getClientModMap().get(player.getName().getString()))
+        );
     }
 }
