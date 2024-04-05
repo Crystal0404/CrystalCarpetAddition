@@ -33,15 +33,15 @@ public class CCANetworkProtocol implements Rule.Condition {
         if (FabricVersionChecker.isLoad("fabricproxy-lite", "<2.7.0")) {
             CrystalCarpetAdditionMod.LOGGER.warn(
                     "You look like you're using Velocity in Minecraft versions earlier than 1.20.2,"
-                    + "Some features of CCANetworkProtocol may not work,"
-                    + "and you may need to set the \"Kick\" in the \"CrystalCarpetAddition.json\" to false"
+                            + "Some features of CCANetworkProtocol may not work,"
+                            + "and you may need to set the \"Kick\" in the \"CrystalCarpetAddition.json\" to false"
             );
         }
-        if (FabricVersionChecker.isLoad("fabricproxy", "*")){
+        if (FabricVersionChecker.isLoad("fabricproxy", "*")) {
             CrystalCarpetAdditionMod.LOGGER.warn(
                     "You look like you're using Waterfall or BungeeCord"
-                    + "CCANetworkProtocol may not work properly,"
-                    + "please consider switching to Velocity or disabling CCANetworkProtocol"
+                            + "CCANetworkProtocol may not work properly,"
+                            + "please consider switching to Velocity or disabling CCANetworkProtocol"
             );
         }
         if (FabricLoader.getInstance().getEnvironmentType() == EnvType.CLIENT) {

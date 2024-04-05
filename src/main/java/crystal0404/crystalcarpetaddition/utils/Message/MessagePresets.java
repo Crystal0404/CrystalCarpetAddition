@@ -31,8 +31,8 @@ public class MessagePresets {
             "\nPlease install CrystalCarpetAddition!\n"
     ).setStyle(Style.EMPTY.withColor(0x55FFFF)
     ).append(Text.literal(
-            "https://modrinth.com/mod/crystalcarpetaddition"
-    ).setStyle(Style.EMPTY.withColor(0x55FF55).withUnderline(true))
+                    "https://modrinth.com/mod/crystalcarpetaddition"
+            ).setStyle(Style.EMPTY.withColor(0x55FF55).withUnderline(true))
     );
 
     public static final Text CCATITLE = Text.literal("CrystalCarpetAddition")

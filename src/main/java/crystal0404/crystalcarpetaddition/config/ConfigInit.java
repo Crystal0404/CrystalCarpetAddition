@@ -37,6 +37,7 @@ public class ConfigInit {
     private static final Logger LOGGER = CrystalCarpetAdditionMod.LOGGER;
     private static final String file_path = FabricLoader.getInstance().getConfigDir() + "/CrystalCarpetAddition/CrystalCarpetAddition.json";
     private static final String dir_path = FabricLoader.getInstance().getConfigDir() + "/CrystalCarpetAddition";
+
     @SuppressWarnings("all")
     public static void init() {
         if (FabricLoader.getInstance().getEnvironmentType() == EnvType.CLIENT) return;
@@ -49,6 +50,7 @@ public class ConfigInit {
             throw new RuntimeException(e);
         }
     }
+
     private static void configInit() throws IOException {
         // Create configuration folders and files
         File dir = new File(dir_path);

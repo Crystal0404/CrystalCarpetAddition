@@ -41,10 +41,10 @@ public abstract class ScreenHandleMixin {
     private static int calculateComparatorOutputMixin(int original, @Local(argsOnly = true) BlockEntity entity) {
         if (
                 CCASettings.ShulkerBoxPowerOutputExpansion
-                && entity instanceof ShulkerBoxBlockEntity
-                && ((ShulkerBoxBlockEntity) entity).getColor() == ColourMap.getSettingColour()
+                        && entity instanceof ShulkerBoxBlockEntity
+                        && ((ShulkerBoxBlockEntity) entity).getColor() == ColourMap.getSettingColour()
         ) {
-            Inventory inventory =(Inventory) entity;
+            Inventory inventory = (Inventory) entity;
             int num = 0;
             for (int i = 0; num != 15 && i < inventory.size(); i++) {
                 ItemStack itemStack = inventory.getStack(i);

@@ -34,21 +34,26 @@ public class CCAExtension implements CarpetExtension {
             CrystalCarpetAdditionMod.MOD_NAME
     );
     private static final CarpetExtension INSTANCE = new CCAExtension();
+
     public static void init() {
         CarpetServer.manageExtension(INSTANCE);
     }
+
     @Override
     public void onGameStarted() {
         CCASettingsManager.parseSettingsClass(CCASettings.class);
     }
+
     @Override
     public String version() {
         return CrystalCarpetAdditionMod.version;
     }
+
     @Override
     public SettingsManager extensionSettingsManager() {
         return CCASettingsManager;
     }
+
     @Override
     public Map<String, String> canHasTranslations(String lang) {
         return Translations.getTranslationFromResourcePath("assets/cca/lang/%s.json".formatted(lang));

@@ -24,26 +24,6 @@ import crystal0404.crystalcarpetaddition.CCASettings;
 import net.minecraft.util.DyeColor;
 
 public class ColourMap {
-    public enum Colour {
-        NONE,
-        WHITE,
-        LIGHT_GRAY,
-        GRAY,
-        BLACK,
-        BROWN,
-        RED,
-        ORANGE,
-        YELLOW,
-        LIME,
-        GREEN,
-        CYAN,
-        LIGHT_BLUE,
-        BLUE,
-        PURPLE,
-        MAGENTA,
-        PINK
-    }
-
     public static DyeColor getSettingColour() {
         DyeColor color = null;
         switch (CCASettings.ShulkerBoxPowerOutputExpansionColour) {
@@ -99,5 +79,25 @@ public class ColourMap {
                 break;
         }
         return color;
+    }
+
+    public enum Colour {
+        NONE,
+        WHITE,
+        LIGHT_GRAY,
+        GRAY,
+        BLACK,
+        BROWN,
+        RED,
+        ORANGE,
+        YELLOW,
+        LIME,
+        GREEN,
+        CYAN,
+        LIGHT_BLUE,
+        BLUE,
+        PURPLE,
+        MAGENTA,
+        PINK
     }
 }

@@ -49,6 +49,7 @@ import java.util.Map;
  */
 public class CCANetworkProtocolClient {
     private static final Logger LOGGER = CrystalCarpetAdditionMod.LOGGER;
+
     public static void client(
             MinecraftClient client,
             ClientPlayNetworkHandler handler,
@@ -67,7 +68,7 @@ public class CCANetworkProtocolClient {
                 String modId = allMod.getMetadata().getId();
                 if (
                         modId.matches(stringStringEntry.getKey())
-                        && FabricVersionChecker.isLoad(modId, stringStringEntry.getValue())
+                                && FabricVersionChecker.isLoad(modId, stringStringEntry.getValue())
                 ) {
                     canBreak = true;
                     disconnect(
@@ -101,7 +102,7 @@ public class CCANetworkProtocolClient {
         HashMap<String, HashMap<String, String>> map = new HashMap<>();
         HashMap<String, String> modMap = new HashMap<>();
         FabricLoader.getInstance().getAllMods().forEach(mod ->
-            modMap.put(mod.getMetadata().getId(), mod.getMetadata().getVersion().getFriendlyString())
+                modMap.put(mod.getMetadata().getId(), mod.getMetadata().getVersion().getFriendlyString())
         );
         map.put(client.player.getName().getString(), modMap);
         String send = gson.toJson(new ClientModList(map));

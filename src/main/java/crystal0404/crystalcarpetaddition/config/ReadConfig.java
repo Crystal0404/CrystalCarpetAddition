@@ -35,10 +35,11 @@ import java.util.HashMap;
 
 public class ReadConfig {
     private final static Logger LOGGER = CrystalCarpetAdditionMod.LOGGER;
+    private static final String file_path = FabricLoader.getInstance().getConfigDir() + "/CrystalCarpetAddition/CrystalCarpetAddition.json";
     public static HashMap<String, String> BLACKLIST;
     public static boolean CAN_PRINT_MOD;
     public static boolean CAN_KICK;
-    private static final String file_path = FabricLoader.getInstance().getConfigDir() + "/CrystalCarpetAddition/CrystalCarpetAddition.json";
+
     @SuppressWarnings("all")
     public static void readConfig() throws IOException {
         try (InputStream inputStream = Files.newInputStream(Paths.get(file_path))) {
@@ -54,7 +55,7 @@ public class ReadConfig {
                 BLACKLIST = config.getBlackMap();
                 CAN_PRINT_MOD = config.isPrintModList();
                 CAN_KICK = config.isKick();
-            }catch (JsonSyntaxException e) {
+            } catch (JsonSyntaxException e) {
                 File file = new File(file_path);
                 file.delete();
                 LOGGER.error("Abnormal configuration file read!Looks like your configuration is not correct!");
