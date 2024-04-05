@@ -60,6 +60,15 @@ public class CCASettings {
     public static boolean NoBatSpawn = false;
 
     /**
+     * Creative Tools
+     */
+
+    @Rule(categories = {CCA, CREATIVE})
+    public static boolean ShulkerBoxPowerOutputExpansion = false;
+    @Rule(categories = {CCA, CREATIVE})
+    public static ColourMap.Colour ShulkerBoxPowerOutputExpansionColour = ColourMap.Colour.PINK;
+
+    /**
      * Network
      */
 
@@ -68,15 +77,6 @@ public class CCASettings {
             conditions = CCANetworkProtocol.class
     )
     public static boolean CCANetworkProtocol = false;
-
-    /**
-     * Creative Tools
-     */
-
-    @Rule(categories = {CCA, CREATIVE})
-    public static boolean ShulkerBoxPowerOutputExpansion = false;
-    @Rule(categories = {CCA, CREATIVE})
-    public static ColourMap.Colour ShulkerBoxPowerOutputExpansionColour = ColourMap.Colour.PINK;
 
     /**
      * Other
