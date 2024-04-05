@@ -6,29 +6,34 @@ cca:
     MCTweaks: MC Tweaks
 
   rule:
-    MagicBox:
-      name: MagicBox/CCESuppressor
-      desc: Control whether CastSuppressor(CCESuppressor) is available
+
+    # ===MC Tweaks===
 
     CEnderPearlChunkLoading:
       name: CEnderPearlChunkLoading
       desc: Fix EnderPearlChunkLoading from carpet-extra
 
+    ComparatorCanPlaceAboveAir:
+      name: ComparatorCanPlaceAboveAir
+      desc: Changed the code for comparators to drop items to match version 1.20.1.
+
+    EndermanCannotPickUpBlocksInNether:
+      name: EndermanCannotPickUpBlocksInNether
+      desc: Protect your nether terrain from being destroyed by Enderman and prevent a large number of Endermen from not despawning after picking up blocks.
+
     ItemShadowing:
       name: ItemShadowing
       desc: It has a shadow! (Use the ItemStack code in section 1.16.5)
 
-    ComparatorCanPlaceAboveAir:
-      name: ComparatorCanPlaceAboveAir
-      desc: Changed the code for comparators to drop items to match version 1.20.1.
+    MagicBox:
+      name: MagicBox/CCESuppressor
+      desc: Control whether CastSuppressor(CCESuppressor) is available
 
     NoBatSpawn:
       name: NoBatSpawn
       desc: Makes bats no longer spawn.
 
-    EndermanCannotPickUpBlocksInNether:
-      name: EndermanCannotPickUpBlocksInNether
-      desc: Protect your nether terrain from being destroyed by Enderman and prevent a large number of Endermen from not despawning after picking up blocks.
+      # ===Creative Tools===
 
     ShulkerBoxPowerOutputExpansion:
       name: ShulkerBoxPowerOutputExpansion
@@ -40,11 +45,15 @@ cca:
       name: ShulkerBoxPowerOutputExpansionColour
       desc: Specifies the color of the ShulkerBox in effect for the Shulker Box Power Output Expansion(Pink by default).
 
+      # ===Network===
+
     CCANetworkProtocol:
       name: CCANetworkProtocol
-      desc: |- 
+      desc: |-
         It is used by the server to obtain the list of client mods, implement the mod blacklist and other functions.
         For more information, please refer to the Github README
+
+      # ===Other===
 
     CCADebug:
       name: CCADebug

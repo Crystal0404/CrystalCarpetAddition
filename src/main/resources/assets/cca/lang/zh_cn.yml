@@ -6,29 +6,34 @@ cca:
     MCTweaks: MC调整
 
   rule:
-    MagicBox:
-      name: 魔法盒子/强转抑制器
-      desc: 控制基于类型转换的更新抑制是否可用
+
+    # ===MC Tweaks===
 
     CEnderPearlChunkLoading:
       name: C珍珠加载
       desc: carpet-extra修复版珍珠加载
 
+    ComparatorCanPlaceAboveAir:
+      name: 比较器可"浮空"放置
+      desc: 把比较器掉落为物品的行为修改至与1.20.1版本一致.
+
+    EndermanCannotPickUpBlocksInNether:
+      name: 末影人不能在下界拾取方块
+      desc: 保护你的下界地形不被末影人破坏, 并且防止大量末影人因拾取方块不消失从而造成卡顿.
+
     ItemShadowing:
       name: 物品分身
       desc: 它有一个影子! (使用了部分1.16.5的ItemStack逻辑)
 
-    ComparatorCanPlaceAboveAir:
-      name: 比较器可"浮空"放置
-      desc: 把比较器掉落为物品的行为修改至与1.20.1版本一致.
+    MagicBox:
+      name: 魔法盒子/强转抑制器
+      desc: 控制基于类型转换的更新抑制是否可用
 
     NoBatSpawn:
       name: 禁用蝙蝠生成
       desc: 让你的世界不再生成烦人的蝙蝠.
 
-    EndermanCannotPickUpBlocksInNether:
-      name: 末影人不能在下界拾取方块
-      desc: 保护你的下界地形不被末影人破坏, 并且防止大量末影人因拾取方块不消失从而造成卡顿.
+    # ===Creative Tools===
 
     ShulkerBoxPowerOutputExpansion:
       name: 潜影盒红石信号输出拓展
@@ -40,11 +45,15 @@ cca:
       name: 潜影盒红石信号输出拓展颜色设置
       desc: 设置潜影盒红石信号输出拓展生效的潜影盒颜色(默认粉色).
 
+    # ===Network===
+
     CCANetworkProtocol:
       name: CCA网络协议
       desc: |-
         它被服务器用来获取客户端模组列表, 实现模组黑名单等功能
         更多详细信息，请参阅Github自述文件
+
+    # ===Other===
 
     CCADebug:
       name: CCA调试模式
