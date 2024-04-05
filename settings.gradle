@@ -7,6 +7,10 @@ pluginManagement {
 			url = 'https://maven.fabricmc.net/'
 		}
 		maven {
+			name = 'Ali'
+			url = 'https://maven.aliyun.com/repository/gradle-plugin'
+		}
+		maven {
 			name = 'Jitpack'
 			url = 'https://jitpack.io'
 		}
