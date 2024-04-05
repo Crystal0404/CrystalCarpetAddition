@@ -27,7 +27,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 
 @Mixin(BatEntity.class)
-public class BatEntityMixin {
+public abstract class BatEntityMixin {
     // This is achieved indirectly by modifying the sea level height
     @ModifyExpressionValue(
             method = "canSpawn",
