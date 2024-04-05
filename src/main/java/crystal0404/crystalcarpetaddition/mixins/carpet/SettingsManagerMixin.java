@@ -41,7 +41,10 @@ import static carpet.utils.Translations.tr;
 @Restriction(require = @Condition("carpet"))  // Maybe something else will be stuffed in the future?
 @Mixin(value = SettingsManager.class, remap = false)
 public abstract class SettingsManagerMixin {
-    @Shadow @Final private String fancyName;
+    @Shadow
+    @Final
+    private String fancyName;
+
     @Inject(
             method = "listAllSettings",
             at = @At(
@@ -56,9 +59,9 @@ public abstract class SettingsManagerMixin {
     private void listAllSettingsMixin(ServerCommandSource source, CallbackInfoReturnable<Integer> cir) {
         if (!Objects.equals(this.fancyName, CrystalCarpetAdditionMod.MOD_NAME)) {
             String msg = "g %s %s: %s".formatted(
-                 CrystalCarpetAdditionMod.MOD_NAME,
-                 tr(TranslationKeys.VERSION),
-                 CrystalCarpetAdditionMod.version
+                    CrystalCarpetAdditionMod.MOD_NAME,
+                    tr(TranslationKeys.VERSION),
+                    CrystalCarpetAdditionMod.version
             );
             Messenger.m(source, msg);
         }

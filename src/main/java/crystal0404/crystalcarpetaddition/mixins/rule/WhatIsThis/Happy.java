@@ -47,7 +47,7 @@ public abstract class Happy {
     private void happyMixin(CallbackInfoReturnable<SplashTextRenderer> cir, @Local(ordinal = 0) Calendar calendar) {
         if (
                 calendar.get(Calendar.MONTH) == Calendar.MARCH
-                && calendar.get(Calendar.DAY_OF_MONTH) == 25
+                        && calendar.get(Calendar.DAY_OF_MONTH) == 25
         ) {
             Random random = new Random();
             if (random.nextInt(3) == 2) cir.setReturnValue(new SplashTextRenderer("Happy birthday Crystal0404!!!"));

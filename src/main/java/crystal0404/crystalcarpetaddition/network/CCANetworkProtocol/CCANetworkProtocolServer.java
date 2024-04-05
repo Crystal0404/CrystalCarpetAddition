@@ -38,7 +38,8 @@ import net.minecraft.server.network.ServerPlayNetworkHandler;
 import net.minecraft.server.network.ServerPlayerEntity;
 import org.slf4j.Logger;
 
-import java.util.*;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Stop, this is not the place you should be : (
@@ -46,10 +47,12 @@ import java.util.*;
 public class CCANetworkProtocolServer {
     private static final Logger LOGGER = CrystalCarpetAdditionMod.LOGGER;
     private static final Set<GetClientModMap> CALL = new HashSet<>();
+
     public static void register(GetClientModMap getClientModMap) {
         if (CCASettings.CCADebug) LOGGER.debug("\"{}\" register", getClientModMap.toString());
         CALL.add(getClientModMap);
     }
+
     public static void playerJoinGame(ServerPlayNetworkHandler handler) {
         if (!CCASettings.CCANetworkProtocol) return;
 
@@ -80,7 +83,7 @@ public class CCANetworkProtocolServer {
         ClientModList clientModList = gson.fromJson(info, ClientModList.class);
         if (ReadConfig.CAN_PRINT_MOD) LOGGER.info(gson.toJson(clientModList));
         CALL.forEach(c ->
-            c.getMod(server, player, handler, clientModList.getClientModMap().get(player.getName().getString()))
+                c.getMod(server, player, handler, clientModList.getClientModMap().get(player.getName().getString()))
         );
     }
 }

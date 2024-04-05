@@ -37,8 +37,7 @@ public class ChunkUtils {
         World world = entity.getWorld();
         Vec3d velocity = entity.getVelocity();
         if (world instanceof ServerWorld &&
-                (Math.abs(velocity.x) > 0.001 || Math.abs(velocity.z) > 0.001))
-        {
+                (Math.abs(velocity.x) > 0.001 || Math.abs(velocity.z) > 0.001)) {
             Vec3d pos = entity.getPos();
             double nx = pos.x + velocity.x;
             double nz = pos.z + velocity.z;

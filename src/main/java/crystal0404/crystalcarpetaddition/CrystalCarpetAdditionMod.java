@@ -33,6 +33,7 @@ public class CrystalCarpetAdditionMod implements ModInitializer {
     public static final String MOD_NAME = "Crystal Carpet Addition";
     public static String version;
     public static Logger LOGGER = LoggerFactory.getLogger(MOD_NAME);
+
     @Override
     public void onInitialize() {
         version = FabricLoader.getInstance().getModContainer(MOD_ID).orElseThrow(RuntimeException::new).getMetadata().getVersion().getFriendlyString();

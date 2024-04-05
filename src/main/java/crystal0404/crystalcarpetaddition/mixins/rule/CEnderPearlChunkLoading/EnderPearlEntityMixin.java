@@ -45,8 +45,8 @@ public abstract class EnderPearlEntityMixin extends ThrownItemEntity {
             at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/projectile/thrown/ThrownItemEntity;tick()V")
     )
     private void tickMixin(CallbackInfo ci) {
-       if (CCASettings.CEnderPearlChunkLoading) {
-           ChunkUtils.addEnderPearlChunkTicket(this);
-       }
+        if (CCASettings.CEnderPearlChunkLoading) {
+            ChunkUtils.addEnderPearlChunkTicket(this);
+        }
     }
 }

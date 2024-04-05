@@ -32,39 +32,36 @@ public class CCASettings {
     private static final String CREATIVE = "Creative";
     private static final String MC_TWEAKS = "MCTweaks";
 
-    @Rule(categories = {CCA, MC_TWEAKS})
-    //#if MC > 12001
-    public static boolean MagicBox = false;
-    //#else
-//$$     public static boolean MagicBox = true;
-    //#endif
+    /**
+     * MC Tweaks
+     */
 
     @Rule(
             categories = {CCA, MC_TWEAKS},
             conditions = CEnderPearlChunkLoading.class
     )
     public static boolean CEnderPearlChunkLoading = false;
-
-    @Rule(categories = {CCA, MC_TWEAKS})
-    public static boolean ItemShadowing = false;
-
     @Rule(
             categories = {CCA, MC_TWEAKS},
             conditions = ComparatorCanPlaceAboveAir.class
     )
     public static boolean ComparatorCanPlaceAboveAir = false;
-
+    @Rule(categories = {CCA, MC_TWEAKS})
+    public static boolean EndermanCannotPickUpBlocksInNether = false;
+    @Rule(categories = {CCA, MC_TWEAKS})
+    public static boolean ItemShadowing = false;
+    @Rule(categories = {CCA, MC_TWEAKS})
+    //#if MC > 12001
+    public static boolean MagicBox = false;
+    //#else
+//$$     public static boolean MagicBox = true;
+    //#endif
     @Rule(categories = {CCA, MC_TWEAKS})
     public static boolean NoBatSpawn = false;
 
-    @Rule(categories = {CCA, MC_TWEAKS})
-    public static boolean EndermanCannotPickUpBlocksInNether = false;
-
-    @Rule(categories = {CCA, CREATIVE})
-    public static boolean ShulkerBoxPowerOutputExpansion = false;
-
-    @Rule(categories = {CCA, CREATIVE})
-    public static ColourMap.Colour ShulkerBoxPowerOutputExpansionColour = ColourMap.Colour.PINK;
+    /**
+     * Network
+     */
 
     @Rule(
             categories = {CCA, NETWORK},
@@ -72,6 +69,20 @@ public class CCASettings {
     )
     public static boolean CCANetworkProtocol = false;
 
+    /**
+     * Creative Tools
+     */
+
+    @Rule(categories = {CCA, CREATIVE})
+    public static boolean ShulkerBoxPowerOutputExpansion = false;
+    @Rule(categories = {CCA, CREATIVE})
+    public static ColourMap.Colour ShulkerBoxPowerOutputExpansionColour = ColourMap.Colour.PINK;
+
+    /**
+     * Other
+     */
+
     @Rule(categories = CCA)
     public static boolean CCADebug = false;
+
 }

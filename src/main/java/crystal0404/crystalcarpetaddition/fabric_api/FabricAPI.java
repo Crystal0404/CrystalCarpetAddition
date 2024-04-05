@@ -34,7 +34,7 @@ public class FabricAPI {
         if (FabricLoader.getInstance().getEnvironmentType() == EnvType.SERVER) {
             // server
             ServerPlayConnectionEvents.JOIN.register(new ServerPlayConnectionEventsJoin());
-        }else {
+        } else {
             // client
             ClientPlayConnectionEvents.JOIN.register(new ClientPlayConnectionEventsJoin());
         }
