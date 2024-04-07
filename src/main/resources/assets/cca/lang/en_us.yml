@@ -33,6 +33,10 @@ cca:
       name: NoBatSpawn
       desc: Makes bats no longer spawn.
 
+    ReintroductionOfRaids:
+      name: ReintroductionOfRaids
+      desc: ...
+
       # ===Creative Tools===
 
     ShulkerBoxPowerOutputExpansion:

@@ -12,6 +12,8 @@
     "rule.ItemShadowing.ScreenHandlerMixin",
     "rule.MagicBox.ShulkerBoxBlockMixin",
     "rule.NoBatSpwan.BatEntityMixin",
+    "rule.ReintroductionOfRaids.effect$BadOmenStausEffect",
+    "rule.ReintroductionOfRaids.RaiderEntityMixin",
     "rule.ShulkerBoxPowerOutputExpansion.ScreenHandleMixin"
   ],
   "client": [
