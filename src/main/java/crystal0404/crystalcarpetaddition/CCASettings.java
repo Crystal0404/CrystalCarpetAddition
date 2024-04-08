@@ -24,6 +24,7 @@ import carpet.api.settings.Rule;
 import crystal0404.crystalcarpetaddition.settings.conditions.CCANetworkProtocol;
 import crystal0404.crystalcarpetaddition.settings.conditions.CEnderPearlChunkLoading;
 import crystal0404.crystalcarpetaddition.settings.conditions.ComparatorCanPlaceAboveAir;
+import crystal0404.crystalcarpetaddition.settings.conditions.ReintroductionOfRaids;
 import crystal0404.crystalcarpetaddition.utils.ShulkerBoxUtils.ColourMap;
 
 public class CCASettings {
@@ -58,6 +59,12 @@ public class CCASettings {
     //#endif
     @Rule(categories = {CCA, MC_TWEAKS})
     public static boolean NoBatSpawn = false;
+
+    @Rule(
+            categories = {CCA, MC_TWEAKS},
+            conditions = ReintroductionOfRaids.class
+    )
+    public static boolean ReintroductionOfRaids = false;
 
     /**
      * Creative Tools
