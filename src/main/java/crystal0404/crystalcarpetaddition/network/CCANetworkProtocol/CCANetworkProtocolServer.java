@@ -29,7 +29,6 @@ import crystal0404.crystalcarpetaddition.api.CCANetorkProtocol.GetClientModMap;
 import crystal0404.crystalcarpetaddition.config.ReadConfig;
 import crystal0404.crystalcarpetaddition.network.CCANetwork;
 import crystal0404.crystalcarpetaddition.utils.Message.MessagePresets;
-import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.network.RegistryByteBuf;
 import net.minecraft.network.codec.PacketCodec;
@@ -72,7 +71,6 @@ public class CCANetworkProtocolServer {
     }
 
     public static void server() {
-        PayloadTypeRegistry.playC2S().register(MOD.ID, MOD.CODEC);
         ServerPlayNetworking.registerGlobalReceiver(MOD.ID, ((payload, context) -> {
             if (!CCASettings.CCANetworkProtocol) return;
             String info = payload.data();
@@ -83,9 +81,7 @@ public class CCANetworkProtocolServer {
             MinecraftServer server = context.player().getServer();
             ServerPlayerEntity player = context.player();
             ServerPlayNetworkHandler handler = context.player().networkHandler;
-            CALL.forEach(c ->
-                    c.getMod(server, player, handler, clientModList.getClientModMap().get(player.getName().getString()))
-            );
+            CALL.forEach(c -> c.getMod(server, player, handler, clientModList.getClientModMap().get(player.getName().getString())));
         }));
     }
 

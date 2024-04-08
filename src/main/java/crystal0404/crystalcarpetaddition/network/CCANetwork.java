@@ -24,6 +24,7 @@ import crystal0404.crystalcarpetaddition.network.CCANetworkProtocol.CCANetworkPr
 import crystal0404.crystalcarpetaddition.network.CCANetworkProtocol.CCANetworkProtocolServer;
 import crystal0404.crystalcarpetaddition.utils.FabricVersionChecker;
 import net.fabricmc.api.EnvType;
+import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
 import net.fabricmc.loader.api.FabricLoader;
 
 public class CCANetwork {
@@ -31,6 +32,7 @@ public class CCANetwork {
 
     public static void init() {
         if (!FabricVersionChecker.isLoad("fabric-api", "*")) return;
+        payloadRegistry();
         if (FabricLoader.getInstance().getEnvironmentType() == EnvType.CLIENT) registerS2C();
         if (FabricLoader.getInstance().getEnvironmentType() == EnvType.SERVER) registerC2S();
     }
@@ -41,5 +43,10 @@ public class CCANetwork {
 
     public static void registerC2S() {
         CCANetworkProtocolServer.server();
+    }
+
+    private static void payloadRegistry() {
+        PayloadTypeRegistry.playC2S().register(CCANetworkProtocolServer.MOD.ID, CCANetworkProtocolServer.MOD.CODEC);
+        PayloadTypeRegistry.playS2C().register(CCANetworkProtocolClient.HELLO.ID, CCANetworkProtocolClient.HELLO.CODEC);
     }
 }

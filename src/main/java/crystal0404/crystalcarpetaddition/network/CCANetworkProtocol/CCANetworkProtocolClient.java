@@ -27,7 +27,6 @@ import crystal0404.crystalcarpetaddition.network.CCANetwork;
 import crystal0404.crystalcarpetaddition.utils.FabricVersionChecker;
 import crystal0404.crystalcarpetaddition.utils.Message.MessagePresets;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
-import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
 import net.fabricmc.loader.api.FabricLoader;
 import net.fabricmc.loader.api.ModContainer;
 import net.minecraft.client.MinecraftClient;
@@ -54,7 +53,6 @@ public class CCANetworkProtocolClient {
     private static final Logger LOGGER = CrystalCarpetAdditionMod.LOGGER;
 
     public static void client() {
-        PayloadTypeRegistry.playS2C().register(HELLO.ID, HELLO.CODEC);
         ClientPlayNetworking.registerGlobalReceiver(HELLO.ID, ((payload, context) -> {
             String info = payload.s();
             System.out.println(info);
