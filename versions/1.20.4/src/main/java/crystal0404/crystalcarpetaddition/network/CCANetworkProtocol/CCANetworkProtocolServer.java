@@ -29,16 +29,13 @@ import crystal0404.crystalcarpetaddition.api.CCANetorkProtocol.GetClientModMap;
 import crystal0404.crystalcarpetaddition.config.ReadConfig;
 import crystal0404.crystalcarpetaddition.network.CCANetwork;
 import crystal0404.crystalcarpetaddition.utils.Message.MessagePresets;
-import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
+import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
+import net.fabricmc.fabric.api.networking.v1.PacketSender;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
-import net.minecraft.network.RegistryByteBuf;
-import net.minecraft.network.codec.PacketCodec;
-import net.minecraft.network.codec.PacketCodecs;
-import net.minecraft.network.packet.CustomPayload;
+import net.minecraft.network.PacketByteBuf;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.network.ServerPlayNetworkHandler;
 import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.util.Identifier;
 import org.slf4j.Logger;
 
 import java.util.HashSet;
@@ -61,41 +58,32 @@ public class CCANetworkProtocolServer {
 
         if (handler.getPlayer() instanceof EntityPlayerMPFake) return;
 
-        if (!ServerPlayNetworking.canSend(handler.getPlayer(), CCANetworkProtocolClient.HELLO.ID)) {
+        if (!ServerPlayNetworking.canSend(handler.getPlayer(), CCANetwork.HELLO)) {
             LOGGER.info("The packet failed to be sent and the player may not have CCA installed");
             if (ReadConfig.CAN_KICK) handler.disconnect(MessagePresets.INSTALLATION);
             return;
         }
         Gson gson = new Gson();
         String send = gson.toJson(new SendBlackMod(ReadConfig.BLACKLIST));
-        ServerPlayNetworking.send(handler.getPlayer(), new CCANetworkProtocolClient.HELLO(send));
+        ServerPlayNetworking.send(handler.getPlayer(), CCANetwork.HELLO, PacketByteBufs.create().writeString(send));
     }
 
-    public static void server() {
-        PayloadTypeRegistry.playC2S().register(MOD.ID, MOD.CODEC);
-        ServerPlayNetworking.registerGlobalReceiver(MOD.ID, ((payload, context) -> {
-            if (!CCASettings.CCANetworkProtocol) return;
-            String info = payload.data();
-            if (CCASettings.CCADebug) LOGGER.debug("buf: \"{}\"", info);
-            Gson gson = new GsonBuilder().setPrettyPrinting().create();
-            ClientModList clientModList = gson.fromJson(info, ClientModList.class);
-            if (ReadConfig.CAN_PRINT_MOD) LOGGER.info(gson.toJson(clientModList));
-            MinecraftServer server = context.player().getServer();
-            ServerPlayerEntity player = context.player();
-            ServerPlayNetworkHandler handler = context.player().networkHandler;
-            CALL.forEach(c ->
-                    c.getMod(server, player, handler, clientModList.getClientModMap().get(player.getName().getString()))
-            );
-        }));
-    }
-
-    public record MOD(String data) implements CustomPayload {
-        public static final CustomPayload.Id<MOD> ID = new Id<>(new Identifier(CCANetwork.PROTOCOL, "mod"));
-        public static final PacketCodec<RegistryByteBuf, MOD> CODEC = PacketCodecs.STRING.xmap(MOD::new, MOD::data).cast();
-
-        @Override
-        public Id<? extends CustomPayload> getId() {
-            return ID;
-        }
+    // Received a list of mods from the client
+    public static void server(
+            MinecraftServer server,
+            ServerPlayerEntity player,
+            ServerPlayNetworkHandler handler,
+            PacketByteBuf buf,
+            PacketSender sender
+    ) {
+        if (!CCASettings.CCANetworkProtocol) return;
+        String info = buf.readString();
+        if (CCASettings.CCADebug) LOGGER.debug("buf: \"{}\"", info);
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        ClientModList clientModList = gson.fromJson(info, ClientModList.class);
+        if (ReadConfig.CAN_PRINT_MOD) LOGGER.info(gson.toJson(clientModList));
+        CALL.forEach(c ->
+                c.getMod(server, player, handler, clientModList.getClientModMap().get(player.getName().getString()))
+        );
     }
 }
