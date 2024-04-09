@@ -44,7 +44,8 @@ public abstract class BadOmenStatusEffectMixin {
                     value = "INVOKE",
                     target = "Lnet/minecraft/server/world/ServerWorld;getDifficulty()Lnet/minecraft/world/Difficulty;"
             ),
-            cancellable = true)
+            cancellable = true
+    )
     private void applyUpdateEffectMixin(
             LivingEntity entity, int amplifier, CallbackInfoReturnable<Boolean> cir,
             @Local(ordinal = 0) ServerWorld serverWorld,

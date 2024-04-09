@@ -39,7 +39,6 @@ import org.spongepowered.asm.mixin.injection.invoke.arg.Args;
 @Restriction(require = @Condition(value = "minecraft", versionPredicates = ">=1.20.5-alpha.24.14.a"))
 @Mixin(Raid.class)
 public abstract class RaidMixin {
-
     @Shadow
     public abstract World getWorld();
 
