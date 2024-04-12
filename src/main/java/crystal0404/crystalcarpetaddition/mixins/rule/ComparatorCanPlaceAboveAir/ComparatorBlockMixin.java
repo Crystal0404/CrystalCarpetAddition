@@ -20,29 +20,25 @@
 
 package crystal0404.crystalcarpetaddition.mixins.rule.ComparatorCanPlaceAboveAir;
 
+import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 import crystal0404.crystalcarpetaddition.CCASettings;
 import me.fallenbreath.conditionalmixin.api.annotation.Condition;
 import me.fallenbreath.conditionalmixin.api.annotation.Restriction;
-import net.minecraft.block.BlockState;
 import net.minecraft.block.ComparatorBlock;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
-import net.minecraft.world.WorldAccess;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Restriction(require = @Condition(value = "minecraft", versionPredicates = ">=1.20.4"))
 @Mixin(ComparatorBlock.class)
 public abstract class ComparatorBlockMixin {
-    // This is deliberately written as such, with the goal of being completely consistent with 1.20.1
-    @Inject(
+    @ModifyExpressionValue(
             method = "getStateForNeighborUpdate",
-            at = @At("HEAD"),
-            cancellable = true
+            at = @At(
+                    value = "INVOKE",
+                    target = "Lnet/minecraft/block/ComparatorBlock;canPlaceAbove(Lnet/minecraft/world/WorldView;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/BlockState;)Z"
+            )
     )
-    private void getStateForNeighborUpdateMixin(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos, CallbackInfoReturnable<BlockState> cir) {
-        if (CCASettings.ComparatorCanPlaceAboveAir) cir.setReturnValue(state);
+    private boolean getStateForNeighborUpdateMixin(boolean original) {
+        return CCASettings.ComparatorCanPlaceAboveAir || original;
     }
 }
