@@ -7,7 +7,7 @@
   "mixins": [
     "carpet.SettingsManagerMixin",
     "rule.CEnderPearlChunkLoading.EnderPearlEntityMixin",
-    "rule.ComparatorCanPlaceAboveAir.ComparatorBlockMixin",
+    "rule.ComparatorIgnoresUpdatesFromBelow.ComparatorBlockMixin",
     "rule.EndermanCannotPickUpBlocksInNether.EndermanEntity$PickUpBlockGoalMixin",
     "rule.ItemShadowing.ScreenHandlerMixin",
     "rule.MagicBox.ShulkerBoxBlockMixin",

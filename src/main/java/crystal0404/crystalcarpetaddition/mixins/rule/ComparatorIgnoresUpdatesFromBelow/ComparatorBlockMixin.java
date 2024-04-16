@@ -18,7 +18,7 @@
  * along with Crystal Carpet Addition.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package crystal0404.crystalcarpetaddition.mixins.rule.ComparatorCanPlaceAboveAir;
+package crystal0404.crystalcarpetaddition.mixins.rule.ComparatorIgnoresUpdatesFromBelow;
 
 import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 import crystal0404.crystalcarpetaddition.CCASettings;
@@ -39,6 +39,6 @@ public abstract class ComparatorBlockMixin {
             )
     )
     private boolean getStateForNeighborUpdateMixin(boolean original) {
-        return CCASettings.ComparatorCanPlaceAboveAir || original;
+        return CCASettings.ComparatorIgnoresUpdatesFromBelow || original;
     }
 }
