@@ -33,6 +33,10 @@ cca:
       name: NoBatSpawn
       desc: Makes bats no longer spawn.
 
+    RevertOldVersionRaid:
+      name: RevertOldVersionRaid
+      desc: I can't afford to lose my money printing machine
+
       # ===Creative Tools===
 
     ShulkerBoxPowerOutputExpansion:

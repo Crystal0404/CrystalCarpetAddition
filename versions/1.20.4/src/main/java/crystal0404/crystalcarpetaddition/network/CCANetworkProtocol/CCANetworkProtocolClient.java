@@ -27,18 +27,17 @@ import crystal0404.crystalcarpetaddition.network.CCANetwork;
 import crystal0404.crystalcarpetaddition.utils.FabricVersionChecker;
 import crystal0404.crystalcarpetaddition.utils.Message.MessagePresets;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
+import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
+import net.fabricmc.fabric.api.networking.v1.PacketSender;
 import net.fabricmc.loader.api.FabricLoader;
 import net.fabricmc.loader.api.ModContainer;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.DisconnectedScreen;
 import net.minecraft.client.gui.screen.TitleScreen;
 import net.minecraft.client.gui.screen.multiplayer.MultiplayerScreen;
-import net.minecraft.network.RegistryByteBuf;
-import net.minecraft.network.codec.PacketCodec;
-import net.minecraft.network.codec.PacketCodecs;
-import net.minecraft.network.packet.CustomPayload;
+import net.minecraft.client.network.ClientPlayNetworkHandler;
+import net.minecraft.network.PacketByteBuf;
 import net.minecraft.text.Text;
-import net.minecraft.util.Identifier;
 import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 
@@ -49,40 +48,40 @@ import java.util.Map;
  * Stop, this is not the place you should be : (
  */
 public class CCANetworkProtocolClient {
-
     private static final Logger LOGGER = CrystalCarpetAdditionMod.LOGGER;
 
-    public static void client() {
-        ClientPlayNetworking.registerGlobalReceiver(HELLO.ID, ((payload, context) -> {
-            String info = payload.s();
-            System.out.println(info);
-            MinecraftClient client = context.client();
-            if (CCASettings.CCADebug) LOGGER.debug("buf: \"{}\"", info);
-            Gson gson = new Gson();
-            HashMap<String, String> blackMap = gson.fromJson(info, SendBlackMod.class).getBlackModMap();
+    public static void client(
+            MinecraftClient client,
+            ClientPlayNetworkHandler handler,
+            @NotNull PacketByteBuf buf,
+            PacketSender sender
+    ) {
+        String info = buf.readString();
+        if (CCASettings.CCADebug) LOGGER.debug("buf: \"{}\"", info);
+        Gson gson = new Gson();
+        HashMap<String, String> blackMap = gson.fromJson(info, SendBlackMod.class).getBlackModMap();
 
-            // Determine if there are any mods that are not allowed, and disconnect them
-            for (Map.Entry<String, String> stringStringEntry : blackMap.entrySet()) {
-                boolean canBreak = false;
-                for (ModContainer allMod : FabricLoader.getInstance().getAllMods()) {
-                    String modId = allMod.getMetadata().getId();
-                    if (
-                            modId.matches(stringStringEntry.getKey())
-                                    && FabricVersionChecker.isLoad(modId, stringStringEntry.getValue())
-                    ) {
-                        canBreak = true;
-                        disconnect(
-                                client,
-                                MessagePresets.BLACKMODREASON(allMod.getMetadata().getName())
-                        );
-                        break;
-                    }
-                }
-                if (canBreak) {
+        // Determine if there are any mods that are not allowed, and disconnect them
+        for (Map.Entry<String, String> stringStringEntry : blackMap.entrySet()) {
+            boolean canBreak = false;
+            for (ModContainer allMod : FabricLoader.getInstance().getAllMods()) {
+                String modId = allMod.getMetadata().getId();
+                if (
+                        modId.matches(stringStringEntry.getKey())
+                                && FabricVersionChecker.isLoad(modId, stringStringEntry.getValue())
+                ) {
+                    canBreak = true;
+                    disconnect(
+                            client,
+                            MessagePresets.BLACKMODREASON(allMod.getMetadata().getName())
+                    );
                     break;
                 }
             }
-        }));
+            if (canBreak) {
+                break;
+            }
+        }
     }
 
     private static void disconnect(@NotNull MinecraftClient client, Text reason) {
@@ -97,7 +96,7 @@ public class CCANetworkProtocolClient {
 
     // Send the client mod information to the server
     public static void clientPlayerJoin(MinecraftClient client) {
-        if (!ClientPlayNetworking.canSend(CCANetworkProtocolServer.MOD.ID)) return;
+        if (!ClientPlayNetworking.canSend(CCANetwork.MOD)) return;
         if (client.player == null) return;
         Gson gson = new Gson();
         HashMap<String, HashMap<String, String>> map = new HashMap<>();
@@ -107,16 +106,6 @@ public class CCANetworkProtocolClient {
         );
         map.put(client.player.getName().getString(), modMap);
         String send = gson.toJson(new ClientModList(map));
-        ClientPlayNetworking.send(new CCANetworkProtocolServer.MOD(send));
-    }
-
-    public record HELLO(String s) implements CustomPayload {
-        public static final CustomPayload.Id<HELLO> ID = new Id<>(new Identifier(CCANetwork.PROTOCOL, "hello"));
-        public static final PacketCodec<RegistryByteBuf, HELLO> CODEC = PacketCodecs.STRING.xmap(HELLO::new, HELLO::s).cast();
-
-        @Override
-        public Id<? extends CustomPayload> getId() {
-            return ID;
-        }
+        ClientPlayNetworking.send(CCANetwork.MOD, PacketByteBufs.create().writeString(send));
     }
 }

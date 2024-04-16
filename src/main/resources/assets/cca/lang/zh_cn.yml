@@ -33,6 +33,10 @@ cca:
       name: 禁用蝙蝠生成
       desc: 让你的世界不再生成烦人的蝙蝠.
 
+    RevertOldVersionRaid:
+      name: 恢复旧版袭击
+      desc: 我不能失去我的印钞机
+
     # ===Creative Tools===
 
     ShulkerBoxPowerOutputExpansion:
