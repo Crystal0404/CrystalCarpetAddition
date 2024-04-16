@@ -13,9 +13,11 @@ cca:
       name: C珍珠加载
       desc: carpet-extra修复版珍珠加载
 
-    ComparatorCanPlaceAboveAir:
-      name: 比较器可"浮空"放置
-      desc: 把比较器掉落为物品的行为修改至与1.20.1版本一致.
+    ComparatorIgnoresUpdatesFromBelow:
+      name: 比较器忽略来自下方的更新
+      desc: |-
+        开启此选项后, 比较器会忽略来自下方的更新
+        意味着开启活板门不会破坏比较器
 
     EndermanCannotPickUpBlocksInNether:
       name: 末影人不能在下界拾取方块

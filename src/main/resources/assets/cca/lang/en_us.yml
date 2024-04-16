@@ -13,9 +13,11 @@ cca:
       name: CEnderPearlChunkLoading
       desc: Fix EnderPearlChunkLoading from carpet-extra
 
-    ComparatorCanPlaceAboveAir:
-      name: ComparatorCanPlaceAboveAir
-      desc: Changed the code for comparators to drop items to match version 1.20.1.
+    ComparatorIgnoresUpdatesFromBelow:
+      name: ComparatorIgnoresUpdatesFromBelow
+      desc: |-
+        When this option is turned on, the comparator ignores updates from below
+        Means that opening the trapgate will not destroy the comparator
 
     EndermanCannotPickUpBlocksInNether:
       name: EndermanCannotPickUpBlocksInNether

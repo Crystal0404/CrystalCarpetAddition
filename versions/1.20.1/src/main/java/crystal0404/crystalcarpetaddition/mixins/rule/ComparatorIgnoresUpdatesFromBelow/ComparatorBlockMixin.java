@@ -18,7 +18,7 @@
  * along with Crystal Carpet Addition.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package crystal0404.crystalcarpetaddition.mixins.rule.ComparatorCanPlaceAboveAir;
+package crystal0404.crystalcarpetaddition.mixins.rule.ComparatorIgnoresUpdatesFromBelow;
 
 import me.fallenbreath.conditionalmixin.api.annotation.Condition;
 import me.fallenbreath.conditionalmixin.api.annotation.Restriction;
