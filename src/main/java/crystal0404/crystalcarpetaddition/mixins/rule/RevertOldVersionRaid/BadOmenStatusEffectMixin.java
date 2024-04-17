@@ -31,6 +31,7 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.Difficulty;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
@@ -52,12 +53,17 @@ public abstract class BadOmenStatusEffectMixin {
             @Local(ordinal = 0) ServerPlayerEntity playerEntity
     ) {
         boolean bl = serverWorld.getEnabledFeatures().contains(FeatureFlags.UPDATE_1_21);
-        if (bl && CCASettings.RevertOldVersionRaid) {
-            BlockPos blockPos = playerEntity.getBlockPos();
-            if (serverWorld.getDifficulty() != Difficulty.PEACEFUL && serverWorld.isNearOccupiedPointOfInterest(blockPos)) {
-                serverWorld.getRaidManager().startRaid(playerEntity, blockPos);
-            }
-            cir.setReturnValue(true);
+        if (CCASettings.RevertOldVersionRaid && bl) {
+            cir.setReturnValue(this.tryStartRaid(playerEntity, serverWorld));
         }
+    }
+
+    @Unique
+    private boolean tryStartRaid(ServerPlayerEntity player, ServerWorld world) {
+        BlockPos pos = player.getBlockPos();
+        if (world.getDifficulty() != Difficulty.PEACEFUL && world.isNearOccupiedPointOfInterest(pos)) {
+            return world.getRaidManager().startRaid(player, pos) == null;
+        }
+        return true;
     }
 }

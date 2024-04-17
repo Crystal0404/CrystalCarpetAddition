@@ -25,15 +25,12 @@ import me.fallenbreath.conditionalmixin.api.annotation.Condition;
 import me.fallenbreath.conditionalmixin.api.annotation.Restriction;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.resource.featuretoggle.FeatureFlags;
-import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.village.raid.Raid;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.ModifyArgs;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import org.spongepowered.asm.mixin.injection.invoke.arg.Args;
 
 @Restriction(require = @Condition(value = "minecraft", versionPredicates = ">=1.20.5-alpha.24.14.a"))
@@ -64,21 +61,5 @@ public abstract class RaidMixin {
     private void startMixin_getStatusEffect(Args args) {
         boolean bl = this.getWorld().getEnabledFeatures().contains(FeatureFlags.UPDATE_1_21);
         args.set(0, CCASettings.RevertOldVersionRaid && bl ? StatusEffects.BAD_OMEN : args.get(0));
-    }
-
-    @Inject(
-            method = "start",
-            at = @At(
-                    value = "INVOKE",
-                    target = "Lnet/minecraft/util/math/MathHelper;clamp(III)I",
-                    shift = At.Shift.BY,
-                    by = 1
-            )
-    )
-    private void startMixin_removeStatusEffect(ServerPlayerEntity serverPlayerEntity, CallbackInfoReturnable<Boolean> cir) {
-        boolean bl = this.getWorld().getEnabledFeatures().contains(FeatureFlags.UPDATE_1_21);
-        if (CCASettings.RevertOldVersionRaid && bl) {
-            serverPlayerEntity.removeStatusEffect(StatusEffects.BAD_OMEN);
-        }
     }
 }
