@@ -41,9 +41,9 @@ public class CCASettings {
     public static boolean CEnderPearlChunkLoading = false;
     @Rule(
             categories = {CCA, MC_TWEAKS},
-            conditions = ComparatorIgnoresUpdatesFromBelow.class
+            conditions = ComparatorIgnoresStateUpdatesFromBelow.class
     )
-    public static boolean ComparatorIgnoresUpdatesFromBelow = false;
+    public static boolean ComparatorIgnoresStateUpdatesFromBelow = false;
     @Rule(categories = {CCA, MC_TWEAKS})
     public static boolean EndermanCannotPickUpBlocksInNether = false;
     @Rule(categories = {CCA, MC_TWEAKS})

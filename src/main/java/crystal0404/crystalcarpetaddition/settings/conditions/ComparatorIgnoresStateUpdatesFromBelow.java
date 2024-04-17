@@ -23,7 +23,7 @@ package crystal0404.crystalcarpetaddition.settings.conditions;
 import carpet.api.settings.Rule;
 import crystal0404.crystalcarpetaddition.utils.FabricVersionChecker;
 
-public class ComparatorIgnoresUpdatesFromBelow implements Rule.Condition {
+public class ComparatorIgnoresStateUpdatesFromBelow implements Rule.Condition {
     @Override
     public boolean shouldRegister() {
         return FabricVersionChecker.isLoad("ComparatorCanPlaceAboveAir", "minecraft", ">=1.20.4");

@@ -13,10 +13,10 @@ cca:
       name: C珍珠加载
       desc: carpet-extra修复版珍珠加载
 
-    ComparatorIgnoresUpdatesFromBelow:
-      name: 比较器忽略来自下方的更新
+    ComparatorIgnoresStateUpdatesFromBelow:
+      name: 比较器忽略来自下方的状态更新
       desc: |-
-        开启此选项后, 比较器会忽略来自下方的更新
+        开启此选项后, 比较器会忽略来自下方的状态更新
         意味着开启活板门不会破坏比较器
 
     EndermanCannotPickUpBlocksInNether:

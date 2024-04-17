@@ -39,6 +39,6 @@ public abstract class ComparatorBlockMixin {
             )
     )
     private boolean getStateForNeighborUpdateMixin(boolean original) {
-        return CCASettings.ComparatorIgnoresUpdatesFromBelow || original;
+        return CCASettings.ComparatorIgnoresStateUpdatesFromBelow || original;
     }
 }
