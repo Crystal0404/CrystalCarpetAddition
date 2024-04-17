@@ -13,11 +13,11 @@ cca:
       name: CEnderPearlChunkLoading
       desc: Fix EnderPearlChunkLoading from carpet-extra
 
-    ComparatorIgnoresUpdatesFromBelow:
-      name: ComparatorIgnoresUpdatesFromBelow
+    ComparatorIgnoresStateUpdatesFromBelow:
+      name: ComparatorIgnoresStateUpdatesFromBelow
       desc: |-
-        When this option is turned on, the comparator ignores updates from below
-        Means that opening the trapgate will not destroy the comparator
+        When this option is turned on, the comparator ignores state updates from below
+        Means that opening the trap gate will not destroy the comparator
 
     EndermanCannotPickUpBlocksInNether:
       name: EndermanCannotPickUpBlocksInNether
