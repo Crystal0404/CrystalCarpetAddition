@@ -55,7 +55,6 @@ public class CCANetworkProtocolClient {
     public static void client() {
         ClientPlayNetworking.registerGlobalReceiver(HELLO.ID, ((payload, context) -> {
             String info = payload.s();
-            System.out.println(info);
             MinecraftClient client = context.client();
             if (CCASettings.CCADebug) LOGGER.debug("buf: \"{}\"", info);
             Gson gson = new Gson();
