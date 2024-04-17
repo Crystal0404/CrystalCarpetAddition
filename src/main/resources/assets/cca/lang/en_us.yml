@@ -21,7 +21,7 @@ cca:
 
     EndermanCannotPickUpBlocksInNether:
       name: EndermanCannotPickUpBlocksInNether
-      desc: Protect your nether terrain from being destroyed by Enderman and prevent a large number of Endermen from not despawning after picking up blocks.
+      desc: Protect your nether terrain from being destroyed by Enderman and prevent a large number of Enderman from not despawning after picking up blocks.
 
     ItemShadowing:
       name: ItemShadowing
@@ -39,7 +39,7 @@ cca:
       name: RevertOldVersionRaid
       desc: I can't afford to lose my money printing machine
 
-      # ===Creative Tools===
+    # ===Creative Tools===
 
     ShulkerBoxPowerOutputExpansion:
       name: ShulkerBoxPowerOutputExpansion
@@ -51,7 +51,7 @@ cca:
       name: ShulkerBoxPowerOutputExpansionColour
       desc: Specifies the color of the ShulkerBox in effect for the Shulker Box Power Output Expansion(Pink by default).
 
-      # ===Network===
+    # ===Network===
 
     CCANetworkProtocol:
       name: CCANetworkProtocol
@@ -59,7 +59,7 @@ cca:
         It is used by the server to obtain the list of client mods, implement the mod blacklist and other functions.
         For more information, please refer to the Github README
 
-      # ===Other===
+    # ===Other===
 
     CCADebug:
       name: CCADebug
