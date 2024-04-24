@@ -40,9 +40,10 @@ dependencies {
 	include(modImplementation("me.fallenbreath:conditional-mixin-fabric:${project.conditionalmixin_version}"))
 	include(implementation(annotationProcessor("io.github.llamalad7:mixinextras-fabric:${project.mixinextras_version}")))
 	modImplementation "carpet:fabric-carpet:${project.carpet_versions}"
-	setOf(
+	Set<String> apiModules = [
 			"fabric-networking-api-v1"
-	).forEach {
+	]
+	apiModules.forEach {
 		modImplementation(fabricApi.module(it, ${project.fabric_api}))
 	}
 }
