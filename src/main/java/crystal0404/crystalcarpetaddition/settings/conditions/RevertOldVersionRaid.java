@@ -29,7 +29,7 @@ public class RevertOldVersionRaid implements Rule.Condition {
         return FabricVersionChecker.isLoad(
                 "RevertOldVersionRaid",
                 "minecraft",
-                ">=1.20.5-alpha.24.14.a"
+                "1.20.5"
         );
     }
 }

@@ -33,7 +33,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyArgs;
 import org.spongepowered.asm.mixin.injection.invoke.arg.Args;
 
-@Restriction(require = @Condition(value = "minecraft", versionPredicates = ">=1.20.5-alpha.24.14.a"))
+@Restriction(require = @Condition(value = "minecraft", versionPredicates = "1.20.5"))
 @Mixin(Raid.class)
 public abstract class RaidMixin {
     @Shadow
@@ -43,7 +43,8 @@ public abstract class RaidMixin {
             method = "start",
             at = @At(
                     value = "INVOKE",
-                    target = "Lnet/minecraft/server/network/ServerPlayerEntity;hasStatusEffect(Lnet/minecraft/registry/entry/RegistryEntry;)Z"
+                    target = "Lnet/minecraft/server/network/ServerPlayerEntity;" +
+                            "hasStatusEffect(Lnet/minecraft/registry/entry/RegistryEntry;)Z"
             )
     )
     private void startMixin_hasStatusEffect(Args args) {
@@ -55,7 +56,9 @@ public abstract class RaidMixin {
             method = "start",
             at = @At(
                     value = "INVOKE",
-                    target = "Lnet/minecraft/server/network/ServerPlayerEntity;getStatusEffect(Lnet/minecraft/registry/entry/RegistryEntry;)Lnet/minecraft/entity/effect/StatusEffectInstance;"
+                    target = "Lnet/minecraft/server/network/ServerPlayerEntity;" +
+                            "getStatusEffect(Lnet/minecraft/registry/entry/RegistryEntry;)" +
+                            "Lnet/minecraft/entity/effect/StatusEffectInstance;"
             )
     )
     private void startMixin_getStatusEffect(Args args) {
