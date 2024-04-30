@@ -33,7 +33,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyArgs;
 import org.spongepowered.asm.mixin.injection.invoke.arg.Args;
 
-@Restriction(require = @Condition(value = "minecraft", versionPredicates = "1.20.5"))
+@Restriction(require = @Condition(value = "minecraft", versionPredicates = "1.20.6"))
 @Mixin(Raid.class)
 public abstract class RaidMixin {
     @Shadow
