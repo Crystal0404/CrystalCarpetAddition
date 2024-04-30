@@ -36,7 +36,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-@Restriction(require = @Condition(value = "minecraft", versionPredicates = "1.20.5"))
+@Restriction(require = @Condition(value = "minecraft", versionPredicates = "1.20.6"))
 @Mixin(targets = "net.minecraft.entity.effect.BadOmenStatusEffect")
 public abstract class BadOmenStatusEffectMixin {
     @Inject(
