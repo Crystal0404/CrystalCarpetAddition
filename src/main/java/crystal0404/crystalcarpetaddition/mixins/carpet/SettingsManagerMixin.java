@@ -51,8 +51,7 @@ public abstract class SettingsManagerMixin {
                     value = "INVOKE",
                     target = "Lcarpet/utils/Messenger;m(Lnet/minecraft/server/command/ServerCommandSource;[Ljava/lang/Object;)V",
                     ordinal = 0,
-                    shift = At.Shift.BY,
-                    by = 1,
+                    shift = At.Shift.AFTER,
                     remap = true
             )
     )

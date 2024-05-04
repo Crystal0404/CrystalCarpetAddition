@@ -18,11 +18,9 @@
  * along with Crystal Carpet Addition.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package crystal0404.crystalcarpetaddition.mixins.rule.RevertOldVersionRaid;
+package crystal0404.crystalcarpetaddition.mixins.rule.ReIntroduceOldVersionRaid;
 
 import crystal0404.crystalcarpetaddition.CCASettings;
-import me.fallenbreath.conditionalmixin.api.annotation.Condition;
-import me.fallenbreath.conditionalmixin.api.annotation.Restriction;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.EquipmentSlot;
@@ -49,7 +47,6 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-@Restriction(require = @Condition(value = "minecraft", versionPredicates = "1.20.6"))
 @Mixin(RaiderEntity.class)
 public abstract class RaiderEntityMixin extends PatrolEntity {
     @Shadow
@@ -70,7 +67,7 @@ public abstract class RaiderEntityMixin extends PatrolEntity {
     )
     private void onDeathMixin(DamageSource damageSource, CallbackInfo ci) {
         boolean bl = this.getWorld().getEnabledFeatures().contains(FeatureFlags.UPDATE_1_21);
-        if (bl && CCASettings.RevertOldVersionRaid) {
+        if (bl && CCASettings.ReIntroduceOldVersionRaid) {
             if (this.getWorld() instanceof ServerWorld) {
                 Entity entity = damageSource.getAttacker();
                 Raid raid = this.getRaid();

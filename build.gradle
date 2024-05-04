@@ -13,11 +13,11 @@ plugins {
 
 preprocess {
 	def mc1194 = createNode('1.19.4', 1_19_04, '')
-	def mc1201 = createNode('1.20.1', 1_20_01, '')
 	def mc1206 = createNode('1.20.6', 1_20_06, '')
+	def mc1210  = createNode('1.21.0', 1_21_00, '')
 
-	mc1194.link(mc1201, null)
-	mc1201.link(mc1206, null)
+	mc1194.link(mc1206, null)
+	mc1206.link(mc1210, null)
 }
 
 tasks.register('buildAndGather') {

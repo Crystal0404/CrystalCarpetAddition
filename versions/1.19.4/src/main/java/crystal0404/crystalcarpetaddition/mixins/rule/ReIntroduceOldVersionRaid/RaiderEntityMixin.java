@@ -18,14 +18,14 @@
  * along with Crystal Carpet Addition.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package crystal0404.crystalcarpetaddition.mixins.rule.RevertOldVersionRaid;
+package crystal0404.crystalcarpetaddition.mixins.rule.ReIntroduceOldVersionRaid;
 
 import crystal0404.crystalcarpetaddition.utils.EmptyClass;
 import me.fallenbreath.conditionalmixin.api.annotation.Condition;
 import me.fallenbreath.conditionalmixin.api.annotation.Restriction;
 import org.spongepowered.asm.mixin.Mixin;
 
-@Restriction(require = @Condition(value = "minecraft", versionPredicates = "1.20.5"))
+@Restriction(require = @Condition(value = "minecraft", versionPredicates = ">=1.20.5"))
 @Mixin(EmptyClass.class)
 public abstract class RaiderEntityMixin {
 

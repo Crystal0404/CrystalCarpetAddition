@@ -22,13 +22,10 @@ package crystal0404.crystalcarpetaddition.mixins.rule.ComparatorIgnoresUpdatesFr
 
 import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 import crystal0404.crystalcarpetaddition.CCASettings;
-import me.fallenbreath.conditionalmixin.api.annotation.Condition;
-import me.fallenbreath.conditionalmixin.api.annotation.Restriction;
 import net.minecraft.block.ComparatorBlock;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 
-@Restriction(require = @Condition(value = "minecraft", versionPredicates = ">=1.20.4"))
 @Mixin(ComparatorBlock.class)
 public abstract class ComparatorBlockMixin {
     @ModifyExpressionValue(

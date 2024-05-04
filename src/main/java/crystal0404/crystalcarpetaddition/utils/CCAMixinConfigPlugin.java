@@ -20,6 +20,7 @@
 
 package crystal0404.crystalcarpetaddition.utils;
 
+import com.llamalad7.mixinextras.MixinExtrasBootstrap;
 import crystal0404.crystalcarpetaddition.CrystalCarpetAdditionMod;
 import me.fallenbreath.conditionalmixin.api.mixin.RestrictiveMixinConfigPlugin;
 
@@ -28,9 +29,14 @@ import java.util.Set;
 
 public class CCAMixinConfigPlugin extends RestrictiveMixinConfigPlugin {
     @Override
+    public void onLoad(String mixinPackage) {
+        MixinExtrasBootstrap.init();
+    }
+
+    @Override
     protected void onRestrictionCheckFailed(String mixinClassName, String reason) {
         if (!reason.matches(".*%s.*".formatted(mixinClassName))) {
-            CrystalCarpetAdditionMod.LOGGER.warn("[CCA] \"{}\" is disabled because of \"{}\"", mixinClassName, reason);
+            CrystalCarpetAdditionMod.LOGGER.debug("[CCA] \"{}\" is disabled because of \"{}\"", mixinClassName, reason);
         }
     }
 
