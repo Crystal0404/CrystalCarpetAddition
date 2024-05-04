@@ -23,7 +23,6 @@ package crystal0404.crystalcarpetaddition.mixins.rule.MagicBox;
 import crystal0404.crystalcarpetaddition.CCASettings;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.ShulkerBoxBlock;
-import net.minecraft.inventory.Inventory;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -40,9 +39,6 @@ public abstract class ShulkerBoxBlockMixin {
             cancellable = true
     )
     private void getComparatorOutputMixin(BlockState state, World world, BlockPos pos, CallbackInfoReturnable<Integer> cir) {
-        if (CCASettings.MagicBox) {
-            cir.setReturnValue(ScreenHandler.calculateComparatorOutput((Inventory) world.getBlockEntity(pos)));
-        }
-        cir.setReturnValue(ScreenHandler.calculateComparatorOutput(world.getBlockEntity(pos)));
+        if (!CCASettings.MagicBox) cir.setReturnValue(ScreenHandler.calculateComparatorOutput(world.getBlockEntity(pos)));
     }
 }
