@@ -6,15 +6,11 @@
 
   这是一个Carpet的拓展, 包含一些有趣的功能, 默认所有规则设置均与Minecraft原版一致, 不会产生任何变化与影响
 
-  **规则列表请查阅[WIKI](https://github.com/Crystal0404/CrystalCarpetAddition/wiki/Rule-list-%7C%7C-%E8%A7%84%E5%88%99%E5%88%97%E8%A1%A8)**
-
   **我使用了自己的SettingManager管理规则, 使用方法与Carpet基本相同,你只需要用```/cca```代替```/carpet```即可, 规则保存在```cca.conf```中**
 
   **操作命令是```/cca``` 不是 ```/carpet```**
 
-  **操作命令是```/cca``` 不是 ```/carpet```**
-
-  **操作命令是```/cca``` 不是 ```/carpet```**
+  **规则列表等更多信息请查阅[CCA文档](https://crystal0404.github.io/cca-doc)**
 
 ## 依赖库
 
@@ -24,11 +20,9 @@
 | Fabric-API | 可选 | 客户端 / 服务端 | [Github](https://github.com/FabricMC/fabric) / [Modrinth](https://modrinth.com/mod/fabric-api)     |
 
 ## 支持版本
-请注意, 没有写在这里的版本为不受支持版本, 不受支持版本的issues会无条件直接关闭, 它会随时更新!
+不受支持版本的issues会无条件直接关闭, 它会随时更新!
 
-- Minecraft 1.19.4
-- Minecraft 1.20.1
-- Minecraft 1.20.4
+详细请查阅[EOL](https://crystal0404.github.io/cca-doc/eol/)
 
 ## 其他
   

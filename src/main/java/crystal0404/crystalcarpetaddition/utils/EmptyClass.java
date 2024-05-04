@@ -20,5 +20,8 @@
 
 package crystal0404.crystalcarpetaddition.utils;
 
+/**
+ * Give a home to those mixins who have nowhere to put them
+ */
 public abstract class EmptyClass {
 }

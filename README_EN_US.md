@@ -7,7 +7,7 @@
 
   A [Carpet mod](https://github.com/gnembon/fabric-carpet) (fabric-carpet) extension. There are some interesting features, The default settings will not have any impact on Minecraft.
 
-  **see the [WIKI](https://github.com/Crystal0404/CrystalCarpetAddition/wiki/Rule-list-%7C%7C-%E8%A7%84%E5%88%99%E5%88%97%E8%A1%A8) for a list of rules**
+  **A list of rules and more information can be found in the [CCA's documentation](https://crystal0404.github.io/cca-doc)**
 
   **The usage method is basically the same as Carpet,Just replace```/carpet```with```/cca```. The rules are saved in```cca.conf```**
 
@@ -29,13 +29,10 @@ For some reason, the only way you can reach me is on Github, so if you have any 
 
 
 ## Supported versions
-Please note that the version that is not written here is an unsupported version, 
-and the issue of the unsupported version will be closed unconditionally, and it will be updated at any time!
 
-- Minecraft 1.19.4
-- Minecraft 1.20.1
-- Minecraft 1.20.4
+  Note that issues with unsupported versions will be closed
 
+  For more information, please refer to [EOL](https://crystal0404.github.io/cca-doc/en/eol/)
 
 ## Other
 

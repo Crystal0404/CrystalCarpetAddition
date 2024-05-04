@@ -58,9 +58,9 @@ public class CCASettings {
     public static boolean NoBatSpawn = false;
     @Rule(
             categories = {CCA, MC_TWEAKS},
-            conditions = RevertOldVersionRaid.class
+            conditions = ReIntroduceOldVersionRaid.class
     )
-    public static boolean RevertOldVersionRaid = false;
+    public static boolean ReIntroduceOldVersionRaid = false;
 
     /**
      * Creative Tools

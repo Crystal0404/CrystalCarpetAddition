@@ -23,13 +23,13 @@ package crystal0404.crystalcarpetaddition.settings.conditions;
 import carpet.api.settings.Rule;
 import crystal0404.crystalcarpetaddition.utils.FabricVersionChecker;
 
-public class RevertOldVersionRaid implements Rule.Condition {
+public class ReIntroduceOldVersionRaid implements Rule.Condition {
     @Override
     public boolean shouldRegister() {
         return FabricVersionChecker.isLoad(
-                "RevertOldVersionRaid",
+                "ReIntroduceOldVersionRaid",
                 "minecraft",
-                "1.20.6"
+                ">=1.20.5"
         );
     }
 }

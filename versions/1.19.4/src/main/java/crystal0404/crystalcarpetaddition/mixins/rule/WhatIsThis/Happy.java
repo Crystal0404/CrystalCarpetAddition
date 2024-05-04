@@ -38,8 +38,7 @@ public class Happy {
             at = @At(
                     value = "INVOKE",
                     target = "Ljava/util/Calendar;setTime(Ljava/util/Date;)V",
-                    shift = At.Shift.BY,
-                    by = 1
+                    shift = At.Shift.AFTER
             ),
             cancellable = true
     )
