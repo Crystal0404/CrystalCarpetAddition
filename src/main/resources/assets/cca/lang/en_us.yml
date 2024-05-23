@@ -39,6 +39,10 @@ cca:
       name: ReIntroduceOldVersionRaid
       desc: I can't afford to lose my money printing machine
 
+    ReIntroduceOldVersionWitchLootTable:
+      name: ReIntroduceOldVersionWitchLootTable
+      desc: hello
+
     # ===Creative Tools===
 
     ShulkerBoxPowerOutputExpansion:
