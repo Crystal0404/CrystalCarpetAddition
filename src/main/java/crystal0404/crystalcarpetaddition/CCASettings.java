@@ -61,6 +61,11 @@ public class CCASettings {
             conditions = ReIntroduceOldVersionRaid.class
     )
     public static boolean ReIntroduceOldVersionRaid = false;
+    @Rule(
+            categories = {CCA, MC_TWEAKS},
+            conditions = ReIntroduceOldVersionWitchLootTable.class
+    )
+    public static boolean ReIntroduceOldVersionWitchLootTable = false;
 
     /**
      * Creative Tools
