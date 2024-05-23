@@ -38,27 +38,43 @@ public class LootTableUtils {
         RegistryEntry<Enchantment> enchantment = impl.getOrThrow(Enchantments.LOOTING);
         LootPool.Builder loot = LootPool.builder()
                 .bonusRolls(ConstantLootNumberProvider.create(0.0f))
-                .with(ItemEntry.builder(Items.GLOWSTONE_DUST))
-                .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(0.0f, 2.0f)))
-                .apply(new EnchantedCountIncreaseLootFunction.Builder(enchantment, UniformLootNumberProvider.create(0.0f, 1.0f)))
-                .with(ItemEntry.builder(Items.SUGAR))
-                .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(0.0f, 2.0f)))
-                .apply(new EnchantedCountIncreaseLootFunction.Builder(enchantment, UniformLootNumberProvider.create(0.0f, 1.0f)))
-                .with(ItemEntry.builder(Items.REDSTONE))
-                .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(0.0f, 2.0f)))
-                .apply(new EnchantedCountIncreaseLootFunction.Builder(enchantment, UniformLootNumberProvider.create(0.0f, 1.0f)))
-                .with(ItemEntry.builder(Items.SPIDER_EYE))
-                .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(0.0f, 2.0f)))
-                .apply(new EnchantedCountIncreaseLootFunction.Builder(enchantment, UniformLootNumberProvider.create(0.0f, 1.0f)))
-                .with(ItemEntry.builder(Items.GLASS_BOTTLE))
-                .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(0.0f, 2.0f)))
-                .apply(new EnchantedCountIncreaseLootFunction.Builder(enchantment, UniformLootNumberProvider.create(0.0f, 1.0f)))
-                .with(ItemEntry.builder(Items.GUNPOWDER))
-                .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(0.0f, 2.0f)))
-                .apply(new EnchantedCountIncreaseLootFunction.Builder(enchantment, UniformLootNumberProvider.create(0.0f, 1.0f)))
-                .with(ItemEntry.builder(Items.STICK).weight(2))
-                .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(0.0f, 2.0f)))
-                .apply(new EnchantedCountIncreaseLootFunction.Builder(enchantment, UniformLootNumberProvider.create(0.0f, 1.0f)))
+                .with(
+                        ItemEntry.builder(Items.GLOWSTONE_DUST)
+                                .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(0.0f, 2.0f)))
+                                .apply(new EnchantedCountIncreaseLootFunction.Builder(enchantment, UniformLootNumberProvider.create(0.0f, 1.0f)))
+                )
+                .with(
+                        ItemEntry.builder(Items.SUGAR)
+                                .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(0.0f, 2.0f)))
+                                .apply(new EnchantedCountIncreaseLootFunction.Builder(enchantment, UniformLootNumberProvider.create(0.0f, 1.0f)))
+                )
+                .with(
+                        ItemEntry.builder(Items.REDSTONE)
+                                .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(0.0f, 2.0f)))
+                                .apply(new EnchantedCountIncreaseLootFunction.Builder(enchantment, UniformLootNumberProvider.create(0.0f, 1.0f)))
+                )
+                .with(
+                        ItemEntry.builder(Items.SPIDER_EYE)
+                                .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(0.0f, 2.0f)))
+                                .apply(new EnchantedCountIncreaseLootFunction.Builder(enchantment, UniformLootNumberProvider.create(0.0f, 1.0f)))
+                )
+                .with(
+                        ItemEntry.builder(Items.GLASS_BOTTLE)
+                                .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(0.0f, 2.0f)))
+                                .apply(new EnchantedCountIncreaseLootFunction.Builder(enchantment, UniformLootNumberProvider.create(0.0f, 1.0f)))
+                )
+                .with(
+                        ItemEntry.builder(Items.GUNPOWDER)
+                                .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(0.0f, 2.0f)))
+                                .apply(new EnchantedCountIncreaseLootFunction.Builder(enchantment, UniformLootNumberProvider.create(0.0f, 1.0f)))
+                )
+
+                .with(
+                        ItemEntry.builder(Items.STICK)
+                                .weight(2)
+                                .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(0.0f, 2.0f)))
+                                .apply(new EnchantedCountIncreaseLootFunction.Builder(enchantment, UniformLootNumberProvider.create(0.0f, 1.0f)))
+                )
                 .rolls(UniformLootNumberProvider.create(1.0f, 3.0f));
         return LootTable.builder().pool(loot).build();
     }
