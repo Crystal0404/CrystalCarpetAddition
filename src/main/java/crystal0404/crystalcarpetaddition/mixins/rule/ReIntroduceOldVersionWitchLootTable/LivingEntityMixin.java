@@ -24,10 +24,13 @@ import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import crystal0404.crystalcarpetaddition.CCASettings;
 import crystal0404.crystalcarpetaddition.utils.LootTableUtils;
+import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.mob.WitchEntity;
 import net.minecraft.loot.LootTable;
 import net.minecraft.registry.RegistryKey;
+import net.minecraft.registry.RegistryKeys;
+import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.registry.ReloadableRegistries;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -48,7 +51,8 @@ public abstract class LivingEntityMixin {
             Operation<LootTable> original
     ) {
         if ((Object) this instanceof WitchEntity && CCASettings.ReIntroduceOldVersionWitchLootTable) {
-            return LootTableUtils.Witch();
+            RegistryWrapper.Impl<Enchantment> impl = instance.getRegistryManager().getWrapperOrThrow(RegistryKeys.ENCHANTMENT);
+            return LootTableUtils.Witch(impl);
         } else {
             return original.call(instance, key);
         }
