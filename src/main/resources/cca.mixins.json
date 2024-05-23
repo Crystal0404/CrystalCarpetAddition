@@ -15,6 +15,7 @@
     "rule.ReIntroduceOldVersionRaid.BadOmenStatusEffectMixin",
     "rule.ReIntroduceOldVersionRaid.RaiderEntityMixin",
     "rule.ReIntroduceOldVersionRaid.RaidMixin",
+    "rule.ReIntroduceOldVersionWitchLootTable.LivingEntityMixin",
     "rule.ShulkerBoxPowerOutputExpansion.ScreenHandleMixin"
   ],
   "client": [

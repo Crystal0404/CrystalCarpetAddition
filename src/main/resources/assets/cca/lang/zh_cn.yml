@@ -39,6 +39,10 @@ cca:
       name: 重新引入旧版袭击
       desc: 我不能失去我的印钞机
 
+    ReIntroduceOldVersionWitchLootTable:
+      name: 重新引入旧版女巫战利品表
+      desc: 与"重新引入旧版袭击"配合使用
+
     # ===Creative Tools===
 
     ShulkerBoxPowerOutputExpansion:
