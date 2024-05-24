@@ -41,7 +41,8 @@ cca:
 
     ReIntroduceOldVersionWitchLootTable:
       name: 重新引入旧版女巫战利品表
-      desc: 与"重新引入旧版袭击"配合使用
+      desc: 使女巫死亡后掉落的战利品恢复到与Minecraft-1.21版本之前一致
+      extra.0: 建议与"重新引入旧版袭击"一起使用
 
     # ===Creative Tools===
 

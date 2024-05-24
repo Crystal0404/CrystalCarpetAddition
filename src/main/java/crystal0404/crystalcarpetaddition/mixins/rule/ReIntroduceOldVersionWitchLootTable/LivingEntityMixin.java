@@ -50,6 +50,7 @@ public abstract class LivingEntityMixin {
             RegistryKey<LootTable> key,
             Operation<LootTable> original
     ) {
+        // Please ignore the error that is always false, which is actually correct.
         if ((Object) this instanceof WitchEntity && CCASettings.ReIntroduceOldVersionWitchLootTable) {
             RegistryWrapper.Impl<Enchantment> impl = instance.getRegistryManager().getWrapperOrThrow(RegistryKeys.ENCHANTMENT);
             return LootTableUtils.Witch(impl);
