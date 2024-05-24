@@ -45,6 +45,7 @@ public abstract class LivingEntityMixin {
                             "(Lnet/minecraft/registry/RegistryKey;)Lnet/minecraft/loot/LootTable;"
             )
     )
+    @SuppressWarnings("all")
     private LootTable dropLootMixin(
             ReloadableRegistries.Lookup instance,
             RegistryKey<LootTable> key,
