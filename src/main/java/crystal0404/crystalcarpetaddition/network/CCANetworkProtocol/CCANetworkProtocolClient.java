@@ -111,9 +111,9 @@ public class CCANetworkProtocolClient {
 
     public record HELLO(String s) implements CustomPayload {
         //#if MC > 12006
-        //$$ public static final CustomPayload.Id<HELLO> ID = new Id<>(new Identifier(CCANetwork.PROTOCOL, "hello"));
-        //#else
         public static final CustomPayload.Id<HELLO> ID = new Id<>(Identifier.of(CCANetwork.PROTOCOL, "hello"));
+        //#else
+        //$$ public static final CustomPayload.Id<HELLO> ID = new Id<>(new Identifier(CCANetwork.PROTOCOL, "hello"));
         //#endif
         public static final PacketCodec<RegistryByteBuf, HELLO> CODEC = PacketCodecs.STRING.xmap(HELLO::new, HELLO::s).cast();
 
