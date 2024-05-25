@@ -54,7 +54,7 @@ public abstract class SettingsManagerMixin {
                     shift = At.Shift.AFTER
             )
     )
-    private void listAllSettingsMixin_sendMessage(ServerCommandSource source, CallbackInfoReturnable<Integer> cir) {
+    private void listAllSettingsMixin(ServerCommandSource source, CallbackInfoReturnable<Integer> cir) {
         if (Objects.equals(this.fancyName, "Carpet Mod")) {
             String msg = "g %s %s: %s".formatted(
                     CrystalCarpetAdditionMod.MOD_NAME,
