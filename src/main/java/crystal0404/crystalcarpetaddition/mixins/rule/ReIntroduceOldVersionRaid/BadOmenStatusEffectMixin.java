@@ -48,8 +48,10 @@ public abstract class BadOmenStatusEffectMixin {
         if (entity instanceof ServerPlayerEntity && !(serverPlayerEntity = (ServerPlayerEntity) entity).isSpectator()) {
             cir.setReturnValue(this.tryStartRaid(serverPlayerEntity, serverPlayerEntity.getServerWorld()));
         }
+        // You can't return "true" here, otherwise it may cause unknown compatibility issues
     }
 
+    // prevent someone from aiming for the last "RETURN"
     @WrapOperation(
             method = "applyUpdateEffect",
             constant = @Constant(
