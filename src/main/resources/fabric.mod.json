@@ -33,7 +33,7 @@
   ],
 
   "depends": {
-    "mixinextras": ">=0.3.5",
+    "mixinextras": "0.3.6",
     "carpet": "*",
     "fabricloader": ">=0.14.25",
     "minecraft": "${minecraft_dependency}"
