@@ -23,6 +23,7 @@ package crystal0404.crystalcarpetaddition.utils;
 import com.llamalad7.mixinextras.MixinExtrasBootstrap;
 import crystal0404.crystalcarpetaddition.CrystalCarpetAdditionMod;
 import me.fallenbreath.conditionalmixin.api.mixin.RestrictiveMixinConfigPlugin;
+import net.fabricmc.loader.api.FabricLoader;
 
 import java.util.List;
 import java.util.Set;
@@ -35,8 +36,8 @@ public class CCAMixinConfigPlugin extends RestrictiveMixinConfigPlugin {
 
     @Override
     protected void onRestrictionCheckFailed(String mixinClassName, String reason) {
-        if (!reason.matches(".*%s.*".formatted(mixinClassName))) {
-            CrystalCarpetAdditionMod.LOGGER.debug("[CCA] \"{}\" is disabled because of \"{}\"", mixinClassName, reason);
+        if (!reason.matches(".*%s.*".formatted(mixinClassName)) && FabricLoader.getInstance().isDevelopmentEnvironment()) {
+            CrystalCarpetAdditionMod.LOGGER.warn("[CCA] \"{}\" is disabled because of \"{}\"", mixinClassName, reason);
         }
     }
 

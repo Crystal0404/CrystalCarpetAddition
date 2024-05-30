@@ -39,28 +39,35 @@ public class CCASettings {
             conditions = CEnderPearlChunkLoading.class
     )
     public static boolean CEnderPearlChunkLoading = false;
+
     @Rule(
             categories = {CCA, MC_TWEAKS},
             conditions = ComparatorIgnoresStateUpdatesFromBelow.class
     )
     public static boolean ComparatorIgnoresStateUpdatesFromBelow = false;
+
     @Rule(categories = {CCA, MC_TWEAKS})
     public static boolean EndermanCannotPickUpBlocksInNether = false;
+
     @Rule(categories = {CCA, MC_TWEAKS})
     public static boolean ItemShadowing = false;
+
     @Rule(categories = {CCA, MC_TWEAKS})
     //#if MC > 12001
     public static boolean MagicBox = false;
     //#else
 //$$     public static boolean MagicBox = true;
     //#endif
+
     @Rule(categories = {CCA, MC_TWEAKS})
     public static boolean NoBatSpawn = false;
+
     @Rule(
             categories = {CCA, MC_TWEAKS},
             conditions = ReIntroduceOldVersionRaid.class
     )
     public static boolean ReIntroduceOldVersionRaid = false;
+
     @Rule(
             categories = {CCA, MC_TWEAKS},
             conditions = ReIntroduceOldVersionWitchLootTable.class
@@ -73,6 +80,7 @@ public class CCASettings {
 
     @Rule(categories = {CCA, CREATIVE})
     public static boolean ShulkerBoxPowerOutputExpansion = false;
+
     @Rule(categories = {CCA, CREATIVE})
     public static ColourMap.Colour ShulkerBoxPowerOutputExpansionColour = ColourMap.Colour.PINK;
 
@@ -92,5 +100,4 @@ public class CCASettings {
 
     @Rule(categories = CCA)
     public static boolean CCADebug = false;
-
 }
