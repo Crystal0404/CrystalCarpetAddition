@@ -34,17 +34,15 @@ public class CCASettings {
      * MC Tweaks
      */
 
-    @Rule(
-            categories = {CCA, MC_TWEAKS},
-            conditions = CEnderPearlChunkLoading.class
-    )
-    public static boolean CEnderPearlChunkLoading = false;
+    //#if MC < 12004
+    //$$  @Rule(categories = {CCA, MC_TWEAKS})
+    //$$  public static boolean CEnderPearlChunkLoading = false;
+    //#endif
 
-    @Rule(
-            categories = {CCA, MC_TWEAKS},
-            conditions = ComparatorIgnoresStateUpdatesFromBelow.class
-    )
+    //#if MC >= 12004
+    @Rule(categories = {CCA, MC_TWEAKS})
     public static boolean ComparatorIgnoresStateUpdatesFromBelow = false;
+    //#endif
 
     @Rule(categories = {CCA, MC_TWEAKS})
     public static boolean EndermanCannotPickUpBlocksInNether = false;
@@ -52,27 +50,26 @@ public class CCASettings {
     @Rule(categories = {CCA, MC_TWEAKS})
     public static boolean ItemShadowing = false;
 
+    //#if MC >= 12002
     @Rule(categories = {CCA, MC_TWEAKS})
-    //#if MC > 12001
     public static boolean MagicBox = false;
     //#else
-//$$     public static boolean MagicBox = true;
+    //$$  @Rule(categories = {CCA, MC_TWEAKS})
+    //$$  public static boolean MagicBox = true;
     //#endif
 
     @Rule(categories = {CCA, MC_TWEAKS})
     public static boolean NoBatSpawn = false;
 
-    @Rule(
-            categories = {CCA, MC_TWEAKS},
-            conditions = ReIntroduceOldVersionRaid.class
-    )
+    //#if MC > 12006
+    @Rule(categories = {CCA, MC_TWEAKS})
     public static boolean ReIntroduceOldVersionRaid = false;
+    //#endif
 
-    @Rule(
-            categories = {CCA, MC_TWEAKS},
-            conditions = ReIntroduceOldVersionWitchLootTable.class
-    )
+    //#if MC > 12006
+    @Rule(categories = {CCA, MC_TWEAKS})
     public static boolean ReIntroduceOldVersionWitchLootTable = false;
+    //#endif
 
     /**
      * Creative Tools
