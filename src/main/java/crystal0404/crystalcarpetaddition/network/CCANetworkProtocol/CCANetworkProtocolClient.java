@@ -56,7 +56,7 @@ public class CCANetworkProtocolClient {
         ClientPlayNetworking.registerGlobalReceiver(HELLO.ID, ((payload, context) -> {
             String info = payload.s();
             MinecraftClient client = context.client();
-            if (CCASettings.CCADebug) LOGGER.debug("buf: \"{}\"", info);
+            if (CCASettings.CCADebug) LOGGER.info("buf: \"{}\"", info);
             Gson gson = new Gson();
             HashMap<String, String> blackMap = gson.fromJson(info, SendBlackMod.class).getBlackModMap();
 

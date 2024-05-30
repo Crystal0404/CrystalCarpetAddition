@@ -56,7 +56,6 @@ public abstract class RaiderEntityMixin extends PatrolEntity {
         super(entityType, world);
     }
 
-    @SuppressWarnings("all")
     @Inject(
             method = "onDeath",
             at = @At(
@@ -64,6 +63,7 @@ public abstract class RaiderEntityMixin extends PatrolEntity {
                     target = "Lnet/minecraft/entity/mob/PatrolEntity;onDeath(Lnet/minecraft/entity/damage/DamageSource;)V"
             )
     )
+    @SuppressWarnings("all")
     private void onDeathMixin(DamageSource damageSource, CallbackInfo ci) {
         if (CCASettings.ReIntroduceOldVersionRaid) {
             if (this.getWorld() instanceof ServerWorld) {

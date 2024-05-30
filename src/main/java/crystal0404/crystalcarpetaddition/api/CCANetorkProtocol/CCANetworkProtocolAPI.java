@@ -25,6 +25,7 @@ import crystal0404.crystalcarpetaddition.network.CCANetworkProtocol.CCANetworkPr
 /**
  * Use this method to register callbacks
  */
+@SuppressWarnings("unused")
 public class CCANetworkProtocolAPI {
     public static void register(GetClientModMap callback) {
         CCANetworkProtocolServer.register(callback);

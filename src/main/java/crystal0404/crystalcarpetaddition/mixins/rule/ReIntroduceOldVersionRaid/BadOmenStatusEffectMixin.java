@@ -20,6 +20,8 @@
 
 package crystal0404.crystalcarpetaddition.mixins.rule.ReIntroduceOldVersionRaid;
 
+import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
+import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import crystal0404.crystalcarpetaddition.CCASettings;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -29,6 +31,7 @@ import net.minecraft.world.Difficulty;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Constant;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
@@ -44,9 +47,18 @@ public abstract class BadOmenStatusEffectMixin {
         ServerPlayerEntity serverPlayerEntity;
         if (entity instanceof ServerPlayerEntity && !(serverPlayerEntity = (ServerPlayerEntity) entity).isSpectator()) {
             cir.setReturnValue(this.tryStartRaid(serverPlayerEntity, serverPlayerEntity.getServerWorld()));
-        } else {
-            cir.setReturnValue(true);
         }
+    }
+
+    @WrapOperation(
+            method = "applyUpdateEffect",
+            constant = @Constant(
+                    classValue = ServerPlayerEntity.class,
+                    ordinal = 0
+            )
+    )
+    private boolean removeApplyRaidOmenMixin(Object object, Operation<Boolean> original) {
+        return !CCASettings.ReIntroduceOldVersionRaid && original.call(object);
     }
 
     @Unique
