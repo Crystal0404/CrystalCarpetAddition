@@ -111,7 +111,7 @@ processResources {
 		def valueMap = [
 				"id": project.mod_id,
 				"name": project.mod_name,
-				"version": fullModVersion,
+				"version": finalModVersion,
 				"minecraft_dependency": project.minecraft_dependency,
 		]
 		expand valueMap
