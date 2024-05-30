@@ -20,87 +20,12 @@
 
 package crystal0404.crystalcarpetaddition.mixins.rule.ReIntroduceOldVersionRaid;
 
-import crystal0404.crystalcarpetaddition.CCASettings;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.EquipmentSlot;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.entity.effect.StatusEffects;
-import net.minecraft.entity.mob.PatrolEntity;
-import net.minecraft.entity.passive.WolfEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.raid.RaiderEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.registry.RegistryKeys;
-import net.minecraft.resource.featuretoggle.FeatureFlags;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.village.raid.Raid;
-import net.minecraft.world.GameRules;
-import net.minecraft.world.World;
-import org.jetbrains.annotations.Nullable;
+import crystal0404.crystalcarpetaddition.utils.EmptyClass;
+import me.fallenbreath.conditionalmixin.api.annotation.Condition;
+import me.fallenbreath.conditionalmixin.api.annotation.Restriction;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-@Mixin(RaiderEntity.class)
-public abstract class RaiderEntityMixin extends PatrolEntity {
-    @Shadow
-    @Nullable
-    public abstract Raid getRaid();
-
-    protected RaiderEntityMixin(EntityType<? extends PatrolEntity> entityType, World world) {
-        super(entityType, world);
-    }
-
-    @SuppressWarnings("all")
-    @Inject(
-            method = "onDeath",
-            at = @At(
-                    value = "INVOKE",
-                    target = "Lnet/minecraft/entity/mob/PatrolEntity;onDeath(Lnet/minecraft/entity/damage/DamageSource;)V"
-            )
-    )
-    private void onDeathMixin(DamageSource damageSource, CallbackInfo ci) {
-        boolean bl = this.getWorld().getEnabledFeatures().contains(FeatureFlags.UPDATE_1_21);
-        if (bl && CCASettings.ReIntroduceOldVersionRaid) {
-            if (this.getWorld() instanceof ServerWorld) {
-                Entity entity = damageSource.getAttacker();
-                Raid raid = this.getRaid();
-                if (this.isPatrolLeader() && raid == null && ((ServerWorld) this.getWorld()).getRaidAt(this.getBlockPos()) == null) {
-                    ItemStack itemStack = this.getEquippedStack(EquipmentSlot.HEAD);
-                    PlayerEntity playerEntity = null;
-                    Entity entity2 = entity;
-                    if (entity2 instanceof PlayerEntity) {
-                        playerEntity = (PlayerEntity) entity2;
-                    } else if (entity2 instanceof WolfEntity) {
-                        WolfEntity wolfEntity = (WolfEntity) entity2;
-                        LivingEntity livingEntity = wolfEntity.getOwner();
-                        if (wolfEntity.isTamed() && livingEntity instanceof PlayerEntity) {
-                            playerEntity = (PlayerEntity) livingEntity;
-                        }
-                    }
-                    if (!itemStack.isEmpty() && ItemStack.areEqual(itemStack, Raid.getOminousBanner(this.getRegistryManager().getWrapperOrThrow(RegistryKeys.BANNER_PATTERN))) && playerEntity != null) {
-                        StatusEffectInstance statusEffectInstance = playerEntity.getStatusEffect(StatusEffects.BAD_OMEN);
-                        int i = 1;
-                        if (statusEffectInstance != null) {
-                            i += statusEffectInstance.getAmplifier();
-                            playerEntity.removeStatusEffectInternal(StatusEffects.BAD_OMEN);
-                        } else {
-                            --i;
-                        }
-                        i = MathHelper.clamp(i, 0, 4);
-                        StatusEffectInstance statusEffectInstance2 = new StatusEffectInstance(StatusEffects.BAD_OMEN, 120000, i, false, false, true);
-                        if (!this.getWorld().getGameRules().getBoolean(GameRules.DISABLE_RAIDS)) {
-                            playerEntity.addStatusEffect(statusEffectInstance2);
-                        }
-                    }
-                }
-            }
-        }
-    }
+@Restriction(require = @Condition(value = "minecraft", versionPredicates = ">=1.20.5"))
+@Mixin(EmptyClass.class)
+public abstract class RaiderEntityMixin {
 }

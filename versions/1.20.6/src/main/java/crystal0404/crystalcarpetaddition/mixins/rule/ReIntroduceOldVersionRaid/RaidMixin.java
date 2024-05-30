@@ -20,63 +20,12 @@
 
 package crystal0404.crystalcarpetaddition.mixins.rule.ReIntroduceOldVersionRaid;
 
-import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
-import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
-import crystal0404.crystalcarpetaddition.CCASettings;
-import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.entity.effect.StatusEffects;
-import net.minecraft.registry.entry.RegistryEntry;
-import net.minecraft.resource.featuretoggle.FeatureFlags;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.village.raid.Raid;
-import net.minecraft.world.World;
+import crystal0404.crystalcarpetaddition.utils.EmptyClass;
+import me.fallenbreath.conditionalmixin.api.annotation.Condition;
+import me.fallenbreath.conditionalmixin.api.annotation.Restriction;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
-import org.spongepowered.asm.mixin.injection.At;
 
-@Mixin(Raid.class)
-public abstract class RaidMixin {
-    @Shadow
-    public abstract World getWorld();
-
-    @WrapOperation(
-            method = "start",
-            at = @At(
-                    value = "INVOKE",
-                    target = "Lnet/minecraft/server/network/ServerPlayerEntity;" +
-                            "hasStatusEffect(Lnet/minecraft/registry/entry/RegistryEntry;)Z"
-            )
-    )
-    @SuppressWarnings("rawtypes")
-    private boolean startMixin_hasStatusEffect(
-            ServerPlayerEntity instance, RegistryEntry registryEntry, Operation<Boolean> original
-            ) {
-        boolean bl = this.getWorld().getEnabledFeatures().contains(FeatureFlags.UPDATE_1_21);
-        if (CCASettings.ReIntroduceOldVersionRaid && bl) {
-            return original.call(instance, StatusEffects.BAD_OMEN);
-        } else {
-            return original.call(instance, registryEntry);
-        }
-    }
-
-    @WrapOperation(
-            method = "start",
-            at = @At(
-                    value = "INVOKE",
-                    target = "Lnet/minecraft/server/network/ServerPlayerEntity;getStatusEffect" +
-                            "(Lnet/minecraft/registry/entry/RegistryEntry;)" +
-                            "Lnet/minecraft/entity/effect/StatusEffectInstance;"
-            )
-    )
-    @SuppressWarnings("rawtypes")
-    private StatusEffectInstance startMixin_getStatusEffect(
-            ServerPlayerEntity instance, RegistryEntry registryEntry, Operation<StatusEffectInstance> original
-    ) {
-        boolean bl = this.getWorld().getEnabledFeatures().contains(FeatureFlags.UPDATE_1_21);
-        if (CCASettings.ReIntroduceOldVersionRaid && bl) {
-            return original.call(instance, StatusEffects.BAD_OMEN);
-        } else {
-            return original.call(instance, registryEntry);
-        }
-    }
+@Restriction(require = @Condition(value = "minecraft", versionPredicates = ">=1.20.5"))
+@Mixin(EmptyClass.class)
+public class RaidMixin {
 }

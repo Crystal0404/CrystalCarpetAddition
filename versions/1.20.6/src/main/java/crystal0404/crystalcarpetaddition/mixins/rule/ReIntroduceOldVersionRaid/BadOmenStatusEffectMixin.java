@@ -20,47 +20,12 @@
 
 package crystal0404.crystalcarpetaddition.mixins.rule.ReIntroduceOldVersionRaid;
 
-import com.llamalad7.mixinextras.sugar.Local;
-import crystal0404.crystalcarpetaddition.CCASettings;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.resource.featuretoggle.FeatureFlags;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.Difficulty;
+import crystal0404.crystalcarpetaddition.utils.EmptyClass;
+import me.fallenbreath.conditionalmixin.api.annotation.Condition;
+import me.fallenbreath.conditionalmixin.api.annotation.Restriction;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Unique;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-@Mixin(targets = "net.minecraft.entity.effect.BadOmenStatusEffect")
+@Restriction(require = @Condition(value = "minecraft", versionPredicates = ">=1.20.5"))
+@Mixin(EmptyClass.class)
 public abstract class BadOmenStatusEffectMixin {
-    @Inject(
-            method = "applyUpdateEffect",
-            at = @At(
-                    value = "INVOKE",
-                    target = "Lnet/minecraft/server/world/ServerWorld;getDifficulty()Lnet/minecraft/world/Difficulty;"
-            ),
-            cancellable = true
-    )
-    private void applyUpdateEffectMixin(
-            LivingEntity entity, int amplifier, CallbackInfoReturnable<Boolean> cir,
-            @Local(ordinal = 0) ServerWorld serverWorld,
-            @Local(ordinal = 0) ServerPlayerEntity playerEntity
-    ) {
-        boolean bl = serverWorld.getEnabledFeatures().contains(FeatureFlags.UPDATE_1_21);
-        if (CCASettings.ReIntroduceOldVersionRaid && bl) {
-            cir.setReturnValue(this.tryStartRaid(playerEntity, serverWorld));
-        }
-    }
-
-    @Unique
-    private boolean tryStartRaid(ServerPlayerEntity player, ServerWorld world) {
-        BlockPos pos = player.getBlockPos();
-        if (world.getDifficulty() != Difficulty.PEACEFUL && world.isNearOccupiedPointOfInterest(pos)) {
-            return world.getRaidManager().startRaid(player, pos) == null;
-        }
-        return true;
-    }
 }
