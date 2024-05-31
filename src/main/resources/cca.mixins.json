@@ -16,7 +16,7 @@
     "rule.ReIntroduceOldVersionRaid.RaiderEntityMixin",
     "rule.ReIntroduceOldVersionRaid.RaidMixin",
     "rule.ReIntroduceOldVersionWitchLootTable.LivingEntityMixin",
-    "rule.ShulkerBoxPowerOutputExpansion.ScreenHandleMixin"
+    "rule.ShulkerBoxPowerOutputExpansion.ShulkerBoxBlockMixin"
   ],
   "client": [
     "rule.WhatIsThis.Happy"
