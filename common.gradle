@@ -106,6 +106,8 @@ processResources {
 	inputs.property "name", project.mod_name
 	inputs.property "version", finalModVersion
 	inputs.property "minecraft_dependency", project.minecraft_dependency
+	inputs.property "mixinextras_dependency", project.mixinextras_version
+	inputs.property "conditional_mixin_dependency", project.conditionalmixin_version
 
 	filesMatching("fabric.mod.json") {
 		def valueMap = [
@@ -113,6 +115,8 @@ processResources {
 				"name": project.mod_name,
 				"version": finalModVersion,
 				"minecraft_dependency": project.minecraft_dependency,
+				"mixinextras_dependency": project.mixinextras_version,
+				"conditional_mixin_dependency": project.conditionalmixin_version
 		]
 		expand valueMap
 	}

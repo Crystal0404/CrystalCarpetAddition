@@ -33,10 +33,11 @@
   ],
 
   "depends": {
-    "mixinextras": "0.3.6",
     "carpet": "*",
+    "conditional-mixin": "${conditional_mixin_dependency}",
     "fabricloader": ">=0.14.25",
-    "minecraft": "${minecraft_dependency}"
+    "minecraft": "${minecraft_dependency}",
+    "mixinextras": "${mixinextras_dependency}"
   },
   "recommends": {
     "fabric-api": "*"
