@@ -20,65 +20,33 @@
 
 package crystal0404.crystalcarpetaddition.utils.ShulkerBoxUtils;
 
+import com.google.common.collect.ImmutableMap;
 import crystal0404.crystalcarpetaddition.CCASettings;
 import net.minecraft.util.DyeColor;
 
 public class ColourMap {
+    private static final ImmutableMap<Colour, DyeColor> DYE_COLOR_IMMUTABLE_MAP = new ImmutableMap.Builder<Colour, DyeColor>()
+            .put(Colour.PINK, DyeColor.PINK)
+            .put(Colour.WHITE, DyeColor.WHITE)
+            .put(Colour.LIGHT_GRAY, DyeColor.LIGHT_GRAY)
+            .put(Colour.GRAY, DyeColor.GRAY)
+            .put(Colour.BLACK, DyeColor.BLACK)
+            .put(Colour.BROWN, DyeColor.BROWN)
+            .put(Colour.RED, DyeColor.RED)
+            .put(Colour.ORANGE, DyeColor.ORANGE)
+            .put(Colour.YELLOW, DyeColor.YELLOW)
+            .put(Colour.LIME, DyeColor.LIME)
+            .put(Colour.GREEN, DyeColor.GREEN)
+            .put(Colour.CYAN, DyeColor.CYAN)
+            .put(Colour.LIGHT_BLUE, DyeColor.LIGHT_BLUE)
+            .put(Colour.BLUE, DyeColor.BLUE)
+            .put(Colour.PURPLE, DyeColor.PURPLE)
+            .put(Colour.MAGENTA, DyeColor.MAGENTA)
+            .buildOrThrow();
+
     public static DyeColor getSettingColour() {
-        DyeColor color = null;
-        switch (CCASettings.ShulkerBoxPowerOutputExpansionColour) {
-            case PINK:
-                color = DyeColor.PINK;
-                break;
-            case NONE:
-                break;
-            case WHITE:
-                color = DyeColor.WHITE;
-                break;
-            case LIGHT_GRAY:
-                color = DyeColor.LIGHT_GRAY;
-                break;
-            case GRAY:
-                color = DyeColor.GRAY;
-                break;
-            case BLACK:
-                color = DyeColor.BLACK;
-                break;
-            case BROWN:
-                color = DyeColor.BROWN;
-                break;
-            case RED:
-                color = DyeColor.RED;
-                break;
-            case ORANGE:
-                color = DyeColor.ORANGE;
-                break;
-            case YELLOW:
-                color = DyeColor.YELLOW;
-                break;
-            case LIME:
-                color = DyeColor.LIME;
-                break;
-            case GREEN:
-                color = DyeColor.GREEN;
-                break;
-            case CYAN:
-                color = DyeColor.CYAN;
-                break;
-            case LIGHT_BLUE:
-                color = DyeColor.LIGHT_BLUE;
-                break;
-            case BLUE:
-                color = DyeColor.BLUE;
-                break;
-            case PURPLE:
-                color = DyeColor.PURPLE;
-                break;
-            case MAGENTA:
-                color = DyeColor.MAGENTA;
-                break;
-        }
-        return color;
+        return CCASettings.ShulkerBoxPowerOutputExpansionColour == Colour.NONE ?
+                null : DYE_COLOR_IMMUTABLE_MAP.get(CCASettings.ShulkerBoxPowerOutputExpansionColour);
     }
 
     public enum Colour {
