@@ -24,25 +24,33 @@ import com.llamalad7.mixinextras.injector.ModifyReturnValue;
 import com.llamalad7.mixinextras.sugar.Local;
 import crystal0404.crystalcarpetaddition.CCASettings;
 import crystal0404.crystalcarpetaddition.utils.ShulkerBoxUtils.ColourMap;
+import net.minecraft.block.ShulkerBoxBlock;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.ShulkerBoxBlockEntity;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.screen.ScreenHandler;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 
-@Mixin(ScreenHandler.class)
-public abstract class ScreenHandleMixin {
+@Mixin(ShulkerBoxBlock.class)
+public abstract class ShulkerBoxBlockMixin {
     @ModifyReturnValue(
-            method = "calculateComparatorOutput(Lnet/minecraft/block/entity/BlockEntity;)I",
-            at = @At(value = "RETURN", ordinal = 0)
+            method = "getComparatorOutput",
+            at = @At("RETURN")
     )
-    private static int calculateComparatorOutputMixin(int original, @Local(argsOnly = true) BlockEntity entity) {
+    private int getComparatorOutputMixin(
+            int original,
+            @Local(argsOnly = true) World world,
+            @Local(argsOnly = true) BlockPos pos
+    ) {
+        if (!CCASettings.ShulkerBoxPowerOutputExpansion) return original;
+
+        BlockEntity entity = world.getBlockEntity(pos);
         if (
-                CCASettings.ShulkerBoxPowerOutputExpansion
-                        && entity instanceof ShulkerBoxBlockEntity
-                        && ((ShulkerBoxBlockEntity) entity).getColor() == ColourMap.getSettingColour()
+                entity instanceof ShulkerBoxBlockEntity
+                && ((ShulkerBoxBlockEntity) entity).getColor() == ColourMap.getSettingColour()
         ) {
             Inventory inventory = (Inventory) entity;
             int num = 0;
@@ -52,7 +60,8 @@ public abstract class ScreenHandleMixin {
                 num += 1;
             }
             return num;
+        } else {
+            return original;
         }
-        return original;
     }
 }
