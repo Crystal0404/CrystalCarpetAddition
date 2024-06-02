@@ -32,7 +32,7 @@ import java.util.Random;
 
 // QWQ
 @Mixin(SplashTextResourceSupplier.class)
-public class Happy {
+public abstract class Happy {
     @Inject(
             method = "get",
             at = @At(

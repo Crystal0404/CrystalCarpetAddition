@@ -27,5 +27,5 @@ import org.spongepowered.asm.mixin.Mixin;
 
 @Restriction(require = @Condition(value = "minecraft", versionPredicates = ">=1.21"))
 @Mixin(EmptyClass.class)
-public class RaidMixin {
+public abstract class RaidMixin {
 }
