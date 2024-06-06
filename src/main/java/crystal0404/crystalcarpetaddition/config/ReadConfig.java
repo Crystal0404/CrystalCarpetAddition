@@ -36,9 +36,9 @@ import java.util.HashMap;
 public class ReadConfig {
     private final static Logger LOGGER = CrystalCarpetAdditionMod.LOGGER;
     private static final String file_path = FabricLoader.getInstance().getConfigDir() + "/CrystalCarpetAddition/CrystalCarpetAddition.json";
-    public static HashMap<String, String> BLACKLIST;
-    public static boolean CAN_PRINT_MOD;
-    public static boolean CAN_KICK;
+    private static HashMap<String, String> BLACKLIST;
+    private static boolean CAN_PRINT_MOD;
+    private static boolean CAN_KICK;
 
     @SuppressWarnings("all")
     public static void readConfig() throws IOException {
@@ -62,5 +62,17 @@ public class ReadConfig {
                 throw new RuntimeException(e);
             }
         }
+    }
+
+    public static HashMap<String, String> getBlackList() {
+        return new HashMap<>(BLACKLIST);
+    }
+
+    public static boolean isCanPrintMod() {
+        return CAN_PRINT_MOD;
+    }
+
+    public static boolean isCanKick() {
+        return CAN_KICK;
     }
 }
