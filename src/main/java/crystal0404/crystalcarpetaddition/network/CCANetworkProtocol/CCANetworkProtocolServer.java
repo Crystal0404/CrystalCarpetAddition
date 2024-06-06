@@ -62,12 +62,16 @@ public class CCANetworkProtocolServer {
         if (handler.getPlayer() instanceof EntityPlayerMPFake) return;
 
         if (!ServerPlayNetworking.canSend(handler.getPlayer(), CCANetworkProtocolClient.HELLO.ID)) {
-            LOGGER.info("The packet failed to be sent and the player may not have CCA installed");
+            LOGGER.info("[CCA] The packet failed to be sent and the player may not have CCA installed");
             if (ReadConfig.CAN_KICK) handler.disconnect(MessagePresets.INSTALLATION);
             return;
         }
         Gson gson = new Gson();
         String send = gson.toJson(new SendBlackMod(ReadConfig.BLACKLIST));
+        if (send.length() > 32767) {
+            LOGGER.error("[CCA] The blacklist is too long");
+            throw new RuntimeException("[CCA] The blacklist is too long");
+        }
         ServerPlayNetworking.send(handler.getPlayer(), new CCANetworkProtocolClient.HELLO(send));
     }
 
