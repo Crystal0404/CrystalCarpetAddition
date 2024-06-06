@@ -62,23 +62,18 @@ public class CCANetworkProtocolClient {
 
             // Determine if there are any mods that are not allowed, and disconnect them
             for (Map.Entry<String, String> stringStringEntry : blackMap.entrySet()) {
-                boolean canBreak = false;
                 for (ModContainer allMod : FabricLoader.getInstance().getAllMods()) {
                     String modId = allMod.getMetadata().getId();
                     if (
                             modId.matches(stringStringEntry.getKey())
                                     && FabricVersionChecker.isLoad(modId, stringStringEntry.getValue())
                     ) {
-                        canBreak = true;
                         disconnect(
                                 client,
                                 MessagePresets.BLACKMODREASON(allMod.getMetadata().getName())
                         );
-                        break;
+                        return;
                     }
-                }
-                if (canBreak) {
-                    break;
                 }
             }
         }));
@@ -101,9 +96,19 @@ public class CCANetworkProtocolClient {
         Gson gson = new Gson();
         HashMap<String, HashMap<String, String>> map = new HashMap<>();
         HashMap<String, String> modMap = new HashMap<>();
-        FabricLoader.getInstance().getAllMods().forEach(mod ->
-                modMap.put(mod.getMetadata().getId(), mod.getMetadata().getVersion().getFriendlyString())
-        );
+        FabricLoader.getInstance().getAllMods().forEach(mod -> {
+            modMap.put(mod.getMetadata().getId(), mod.getMetadata().getVersion().getFriendlyString());
+
+            // If the string is too long, send it in parts
+            if (gson.toJson(modMap).length() > 32500) {
+                LOGGER.warn("[CCA] The string is too long, and you try to send it in parts");
+                map.put(client.player.getName().getString(), modMap);
+                String send = gson.toJson(new ClientModList(map));
+                ClientPlayNetworking.send(new CCANetworkProtocolServer.MOD(send));
+                map.clear();
+                modMap.clear();
+            }
+        });
         map.put(client.player.getName().getString(), modMap);
         String send = gson.toJson(new ClientModList(map));
         ClientPlayNetworking.send(new CCANetworkProtocolServer.MOD(send));
