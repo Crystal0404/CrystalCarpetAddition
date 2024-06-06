@@ -65,37 +65,36 @@ public abstract class RaiderEntityMixin extends PatrolEntity {
     )
     @SuppressWarnings("all")
     private void onDeathMixin(DamageSource damageSource, CallbackInfo ci) {
-        if (CCASettings.ReIntroduceOldVersionRaid) {
-            if (this.getWorld() instanceof ServerWorld) {
-                Entity entity = damageSource.getAttacker();
-                Raid raid = this.getRaid();
-                if (this.isPatrolLeader() && raid == null && ((ServerWorld) this.getWorld()).getRaidAt(this.getBlockPos()) == null) {
-                    ItemStack itemStack = this.getEquippedStack(EquipmentSlot.HEAD);
-                    PlayerEntity playerEntity = null;
-                    Entity entity2 = entity;
-                    if (entity2 instanceof PlayerEntity) {
-                        playerEntity = (PlayerEntity) entity2;
-                    } else if (entity2 instanceof WolfEntity) {
-                        WolfEntity wolfEntity = (WolfEntity) entity2;
-                        LivingEntity livingEntity = wolfEntity.getOwner();
-                        if (wolfEntity.isTamed() && livingEntity instanceof PlayerEntity) {
-                            playerEntity = (PlayerEntity) livingEntity;
-                        }
+        if (!CCASettings.ReIntroduceOldVersionRaid) return;
+        if (this.getWorld() instanceof ServerWorld) {
+            Entity entity = damageSource.getAttacker();
+            Raid raid = this.getRaid();
+            if (this.isPatrolLeader() && raid == null && ((ServerWorld) this.getWorld()).getRaidAt(this.getBlockPos()) == null) {
+                ItemStack itemStack = this.getEquippedStack(EquipmentSlot.HEAD);
+                PlayerEntity playerEntity = null;
+                Entity entity2 = entity;
+                if (entity2 instanceof PlayerEntity) {
+                    playerEntity = (PlayerEntity) entity2;
+                } else if (entity2 instanceof WolfEntity) {
+                    WolfEntity wolfEntity = (WolfEntity) entity2;
+                    LivingEntity livingEntity = wolfEntity.getOwner();
+                    if (wolfEntity.isTamed() && livingEntity instanceof PlayerEntity) {
+                        playerEntity = (PlayerEntity) livingEntity;
                     }
-                    if (!itemStack.isEmpty() && ItemStack.areEqual(itemStack, Raid.getOminousBanner(this.getRegistryManager().getWrapperOrThrow(RegistryKeys.BANNER_PATTERN))) && playerEntity != null) {
-                        StatusEffectInstance statusEffectInstance = playerEntity.getStatusEffect(StatusEffects.BAD_OMEN);
-                        int i = 1;
-                        if (statusEffectInstance != null) {
-                            i += statusEffectInstance.getAmplifier();
-                            playerEntity.removeStatusEffectInternal(StatusEffects.BAD_OMEN);
-                        } else {
-                            --i;
-                        }
-                        i = MathHelper.clamp(i, 0, 4);
-                        StatusEffectInstance statusEffectInstance2 = new StatusEffectInstance(StatusEffects.BAD_OMEN, 120000, i, false, false, true);
-                        if (!this.getWorld().getGameRules().getBoolean(GameRules.DISABLE_RAIDS)) {
-                            playerEntity.addStatusEffect(statusEffectInstance2);
-                        }
+                }
+                if (!itemStack.isEmpty() && ItemStack.areEqual(itemStack, Raid.getOminousBanner(this.getRegistryManager().getWrapperOrThrow(RegistryKeys.BANNER_PATTERN))) && playerEntity != null) {
+                    StatusEffectInstance statusEffectInstance = playerEntity.getStatusEffect(StatusEffects.BAD_OMEN);
+                    int i = 1;
+                    if (statusEffectInstance != null) {
+                        i += statusEffectInstance.getAmplifier();
+                        playerEntity.removeStatusEffectInternal(StatusEffects.BAD_OMEN);
+                    } else {
+                        --i;
+                    }
+                    i = MathHelper.clamp(i, 0, 4);
+                    StatusEffectInstance statusEffectInstance2 = new StatusEffectInstance(StatusEffects.BAD_OMEN, 120000, i, false, false, true);
+                    if (!this.getWorld().getGameRules().getBoolean(GameRules.DISABLE_RAIDS)) {
+                        playerEntity.addStatusEffect(statusEffectInstance2);
                     }
                 }
             }
