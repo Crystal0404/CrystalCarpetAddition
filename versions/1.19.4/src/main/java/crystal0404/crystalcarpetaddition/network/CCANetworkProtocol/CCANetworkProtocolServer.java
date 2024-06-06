@@ -60,11 +60,11 @@ public class CCANetworkProtocolServer {
 
         if (!ServerPlayNetworking.canSend(handler.getPlayer(), CCANetwork.HELLO)) {
             LOGGER.info("[CCA] The packet failed to be sent and the player may not have CCA installed");
-            if (ReadConfig.CAN_KICK) handler.disconnect(MessagePresets.INSTALLATION);
+            if (ReadConfig.isCanKick()) handler.disconnect(MessagePresets.INSTALLATION);
             return;
         }
         Gson gson = new Gson();
-        String send = gson.toJson(new SendBlackMod(ReadConfig.BLACKLIST));
+        String send = gson.toJson(new SendBlackMod(ReadConfig.getBlackList()));
         if (send.length() > 32767) {
             LOGGER.error("[CCA] The blacklist is too long");
             throw new RuntimeException("[CCA] The blacklist is too long");
@@ -85,7 +85,7 @@ public class CCANetworkProtocolServer {
         if (CCASettings.CCADebug) LOGGER.debug("buf: \"{}\"", info);
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         ClientModList clientModList = gson.fromJson(info, ClientModList.class);
-        if (ReadConfig.CAN_PRINT_MOD) LOGGER.info(gson.toJson(clientModList));
+        if (ReadConfig.isCanPrintMod()) LOGGER.info(gson.toJson(clientModList));
         CALL.forEach(c ->
                 c.getMod(server, player, handler, clientModList.getClientModMap().get(player.getName().getString()))
         );
