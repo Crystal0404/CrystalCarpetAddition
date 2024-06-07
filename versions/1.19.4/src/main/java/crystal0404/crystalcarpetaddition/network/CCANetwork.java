@@ -30,7 +30,7 @@ import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.util.Identifier;
 
 public class CCANetwork {
-    private final static String PROTOCOL = "cca-network-v1.0";
+    private final static String PROTOCOL = "cca-network-v2.0";
     public final static Identifier HELLO = new Identifier(PROTOCOL, "hello");
     public final static Identifier MOD = new Identifier(PROTOCOL, "mod");
 

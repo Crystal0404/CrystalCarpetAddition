@@ -28,7 +28,7 @@ import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
 import net.fabricmc.loader.api.FabricLoader;
 
 public class CCANetwork {
-    public final static String PROTOCOL = "cca-network-v1.0";
+    public final static String PROTOCOL = "cca-network-v2.0";
 
     public static void init() {
         if (!FabricVersionChecker.isLoad("fabric-api", "*")) return;
