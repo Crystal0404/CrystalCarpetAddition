@@ -20,6 +20,7 @@
 
 package crystal0404.crystalcarpetaddition.config;
 
+import com.google.common.collect.ImmutableList;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 import crystal0404.crystalcarpetaddition.CrystalCarpetAdditionMod;
@@ -31,16 +32,14 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.HashMap;
 
 public class ReadConfig {
     private final static Logger LOGGER = CrystalCarpetAdditionMod.LOGGER;
     private static final String file_path = FabricLoader.getInstance().getConfigDir() + "/CrystalCarpetAddition/CrystalCarpetAddition.json";
-    private static HashMap<String, String> BLACKLIST;
+    private static ImmutableList<String> BLACK_PACKAGES;
     private static boolean CAN_PRINT_MOD;
     private static boolean CAN_KICK;
 
-    @SuppressWarnings("all")
     public static void readConfig() throws IOException {
         try (InputStream inputStream = Files.newInputStream(Paths.get(file_path))) {
             StringBuilder stringBuilder = new StringBuilder();
@@ -49,23 +48,37 @@ public class ReadConfig {
                 if (i == -1) break;
                 stringBuilder.append((char) i);
             }
-            Gson gson = new Gson();
             try {
+                Gson gson = new Gson();
                 Config config = gson.fromJson(stringBuilder.toString(), Config.class);
-                BLACKLIST = config.getBlackMap();
+                BLACK_PACKAGES = ImmutableList.copyOf(config.getBlackPackages());
+                // Check that the relevant regular expression is matched
+                // <modId>$className
+                for (String blackPackage : BLACK_PACKAGES) {
+                    if (!blackPackage.matches("^(.{1,63}\\$).+")) {
+                        LOGGER.error("[CCA] '%s' format is incorrect!".formatted(blackPackage));
+                        LOGGER.error("[CCA] Regular expressions need to be satisfied: ^(.{1,63}\\$).+");
+                        throw new RuntimeException("[CCA] Abnormal configuration file read!Looks like your configuration is not correct!");
+                    }
+                }
+
                 CAN_PRINT_MOD = config.isPrintModList();
                 CAN_KICK = config.isKick();
+
+                // Check the profile version
+                if (config.getVersion() != 1) {
+                    LOGGER.error("[CCA] The configuration file version is incorrect!");
+                    File file = new File(file_path);
+                    file.delete();
+                    throw new RuntimeException("[CCA] The configuration file version is incorrect!");
+                }
             } catch (JsonSyntaxException e) {
                 File file = new File(file_path);
                 file.delete();
-                LOGGER.error("Abnormal configuration file read!Looks like your configuration is not correct!");
+                LOGGER.error("[CCA] Abnormal configuration file read!Looks like your configuration is not correct!");
                 throw new RuntimeException(e);
             }
         }
-    }
-
-    public static HashMap<String, String> getBlackList() {
-        return new HashMap<>(BLACKLIST);
     }
 
     public static boolean isCanPrintMod() {
@@ -74,5 +87,9 @@ public class ReadConfig {
 
     public static boolean isCanKick() {
         return CAN_KICK;
+    }
+
+    public static ImmutableList<String> getBlackPackages() {
+        return BLACK_PACKAGES;
     }
 }

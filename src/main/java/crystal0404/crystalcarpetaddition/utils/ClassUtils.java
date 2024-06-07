@@ -18,36 +18,23 @@
  * along with Crystal Carpet Addition.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package crystal0404.crystalcarpetaddition.config;
+package crystal0404.crystalcarpetaddition.utils;
 
-import java.util.List;
+import crystal0404.crystalcarpetaddition.CrystalCarpetAdditionMod;
+import org.spongepowered.asm.service.MixinService;
 
-class Config {
-    private final int Version;
-    private final List<String> BlackPackages;
-    private final boolean PrintModList;
-    private final boolean Kick;
+import java.io.IOException;
 
-    public Config(int version, List<String> blackPackages, boolean printModList, boolean kick) {
-        Version = version;
-        BlackPackages = blackPackages;
-        PrintModList = printModList;
-        Kick = kick;
-    }
-
-    public int getVersion() {
-        return Version;
-    }
-
-    public List<String> getBlackPackages() {
-        return BlackPackages;
-    }
-
-    public boolean isPrintModList() {
-        return PrintModList;
-    }
-
-    public boolean isKick() {
-        return Kick;
+public class ClassUtils {
+    public static boolean tryFindClass(String className) {
+        try {
+            MixinService.getService().getBytecodeProvider().getClassNode(className);
+            return true;
+        } catch (ClassNotFoundException classNotFoundException) {
+            return false;
+        } catch (IOException ioException) {
+            CrystalCarpetAdditionMod.LOGGER.error("[CCA] An unknown exception occurred while trying to find the class");
+           throw new RuntimeException(ioException);
+        }
     }
 }

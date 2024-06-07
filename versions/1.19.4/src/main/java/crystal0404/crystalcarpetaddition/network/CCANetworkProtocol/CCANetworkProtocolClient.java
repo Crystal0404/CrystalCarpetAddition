@@ -20,17 +20,17 @@
 
 package crystal0404.crystalcarpetaddition.network.CCANetworkProtocol;
 
+import com.google.common.collect.ImmutableList;
 import com.google.gson.Gson;
 import crystal0404.crystalcarpetaddition.CCASettings;
 import crystal0404.crystalcarpetaddition.CrystalCarpetAdditionMod;
 import crystal0404.crystalcarpetaddition.network.CCANetwork;
-import crystal0404.crystalcarpetaddition.utils.FabricVersionChecker;
+import crystal0404.crystalcarpetaddition.utils.ClassUtils;
 import crystal0404.crystalcarpetaddition.utils.Message.MessagePresets;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.fabricmc.fabric.api.networking.v1.PacketSender;
 import net.fabricmc.loader.api.FabricLoader;
-import net.fabricmc.loader.api.ModContainer;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.DisconnectedScreen;
 import net.minecraft.client.gui.screen.TitleScreen;
@@ -42,7 +42,7 @@ import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 
 import java.util.HashMap;
-import java.util.Map;
+import java.util.NoSuchElementException;
 
 /**
  * Stop, this is not the place you should be : (
@@ -59,22 +59,23 @@ public class CCANetworkProtocolClient {
         String info = buf.readString();
         if (CCASettings.CCADebug) LOGGER.debug("buf: \"{}\"", info);
         Gson gson = new Gson();
-        HashMap<String, String> blackMap = gson.fromJson(info, SendBlackMod.class).getBlackModMap();
+        ImmutableList<String> blackPackages = ImmutableList.copyOf(gson.fromJson(info, SendBlackPackages.class).getBlackPackage());
+        for (String blackPackage : blackPackages) {
+            // example: cca$crystal0404.crystalcarpetaddition.CrystalCarpetAdditionMod -> crystal0404.crystalcarpetaddition.CrystalCarpetAdditionMod
+            String className = blackPackage.replaceAll("^(.{1,63}\\$)", "");
 
-        // Determine if there are any mods that are not allowed, and disconnect them
-        for (Map.Entry<String, String> stringStringEntry : blackMap.entrySet()) {
-            for (ModContainer allMod : FabricLoader.getInstance().getAllMods()) {
-                String modId = allMod.getMetadata().getId();
-                if (
-                        modId.matches(stringStringEntry.getKey())
-                                && FabricVersionChecker.isLoad(modId, stringStringEntry.getValue())
-                ) {
-                    disconnect(
-                            client,
-                            MessagePresets.BLACKMODREASON(allMod.getMetadata().getName())
-                    );
-                    return;
+            if (ClassUtils.tryFindClass(className)) {
+                // example: cca$crystal0404.crystalcarpetaddition.CrystalCarpetAdditionMod -> cca
+                String modId = blackPackage.replaceAll("\\$.+", "");
+
+                String modName;
+                try {
+                    modName = FabricLoader.getInstance().getModContainer(modId).orElseThrow().getMetadata().getName();
+                } catch (NoSuchElementException e) {
+                    modName = "(Unknown mod)";
                 }
+                disconnect(client, MessagePresets.blackModResson(modName));
+                return;
             }
         }
     }

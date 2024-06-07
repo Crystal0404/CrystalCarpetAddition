@@ -23,24 +23,13 @@ package crystal0404.crystalcarpetaddition.network.CCANetworkProtocol;
 import java.util.HashMap;
 
 class ClientModList {
-    private HashMap<String, HashMap<String, String>> ClientModMap;
+    private final HashMap<String, HashMap<String, String>> ClientModMap;
 
     public ClientModList(HashMap<String, HashMap<String, String>> clientModMap) {
         ClientModMap = clientModMap;
     }
 
-    @Override
-    public String toString() {
-        return "ClientModList{" +
-                "ClientModMap=" + ClientModMap +
-                '}';
-    }
-
     public HashMap<String, HashMap<String, String>> getClientModMap() {
         return ClientModMap;
-    }
-
-    public void setClientModMap(HashMap<String, HashMap<String, String>> clientModMap) {
-        ClientModMap = clientModMap;
     }
 }

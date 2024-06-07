@@ -38,7 +38,7 @@ public class MessagePresets {
     public static final Text CCATITLE = Text.literal("CrystalCarpetAddition")
             .setStyle(Style.EMPTY.withColor(0x55FFFF).withBold(true));
 
-    public static Text BLACKMODREASON(String modName) {
+    public static Text blackModResson(String modName) {
         return Text.literal("You can't use ").setStyle(Style.EMPTY.withColor(0x55FF55))
                 .append(Text.literal(modName).setStyle(Style.EMPTY.withColor(0xFF5555).withUnderline(true)))
                 .append(Text.literal(" in this server!").setStyle(Style.EMPTY.withColor(0x55FF55)));

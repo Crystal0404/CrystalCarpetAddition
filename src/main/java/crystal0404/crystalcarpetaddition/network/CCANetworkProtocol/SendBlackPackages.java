@@ -20,27 +20,16 @@
 
 package crystal0404.crystalcarpetaddition.network.CCANetworkProtocol;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 
-class SendBlackMod {
-    private HashMap<String, String> blackModMap;
+class SendBlackPackages {
+    private final ArrayList<String> BlackPackage;
 
-    public SendBlackMod(HashMap<String, String> blackModMap) {
-        this.blackModMap = blackModMap;
+    public SendBlackPackages(ArrayList<String> blackPackage) {
+        BlackPackage = blackPackage;
     }
 
-    @Override
-    public String toString() {
-        return "SendBlackMod{" +
-                "blackModMap=" + blackModMap +
-                '}';
-    }
-
-    public HashMap<String, String> getBlackModMap() {
-        return blackModMap;
-    }
-
-    public void setBlackModMap(HashMap<String, String> blackModMap) {
-        this.blackModMap = blackModMap;
+    public ArrayList<String> getBlackPackage() {
+        return BlackPackage;
     }
 }

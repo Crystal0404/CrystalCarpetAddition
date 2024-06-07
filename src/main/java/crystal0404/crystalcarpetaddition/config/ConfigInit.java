@@ -20,6 +20,7 @@
 
 package crystal0404.crystalcarpetaddition.config;
 
+import com.google.common.collect.ImmutableList;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import crystal0404.crystalcarpetaddition.CrystalCarpetAdditionMod;
@@ -31,7 +32,8 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Writer;
-import java.util.HashMap;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 
 public class ConfigInit {
     private static final Logger LOGGER = CrystalCarpetAdditionMod.LOGGER;
@@ -61,7 +63,7 @@ public class ConfigInit {
             LOGGER.info("The configuration file has been generated!");
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
             try (Writer writer = new FileWriter(file_path)) {
-                writer.write(gson.toJson(new Config(new HashMap<>(), false, true)));
+                writer.write(gson.toJson(new Config(1, new ArrayList<>(), false, true)));
             }
         }
     }

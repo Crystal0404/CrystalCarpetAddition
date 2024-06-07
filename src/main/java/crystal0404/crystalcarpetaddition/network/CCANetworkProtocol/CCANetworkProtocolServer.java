@@ -41,6 +41,7 @@ import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.Identifier;
 import org.slf4j.Logger;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -67,10 +68,10 @@ public class CCANetworkProtocolServer {
             return;
         }
         Gson gson = new Gson();
-        String send = gson.toJson(new SendBlackMod(ReadConfig.getBlackList()));
+        String send = gson.toJson(new SendBlackPackages(new ArrayList<>(ReadConfig.getBlackPackages())));
         if (send.length() > 32767) {
-            LOGGER.error("[CCA] The blacklist is too long");
-            throw new RuntimeException("[CCA] The blacklist is too long");
+            LOGGER.error("[CCA] The BlackPackages is too long");
+            throw new RuntimeException("[CCA] The BlackPackages is too long");
         }
         ServerPlayNetworking.send(handler.getPlayer(), new CCANetworkProtocolClient.HELLO(send));
     }
