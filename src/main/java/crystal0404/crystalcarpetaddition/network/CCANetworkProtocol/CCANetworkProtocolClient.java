@@ -59,25 +59,29 @@ public class CCANetworkProtocolClient {
             if (CCASettings.CCADebug) LOGGER.info("buf: \"{}\"", info);
             Gson gson = new Gson();
             ImmutableList<String> blackPackages = ImmutableList.copyOf(gson.fromJson(info, SendBlackPackages.class).getBlackPackage());
-            for (String blackPackage : blackPackages) {
-                // example: cca$crystal0404.crystalcarpetaddition.CrystalCarpetAdditionMod -> crystal0404.crystalcarpetaddition.CrystalCarpetAdditionMod
-                String className = blackPackage.replaceAll("^(.{1,63}\\$)", "");
-
-                if (ClassUtils.tryFindClass(className)) {
-                    // example: cca$crystal0404.crystalcarpetaddition.CrystalCarpetAdditionMod -> cca
-                    String modId = blackPackage.replaceAll("\\$.+", "");
-
-                    String modName;
-                    try {
-                        modName = FabricLoader.getInstance().getModContainer(modId).orElseThrow().getMetadata().getName();
-                    } catch (NoSuchElementException e) {
-                        modName = "(Unknown mod)";
-                    }
-                    disconnect(client, MessagePresets.blackModResson(modName));
-                    return;
-                }
-            }
+            blackPackageChecker(client, blackPackages);
         }));
+    }
+
+    private static void blackPackageChecker(MinecraftClient client ,ImmutableList<String> blackPackages) {
+        for (String blackPackage : blackPackages) {
+            // example: cca$crystal0404.crystalcarpetaddition.CrystalCarpetAdditionMod -> crystal0404.crystalcarpetaddition.CrystalCarpetAdditionMod
+            String className = blackPackage.replaceAll("^(.{1,63}\\$)", "");
+
+            if (ClassUtils.tryFindClass(className)) {
+                // example: cca$crystal0404.crystalcarpetaddition.CrystalCarpetAdditionMod -> cca
+                String modId = blackPackage.replaceAll("\\$.+", "");
+
+                String modName;
+                try {
+                    modName = FabricLoader.getInstance().getModContainer(modId).orElseThrow().getMetadata().getName();
+                } catch (NoSuchElementException e) {
+                    modName = "(Unknown mod)";
+                }
+                disconnect(client, MessagePresets.blackModResson(modName));
+                return;
+            }
+        }
     }
 
     private static void disconnect(@NotNull MinecraftClient client, Text reason) {
@@ -119,7 +123,7 @@ public class CCANetworkProtocolClient {
         //#if MC > 12006
         public static final CustomPayload.Id<HELLO> ID = new Id<>(Identifier.of(CCANetwork.PROTOCOL, "hello"));
         //#else
-        //$$ public static final CustomPayload.Id<HELLO> ID = new Id<>(new Identifier(CCANetwork.PROTOCOL, "hello"));
+        //$$  public static final CustomPayload.Id<HELLO> ID = new Id<>(new Identifier(CCANetwork.PROTOCOL, "hello"));
         //#endif
         public static final PacketCodec<RegistryByteBuf, HELLO> CODEC = PacketCodecs.STRING.xmap(HELLO::new, HELLO::s).cast();
 

@@ -60,6 +60,10 @@ public class CCANetworkProtocolClient {
         if (CCASettings.CCADebug) LOGGER.debug("buf: \"{}\"", info);
         Gson gson = new Gson();
         ImmutableList<String> blackPackages = ImmutableList.copyOf(gson.fromJson(info, SendBlackPackages.class).getBlackPackage());
+        blackPackageChecker(client, blackPackages);
+    }
+
+    private static void blackPackageChecker(MinecraftClient client ,ImmutableList<String> blackPackages) {
         for (String blackPackage : blackPackages) {
             // example: cca$crystal0404.crystalcarpetaddition.CrystalCarpetAdditionMod -> crystal0404.crystalcarpetaddition.CrystalCarpetAdditionMod
             String className = blackPackage.replaceAll("^(.{1,63}\\$)", "");
