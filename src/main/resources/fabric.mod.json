@@ -34,10 +34,10 @@
 
   "depends": {
     "carpet": "*",
-    "conditional-mixin": "${conditional_mixin_dependency}",
+    "conditional-mixin": ">=${conditional_mixin_dependency}",
     "fabricloader": ">=0.14.25",
     "minecraft": "${minecraft_dependency}",
-    "mixinextras": "${mixinextras_dependency}"
+    "mixinextras": ">=${mixinextras_dependency}"
   },
   "recommends": {
     "fabric-api": "*"
