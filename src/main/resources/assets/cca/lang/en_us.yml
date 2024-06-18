@@ -23,6 +23,10 @@ cca:
       name: EndermanCannotPickUpBlocksInNether
       desc: Protect your nether terrain from being destroyed by Enderman and prevent a large number of Enderman from not despawning after picking up blocks.
 
+    GatewayCannotLoadingChunks:
+      name: GatewayCannotLoadingChunks
+      desc: After the entity passes through the gateway, the gateway does not loading chunks
+
     ItemShadowing:
       name: ItemShadowing
       desc: It has a shadow! (Use the ItemStack code in section 1.16.5)

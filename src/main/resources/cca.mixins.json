@@ -9,6 +9,8 @@
     "rule.CEnderPearlChunkLoading.EnderPearlEntityMixin",
     "rule.ComparatorIgnoresUpdatesFromBelow.ComparatorBlockMixin",
     "rule.EndermanCannotPickUpBlocksInNether.EndermanEntity$PickUpBlockGoalMixin",
+    "rule.GatewayCannotLoadingChunks.EndGatewayBlockInvoker",
+    "rule.GatewayCannotLoadingChunks.EndGatewayBlockMixin",
     "rule.ItemShadowing.ScreenHandlerMixin",
     "rule.MagicBox.ShulkerBoxBlockMixin",
     "rule.NoBatSpwan.BatEntityMixin",
