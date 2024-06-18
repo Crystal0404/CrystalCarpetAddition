@@ -23,6 +23,10 @@ cca:
       name: 末影人不能在下界拾取方块
       desc: 保护你的下界地形不被末影人破坏, 并且防止大量末影人因拾取方块不消失从而造成卡顿.
 
+    GatewayCannotLoadingChunks:
+      name: 折跃门不会加载区块
+      desc: 在实体穿越折跃门后, 折跃门不会加载区块
+
     ItemShadowing:
       name: 物品分身
       desc: 它有一个影子! (使用了部分1.16.5的ItemStack逻辑)

@@ -47,6 +47,11 @@ public class CCASettings {
     @Rule(categories = {CCA, MC_TWEAKS})
     public static boolean EndermanCannotPickUpBlocksInNether = false;
 
+    //#if MC >= 12100
+    @Rule(categories = {CCA, MC_TWEAKS})
+    public static boolean GatewayCannotLoadingChunks = false;
+    //#endif
+
     @Rule(categories = {CCA, MC_TWEAKS})
     public static boolean ItemShadowing = false;
 
