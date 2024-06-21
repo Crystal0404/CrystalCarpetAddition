@@ -20,32 +20,28 @@
 
 package crystal0404.crystalcarpetaddition.mixins.rule.ReIntroduceOldVersionRaid;
 
-import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
-import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import crystal0404.crystalcarpetaddition.CCASettings;
-import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.registry.entry.RegistryEntry;
-import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.village.raid.Raid;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.ModifyArg;
 
 @Mixin(Raid.class)
 public abstract class RaidMixin {
-    @WrapOperation(
+    @ModifyArg(
             method = "start",
             at = @At(
                     value = "INVOKE",
-                    target = "Lnet/minecraft/server/network/ServerPlayerEntity;getStatusEffect" +
-                            "(Lnet/minecraft/registry/entry/RegistryEntry;)" +
+                    target = "Lnet/minecraft/server/network/ServerPlayerEntity;" +
+                            "getStatusEffect(Lnet/minecraft/registry/entry/RegistryEntry;)" +
                             "Lnet/minecraft/entity/effect/StatusEffectInstance;"
-            )
+            ),
+            index = 0
     )
     @SuppressWarnings("rawtypes")
-    private StatusEffectInstance startMixin_getStatusEffect(
-            ServerPlayerEntity instance, RegistryEntry registryEntry, Operation<StatusEffectInstance> original
-    ) {
-        return original.call(instance, CCASettings.ReIntroduceOldVersionRaid ? StatusEffects.BAD_OMEN : registryEntry);
+    private RegistryEntry startMixin_getStatusEffect(RegistryEntry original) {
+        return CCASettings.ReIntroduceOldVersionRaid ? StatusEffects.BAD_OMEN : original;
     }
 }

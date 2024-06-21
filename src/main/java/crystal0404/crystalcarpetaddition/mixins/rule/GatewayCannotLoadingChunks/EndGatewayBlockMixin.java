@@ -20,40 +20,28 @@
 
 package crystal0404.crystalcarpetaddition.mixins.rule.GatewayCannotLoadingChunks;
 
-import com.llamalad7.mixinextras.injector.ModifyReturnValue;
-import com.llamalad7.mixinextras.sugar.Local;
 import crystal0404.crystalcarpetaddition.CCASettings;
 import net.minecraft.block.EndGatewayBlock;
-import net.minecraft.entity.Entity;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.TeleportTarget;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.ModifyArg;
 
 @Mixin(EndGatewayBlock.class)
 public abstract class EndGatewayBlockMixin {
-    @ModifyReturnValue(
+    @ModifyArg(
             method = "createTeleportTarget",
-            at = @At(value = "RETURN", ordinal = 1)
+            at = @At(
+                    value = "INVOKE",
+                    target = "Lnet/minecraft/world/TeleportTarget;<init>(Lnet/minecraft/server/world/ServerWorld;" +
+                            "Lnet/minecraft/util/math/Vec3d;Lnet/minecraft/util/math/Vec3d;" +
+                            "FFLnet/minecraft/world/TeleportTarget$PostDimensionTransition;)V"
+            ),
+            index = 5
     )
-    private TeleportTarget createTeleportTargetMixin(
-            TeleportTarget original,
-            @Local(argsOnly = true, ordinal = 0) ServerWorld world,
-            @Local(ordinal = 0) Vec3d vec3d,
-            @Local(argsOnly = true, ordinal = 0) Entity entity
-            ) {
-        if (CCASettings.GatewayCannotLoadingChunks) {
-            return new TeleportTarget(
-                    world,
-                    vec3d,
-                    EndGatewayBlockInvoker.invokeGetTeleportVelocity(entity),
-                    entity.getYaw(),
-                    entity.getPitch(),
-                    TeleportTarget.NO_OP
-            );
-        } else {
-            return original;
-        }
+    private TeleportTarget.PostDimensionTransition createTeleportTargetMixin(
+            TeleportTarget.PostDimensionTransition original
+    ) {
+        return CCASettings.GatewayCannotLoadingChunks ? TeleportTarget.NO_OP : original;
     }
 }
