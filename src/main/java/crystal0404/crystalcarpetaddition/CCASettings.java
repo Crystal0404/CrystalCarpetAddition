@@ -71,7 +71,7 @@ public class CCASettings {
     @Rule(categories = {CCA, MC_TWEAKS})
     public static boolean NoBatSpawn = false;
 
-    //#if MC > 12006
+    //#if MC >= 12005
     @Rule(categories = {CCA, MC_TWEAKS})
     public static boolean ReIntroduceOldVersionRaid = false;
     //#endif
