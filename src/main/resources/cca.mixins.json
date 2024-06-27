@@ -6,6 +6,7 @@
   "compatibilityLevel": "{{COMPATIBILITY_LEVEL}}",
   "mixins": [
     "carpet.SettingsManagerMixin",
+    "rule.AnvilCanCrushItems.FallingBlockEntityMixin",
     "rule.CEnderPearlChunkLoading.EnderPearlEntityMixin",
     "rule.ComparatorIgnoresUpdatesFromBelow.ComparatorBlockMixin",
     "rule.EndermanCannotPickUpBlocksInNether.EndermanEntity$PickUpBlockGoalMixin",
@@ -23,6 +24,7 @@
     "rule.WhatIsThis.Happy"
   ],
   "injectors": {
-    "defaultRequire": 1
+    "defaultRequire": 1,
+    "maxShiftBy": 2
   }
 }

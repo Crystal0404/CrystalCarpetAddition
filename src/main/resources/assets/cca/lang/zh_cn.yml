@@ -9,6 +9,10 @@ cca:
 
     # ===MC Tweaks===
 
+    AnvilCanCrushItemEntities:
+      name: 铁砧可以碾碎掉落物
+      desc: 允许铁砧从高处掉落时可以碾碎掉落物
+
     CEnderPearlChunkLoading:
       name: C珍珠加载
       desc: carpet-extra修复版珍珠加载

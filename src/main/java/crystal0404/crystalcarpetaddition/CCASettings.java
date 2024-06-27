@@ -34,6 +34,11 @@ public class CCASettings {
      * MC Tweaks
      */
 
+    //#if MC >= 12000
+    @Rule(categories = {CCA, MC_TWEAKS})
+    public static boolean AnvilCanCrushItemEntities = false;
+    //#endif
+
     //#if MC < 12004
     //$$  @Rule(categories = {CCA, MC_TWEAKS})
     //$$  public static boolean CEnderPearlChunkLoading = false;
