@@ -20,12 +20,27 @@
 
 package crystal0404.crystalcarpetaddition.mixins.rule.ReIntroduceOldVersionRaid;
 
-import crystal0404.crystalcarpetaddition.utils.EmptyClass;
-import me.fallenbreath.conditionalmixin.api.annotation.Condition;
-import me.fallenbreath.conditionalmixin.api.annotation.Restriction;
+import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
+import crystal0404.crystalcarpetaddition.CCASettings;
+import net.minecraft.entity.raid.RaiderEntity;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.injection.At;
 
-@Restriction(require = @Condition(value = "minecraft", versionPredicates = ">=1.21"))
-@Mixin(EmptyClass.class)
+@Mixin(RaiderEntity.class)
 public abstract class RaiderEntityMixin {
+    @ModifyExpressionValue(
+            method = "onDeath",
+            at = @At(
+                    value = "INVOKE",
+                    target = "Lnet/minecraft/resource/featuretoggle/FeatureSet;" +
+                            "contains(Lnet/minecraft/resource/featuretoggle/FeatureFlag;)Z"
+            )
+    )
+    private boolean onDeathMixin(boolean original) {
+        if (!original || !CCASettings.ReIntroduceOldVersionRaid) {
+            return original;
+        } else {
+            return false;
+        }
+    }
 }

@@ -20,12 +20,31 @@
 
 package crystal0404.crystalcarpetaddition.mixins.rule.ReIntroduceOldVersionRaid;
 
-import crystal0404.crystalcarpetaddition.utils.EmptyClass;
-import me.fallenbreath.conditionalmixin.api.annotation.Condition;
-import me.fallenbreath.conditionalmixin.api.annotation.Restriction;
+import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
+import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
+import crystal0404.crystalcarpetaddition.CCASettings;
+import net.minecraft.resource.featuretoggle.FeatureFlag;
+import net.minecraft.resource.featuretoggle.FeatureSet;
+import net.minecraft.village.raid.Raid;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.injection.At;
 
-@Restriction(require = @Condition(value = "minecraft", versionPredicates = ">=1.21"))
-@Mixin(EmptyClass.class)
+@Mixin(Raid.class)
 public abstract class RaidMixin {
+    @WrapOperation(
+            method = "start",
+            at = @At(
+                    value = "INVOKE",
+                    target = "Lnet/minecraft/resource/featuretoggle/FeatureSet;contains" +
+                            "(Lnet/minecraft/resource/featuretoggle/FeatureFlag;)Z"
+            )
+    )
+    private boolean startMixin(FeatureSet instance, FeatureFlag feature, Operation<Boolean> original) {
+        boolean UPDATE_1_21 = original.call(instance, feature);
+        if (!UPDATE_1_21 || !CCASettings.ReIntroduceOldVersionRaid) {
+            return UPDATE_1_21;
+        } else {
+            return false;
+        }
+    }
 }
