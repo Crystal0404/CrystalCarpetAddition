@@ -22,7 +22,6 @@ package crystal0404.crystalcarpetaddition;
 
 import carpet.api.settings.Rule;
 import crystal0404.crystalcarpetaddition.settings.conditions.*;
-import crystal0404.crystalcarpetaddition.utils.CCAUtils;
 import crystal0404.crystalcarpetaddition.utils.ShulkerBoxUtils.ColourMap;
 
 public class CCASettings {
