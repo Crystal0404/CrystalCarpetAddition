@@ -22,6 +22,7 @@ package crystal0404.crystalcarpetaddition;
 
 import carpet.api.settings.Rule;
 import crystal0404.crystalcarpetaddition.settings.conditions.*;
+import crystal0404.crystalcarpetaddition.utils.CCAUtils;
 import crystal0404.crystalcarpetaddition.utils.ShulkerBoxUtils.ColourMap;
 
 public class CCASettings {
@@ -71,8 +72,10 @@ public class CCASettings {
     @Rule(categories = {CCA, MC_TWEAKS})
     public static boolean NoBatSpawn = false;
 
-    //#if MC >= 12005
+    //#if MC >= 12100
     @Rule(categories = {CCA, MC_TWEAKS})
+    //#elif MC >= 12005
+    //$$  @Rule(categories = {CCA, MC_TWEAKS}, conditions = CCAUtils.EnableSuperSecretSetting.class)
     public static boolean ReIntroduceOldVersionRaid = false;
     //#endif
 

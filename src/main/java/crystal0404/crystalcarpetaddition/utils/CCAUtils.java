@@ -71,15 +71,15 @@ public final class CCAUtils {
         return false;
     }
 
-    public final static class SuperSecretSetting implements ConditionTester, Rule.Condition {
+    public final static class EnableSuperSecretSetting implements ConditionTester, Rule.Condition {
         @Override
         public boolean isSatisfied(String mixinClassName) {
-            return false;
+            return Boolean.parseBoolean(System.getProperty("cca.superSecretSettings"));
         }
 
         @Override
         public boolean shouldRegister() {
-            return false;
+            return Boolean.parseBoolean(System.getProperty("cca.superSecretSettings"));
         }
     }
 }
