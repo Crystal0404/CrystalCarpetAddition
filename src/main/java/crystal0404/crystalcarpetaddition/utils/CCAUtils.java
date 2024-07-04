@@ -73,14 +73,20 @@ public final class CCAUtils {
 
     @SuppressWarnings("unused")
     public final static class EnableSuperSecretSetting implements ConditionTester, Rule.Condition {
+        static {
+            if (Boolean.getBoolean("cca.SuperSecretSettings")) {
+                CrystalCarpetAdditionMod.LOGGER.info("[CCA] You have SuperSecretSettings enabled");
+            }
+        }
+
         @Override
         public boolean isSatisfied(String mixinClassName) {
-            return Boolean.parseBoolean(System.getProperty("cca.SuperSecretSettings"));
+            return Boolean.getBoolean("cca.SuperSecretSettings");
         }
 
         @Override
         public boolean shouldRegister() {
-            return Boolean.parseBoolean(System.getProperty("cca.SuperSecretSettings"));
+            return Boolean.getBoolean("cca.SuperSecretSettings");
         }
     }
 }
