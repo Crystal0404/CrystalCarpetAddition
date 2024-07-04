@@ -20,13 +20,33 @@
 
 package crystal0404.crystalcarpetaddition.utils;
 
+import carpet.api.settings.Rule;
 import crystal0404.crystalcarpetaddition.CrystalCarpetAdditionMod;
+import me.fallenbreath.conditionalmixin.api.mixin.ConditionTester;
 import me.fallenbreath.conditionalmixin.api.util.VersionChecker;
+import org.spongepowered.asm.service.MixinService;
+
+import java.io.IOException;
 
 /**
- * Encapsulated from conditional-mixin
+ * Some tools
  */
-public class FabricVersionChecker {
+public final class CCAUtils {
+    /**
+     * Find if a class exists
+     */
+    public static boolean tryFindClass(String className) {
+        try {
+            MixinService.getService().getBytecodeProvider().getClassNode(className);
+            return true;
+        } catch (ClassNotFoundException classNotFoundException) {
+            return false;
+        } catch (IOException ioException) {
+            CrystalCarpetAdditionMod.LOGGER.error("[CCA] An unknown exception occurred while trying to find the class");
+            throw new RuntimeException(ioException);
+        }
+    }
+
     /**
      * Check whether the modId satisfies the version Predicate
      */
@@ -49,5 +69,17 @@ public class FabricVersionChecker {
                 versionPredicate
         );
         return false;
+    }
+
+    public final static class SuperSecretSetting implements ConditionTester, Rule.Condition {
+        @Override
+        public boolean isSatisfied(String mixinClassName) {
+            return false;
+        }
+
+        @Override
+        public boolean shouldRegister() {
+            return false;
+        }
     }
 }
