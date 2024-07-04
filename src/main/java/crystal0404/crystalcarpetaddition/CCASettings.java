@@ -75,7 +75,10 @@ public class CCASettings {
     @Rule(categories = {CCA, MC_TWEAKS})
     public static boolean ReIntroduceOldVersionRaid = false;
     //#elseif MC >= 12005
-    //$$  @Rule(categories = {CCA, MC_TWEAKS}, conditions = CCAUtils.EnableSuperSecretSetting.class)
+    //$$  @Rule(
+    //$$        categories = {CCA, MC_TWEAKS},
+    //$$        conditions = crystal0404.crystalcarpetaddition.utils.CCAUtils.EnableSuperSecretSetting.class
+    //$$  )
     //$$  public static boolean ReIntroduceOldVersionRaid = false;
     //#endif
 
