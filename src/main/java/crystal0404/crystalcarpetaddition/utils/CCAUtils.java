@@ -71,15 +71,16 @@ public final class CCAUtils {
         return false;
     }
 
+    @SuppressWarnings("unused")
     public final static class EnableSuperSecretSetting implements ConditionTester, Rule.Condition {
         @Override
         public boolean isSatisfied(String mixinClassName) {
-            return Boolean.parseBoolean(System.getProperty("cca.superSecretSettings"));
+            return Boolean.parseBoolean(System.getProperty("cca.SuperSecretSettings"));
         }
 
         @Override
         public boolean shouldRegister() {
-            return Boolean.parseBoolean(System.getProperty("cca.superSecretSettings"));
+            return Boolean.parseBoolean(System.getProperty("cca.SuperSecretSettings"));
         }
     }
 }
