@@ -22,9 +22,12 @@ package crystal0404.crystalcarpetaddition.mixins.rule.WhatIsThis;
 
 import me.fallenbreath.conditionalmixin.api.mixin.ConditionTester;
 
+/**
+ * Use "-Dcca.disable.PaintedEggshell=true" to disable painted eggshell
+ */
 public class Condition implements ConditionTester {
     @Override
     public boolean isSatisfied(String mixinClassName) {
-        return !Boolean.getBoolean("cca.DisableEasterEggs");
+        return !Boolean.getBoolean("cca.disable.PaintedEggshell");
     }
 }
