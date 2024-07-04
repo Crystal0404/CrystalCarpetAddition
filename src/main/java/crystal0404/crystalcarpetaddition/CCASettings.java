@@ -74,9 +74,10 @@ public class CCASettings {
 
     //#if MC >= 12100
     @Rule(categories = {CCA, MC_TWEAKS})
-    //#elif MC >= 12005
-    //$$  @Rule(categories = {CCA, MC_TWEAKS}, conditions = CCAUtils.EnableSuperSecretSetting.class)
     public static boolean ReIntroduceOldVersionRaid = false;
+    //#elseif MC >= 12005
+    //$$  @Rule(categories = {CCA, MC_TWEAKS}, conditions = CCAUtils.EnableSuperSecretSetting.class)
+    //$$  public static boolean ReIntroduceOldVersionRaid = false;
     //#endif
 
     //#if MC > 12006
