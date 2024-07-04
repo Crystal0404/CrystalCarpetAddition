@@ -25,7 +25,7 @@ import com.google.gson.Gson;
 import crystal0404.crystalcarpetaddition.CCASettings;
 import crystal0404.crystalcarpetaddition.CrystalCarpetAdditionMod;
 import crystal0404.crystalcarpetaddition.network.CCANetwork;
-import crystal0404.crystalcarpetaddition.utils.ClassUtils;
+import crystal0404.crystalcarpetaddition.utils.CCAUtils;
 import crystal0404.crystalcarpetaddition.utils.Message.MessagePresets;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.loader.api.FabricLoader;
@@ -68,7 +68,7 @@ public class CCANetworkProtocolClient {
             // example: cca$crystal0404.crystalcarpetaddition.CrystalCarpetAdditionMod -> crystal0404.crystalcarpetaddition.CrystalCarpetAdditionMod
             String className = blackPackage.replaceAll("^(.{1,63}\\$)", "");
 
-            if (ClassUtils.tryFindClass(className)) {
+            if (CCAUtils.tryFindClass(className)) {
                 // example: cca$crystal0404.crystalcarpetaddition.CrystalCarpetAdditionMod -> cca
                 String modId = blackPackage.replaceAll("\\$.+", "");
 
