@@ -1,7 +1,7 @@
 ## Crystal Carpet Additon
-![GitHub License](https://img.shields.io/github/license/Crystal0404/CrystalCarpetAddition)
+[![GitHub License](https://img.shields.io/github/license/Crystal0404/CrystalCarpetAddition)]()
 [![Modrinth Downloads](https://img.shields.io/modrinth/dt/G26sLP13?logo=Modrinth&label=Modrinth)](https://modrinth.com/mod/crystalcarpetaddition)
-![GitHub Issues or Pull Requests](https://img.shields.io/github/issues/Crystal0404/CrystalCarpetAddition?color=blue)
+[![GitHub Issues or Pull Requests](https://img.shields.io/github/issues/Crystal0404/CrystalCarpetAddition?color=blue)]()
 
   *中文* / [English](https://github.com/Crystal0404/CrystalCarpetAddition/blob/master/README_EN_US.md) 
 
