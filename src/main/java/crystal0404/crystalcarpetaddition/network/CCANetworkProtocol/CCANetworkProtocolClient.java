@@ -22,7 +22,6 @@ package crystal0404.crystalcarpetaddition.network.CCANetworkProtocol;
 
 import com.google.common.collect.ImmutableList;
 import com.google.gson.Gson;
-import crystal0404.crystalcarpetaddition.CCASettings;
 import crystal0404.crystalcarpetaddition.CrystalCarpetAdditionMod;
 import crystal0404.crystalcarpetaddition.network.CCANetwork;
 import crystal0404.crystalcarpetaddition.utils.CCAUtils;
@@ -56,7 +55,7 @@ public class CCANetworkProtocolClient {
         ClientPlayNetworking.registerGlobalReceiver(HELLO.ID, ((payload, context) -> {
             String info = payload.s();
             MinecraftClient client = context.client();
-            if (CCASettings.CCADebug) LOGGER.info("buf: \"{}\"", info);
+            if (CCAUtils.isEnableNetworkDebug()) LOGGER.info("buf: \"{}\"", info);
             Gson gson = new Gson();
             ImmutableList<String> blackPackages = ImmutableList.copyOf(gson.fromJson(info, SendBlackPackages.class).getBlackPackage());
             blackPackageChecker(client, blackPackages);

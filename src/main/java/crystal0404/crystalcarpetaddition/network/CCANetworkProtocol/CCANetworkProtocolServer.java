@@ -28,6 +28,7 @@ import crystal0404.crystalcarpetaddition.CrystalCarpetAdditionMod;
 import crystal0404.crystalcarpetaddition.api.CCANetorkProtocol.GetClientModMap;
 import crystal0404.crystalcarpetaddition.config.ReadConfig;
 import crystal0404.crystalcarpetaddition.network.CCANetwork;
+import crystal0404.crystalcarpetaddition.utils.CCAUtils;
 import crystal0404.crystalcarpetaddition.utils.Message.MessagePresets;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.fabricmc.loader.api.FabricLoader;
@@ -80,7 +81,7 @@ public class CCANetworkProtocolServer {
         ServerPlayNetworking.registerGlobalReceiver(MOD.ID, ((payload, context) -> {
             if (!CCASettings.CCANetworkProtocol) return;
             String info = payload.data();
-            if (CCASettings.CCADebug) LOGGER.info("buf: \"{}\"", info);
+            if (CCAUtils.isEnableNetworkDebug()) LOGGER.info("buf: \"{}\"", info);
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
             ClientModList clientModList = gson.fromJson(info, ClientModList.class);
             if (ReadConfig.isCanPrintMod()) LOGGER.info(gson.toJson(clientModList));
