@@ -106,11 +106,4 @@ public class CCASettings {
             conditions = CCANetworkProtocol.class
     )
     public static boolean CCANetworkProtocol = false;
-
-    /**
-     * Other
-     */
-
-    @Rule(categories = CCA)
-    public static boolean CCADebug = false;
 }

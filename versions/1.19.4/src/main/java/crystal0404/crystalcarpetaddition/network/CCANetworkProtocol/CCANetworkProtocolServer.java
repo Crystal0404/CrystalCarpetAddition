@@ -28,6 +28,7 @@ import crystal0404.crystalcarpetaddition.CrystalCarpetAdditionMod;
 import crystal0404.crystalcarpetaddition.api.CCANetorkProtocol.GetClientModMap;
 import crystal0404.crystalcarpetaddition.config.ReadConfig;
 import crystal0404.crystalcarpetaddition.network.CCANetwork;
+import crystal0404.crystalcarpetaddition.utils.CCAUtils;
 import crystal0404.crystalcarpetaddition.utils.Message.MessagePresets;
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.fabricmc.fabric.api.networking.v1.PacketSender;
@@ -50,7 +51,7 @@ public class CCANetworkProtocolServer {
     private static final Set<GetClientModMap> CALL = new HashSet<>();
 
     public static void register(GetClientModMap getClientModMap) {
-        if (CCASettings.CCADebug) LOGGER.debug("\"{}\" register", getClientModMap.toString());
+        if (CCAUtils.isEnableNetworkDebug()) LOGGER.debug("\"{}\" register", getClientModMap.toString());
         CALL.add(getClientModMap);
     }
 
@@ -83,7 +84,7 @@ public class CCANetworkProtocolServer {
     ) {
         if (!CCASettings.CCANetworkProtocol) return;
         String info = buf.readString();
-        if (CCASettings.CCADebug) LOGGER.debug("buf: \"{}\"", info);
+        if (CCAUtils.isEnableNetworkDebug()) LOGGER.info("buf: \"{}\"", info);
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         ClientModList clientModList = gson.fromJson(info, ClientModList.class);
         if (ReadConfig.isCanPrintMod()) LOGGER.info(gson.toJson(clientModList));

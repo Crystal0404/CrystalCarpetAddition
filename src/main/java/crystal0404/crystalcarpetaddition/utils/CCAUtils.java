@@ -21,6 +21,7 @@
 package crystal0404.crystalcarpetaddition.utils;
 
 import carpet.api.settings.Rule;
+import com.google.common.collect.ImmutableMap;
 import crystal0404.crystalcarpetaddition.CrystalCarpetAdditionMod;
 import me.fallenbreath.conditionalmixin.api.mixin.ConditionTester;
 import me.fallenbreath.conditionalmixin.api.util.VersionChecker;
@@ -33,6 +34,20 @@ import java.io.IOException;
  */
 @SuppressWarnings("unused")
 public final class CCAUtils {
+    /**
+     * This is all the hidden parameters
+     */
+    private static final ImmutableMap<String, Boolean> JAVA_PARAMETERS = new ImmutableMap.Builder<String, Boolean>()
+            .put("cca.enable.network.debug", Boolean.getBoolean("cca.enable.network.debug"))
+            .put("cca.enable.debug", Boolean.getBoolean("cca.enable.debug"))
+            .put("cca.disable.EasterEggs", Boolean.getBoolean("cca.disable.EasterEggs"))
+            .put("cca.enable.MagicSettings", Boolean.getBoolean("cca.enable.MagicSettings"))
+            .buildOrThrow();
+
+    static {
+        JAVA_PARAMETERS.forEach((k, v) -> {if (v) CrystalCarpetAdditionMod.LOGGER.warn("[CCA] -D{}=true", k);});
+    }
+
     /**
      * Find if a class exists
      */
@@ -72,35 +87,30 @@ public final class CCAUtils {
         return false;
     }
 
+    public static boolean isEnableNetworkDebug() {
+        return Boolean.TRUE.equals(JAVA_PARAMETERS.get("cca.enable.network.debug"));
+    }
+
     public static boolean isEnableDebug() {
-        return Boolean.getBoolean("cca.enable.debug");
+        return Boolean.TRUE.equals(JAVA_PARAMETERS.get("cca.enable.debug"));
     }
 
     public final static class DisableEasterEggs implements ConditionTester {
         @Override
         public boolean isSatisfied(String mixinClassName) {
-            return !Boolean.getBoolean("cca.disable.EasterEggs");
+            return !Boolean.TRUE.equals(JAVA_PARAMETERS.get("cca.disable.EasterEggs"));
         }
     }
 
-    /**
-     * Use "-Dcca.enable.MagicSettings=true" to enable super secret settings
-     */
     public final static class EnableMagicSetting implements ConditionTester, Rule.Condition {
-        static {
-            if (Boolean.getBoolean("cca.enable.MagicSettings")) {
-                CrystalCarpetAdditionMod.LOGGER.warn("[CCA] You have MagicSettings enabled");
-            }
-        }
-
         @Override
         public boolean isSatisfied(String mixinClassName) {
-            return Boolean.getBoolean("cca.enable.MagicSettings");
+            return Boolean.TRUE.equals(JAVA_PARAMETERS.get("cca.enable.MagicSettings"));
         }
 
         @Override
         public boolean shouldRegister() {
-            return Boolean.getBoolean("cca.enable.MagicSettings");
+            return Boolean.TRUE.equals(JAVA_PARAMETERS.get("cca.enable.MagicSettings"));
         }
     }
 }
