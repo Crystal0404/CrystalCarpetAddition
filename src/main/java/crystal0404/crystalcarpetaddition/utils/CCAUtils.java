@@ -31,6 +31,7 @@ import java.io.IOException;
 /**
  * Some tools
  */
+@SuppressWarnings("unused")
 public final class CCAUtils {
     /**
      * Find if a class exists
@@ -71,10 +72,20 @@ public final class CCAUtils {
         return false;
     }
 
+    public static boolean isEnableDebug() {
+        return Boolean.getBoolean("cca.enable.debug");
+    }
+
+    public final static class DisableEasterEggs implements ConditionTester {
+        @Override
+        public boolean isSatisfied(String mixinClassName) {
+            return !Boolean.getBoolean("cca.disable.EasterEggs");
+        }
+    }
+
     /**
      * Use "-Dcca.enable.MagicSettings=true" to enable super secret settings
      */
-    @SuppressWarnings("unused")
     public final static class EnableMagicSetting implements ConditionTester, Rule.Condition {
         static {
             if (Boolean.getBoolean("cca.enable.MagicSettings")) {

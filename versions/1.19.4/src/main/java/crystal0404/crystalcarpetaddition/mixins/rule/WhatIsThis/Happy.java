@@ -21,6 +21,8 @@
 package crystal0404.crystalcarpetaddition.mixins.rule.WhatIsThis;
 
 import com.llamalad7.mixinextras.sugar.Local;
+import crystal0404.crystalcarpetaddition.utils.CCAUtils;
+import me.fallenbreath.conditionalmixin.api.annotation.Condition;
 import me.fallenbreath.conditionalmixin.api.annotation.Restriction;
 import net.minecraft.client.resource.SplashTextResourceSupplier;
 import org.spongepowered.asm.mixin.Mixin;
@@ -32,12 +34,7 @@ import java.util.Calendar;
 import java.util.Random;
 
 // QWQ
-@Restriction(
-        require = @me.fallenbreath.conditionalmixin.api.annotation.Condition(
-                type = me.fallenbreath.conditionalmixin.api.annotation.Condition.Type.TESTER,
-                tester = crystal0404.crystalcarpetaddition.mixins.rule.WhatIsThis.Condition.class
-        )
-)
+@Restriction(require = @Condition(type = Condition.Type.TESTER, tester = CCAUtils.DisableEasterEggs.class))
 @Mixin(SplashTextResourceSupplier.class)
 public abstract class Happy {
     @Inject(
