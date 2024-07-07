@@ -70,6 +70,7 @@ loom {
 		ideConfigGenerated = true
 		runDir '../../run'
 		vmArgs '-Dmixin.debug.export=true'
+		vmArgs '-Dcca.enable.debug=true'
 	}
 }
 
