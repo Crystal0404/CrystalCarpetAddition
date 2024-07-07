@@ -72,24 +72,24 @@ public final class CCAUtils {
     }
 
     /**
-     * Use "-Dcca.enable.SuperSecretSettings=true" to enable super secret settings
+     * Use "-Dcca.enable.MagicSettings=true" to enable super secret settings
      */
     @SuppressWarnings("unused")
-    public final static class EnableSuperSecretSetting implements ConditionTester, Rule.Condition {
+    public final static class EnableMagicSetting implements ConditionTester, Rule.Condition {
         static {
-            if (Boolean.getBoolean("cca.enable.SuperSecretSettings")) {
-                CrystalCarpetAdditionMod.LOGGER.info("[CCA] You have SuperSecretSettings enabled");
+            if (Boolean.getBoolean("cca.enable.MagicSettings")) {
+                CrystalCarpetAdditionMod.LOGGER.warn("[CCA] You have MagicSettings enabled");
             }
         }
 
         @Override
         public boolean isSatisfied(String mixinClassName) {
-            return Boolean.getBoolean("cca.enable.SuperSecretSettings");
+            return Boolean.getBoolean("cca.enable.MagicSettings");
         }
 
         @Override
         public boolean shouldRegister() {
-            return Boolean.getBoolean("cca.enable.SuperSecretSettings");
+            return Boolean.getBoolean("cca.enable.MagicSettings");
         }
     }
 }

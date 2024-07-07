@@ -32,7 +32,7 @@ import net.minecraft.village.raid.Raid;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 
-@Restriction(require = @Condition(type = Condition.Type.TESTER, tester = CCAUtils.EnableSuperSecretSetting.class))
+@Restriction(require = @Condition(type = Condition.Type.TESTER, tester = CCAUtils.EnableMagicSetting.class))
 @Mixin(Raid.class)
 public abstract class RaidMixin {
     @WrapOperation(

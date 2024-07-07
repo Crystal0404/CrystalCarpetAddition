@@ -28,7 +28,7 @@ import me.fallenbreath.conditionalmixin.api.annotation.Restriction;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 
-@Restriction(require = @Condition(type = Condition.Type.TESTER, tester = CCAUtils.EnableSuperSecretSetting.class))
+@Restriction(require = @Condition(type = Condition.Type.TESTER, tester = CCAUtils.EnableMagicSetting.class))
 @Mixin(targets = "net.minecraft.entity.effect.BadOmenStatusEffect")
 public abstract class BadOmenStatusEffectMixin {
     @ModifyExpressionValue(

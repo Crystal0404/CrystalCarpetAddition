@@ -77,7 +77,7 @@ public class CCASettings {
     //#elseif MC >= 12005
     //$$  @Rule(
     //$$        categories = {CCA, MC_TWEAKS},
-    //$$        conditions = crystal0404.crystalcarpetaddition.utils.CCAUtils.EnableSuperSecretSetting.class
+    //$$        conditions = crystal0404.crystalcarpetaddition.utils.CCAUtils.EnableMagicSetting.class
     //$$  )
     //$$  public static boolean ReIntroduceOldVersionRaid = false;
     //#endif
