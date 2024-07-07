@@ -37,7 +37,7 @@ public final class CCAUtils {
     /**
      * This is all the hidden parameters
      */
-    private static final ImmutableMap<String, Boolean> JAVA_PARAMETERS = new ImmutableMap.Builder<String, Boolean>()
+    private final static ImmutableMap<String, Boolean> JAVA_PARAMETERS = new ImmutableMap.Builder<String, Boolean>()
             .put("cca.enable.network.debug", Boolean.getBoolean("cca.enable.network.debug"))
             .put("cca.enable.debug", Boolean.getBoolean("cca.enable.debug"))
             .put("cca.disable.EasterEggs", Boolean.getBoolean("cca.disable.EasterEggs"))
