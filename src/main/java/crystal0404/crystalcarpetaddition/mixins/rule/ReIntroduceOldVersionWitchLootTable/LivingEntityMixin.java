@@ -45,14 +45,12 @@ public abstract class LivingEntityMixin {
                             "(Lnet/minecraft/registry/RegistryKey;)Lnet/minecraft/loot/LootTable;"
             )
     )
-    @SuppressWarnings("all")
     private LootTable dropLootMixin(
             ReloadableRegistries.Lookup instance,
             RegistryKey<LootTable> key,
             Operation<LootTable> original
     ) {
-        // Please ignore the error that is always false, which is actually correct.
-        if ((Object) this instanceof WitchEntity && CCASettings.ReIntroduceOldVersionWitchLootTable) {
+        if ((LivingEntity) ((Object) this) instanceof WitchEntity && CCASettings.ReIntroduceOldVersionWitchLootTable) {
             RegistryWrapper.Impl<Enchantment> impl = instance.getRegistryManager().getWrapperOrThrow(RegistryKeys.ENCHANTMENT);
             return LootTableUtils.Witch(impl);
         } else {
