@@ -49,6 +49,11 @@ public class CCASettings {
     public static boolean ComparatorIgnoresStateUpdatesFromBelow = false;
     //#endif
 
+    //#if MC >= 12100
+    @Rule(categories = {CCA, MC_TWEAKS})
+    public static boolean EnderDragonPartCanUseEndPortal = false;
+    //#endif
+
     @Rule(categories = {CCA, MC_TWEAKS})
     public static boolean EndermanCannotPickUpBlocksInNether = false;
 
