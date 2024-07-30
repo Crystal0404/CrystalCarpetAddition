@@ -23,6 +23,12 @@ cca:
         开启此选项后, 比较器会忽略来自下方的状态更新
         意味着开启活板门不会破坏比较器
 
+    EnderDragonPartCanUseEndPortal:
+      name: 末影龙部件可以使用末地传送门
+      desc: 允许末影龙的部件通过末地传送门
+      extra:
+        "0": 把末影龙送到主世界需要分几步?
+
     EndermanCannotPickUpBlocksInNether:
       name: 末影人不能在下界拾取方块
       desc: 保护你的下界地形不被末影人破坏, 并且防止大量末影人因拾取方块不消失从而造成卡顿.

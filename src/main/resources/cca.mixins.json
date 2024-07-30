@@ -9,6 +9,8 @@
     "rule.AnvilCanCrushItems.FallingBlockEntityMixin",
     "rule.CEnderPearlChunkLoading.EnderPearlEntityMixin",
     "rule.ComparatorIgnoresUpdatesFromBelow.ComparatorBlockMixin",
+    "rule.EnderDragonPartCanUseEndPortal.EnderDragonEntityMixin",
+    "rule.EnderDragonPartCanUseEndPortal.EntityInvoker",
     "rule.EndermanCannotPickUpBlocksInNether.EndermanEntity$PickUpBlockGoalMixin",
     "rule.GatewayCannotLoadingChunks.EndGatewayBlockMixin",
     "rule.ItemShadowing.ScreenHandlerMixin",
