@@ -21,30 +21,24 @@
 package crystal0404.crystalcarpetaddition.mixins.rule.EnderDragonPartCanUseEndPortal;
 
 import crystal0404.crystalcarpetaddition.CCASettings;
-import net.minecraft.entity.EntityType;
 import net.minecraft.entity.boss.dragon.EnderDragonEntity;
 import net.minecraft.entity.boss.dragon.EnderDragonPart;
 import net.minecraft.entity.mob.MobEntity;
-import net.minecraft.world.World;
-import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-@Mixin(EnderDragonEntity.class)
-public abstract class EnderDragonEntityMixin extends MobEntity {
-    @Shadow
-    @Final
-    private EnderDragonPart[] parts;
-
-    protected EnderDragonEntityMixin(EntityType<? extends MobEntity> entityType, World world) {
-        super(entityType, world);
-    }
-
-    @Override
-    public void tick() {
-        super.tick();
-        if (CCASettings.EnderDragonPartCanUseEndPortal) {
-            for (EnderDragonPart part : this.parts) {
+@Mixin(MobEntity.class)
+public abstract class MobEntityMixin {
+    @Inject(
+            method = "tick",
+            at = @At("TAIL")
+    )
+    private void tickMixin(CallbackInfo ci) {
+        if (!CCASettings.EnderDragonPartCanUseEndPortal) return;
+        if ((MobEntity) ((Object) this) instanceof EnderDragonEntity entity) {
+            for (EnderDragonPart part : entity.getBodyParts()) {
                 ((EntityInvoker) part).invokeTickPortalTeleportation();
             }
         }
