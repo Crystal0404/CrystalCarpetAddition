@@ -21,9 +21,12 @@
 package crystal0404.crystalcarpetaddition.mixins.rule.EnderDragonPartCanUseEndPortal;
 
 import crystal0404.crystalcarpetaddition.CCASettings;
+import net.minecraft.block.EndPortalBlock;
+import net.minecraft.block.Portal;
 import net.minecraft.entity.boss.dragon.EnderDragonEntity;
 import net.minecraft.entity.boss.dragon.EnderDragonPart;
 import net.minecraft.entity.mob.MobEntity;
+import net.minecraft.world.dimension.PortalManager;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -39,6 +42,14 @@ public abstract class MobEntityMixin {
         if (!CCASettings.EnderDragonPartCanUseEndPortal) return;
         if ((MobEntity) ((Object) this) instanceof EnderDragonEntity entity) {
             for (EnderDragonPart part : entity.getBodyParts()) {
+                // If it's null, skip it
+                PortalManager portalManager = ((EntityAccessor) part).getPortalManager();
+                if (portalManager == null) continue;
+
+                // It should not go into other portals
+                Portal portal = ((PortalManagerAccessor) portalManager).getPortal();
+                if (!(portal instanceof EndPortalBlock)) continue;
+
                 ((EntityInvoker) part).invokeTickPortalTeleportation();
             }
         }
