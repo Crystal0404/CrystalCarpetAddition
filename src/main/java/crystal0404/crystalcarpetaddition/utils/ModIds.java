@@ -18,15 +18,13 @@
  * along with Crystal Carpet Addition.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package crystal0404.crystalcarpetaddition.mixins.rule.ReIntroduceOldVersionRaid;
+package crystal0404.crystalcarpetaddition.utils;
 
-import crystal0404.crystalcarpetaddition.utils.EmptyClass;
-import crystal0404.crystalcarpetaddition.utils.ModIds;
-import me.fallenbreath.conditionalmixin.api.annotation.Condition;
-import me.fallenbreath.conditionalmixin.api.annotation.Restriction;
-import org.spongepowered.asm.mixin.Mixin;
-
-@Restriction(require = @Condition(value = ModIds.MC, versionPredicates = ">=1.21"))
-@Mixin(EmptyClass.class)
-public abstract class RaidMixin {
+@SuppressWarnings("unused")
+public final class ModIds {
+    public static final String CARPET = "carpet";
+    public static final String FABRIC_API = "fabric-api";
+    public static final String FABRIC_LOADER = "fabricloader";
+    public static final String MC = "minecraft";
+    public static final String ME = "mixinextras";
 }

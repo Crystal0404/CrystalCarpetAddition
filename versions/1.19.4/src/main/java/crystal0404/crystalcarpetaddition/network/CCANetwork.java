@@ -23,6 +23,7 @@ package crystal0404.crystalcarpetaddition.network;
 import crystal0404.crystalcarpetaddition.network.CCANetworkProtocol.CCANetworkProtocolClient;
 import crystal0404.crystalcarpetaddition.network.CCANetworkProtocol.CCANetworkProtocolServer;
 import crystal0404.crystalcarpetaddition.utils.CCAUtils;
+import crystal0404.crystalcarpetaddition.utils.ModIds;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
@@ -35,7 +36,7 @@ public class CCANetwork {
     public final static Identifier MOD = new Identifier(PROTOCOL, "mod");
 
     public static void init() {
-        if (!CCAUtils.isLoad("fabric-api", "*")) return;
+        if (!CCAUtils.isLoad(ModIds.FABRIC_API, "*")) return;
         if (FabricLoader.getInstance().getEnvironmentType() == EnvType.CLIENT) registerS2C();
         if (FabricLoader.getInstance().getEnvironmentType() == EnvType.SERVER) registerC2S();
     }

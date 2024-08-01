@@ -24,6 +24,7 @@ import carpet.api.settings.SettingsManager;
 import carpet.utils.Messenger;
 import carpet.utils.TranslationKeys;
 import crystal0404.crystalcarpetaddition.CrystalCarpetAdditionMod;
+import crystal0404.crystalcarpetaddition.utils.ModIds;
 import me.fallenbreath.conditionalmixin.api.annotation.Condition;
 import me.fallenbreath.conditionalmixin.api.annotation.Restriction;
 import net.minecraft.server.command.ServerCommandSource;
@@ -38,7 +39,7 @@ import java.util.Objects;
 
 import static carpet.utils.Translations.tr;
 
-@Restriction(require = @Condition("carpet"))  // Maybe something else will be stuffed in the future?
+@Restriction(require = @Condition(ModIds.CARPET))  // Maybe something else will be stuffed in the future?
 @Mixin(SettingsManager.class)
 public abstract class SettingsManagerMixin {
     @Shadow(remap = false)
