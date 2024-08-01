@@ -23,13 +23,14 @@ package crystal0404.crystalcarpetaddition.settings.conditions;
 import carpet.api.settings.Rule;
 import crystal0404.crystalcarpetaddition.CrystalCarpetAdditionMod;
 import crystal0404.crystalcarpetaddition.utils.CCAUtils;
+import crystal0404.crystalcarpetaddition.utils.ModIds;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.loader.api.FabricLoader;
 
 public class CCANetworkProtocol implements Rule.Condition {
     @Override
     public boolean shouldRegister() {
-        if (!CCAUtils.isLoad("CCANetworkProtocol", "fabric-api", "*")) return false;
+        if (!CCAUtils.isLoad("CCANetworkProtocol", ModIds.FABRIC_API, "*")) return false;
         if (CCAUtils.isLoad("fabricproxy-lite", "<2.7.0")) {
             CrystalCarpetAdditionMod.LOGGER.warn(
                     "You look like you're using Velocity in Minecraft versions earlier than 1.20.2,"

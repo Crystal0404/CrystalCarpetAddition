@@ -23,6 +23,7 @@ package crystal0404.crystalcarpetaddition.fabric_api;
 import crystal0404.crystalcarpetaddition.fabric_api.event.ClientPlayConnectionEventsJoin;
 import crystal0404.crystalcarpetaddition.fabric_api.event.ServerPlayConnectionEventsJoin;
 import crystal0404.crystalcarpetaddition.utils.CCAUtils;
+import crystal0404.crystalcarpetaddition.utils.ModIds;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayConnectionEvents;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
@@ -30,7 +31,7 @@ import net.fabricmc.loader.api.FabricLoader;
 
 public class FabricAPI {
     public static void init() {
-        if (!CCAUtils.isLoad("fabric-api", "*")) return;
+        if (!CCAUtils.isLoad(ModIds.FABRIC_API, "*")) return;
         if (FabricLoader.getInstance().getEnvironmentType() == EnvType.SERVER) {
             // server
             ServerPlayConnectionEvents.JOIN.register(new ServerPlayConnectionEventsJoin());

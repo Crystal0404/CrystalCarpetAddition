@@ -23,6 +23,7 @@ package crystal0404.crystalcarpetaddition.network;
 import crystal0404.crystalcarpetaddition.network.CCANetworkProtocol.CCANetworkProtocolClient;
 import crystal0404.crystalcarpetaddition.network.CCANetworkProtocol.CCANetworkProtocolServer;
 import crystal0404.crystalcarpetaddition.utils.CCAUtils;
+import crystal0404.crystalcarpetaddition.utils.ModIds;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
 import net.fabricmc.loader.api.FabricLoader;
@@ -31,7 +32,7 @@ public class CCANetwork {
     public final static String PROTOCOL = "cca-network-v2.0";
 
     public static void init() {
-        if (!CCAUtils.isLoad("fabric-api", "*")) return;
+        if (!CCAUtils.isLoad(ModIds.FABRIC_API, "*")) return;
         payloadRegistry();
         if (FabricLoader.getInstance().getEnvironmentType() == EnvType.CLIENT) registerS2C();
         if (FabricLoader.getInstance().getEnvironmentType() == EnvType.SERVER) registerC2S();
