@@ -24,7 +24,7 @@ cca:
         意味着开启活板门不会破坏比较器
 
     EnderDragonPartCanUseEndPortal:
-      name: 末影龙部件可以使用末地传送门
+      name: 末影龙部件可使用末地传送门
       desc: 允许末影龙的部件通过末地传送门
       extra:
         "0": 把末影龙送到主世界需要分几步?
