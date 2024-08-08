@@ -69,8 +69,7 @@ public abstract class LecternBlockMixin extends BlockWithEntity {
             boolean moved,
             CallbackInfo ci
     ) {
-        if (!CCASettings.MagicBox) return;
-        if (!state.isOf(newState.getBlock())) {
+        if (CCASettings.MagicBox) {
             super.onStateReplaced(state, world, pos, newState, moved);
         }
     }
