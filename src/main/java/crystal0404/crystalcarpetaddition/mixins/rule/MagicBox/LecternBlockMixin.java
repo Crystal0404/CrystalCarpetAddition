@@ -50,7 +50,8 @@ public abstract class LecternBlockMixin extends BlockWithEntity {
     private boolean removeOnStateReplacedMixin(
             BlockWithEntity instance,
             BlockState blockState,
-            World world, BlockPos blockPos,
+            World world,
+            BlockPos blockPos,
             BlockState newState,
             boolean b
     ) {
