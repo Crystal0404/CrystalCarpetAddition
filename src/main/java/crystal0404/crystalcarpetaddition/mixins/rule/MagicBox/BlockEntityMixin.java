@@ -39,10 +39,6 @@ public abstract class BlockEntityMixin {
             )
     )
     private boolean initMixin(BlockEntity instance, BlockState blockState) {
-        if ((BlockEntity) ((Object) this) instanceof LecternBlockEntity) {
-            return !CCASettings.MagicBox;
-        } else {
-            return true;
-        }
+        return !(CCASettings.MagicBox && instance instanceof LecternBlockEntity);
     }
 }
