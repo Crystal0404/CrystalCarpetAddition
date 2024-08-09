@@ -23,14 +23,21 @@ package crystal0404.crystalcarpetaddition.mixins.rule.MagicBox;
 import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 import com.llamalad7.mixinextras.sugar.Local;
 import crystal0404.crystalcarpetaddition.CCASettings;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.ShulkerBoxBlock;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.LecternBlockEntity;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.chunk.WorldChunk;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 
 @Mixin(WorldChunk.class)
 public abstract class WorldChunkMixin {
+    @Shadow
+    public abstract BlockState getBlockState(BlockPos pos);
+
     // ME0.5 needs to be modified again
     @ModifyExpressionValue(
             method = "setBlockState",
@@ -40,6 +47,17 @@ public abstract class WorldChunkMixin {
             )
     )
     private boolean setBlockStateMixin(boolean original, @Local(ordinal = 0) BlockEntity blockEntity) {
-        return blockEntity instanceof LecternBlockEntity ? CCASettings.MagicBox || original : original;
+        if (!CCASettings.MagicBox) {
+            return original;
+        }
+
+        if (
+                blockEntity instanceof LecternBlockEntity
+                        && this.getBlockState(blockEntity.getPos()).getBlock() instanceof ShulkerBoxBlock
+        ) {
+            return true;
+        } else {
+            return original;
+        }
     }
 }
