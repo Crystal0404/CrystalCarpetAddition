@@ -22,12 +22,16 @@ package crystal0404.crystalcarpetaddition.mixins.rule.MagicBox;
 
 import com.llamalad7.mixinextras.injector.v2.WrapWithCondition;
 import crystal0404.crystalcarpetaddition.CCASettings;
+import crystal0404.crystalcarpetaddition.utils.ModIds;
+import me.fallenbreath.conditionalmixin.api.annotation.Condition;
+import me.fallenbreath.conditionalmixin.api.annotation.Restriction;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.LecternBlockEntity;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 
+@Restriction(require = @Condition(value = ModIds.MC, versionPredicates = ">=1.21.1"))
 @Mixin(BlockEntity.class)
 public abstract class BlockEntityMixin {
     @WrapWithCondition(

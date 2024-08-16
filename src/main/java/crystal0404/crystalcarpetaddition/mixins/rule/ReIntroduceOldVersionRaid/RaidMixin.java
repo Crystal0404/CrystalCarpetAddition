@@ -20,6 +20,7 @@
 
 package crystal0404.crystalcarpetaddition.mixins.rule.ReIntroduceOldVersionRaid;
 
+import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 import crystal0404.crystalcarpetaddition.CCASettings;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.registry.entry.RegistryEntry;
@@ -44,4 +45,19 @@ public abstract class RaidMixin {
     private RegistryEntry startMixin_getStatusEffect(RegistryEntry original) {
         return CCASettings.ReIntroduceOldVersionRaid ? StatusEffects.BAD_OMEN : original;
     }
+
+    // TODO It will need to be modified in future snapshots
+    // TODO In ME0.5, need to use expression refactoring
+    //#if MC >= 12102
+    @ModifyExpressionValue(
+            method = "findRandomRaidersSpawnLocation",
+            at = @At(
+                    value = "INVOKE",
+                    target = "Lnet/minecraft/util/math/MathHelper;abs(I)I"
+            )
+    )
+    private int findRandomRaidersSpawnLocationMixin(int original) {
+        return CCASettings.ReIntroduceOldVersionRaid ? Integer.MIN_VALUE : original;
+    }
+    //#endif
 }
