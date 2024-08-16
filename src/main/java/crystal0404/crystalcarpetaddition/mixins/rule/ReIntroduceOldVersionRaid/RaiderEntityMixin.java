@@ -82,7 +82,12 @@ public abstract class RaiderEntityMixin extends PatrolEntity {
                         playerEntity = (PlayerEntity) livingEntity;
                     }
                 }
-                if (!itemStack.isEmpty() && ItemStack.areEqual(itemStack, Raid.getOminousBanner(this.getRegistryManager().getWrapperOrThrow(RegistryKeys.BANNER_PATTERN))) && playerEntity != null) {
+                // TODO It will be removed in the future(last mc1.21.x)
+                //#if MC <= 12101
+                //$$  if (!itemStack.isEmpty() && ItemStack.areEqual(itemStack, Raid.getOminousBanner(this.getRegistryManager().getWrapperOrThrow(RegistryKeys.BANNER_PATTERN))) && playerEntity != null) {
+                //#else
+                if (!itemStack.isEmpty() && ItemStack.areEqual(itemStack, Raid.createOminousBanner(this.getRegistryManager().getWrapperOrThrow(RegistryKeys.BANNER_PATTERN))) && playerEntity != null) {
+                //#endif
                     StatusEffectInstance statusEffectInstance = playerEntity.getStatusEffect(StatusEffects.BAD_OMEN);
                     int i = 1;
                     if (statusEffectInstance != null) {

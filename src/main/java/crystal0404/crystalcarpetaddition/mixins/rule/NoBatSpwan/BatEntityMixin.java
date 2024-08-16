@@ -28,12 +28,18 @@ import org.spongepowered.asm.mixin.injection.At;
 
 @Mixin(BatEntity.class)
 public abstract class BatEntityMixin {
-    // This is achieved indirectly by modifying the sea level height
+    // This is achieved indirectly by modifying the sea level height(<=1.21.1)
+    // TODO In ME0.5, need to use expression refactoring
     @ModifyExpressionValue(
             method = "canSpawn",
             at = @At(
                     value = "INVOKE",
-                    target = "Lnet/minecraft/world/WorldAccess;getSeaLevel()I"
+                    //#if MC <= 12101
+                    //$$  target = "Lnet/minecraft/world/WorldAccess;getSeaLevel()I"
+                    //#else
+                    target = "Lnet/minecraft/util/math/BlockPos;getY()I",
+                    ordinal = 1
+                    //#endif
             )
     )
     private static int canSpawnMixin(int original) {
