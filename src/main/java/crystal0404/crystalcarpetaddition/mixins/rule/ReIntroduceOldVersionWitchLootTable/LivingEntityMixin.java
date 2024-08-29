@@ -58,9 +58,16 @@ public abstract class LivingEntityMixin extends Entity {
             Operation<LootTable> original
     ) {
         if ((LivingEntity) ((Object) this) instanceof WitchEntity && CCASettings.ReIntroduceOldVersionWitchLootTable) {
-            RegistryWrapper.Impl<Enchantment> impl = this.getWorld().getRegistryManager().getWrapperOrThrow(
+            // TODO This needs to be cleaned up in the future
+            //#if MC >= 12102
+            RegistryWrapper.Impl<Enchantment> impl = this.getWorld().getRegistryManager().getOrThrow(
                     RegistryKeys.ENCHANTMENT
             );
+            //#else
+            //$$  RegistryWrapper.Impl<Enchantment> impl = this.getWorld().getRegistryManager().getWrapperOrThrow(
+            //$$          RegistryKeys.ENCHANTMENT
+            //$$  );
+            //#endif
             return LootTableUtils.Witch(impl);
         } else {
             return original.call(instance, key);

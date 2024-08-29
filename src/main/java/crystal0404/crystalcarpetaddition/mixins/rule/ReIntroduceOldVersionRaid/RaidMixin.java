@@ -20,17 +20,51 @@
 
 package crystal0404.crystalcarpetaddition.mixins.rule.ReIntroduceOldVersionRaid;
 
+import com.llamalad7.mixinextras.expression.Definition;
+import com.llamalad7.mixinextras.expression.Expression;
 import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
+import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
+import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
+import com.llamalad7.mixinextras.sugar.Local;
 import crystal0404.crystalcarpetaddition.CCASettings;
+import net.minecraft.block.Blocks;
+import net.minecraft.entity.EntityType;
+import net.minecraft.entity.SpawnLocation;
+import net.minecraft.entity.SpawnRestriction;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.registry.entry.RegistryEntry;
+import net.minecraft.server.world.ServerWorld;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.village.raid.Raid;
+import net.minecraft.world.Heightmap;
+import net.minecraft.world.World;
+import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyArg;
 
+import java.util.Optional;
+import java.util.function.Supplier;
+
 @Mixin(Raid.class)
 public abstract class RaidMixin {
+
+    @Shadow
+    @Final
+    private ServerWorld world;
+
+    @Shadow
+    private BlockPos center;
+
+    @Shadow
+    public abstract World getWorld();
+
+    @Shadow
+    private int preRaidTicks;
+
     @ModifyArg(
             method = "start",
             at = @At(
@@ -46,18 +80,97 @@ public abstract class RaidMixin {
         return CCASettings.ReIntroduceOldVersionRaid ? StatusEffects.BAD_OMEN : original;
     }
 
-    // TODO It will need to be modified in future snapshots
-    // TODO In ME0.5, need to use expression refactoring
-    //#if MC >= 12102
-    @ModifyExpressionValue(
-            method = "findRandomRaidersSpawnLocation",
+    @ModifyArg(
+            method = "tick",
             at = @At(
                     value = "INVOKE",
-                    target = "Lnet/minecraft/util/math/MathHelper;abs(I)I"
+                    target = "Ljava/util/Optional;orElseGet(Ljava/util/function/Supplier;)Ljava/lang/Object;"
             )
     )
-    private int findRandomRaidersSpawnLocationMixin(int original) {
-        return CCASettings.ReIntroduceOldVersionRaid ? Integer.MIN_VALUE : original;
+    private Supplier<? extends BlockPos> tickMixin_findRandomRaidersSpawnLocation(
+            Supplier<? extends BlockPos> original,
+            @Local(ordinal = 1) int j
+    ) {
+        return CCASettings.ReIntroduceOldVersionRaid ? () -> this.getRavagerSpawnLocation(j, 20) : original;
     }
-    //#endif
+
+    @Definition(id = "j", local = @Local(type = int.class, ordinal = 1))
+    @Expression("j > 5")
+    @ModifyExpressionValue(
+            method = "tick",
+            at = @At(value = "MIXINEXTRAS:EXPRESSION")
+    )
+    private boolean tickMixin_modifyNumberOfAttempts(boolean original, @Local(ordinal = 1) int j) {
+        return CCASettings.ReIntroduceOldVersionRaid ? j > 3 : original;
+    }
+
+    @WrapOperation(
+            method = "tick",
+            at = @At(
+                    value = "INVOKE",
+                    target = "Lnet/minecraft/village/raid/Raid;getRaidersSpawnLocation()Ljava/util/Optional;"
+            )
+    )
+    private Optional<BlockPos> tickMixin_getRaidersSpawnLocation(
+            Raid instance,
+            Operation<Optional<BlockPos>> original
+    ) {
+        if (CCASettings.ReIntroduceOldVersionRaid) {
+            int j = 0;
+            if (this.preRaidTicks < 100) {
+                j = 1;
+            }
+            return this.preCalculateRavagerSpawnLocation(j);
+        } else {
+            return original.call(instance);
+        }
+    }
+
+    @Unique
+    @SuppressWarnings("deprecation")
+    private BlockPos getRavagerSpawnLocation(int proximity, int tries) {
+        int i = proximity == 0 ? 2 : 2 - proximity;
+        BlockPos.Mutable mutable = new BlockPos.Mutable();
+        SpawnLocation spawnLocation = SpawnRestriction.getLocation(EntityType.RAVAGER);
+
+        for (int j = 0; j < tries; j++) {
+            float f = this.world.random.nextFloat() * (float) (Math.PI * 2);
+            int k = this.center.getX() + MathHelper.floor(MathHelper.cos(f) * 32.0F * (float) i + this.world.random.nextInt(5));
+            int l = this.center.getZ() + MathHelper.floor(MathHelper.sin(f) * 32.0F * (float) i + this.world.random.nextInt(5));
+            int m = this.world.getTopY(Heightmap.Type.WORLD_SURFACE, k, l);
+            mutable.set(k, m, l);
+
+            if (!this.world.isNearOccupiedPointOfInterest(mutable) || proximity >= 2) {
+                if (
+                        this.world.isRegionLoaded(
+                                mutable.getX() - 10,
+                                mutable.getZ() - 10,
+                                mutable.getX() + 10,
+                                mutable.getZ() + 10
+                        )
+                                && this.world.shouldTickEntity(mutable)
+                                && (
+                                spawnLocation.isSpawnPositionOk(this.world, mutable, EntityType.RAVAGER)
+                                        || this.world.getBlockState(mutable.down()).isOf(Blocks.SNOW)
+                                        && this.world.getBlockState(mutable).isAir()
+                        )
+                ) {
+                    return mutable;
+                }
+            }
+        }
+        return null;
+    }
+
+    @Unique
+    private Optional<BlockPos> preCalculateRavagerSpawnLocation(int proximity) {
+        for (int i = 0; i < 3; i++) {
+            BlockPos blockPos = this.getRavagerSpawnLocation(proximity, 1);
+            if (blockPos != null) {
+                return Optional.of(blockPos);
+            }
+        }
+
+        return Optional.empty();
+    }
 }
