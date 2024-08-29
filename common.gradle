@@ -35,9 +35,17 @@ dependencies {
 
 	// dependencies
 	include(modImplementation("me.fallenbreath:conditional-mixin-fabric:${project.conditionalmixin_version}"))
-	include(implementation(annotationProcessor("io.github.llamalad7:mixinextras-fabric:${project.mixinextras_version}")))
 	modImplementation "com.github.gnembon:fabric-carpet:${project.carpet_versions}"
-	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api}"
+
+	final enableFabricAPIInRuntime = false
+	if (enableFabricAPIInRuntime) {
+		modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api}"
+	} else {
+		modCompileOnly "net.fabricmc.fabric-api:fabric-api:${project.fabric_api}"
+	}
+
+	// MixinExtras
+	include(implementation(annotationProcessor("io.github.llamalad7:mixinextras-fabric:${project.mixinextras_version}")))
 }
 
 String MIXIN_CONFIG_PATH = 'cca.mixins.json'
