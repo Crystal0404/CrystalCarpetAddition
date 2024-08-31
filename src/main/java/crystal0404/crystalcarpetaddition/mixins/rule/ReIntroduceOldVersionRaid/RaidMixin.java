@@ -31,6 +31,7 @@ import net.minecraft.block.Blocks;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnLocation;
 import net.minecraft.entity.SpawnRestriction;
+import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.server.world.ServerWorld;
@@ -39,6 +40,7 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.village.raid.Raid;
 import net.minecraft.world.Heightmap;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -51,7 +53,6 @@ import java.util.function.Supplier;
 
 @Mixin(Raid.class)
 public abstract class RaidMixin {
-
     @Shadow
     @Final
     private ServerWorld world;
@@ -72,11 +73,9 @@ public abstract class RaidMixin {
                     target = "Lnet/minecraft/server/network/ServerPlayerEntity;" +
                             "getStatusEffect(Lnet/minecraft/registry/entry/RegistryEntry;)" +
                             "Lnet/minecraft/entity/effect/StatusEffectInstance;"
-            ),
-            index = 0
+            )
     )
-    @SuppressWarnings("rawtypes")
-    private RegistryEntry startMixin_getStatusEffect(RegistryEntry original) {
+    private RegistryEntry<StatusEffect> startMixin_getStatusEffect(RegistryEntry<StatusEffect> original) {
         return CCASettings.ReIntroduceOldVersionRaid ? StatusEffects.BAD_OMEN : original;
     }
 
@@ -98,7 +97,7 @@ public abstract class RaidMixin {
     @Expression("j > 5")
     @ModifyExpressionValue(
             method = "tick",
-            at = @At(value = "MIXINEXTRAS:EXPRESSION")
+            at = @At("MIXINEXTRAS:EXPRESSION")
     )
     private boolean tickMixin_modifyNumberOfAttempts(boolean original, @Local(ordinal = 1) int j) {
         return CCASettings.ReIntroduceOldVersionRaid ? j > 3 : original;
@@ -116,17 +115,15 @@ public abstract class RaidMixin {
             Operation<Optional<BlockPos>> original
     ) {
         if (CCASettings.ReIntroduceOldVersionRaid) {
-            int j = 0;
-            if (this.preRaidTicks < 100) {
-                j = 1;
-            }
-            return this.preCalculateRavagerSpawnLocation(j);
+            return this.preCalculateRavagerSpawnLocation(this.preRaidTicks < 100 ? 1 : 0);
         } else {
             return original.call(instance);
         }
     }
 
+    // from Minecraft-1.21.1
     @Unique
+    @Nullable
     @SuppressWarnings("deprecation")
     private BlockPos getRavagerSpawnLocation(int proximity, int tries) {
         int i = proximity == 0 ? 2 : 2 - proximity;
@@ -135,8 +132,12 @@ public abstract class RaidMixin {
 
         for (int j = 0; j < tries; j++) {
             float f = this.world.random.nextFloat() * (float) (Math.PI * 2);
-            int k = this.center.getX() + MathHelper.floor(MathHelper.cos(f) * 32.0F * (float) i + this.world.random.nextInt(5));
-            int l = this.center.getZ() + MathHelper.floor(MathHelper.sin(f) * 32.0F * (float) i + this.world.random.nextInt(5));
+            int k = this.center.getX() + MathHelper.floor(
+                    MathHelper.cos(f) * 32.0F * (float) i + this.world.random.nextInt(5)
+            );
+            int l = this.center.getZ() + MathHelper.floor(
+                    MathHelper.sin(f) * 32.0F * (float) i + this.world.random.nextInt(5)
+            );
             int m = this.world.getTopY(Heightmap.Type.WORLD_SURFACE, k, l);
             mutable.set(k, m, l);
 
@@ -162,6 +163,7 @@ public abstract class RaidMixin {
         return null;
     }
 
+    // from Minecraft-1.21.1
     @Unique
     private Optional<BlockPos> preCalculateRavagerSpawnLocation(int proximity) {
         for (int i = 0; i < 3; i++) {
@@ -170,7 +172,6 @@ public abstract class RaidMixin {
                 return Optional.of(blockPos);
             }
         }
-
         return Optional.empty();
     }
 }
