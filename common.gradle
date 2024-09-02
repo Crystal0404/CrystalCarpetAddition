@@ -38,10 +38,15 @@ dependencies {
 	modImplementation "com.github.gnembon:fabric-carpet:${project.carpet_versions}"
 
 	final enableFabricAPIInRuntime = false
-	if (enableFabricAPIInRuntime) {
-		modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api}"
-	} else {
-		modCompileOnly "net.fabricmc.fabric-api:fabric-api:${project.fabric_api}"
+	Set<String> apiModules = [
+			"fabric-networking-api-v1"
+	]
+	apiModules.forEach {
+		if (enableFabricAPIInRuntime) {
+			modImplementation(fabricApi.module(it, project.fabric_api))
+		} else {
+			modCompileOnly(fabricApi.module(it, project.fabric_api))
+		}
 	}
 
 	// MixinExtras
