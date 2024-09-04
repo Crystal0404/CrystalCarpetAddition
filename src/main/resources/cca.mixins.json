@@ -24,7 +24,6 @@
     "rule.WhatIsThis.Happy"
   ],
   "injectors": {
-    "defaultRequire": 1,
-    "maxShiftBy": 2
+    "defaultRequire": 1
   }
 }

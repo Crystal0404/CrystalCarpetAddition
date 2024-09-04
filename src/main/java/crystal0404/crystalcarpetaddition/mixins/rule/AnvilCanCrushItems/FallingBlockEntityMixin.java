@@ -20,20 +20,17 @@
 
 package crystal0404.crystalcarpetaddition.mixins.rule.AnvilCanCrushItems;
 
-import com.llamalad7.mixinextras.sugar.Local;
-import com.llamalad7.mixinextras.sugar.ref.LocalRef;
+import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
+import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import crystal0404.crystalcarpetaddition.CCASettings;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.FallingBlockEntity;
-import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.predicate.entity.EntityPredicates;
 import net.minecraft.registry.tag.BlockTags;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.function.Predicate;
 
@@ -42,26 +39,23 @@ public abstract class FallingBlockEntityMixin {
     @Shadow
     private BlockState block;
 
-    @Inject(
+    @WrapOperation(
             method = "handleFallDamage",
             at = @At(
                     value = "INVOKE",
                     target = "Ljava/util/function/Predicate;" +
-                            "and(Ljava/util/function/Predicate;)Ljava/util/function/Predicate;",
-                    shift = At.Shift.BY,
-                    by = 2
+                            "and(Ljava/util/function/Predicate;)Ljava/util/function/Predicate;"
             )
     )
-    private void handleFallDamageMixin(
-            float fallDistance,
-            float damageMultiplier,
-            DamageSource damageSource,
-            CallbackInfoReturnable<Boolean> cir,
-            @Local(ordinal = 0) LocalRef<Predicate<Entity>> predicate
+    private Predicate<Entity> handleFallDamageMixin(
+            Predicate<Entity> instance,
+            Predicate<? super Entity> other,
+            Operation<Predicate<Entity>> original
     ) {
-        predicate.set(
-                CCASettings.AnvilCanCrushItemEntities && this.block.isIn(BlockTags.ANVIL)
-                        ? EntityPredicates.EXCEPT_CREATIVE_OR_SPECTATOR : predicate.get()
-        );
+        if (CCASettings.AnvilCanCrushItemEntities && this.block.isIn(BlockTags.ANVIL)) {
+            return EntityPredicates.EXCEPT_CREATIVE_OR_SPECTATOR;
+        } else {
+            return original.call(instance, other);
+        }
     }
 }
