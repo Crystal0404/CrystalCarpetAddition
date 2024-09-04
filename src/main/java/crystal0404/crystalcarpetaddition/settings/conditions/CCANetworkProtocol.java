@@ -30,7 +30,7 @@ import net.fabricmc.loader.api.FabricLoader;
 public class CCANetworkProtocol implements Rule.Condition {
     @Override
     public boolean shouldRegister() {
-        if (!CCAUtils.isLoad("CCANetworkProtocol", ModIds.FABRIC_API, "*")) return false;
+        if (!CCAUtils.isLoad("CCANetworkProtocol", ModIds.FABRIC_NETWORK_API, "*")) return false;
         if (CCAUtils.isLoad("fabricproxy-lite", "<2.7.0")) {
             CrystalCarpetAdditionMod.LOGGER.warn(
                     "You look like you're using Velocity in Minecraft versions earlier than 1.20.2,"
