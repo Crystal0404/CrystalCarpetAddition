@@ -20,9 +20,6 @@
 
 package crystal0404.crystalcarpetaddition.mixins.rule.ReIntroduceOldVersionRaid;
 
-import com.llamalad7.mixinextras.expression.Definition;
-import com.llamalad7.mixinextras.expression.Expression;
-import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import com.llamalad7.mixinextras.sugar.Local;
@@ -46,7 +43,9 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Constant;
 import org.spongepowered.asm.mixin.injection.ModifyArg;
+import org.spongepowered.asm.mixin.injection.ModifyConstant;
 
 import java.util.Optional;
 import java.util.function.Supplier;
@@ -93,14 +92,15 @@ public abstract class RaidMixin {
         return CCASettings.ReIntroduceOldVersionRaid ? () -> this.getRavagerSpawnLocation(j, 20) : original;
     }
 
-    @Definition(id = "j", local = @Local(type = int.class, ordinal = 1))
-    @Expression("j > 5")
-    @ModifyExpressionValue(
+    @ModifyConstant(
             method = "tick",
-            at = @At("MIXINEXTRAS:EXPRESSION")
+            constant = @Constant(
+                    intValue = 5,
+                    ordinal = 1
+            )
     )
-    private boolean tickMixin_modifyNumberOfAttempts(boolean original, @Local(ordinal = 1) int j) {
-        return CCASettings.ReIntroduceOldVersionRaid ? j > 3 : original;
+    private int tickMixin_modifyNumberOfAttempts(int original) {
+        return CCASettings.ReIntroduceOldVersionRaid ? 3 : original;
     }
 
     @WrapOperation(
