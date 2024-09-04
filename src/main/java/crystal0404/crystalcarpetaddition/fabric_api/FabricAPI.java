@@ -31,7 +31,7 @@ import net.fabricmc.loader.api.FabricLoader;
 
 public class FabricAPI {
     public static void init() {
-        if (!CCAUtils.isLoad(ModIds.FABRIC_API, "*")) return;
+        if (!CCAUtils.isLoad(ModIds.FABRIC_NETWORK_API, "*")) return;
         if (FabricLoader.getInstance().getEnvironmentType() == EnvType.SERVER) {
             // server
             ServerPlayConnectionEvents.JOIN.register(new ServerPlayConnectionEventsJoin());

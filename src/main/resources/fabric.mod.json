@@ -40,6 +40,6 @@
     "mixinextras": ">=${mixinextras_dependency}"
   },
   "recommends": {
-    "fabric-api": "*"
+    "fabric-networking-api-v1": "*"
   }
 }
