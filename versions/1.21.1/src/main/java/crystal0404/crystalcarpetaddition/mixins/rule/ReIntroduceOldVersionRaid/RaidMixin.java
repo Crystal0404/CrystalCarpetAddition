@@ -21,6 +21,7 @@
 package crystal0404.crystalcarpetaddition.mixins.rule.ReIntroduceOldVersionRaid;
 
 import crystal0404.crystalcarpetaddition.CCASettings;
+import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.village.raid.Raid;
@@ -37,11 +38,9 @@ public abstract class RaidMixin {
                     target = "Lnet/minecraft/server/network/ServerPlayerEntity;" +
                             "getStatusEffect(Lnet/minecraft/registry/entry/RegistryEntry;)" +
                             "Lnet/minecraft/entity/effect/StatusEffectInstance;"
-            ),
-            index = 0
+            )
     )
-    @SuppressWarnings("rawtypes")
-    private RegistryEntry startMixin_getStatusEffect(RegistryEntry original) {
+    private RegistryEntry<StatusEffect> startMixin_getStatusEffect(RegistryEntry<StatusEffect> original) {
         return CCASettings.ReIntroduceOldVersionRaid ? StatusEffects.BAD_OMEN : original;
     }
 }
