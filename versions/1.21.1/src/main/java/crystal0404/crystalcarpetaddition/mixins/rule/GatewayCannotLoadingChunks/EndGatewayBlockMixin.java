@@ -20,14 +20,28 @@
 
 package crystal0404.crystalcarpetaddition.mixins.rule.GatewayCannotLoadingChunks;
 
-import crystal0404.crystalcarpetaddition.utils.ModIds;
-import me.fallenbreath.conditionalmixin.api.annotation.Condition;
-import me.fallenbreath.conditionalmixin.api.annotation.Restriction;
+import crystal0404.crystalcarpetaddition.CCASettings;
 import net.minecraft.block.EndGatewayBlock;
+import net.minecraft.world.TeleportTarget;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.ModifyArg;
 
-@Restriction(conflict = @Condition(ModIds.MC))
 @Mixin(EndGatewayBlock.class)
 public abstract class EndGatewayBlockMixin {
-    //TODO WTF????
+    @ModifyArg(
+            method = "createTeleportTarget",
+            at = @At(
+                    value = "INVOKE",
+                    target = "Lnet/minecraft/world/TeleportTarget;<init>(Lnet/minecraft/server/world/ServerWorld;" +
+                            "Lnet/minecraft/util/math/Vec3d;Lnet/minecraft/util/math/Vec3d;" +
+                            "FFLnet/minecraft/world/TeleportTarget$PostDimensionTransition;)V"
+            ),
+            index = 5
+    )
+    private TeleportTarget.PostDimensionTransition createTeleportTargetMixin(
+            TeleportTarget.PostDimensionTransition original
+    ) {
+        return CCASettings.GatewayCannotLoadingChunks ? TeleportTarget.NO_OP : original;
+    }
 }
