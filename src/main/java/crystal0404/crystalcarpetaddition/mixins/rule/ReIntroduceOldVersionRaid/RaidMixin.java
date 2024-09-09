@@ -89,7 +89,7 @@ public abstract class RaidMixin {
             Supplier<? extends BlockPos> original,
             @Local(ordinal = 1) int j
     ) {
-        return CCASettings.ReIntroduceOldVersionRaid ? () -> this.getRavagerSpawnLocation(j, 20) : original;
+        return CCASettings.ReIntroduceOldVersionRaid ? () -> this.cca$getRavagerSpawnLocation(j, 20) : original;
     }
 
     @ModifyConstant(
@@ -115,7 +115,7 @@ public abstract class RaidMixin {
             Operation<Optional<BlockPos>> original
     ) {
         if (CCASettings.ReIntroduceOldVersionRaid) {
-            return this.preCalculateRavagerSpawnLocation(this.preRaidTicks < 100 ? 1 : 0);
+            return this.cca$preCalculateRavagerSpawnLocation(this.preRaidTicks < 100 ? 1 : 0);
         } else {
             return original.call(instance);
         }
@@ -125,7 +125,7 @@ public abstract class RaidMixin {
     @Unique
     @Nullable
     @SuppressWarnings("deprecation")
-    private BlockPos getRavagerSpawnLocation(int proximity, int tries) {
+    private BlockPos cca$getRavagerSpawnLocation(int proximity, int tries) {
         int i = proximity == 0 ? 2 : 2 - proximity;
         BlockPos.Mutable mutable = new BlockPos.Mutable();
         SpawnLocation spawnLocation = SpawnRestriction.getLocation(EntityType.RAVAGER);
@@ -165,9 +165,9 @@ public abstract class RaidMixin {
 
     // from Minecraft-1.21.1
     @Unique
-    private Optional<BlockPos> preCalculateRavagerSpawnLocation(int proximity) {
+    private Optional<BlockPos> cca$preCalculateRavagerSpawnLocation(int proximity) {
         for (int i = 0; i < 3; i++) {
-            BlockPos blockPos = this.getRavagerSpawnLocation(proximity, 1);
+            BlockPos blockPos = this.cca$getRavagerSpawnLocation(proximity, 1);
             if (blockPos != null) {
                 return Optional.of(blockPos);
             }
