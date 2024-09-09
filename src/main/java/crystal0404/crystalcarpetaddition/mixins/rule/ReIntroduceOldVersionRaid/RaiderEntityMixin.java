@@ -42,19 +42,20 @@ import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(RaiderEntity.class)
 public abstract class RaiderEntityMixin extends PatrolEntity {
-    @Shadow
-    @Nullable
-    public abstract Raid getRaid();
-
     protected RaiderEntityMixin(EntityType<? extends PatrolEntity> entityType, World world) {
         super(entityType, world);
     }
+
+    @Shadow
+    @Nullable
+    public abstract Raid getRaid();
 
     @Inject(
             method = "onDeath",
@@ -63,46 +64,69 @@ public abstract class RaiderEntityMixin extends PatrolEntity {
                     target = "Lnet/minecraft/entity/mob/PatrolEntity;onDeath(Lnet/minecraft/entity/damage/DamageSource;)V"
             )
     )
-    @SuppressWarnings("all")
     private void onDeathMixin(DamageSource damageSource, CallbackInfo ci) {
-        if (!CCASettings.ReIntroduceOldVersionRaid) return;
-        if (this.getWorld() instanceof ServerWorld) {
-            Entity entity = damageSource.getAttacker();
-            Raid raid = this.getRaid();
-            if (this.isPatrolLeader() && raid == null && ((ServerWorld) this.getWorld()).getRaidAt(this.getBlockPos()) == null) {
-                ItemStack itemStack = this.getEquippedStack(EquipmentSlot.HEAD);
-                PlayerEntity playerEntity = null;
-                Entity entity2 = entity;
-                if (entity2 instanceof PlayerEntity) {
-                    playerEntity = (PlayerEntity) entity2;
-                } else if (entity2 instanceof WolfEntity) {
-                    WolfEntity wolfEntity = (WolfEntity) entity2;
-                    LivingEntity livingEntity = wolfEntity.getOwner();
-                    if (wolfEntity.isTamed() && livingEntity instanceof PlayerEntity) {
-                        playerEntity = (PlayerEntity) livingEntity;
-                    }
+        // The injection point is not exact, so check the world again
+        if (!CCASettings.ReIntroduceOldVersionRaid || !(this.getWorld() instanceof ServerWorld)) return;
+
+        if (
+                this.isPatrolLeader()
+                        && this.getRaid() == null
+                        && ((ServerWorld) this.getWorld()).getRaidAt(this.getBlockPos()) == null
+        ) {
+            ItemStack itemStack = this.getEquippedStack(EquipmentSlot.HEAD);
+            PlayerEntity playerEntity = this.cca$getPlayerEntity(damageSource.getAttacker());
+            if (
+                    !itemStack.isEmpty()
+                            && this.cca$hasBanner(itemStack)
+                            && playerEntity != null
+            ) {
+                StatusEffectInstance statusEffectInstance = playerEntity.getStatusEffect(StatusEffects.BAD_OMEN);
+                int i = 1;
+                if (statusEffectInstance != null) {
+                    i += statusEffectInstance.getAmplifier();
+                    playerEntity.removeStatusEffectInternal(StatusEffects.BAD_OMEN);
+                } else {
+                    i--;
                 }
-                // TODO It will be removed in the future(last mc1.21.x)
-                //#if MC <= 12101
-                //$$  if (!itemStack.isEmpty() && ItemStack.areEqual(itemStack, Raid.getOminousBanner(this.getRegistryManager().getWrapperOrThrow(RegistryKeys.BANNER_PATTERN))) && playerEntity != null) {
-                //#else
-                if (!itemStack.isEmpty() && ItemStack.areEqual(itemStack, Raid.createOminousBanner(this.getRegistryManager().getOrThrow(RegistryKeys.BANNER_PATTERN))) && playerEntity != null) {
-                //#endif
-                    StatusEffectInstance statusEffectInstance = playerEntity.getStatusEffect(StatusEffects.BAD_OMEN);
-                    int i = 1;
-                    if (statusEffectInstance != null) {
-                        i += statusEffectInstance.getAmplifier();
-                        playerEntity.removeStatusEffectInternal(StatusEffects.BAD_OMEN);
-                    } else {
-                        --i;
-                    }
-                    i = MathHelper.clamp(i, 0, 4);
-                    StatusEffectInstance statusEffectInstance2 = new StatusEffectInstance(StatusEffects.BAD_OMEN, 120000, i, false, false, true);
-                    if (!this.getWorld().getGameRules().getBoolean(GameRules.DISABLE_RAIDS)) {
-                        playerEntity.addStatusEffect(statusEffectInstance2);
-                    }
+                StatusEffectInstance statusEffectInstance2 = new StatusEffectInstance(
+                        StatusEffects.BAD_OMEN,
+                        120000,
+                        MathHelper.clamp(i, 0, 4),
+                        false,
+                        false,
+                        true
+                );
+                if (!this.getWorld().getGameRules().getBoolean(GameRules.DISABLE_RAIDS)) {
+                    playerEntity.addStatusEffect(statusEffectInstance2);
                 }
             }
         }
+    }
+
+    @Unique
+    @Nullable
+    private PlayerEntity cca$getPlayerEntity(Entity entity) {
+        if (entity instanceof PlayerEntity) {
+            return (PlayerEntity) entity;
+        } else if (entity instanceof WolfEntity wolfEntity) {
+            LivingEntity livingEntity = wolfEntity.getOwner();
+            if (wolfEntity.isTamed() && livingEntity instanceof PlayerEntity) {
+                return (PlayerEntity) livingEntity;
+            }
+        }
+        return null;
+    }
+
+    @Unique
+    private boolean cca$hasBanner(ItemStack itemStack) {
+        // TODO The future needs to be cleaned this
+        return ItemStack.areEqual(
+                itemStack,
+                //#if MC >= 12102
+                Raid.createOminousBanner(this.getRegistryManager().getOrThrow(RegistryKeys.BANNER_PATTERN))
+                //#else
+                //$$  Raid.getOminousBanner(this.getRegistryManager().getWrapperOrThrow(RegistryKeys.BANNER_PATTERN))
+                //#endif
+        );
     }
 }

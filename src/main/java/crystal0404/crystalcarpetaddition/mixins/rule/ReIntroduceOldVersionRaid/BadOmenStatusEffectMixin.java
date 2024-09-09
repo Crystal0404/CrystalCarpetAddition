@@ -41,16 +41,15 @@ public abstract class BadOmenStatusEffectMixin {
     )
     private void applyUpdateEffectMixin(LivingEntity entity, int amplifier, CallbackInfoReturnable<Boolean> cir) {
         if (!CCASettings.ReIntroduceOldVersionRaid) return;
-        ServerPlayerEntity serverPlayerEntity;
-        if (entity instanceof ServerPlayerEntity && !(serverPlayerEntity = (ServerPlayerEntity) entity).isSpectator()) {
-            cir.setReturnValue(this.tryStartRaid(serverPlayerEntity, serverPlayerEntity.getServerWorld()));
+        if (entity instanceof ServerPlayerEntity serverPlayerEntity && !serverPlayerEntity.isSpectator()) {
+            cir.setReturnValue(this.cca$tryStartRaid(serverPlayerEntity, serverPlayerEntity.getServerWorld()));
         } else {
             cir.setReturnValue(true);
         }
     }
 
     @Unique
-    private boolean tryStartRaid(ServerPlayerEntity player, ServerWorld world) {
+    private boolean cca$tryStartRaid(ServerPlayerEntity player, ServerWorld world) {
         BlockPos pos = player.getBlockPos();
         if (world.getDifficulty() != Difficulty.PEACEFUL && world.isNearOccupiedPointOfInterest(pos)) {
             return world.getRaidManager().startRaid(player, pos) == null;
