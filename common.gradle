@@ -37,7 +37,7 @@ dependencies {
 	include(modImplementation("me.fallenbreath:conditional-mixin-fabric:${project.conditionalmixin_version}"))
 	modImplementation "com.github.gnembon:fabric-carpet:${project.carpet_versions}"
 
-	final enableFabricAPIInRuntime = false
+	final boolean enableFabricAPIInRuntime = false
 	Set<String> apiModules = [
 			"fabric-networking-api-v1"
 	]

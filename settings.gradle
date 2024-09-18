@@ -3,10 +3,6 @@ import groovy.json.JsonSlurper
 pluginManagement {
 	repositories {
 		maven {
-			name = 'Fabric'
-			url = 'https://maven.fabricmc.net/'
-		}
-		maven {
 			name = 'Ali'
 			url = 'https://maven.aliyun.com/repository/gradle-plugin'
 		}
@@ -16,6 +12,10 @@ pluginManagement {
 		}
 		mavenCentral()
 		gradlePluginPortal()
+		maven {
+			name = 'Fabric'
+			url = 'https://maven.fabricmc.net/'
+		}
 	}
 	resolutionStrategy {
 		eachPlugin {
