@@ -39,7 +39,15 @@ public abstract class BadOmenStatusEffectMixin {
             at = @At("HEAD"),
             cancellable = true
     )
-    private void applyUpdateEffectMixin(LivingEntity entity, int amplifier, CallbackInfoReturnable<Boolean> cir) {
+    private void applyUpdateEffectMixin(
+            // TODO The future needs to be cleaned this
+            //#if MC >= 12102
+            ServerWorld serverWorld,
+            //#endif
+            LivingEntity entity,
+            int amplifier,
+            CallbackInfoReturnable<Boolean> cir
+    ) {
         if (!CCASettings.ReIntroduceOldVersionRaid) return;
         if (entity instanceof ServerPlayerEntity serverPlayerEntity && !serverPlayerEntity.isSpectator()) {
             cir.setReturnValue(this.cca$tryStartRaid(serverPlayerEntity, serverPlayerEntity.getServerWorld()));
