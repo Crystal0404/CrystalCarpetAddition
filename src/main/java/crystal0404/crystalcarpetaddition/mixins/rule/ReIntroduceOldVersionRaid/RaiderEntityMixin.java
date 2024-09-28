@@ -96,7 +96,14 @@ public abstract class RaiderEntityMixin extends PatrolEntity {
                         false,
                         true
                 );
-                if (!this.getWorld().getGameRules().getBoolean(GameRules.DISABLE_RAIDS)) {
+                if (
+                        // TODO The future needs to be cleaned this
+                        //#if MC >= 12102
+                        !((ServerWorld) this.getWorld()).getGameRules().getBoolean(GameRules.DISABLE_RAIDS)
+                        //#else
+                        //$$  !this.getWorld().getGameRules().getBoolean(GameRules.DISABLE_RAIDS)
+                        //#endif
+                ) {
                     playerEntity.addStatusEffect(statusEffectInstance2);
                 }
             }
