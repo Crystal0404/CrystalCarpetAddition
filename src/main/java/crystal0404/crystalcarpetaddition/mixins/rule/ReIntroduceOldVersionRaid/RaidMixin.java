@@ -20,6 +20,7 @@
 
 package crystal0404.crystalcarpetaddition.mixins.rule.ReIntroduceOldVersionRaid;
 
+import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import com.llamalad7.mixinextras.sugar.Local;
@@ -92,10 +93,11 @@ public abstract class RaidMixin {
         return CCASettings.ReIntroduceOldVersionRaid ? () -> this.cca$getRavagerSpawnLocation(j, 20) : original;
     }
 
-    @ModifyConstant(
+    @ModifyExpressionValue(
             method = "tick",
-            constant = @Constant(
-                    intValue = 5,
+            at = @At(
+                    value = "CONSTANT",
+                    args = "intValue=5",
                     ordinal = 1
             )
     )
