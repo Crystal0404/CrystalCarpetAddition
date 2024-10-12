@@ -7,15 +7,15 @@ pluginManagement {
 			url = 'https://maven.aliyun.com/repository/gradle-plugin'
 		}
 		maven {
+			name = 'Fabric'
+			url = 'https://maven.fabricmc.net/'
+		}
+		maven {
 			name = 'Jitpack'
 			url = 'https://jitpack.io'
 		}
 		mavenCentral()
 		gradlePluginPortal()
-		maven {
-			name = 'Fabric'
-			url = 'https://maven.fabricmc.net/'
-		}
 	}
 	resolutionStrategy {
 		eachPlugin {
