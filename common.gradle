@@ -128,7 +128,7 @@ version = fullProjectVersion
 processResources {
 	inputs.property "id", project.mod_id
 	inputs.property "name", project.mod_name
-	inputs.property "version", finalModVersion
+	inputs.property "version", fullModVersion
 	inputs.property "minecraft_dependency", project.minecraft_dependency
 	inputs.property "mixinextras_dependency", project.mixinextras_version
 	inputs.property "conditional_mixin_dependency", project.conditionalmixin_version
@@ -138,7 +138,7 @@ processResources {
 		def valueMap = [
 				"id": project.mod_id,
 				"name": project.mod_name,
-				"version": finalModVersion,
+				"version": fullModVersion,
 				"minecraft_dependency": project.minecraft_dependency,
 				"mixinextras_dependency": project.mixinextras_version,
 				"conditional_mixin_dependency": project.conditionalmixin_version,
