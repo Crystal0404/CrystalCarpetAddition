@@ -5,6 +5,10 @@
 
   *中文* / [English](https://github.com/Crystal0404/CrystalCarpetAddition/blob/master/README_EN_US.md) 
 
+  > [!NOTE]
+  > 
+  > CCA已进入维护模式. 除了更新至最新的Minecraft版本外, 仅修复Bug, 不添加新功能.
+
   *经过数次跳票，终于做出来了!*
 
   这是一个Carpet的拓展, 包含一些有趣的功能, 默认所有规则设置均与Minecraft原版一致, 不会产生任何变化与影响
