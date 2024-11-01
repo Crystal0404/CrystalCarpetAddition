@@ -5,6 +5,10 @@
     
   [中文](https://github.com/Crystal0404/CrystalCarpetAddition) / *English*
 
+  > [!NOTE]
+  >
+  > CCA has entered maintenance mode. except for updating to the latest Minecraft version, only fixes bugs, does not add new features.
+
   *I have finally completed it!*
 
   A [Carpet mod](https://github.com/gnembon/fabric-carpet) (fabric-carpet) extension. There are some interesting features, The default settings will not have any impact on Minecraft.
