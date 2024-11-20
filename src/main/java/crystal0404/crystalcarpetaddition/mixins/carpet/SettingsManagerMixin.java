@@ -20,10 +20,15 @@
 
 package crystal0404.crystalcarpetaddition.mixins.carpet;
 
+import carpet.api.settings.CarpetRule;
 import carpet.api.settings.SettingsManager;
 import carpet.utils.Messenger;
 import carpet.utils.TranslationKeys;
+import com.llamalad7.mixinextras.injector.v2.WrapWithCondition;
+import com.llamalad7.mixinextras.sugar.Local;
+import crystal0404.crystalcarpetaddition.CCAExtension;
 import crystal0404.crystalcarpetaddition.CrystalCarpetAdditionMod;
+import crystal0404.crystalcarpetaddition.utils.AnnotationProcessor;
 import crystal0404.crystalcarpetaddition.utils.ModIds;
 import me.fallenbreath.conditionalmixin.api.annotation.Condition;
 import me.fallenbreath.conditionalmixin.api.annotation.Restriction;
@@ -32,9 +37,12 @@ import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Coerce;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+import java.lang.reflect.Field;
+import java.util.Map;
 import java.util.Objects;
 
 import static carpet.utils.Translations.tr;
@@ -46,6 +54,7 @@ public abstract class SettingsManagerMixin {
     @Final
     private String fancyName;
 
+    // show version
     @Inject(
             method = "listAllSettings",
             at = @At(
@@ -64,5 +73,31 @@ public abstract class SettingsManagerMixin {
             );
             Messenger.m(source, msg);
         }
+    }
+
+    // my custom annotation handling
+    @WrapWithCondition(
+            method = "parseSettingsClass",
+            at = @At(
+                    value = "INVOKE",
+                    target = "Ljava/util/Map;put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;"
+            ),
+            remap = false
+    )
+    private boolean parseSettingsClassMixin_shouldRegister(
+            Map<String, CarpetRule<?>> instance,
+            @Coerce Object k,
+            @Coerce Object v,
+            @Local(ordinal = 0) Field field
+    ) {
+        if ((Object) this == CCAExtension.CCASettingsManager) {
+            crystal0404.crystalcarpetaddition.api.annotation.Restriction restriction = field.getAnnotation(
+                    crystal0404.crystalcarpetaddition.api.annotation.Restriction.class
+            );
+            if (restriction != null) {
+                return AnnotationProcessor.shouldRegister(restriction);
+            }
+        }
+        return true;
     }
 }
