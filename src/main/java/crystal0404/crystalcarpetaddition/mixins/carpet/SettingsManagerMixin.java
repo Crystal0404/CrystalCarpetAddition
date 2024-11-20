@@ -28,7 +28,7 @@ import com.llamalad7.mixinextras.injector.v2.WrapWithCondition;
 import com.llamalad7.mixinextras.sugar.Local;
 import crystal0404.crystalcarpetaddition.CCAExtension;
 import crystal0404.crystalcarpetaddition.CrystalCarpetAdditionMod;
-import crystal0404.crystalcarpetaddition.utils.AnnotationProcessor;
+import crystal0404.crystalcarpetaddition.utils.annotation.impl.AnnotationProcessor;
 import crystal0404.crystalcarpetaddition.utils.ModIds;
 import me.fallenbreath.conditionalmixin.api.annotation.Condition;
 import me.fallenbreath.conditionalmixin.api.annotation.Restriction;
@@ -91,8 +91,8 @@ public abstract class SettingsManagerMixin {
             @Local(ordinal = 0) Field field
     ) {
         if ((Object) this == CCAExtension.CCASettingsManager) {
-            crystal0404.crystalcarpetaddition.api.annotation.Restriction restriction = field.getAnnotation(
-                    crystal0404.crystalcarpetaddition.api.annotation.Restriction.class
+            crystal0404.crystalcarpetaddition.utils.annotation.Restriction restriction = field.getAnnotation(
+                    crystal0404.crystalcarpetaddition.utils.annotation.Restriction.class
             );
             if (restriction != null) {
                 return AnnotationProcessor.shouldRegister(restriction);
