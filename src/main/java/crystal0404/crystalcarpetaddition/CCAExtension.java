@@ -28,7 +28,7 @@ import carpet.utils.Translations;
 import java.util.Map;
 
 public class CCAExtension implements CarpetExtension {
-    private static final SettingsManager CCASettingsManager = new SettingsManager(
+    public static final SettingsManager CCASettingsManager = new SettingsManager(
             CrystalCarpetAdditionMod.version,
             CrystalCarpetAdditionMod.MOD_ID,
             CrystalCarpetAdditionMod.MOD_NAME
