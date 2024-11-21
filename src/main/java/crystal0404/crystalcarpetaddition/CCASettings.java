@@ -83,11 +83,11 @@ public class CCASettings {
     public static boolean NoBatSpawn = false;
 
     @Rule(
-            //#if MC > 12100
-            categories = {CCA, MC_TWEAKS}
-            //#else
+            //#if MC >= 12005 && MC <= 12006
             //$$ categories = {CCA, MC_TWEAKS},
             //$$ conditions = crystal0404.crystalcarpetaddition.utils.CCAUtils.EnableMagicSetting.class
+            //#else
+            categories = {CCA, MC_TWEAKS}
             //#endif
     )
     @Restriction(require = @Condition(value = ModIds.MC, versionPredicates = ">=1.20.5"))
