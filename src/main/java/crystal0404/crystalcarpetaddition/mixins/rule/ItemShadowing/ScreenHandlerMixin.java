@@ -40,7 +40,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
         conflict = {
                 @Condition(ModIds.ANTI_SHADOW_PATCH),
                 @Condition(ModIds.CARPET_FX),
-                @Condition(ModIds.ANTI_SHADOW_PATCH)
+                @Condition(ModIds.CARPET_SHADOW)
         }
 )
 @Mixin(ScreenHandler.class)
