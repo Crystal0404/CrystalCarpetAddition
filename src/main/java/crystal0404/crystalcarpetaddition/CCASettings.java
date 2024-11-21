@@ -75,8 +75,8 @@ public class CCASettings {
     @Rule(categories = {CCA, MC_TWEAKS})
     public static boolean MagicBox = false;
     //#else
-    //$$  @Rule(categories = {CCA, MC_TWEAKS})
-    //$$  public static boolean MagicBox = true;
+    //$$ @Rule(categories = {CCA, MC_TWEAKS})
+    //$$ public static boolean MagicBox = true;
     //#endif
 
     @Rule(categories = {CCA, MC_TWEAKS})
@@ -86,8 +86,8 @@ public class CCASettings {
             //#if MC > 12100
             categories = {CCA, MC_TWEAKS}
             //#else
-            //$$  categories = {CCA, MC_TWEAKS},
-            //$$  conditions = crystal0404.crystalcarpetaddition.utils.CCAUtils.EnableMagicSetting.class
+            //$$ categories = {CCA, MC_TWEAKS},
+            //$$ conditions = crystal0404.crystalcarpetaddition.utils.CCAUtils.EnableMagicSetting.class
             //#endif
     )
     @Restriction(require = @Condition(value = ModIds.MC, versionPredicates = ">=1.20.5"))

@@ -64,9 +64,9 @@ public abstract class LivingEntityMixin extends Entity {
                     RegistryKeys.ENCHANTMENT
             );
             //#else
-            //$$  RegistryWrapper.Impl<Enchantment> impl = this.getWorld().getRegistryManager().getWrapperOrThrow(
-            //$$          RegistryKeys.ENCHANTMENT
-            //$$  );
+            //$$ RegistryWrapper.Impl<Enchantment> impl = this.getWorld().getRegistryManager().getWrapperOrThrow(
+            //$$         RegistryKeys.ENCHANTMENT
+            //$$ );
             //#endif
             return LootTableUtils.Witch(impl);
         } else {
