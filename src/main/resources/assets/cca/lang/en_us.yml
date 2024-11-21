@@ -50,13 +50,6 @@ cca:
     ReIntroduceOldVersionRaid:
       name: ReIntroduceOldVersionRaid
       desc: I can't afford to lose my money printing machine
-      extra:
-        "0": It actually does several things
-        "1": 1. When the player (or player's dog) kills have flag's pillager, the player gains the Bad Omen effect
-        "2": 2. Re-added Raid triggered directly by Bad Omen
-        "3": 3. Disables the player from being transformed from an Bad Omen to Raid Omen when they are close to a village
-        "4": 4. Changed the effect that needs to be detected before start raid from Raid Omen to Bad Omen
-        "5": Other mods that rely on the 1.21+ raid mechanic may not work
 
     ReIntroduceOldVersionWitchLootTable:
       name: ReIntroduceOldVersionWitchLootTable
