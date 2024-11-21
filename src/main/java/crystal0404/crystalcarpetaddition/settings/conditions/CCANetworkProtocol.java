@@ -23,14 +23,13 @@ package crystal0404.crystalcarpetaddition.settings.conditions;
 import carpet.api.settings.Rule;
 import crystal0404.crystalcarpetaddition.CrystalCarpetAdditionMod;
 import crystal0404.crystalcarpetaddition.utils.CCAUtils;
-import crystal0404.crystalcarpetaddition.utils.ModIds;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.loader.api.FabricLoader;
 
 public class CCANetworkProtocol implements Rule.Condition {
     @Override
     public boolean shouldRegister() {
-        if (!CCAUtils.isLoad("CCANetworkProtocol", ModIds.FABRIC_NETWORK_API, "*")) return false;
+        if (FabricLoader.getInstance().getEnvironmentType() == EnvType.CLIENT) return false;
         if (CCAUtils.isLoad("fabricproxy-lite", "<2.7.0")) {
             CrystalCarpetAdditionMod.LOGGER.warn(
                     "You look like you're using Velocity in Minecraft versions earlier than 1.20.2,"
@@ -44,10 +43,6 @@ public class CCANetworkProtocol implements Rule.Condition {
                             + "CCANetworkProtocol may not work properly,"
                             + "please consider switching to Velocity or disabling CCANetworkProtocol"
             );
-        }
-        if (FabricLoader.getInstance().getEnvironmentType() == EnvType.CLIENT) {
-            CrystalCarpetAdditionMod.LOGGER.warn("[CCA] Rule \"CCANetworkProtocol\" is disabled, Because it doesn't run on the client!");
-            return false;
         }
         return true;
     }

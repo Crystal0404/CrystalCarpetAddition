@@ -95,7 +95,7 @@ public abstract class SettingsManagerMixin {
                     crystal0404.crystalcarpetaddition.utils.annotation.Restriction.class
             );
             if (restriction != null) {
-                return AnnotationProcessor.shouldRegister(restriction);
+                return AnnotationProcessor.shouldRegister(restriction, (String) k);
             }
         }
         return true;
