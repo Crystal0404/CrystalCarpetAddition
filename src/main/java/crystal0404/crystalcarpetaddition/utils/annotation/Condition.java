@@ -26,7 +26,9 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * Currently for internal use only!
+ * used to control whether a rule should be registered,
+ * currently for internal use only
+ * <p> see {@link crystal0404.crystalcarpetaddition.CCASettings} </p>
  */
 @Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)
