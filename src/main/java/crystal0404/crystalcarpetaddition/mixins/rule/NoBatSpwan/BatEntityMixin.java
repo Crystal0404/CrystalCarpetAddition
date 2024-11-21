@@ -35,7 +35,7 @@ public abstract class BatEntityMixin {
             at = @At(
                     value = "INVOKE",
                     //#if MC <= 12101
-                    //$$  target = "Lnet/minecraft/world/WorldAccess;getSeaLevel()I"
+                    //$$ target = "Lnet/minecraft/world/WorldAccess;getSeaLevel()I"
                     //#else
                     target = "Lnet/minecraft/util/math/BlockPos;getY()I",
                     ordinal = 1

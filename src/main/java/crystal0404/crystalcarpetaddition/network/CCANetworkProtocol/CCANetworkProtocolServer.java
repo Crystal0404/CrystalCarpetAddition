@@ -96,7 +96,7 @@ public class CCANetworkProtocolServer {
         //#if MC > 12006
         public static final CustomPayload.Id<MOD> ID = new Id<>(Identifier.of(CCANetwork.PROTOCOL, "mod"));
         //#else
-        //$$  public static final CustomPayload.Id<MOD> ID = new Id<>(new Identifier(CCANetwork.PROTOCOL, "mod"));
+        //$$ public static final CustomPayload.Id<MOD> ID = new Id<>(new Identifier(CCANetwork.PROTOCOL, "mod"));
         //#endif
         public static final PacketCodec<RegistryByteBuf, MOD> CODEC = PacketCodecs.STRING.xmap(MOD::new, MOD::data).cast();
 
