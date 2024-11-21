@@ -22,13 +22,30 @@ package crystal0404.crystalcarpetaddition.utils;
 
 @SuppressWarnings("unused")
 public final class ModIds {
+    // https://github.com/ForwarD-NerN/AntiShadowPatch
     public static final String ANTI_SHADOW_PATCH = "antishadowpatch";
+
+    // https://github.com/gnembon/fabric-carpet
     public static final String CARPET = "carpet";
+
+    // https://github.com/FxMorin/carpet-fixes
     public static final String CARPET_FX = "carpet-fixes";
+
+    // https://github.com/mattymatty97/carpet-shadow
     public static final String CARPET_SHADOW = "carpet-shadow";
+
+    // https://modrinth.com/mod/fabric-api
     public static final String FABRIC_API = "fabric-api";
+
+    // https://fabricmc.net
     public static final String FABRIC_LOADER = "fabricloader";
+
+    // https://modrinth.com/mod/fabric-api
     public static final String FABRIC_NETWORK_API = "fabric-networking-api-v1";
+
+    // https://www.minecraft.net
     public static final String MC = "minecraft";
+
+    // https://github.com/LlamaLad7/MixinExtras
     public static final String ME = "mixinextras";
 }
