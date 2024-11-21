@@ -36,6 +36,9 @@ dependencies {
 	modImplementation "com.github.gnembon:fabric-carpet:${project.carpet_versions}"
 	include(modImplementation("me.fallenbreath:conditional-mixin-fabric:${project.conditionalmixin_version}"))
 	include(implementation(annotationProcessor("io.github.llamalad7:mixinextras-fabric:${project.mixinextras_version}")))
+
+	// MIXIN_AUDITOR
+	modRuntimeOnly "me.fallenbreath:mixin-auditor:0.1.0"
 }
 
 String MIXIN_CONFIG_PATH = 'cca.mixins.json'
@@ -71,14 +74,14 @@ loom {
 		vmArgs commonVmArgs
 	}
 //	// [FEATURE] MIXIN_AUDITOR
-//	runs {
-//		def auditVmArgs = [*commonVmArgs, '-DmixinAuditor.audit=true']
-//		serverMixinAudit {
-//			server()
-//			vmArgs auditVmArgs
-//			ideConfigGenerated false
-//		}
-//	}
+	runs {
+		def auditVmArgs = [*commonVmArgs, '-DmixinAuditor.audit=true']
+		serverMixinAudit {
+			server()
+			vmArgs auditVmArgs
+			ideConfigGenerated false
+		}
+	}
 }
 
 String modVersionSuffix = ''
