@@ -23,6 +23,9 @@ package crystal0404.crystalcarpetaddition.mixins.rule.ItemShadowing;
 import com.llamalad7.mixinextras.injector.v2.WrapWithCondition;
 import com.llamalad7.mixinextras.sugar.Local;
 import crystal0404.crystalcarpetaddition.CCASettings;
+import crystal0404.crystalcarpetaddition.utils.ModIds;
+import me.fallenbreath.conditionalmixin.api.annotation.Condition;
+import me.fallenbreath.conditionalmixin.api.annotation.Restriction;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.screen.ScreenHandler;
@@ -33,6 +36,13 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+@Restriction(
+        conflict = {
+                @Condition(ModIds.ANTI_SHADOW_PATCH),
+                @Condition(ModIds.CARPET_FX),
+                @Condition(ModIds.ANTI_SHADOW_PATCH)
+        }
+)
 @Mixin(ScreenHandler.class)
 public abstract class ScreenHandlerMixin {
     @WrapWithCondition(

@@ -22,7 +22,10 @@ package crystal0404.crystalcarpetaddition.utils;
 
 @SuppressWarnings("unused")
 public final class ModIds {
+    public static final String ANTI_SHADOW_PATCH = "antishadowpatch";
     public static final String CARPET = "carpet";
+    public static final String CARPET_FX = "carpet-fixes";
+    public static final String CARPET_SHADOW = "carpet-shadow";
     public static final String FABRIC_API = "fabric-api";
     public static final String FABRIC_LOADER = "fabricloader";
     public static final String FABRIC_NETWORK_API = "fabric-networking-api-v1";
