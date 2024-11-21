@@ -22,8 +22,12 @@ package crystal0404.crystalcarpetaddition;
 
 import carpet.api.settings.Rule;
 import crystal0404.crystalcarpetaddition.settings.conditions.*;
+import crystal0404.crystalcarpetaddition.utils.ModIds;
 import crystal0404.crystalcarpetaddition.utils.ShulkerBoxUtils.ColourMap;
+import crystal0404.crystalcarpetaddition.utils.annotation.Condition;
+import crystal0404.crystalcarpetaddition.utils.annotation.Restriction;
 
+@SuppressWarnings("unused")
 public class CCASettings {
     private static final String CCA = "CCA";
     private static final String NETWORK = "Network";
@@ -34,35 +38,37 @@ public class CCASettings {
      * MC Tweaks
      */
 
-    //#if MC >= 12000
     @Rule(categories = {CCA, MC_TWEAKS})
+    @Restriction(require = @Condition(value = ModIds.MC, versionPredicates = ">=1.20"))
     public static boolean AnvilCanCrushItemEntities = false;
-    //#endif
 
-    //#if MC < 12004
-    //$$  @Rule(categories = {CCA, MC_TWEAKS})
-    //$$  public static boolean CEnderPearlChunkLoading = false;
-    //#endif
-
-    //#if MC >= 12004
     @Rule(categories = {CCA, MC_TWEAKS})
+    @Restriction(require = @Condition(value = ModIds.MC, versionPredicates = "<1.20.4"))
+    public static boolean CEnderPearlChunkLoading = false;
+
+    @Rule(categories = {CCA, MC_TWEAKS})
+    @Restriction(require = @Condition(value = ModIds.MC, versionPredicates = ">=1.20.4"))
     public static boolean ComparatorIgnoresStateUpdatesFromBelow = false;
-    //#endif
 
-    //#if MC >= 12100
     @Rule(categories = {CCA, MC_TWEAKS})
+    @Restriction(require = @Condition(value = ModIds.MC, versionPredicates = ">=1.21"))
     public static boolean EnderDragonPartCanUseEndPortal = false;
-    //#endif
 
     @Rule(categories = {CCA, MC_TWEAKS})
     public static boolean EndermanCannotPickUpBlocksInNether = false;
 
-    //#if MC >= 12100
     @Rule(categories = {CCA, MC_TWEAKS})
+    @Restriction(require = @Condition(value = ModIds.MC, versionPredicates = ">=1.21"))
     public static boolean GatewayCannotLoadingChunks = false;
-    //#endif
 
     @Rule(categories = {CCA, MC_TWEAKS})
+    @Restriction(
+            conflict = {
+                    @Condition(ModIds.ANTI_SHADOW_PATCH),
+                    @Condition(ModIds.CARPET_FX),
+                    @Condition(ModIds.CARPET_SHADOW)
+            }
+    )
     public static boolean ItemShadowing = false;
 
     //#if MC >= 12002
@@ -76,21 +82,20 @@ public class CCASettings {
     @Rule(categories = {CCA, MC_TWEAKS})
     public static boolean NoBatSpawn = false;
 
-    //#if MC >= 12100
-    @Rule(categories = {CCA, MC_TWEAKS})
+    @Rule(
+            //#if MC > 12100
+            categories = {CCA, MC_TWEAKS}
+            //#else
+            //$$  categories = {CCA, MC_TWEAKS},
+            //$$  conditions = crystal0404.crystalcarpetaddition.utils.CCAUtils.EnableMagicSetting.class
+            //#endif
+    )
+    @Restriction(require = @Condition(value = ModIds.MC, versionPredicates = ">=1.20.5"))
     public static boolean ReIntroduceOldVersionRaid = false;
-    //#elseif MC >= 12005
-    //$$  @Rule(
-    //$$        categories = {CCA, MC_TWEAKS},
-    //$$        conditions = crystal0404.crystalcarpetaddition.utils.CCAUtils.EnableMagicSetting.class
-    //$$  )
-    //$$  public static boolean ReIntroduceOldVersionRaid = false;
-    //#endif
 
-    //#if MC > 12006
     @Rule(categories = {CCA, MC_TWEAKS})
+    @Restriction(require = @Condition(value = ModIds.MC, versionPredicates = ">=1.21"))
     public static boolean ReIntroduceOldVersionWitchLootTable = false;
-    //#endif
 
     /**
      * Creative Tools
