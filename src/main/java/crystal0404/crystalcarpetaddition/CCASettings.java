@@ -115,5 +115,6 @@ public class CCASettings {
             categories = {CCA, NETWORK},
             conditions = CCANetworkProtocol.class
     )
+    @Restriction(require = @Condition(ModIds.FABRIC_NETWORK_API))
     public static boolean CCANetworkProtocol = false;
 }

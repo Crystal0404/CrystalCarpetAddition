@@ -36,7 +36,7 @@ public class CCAMixinConfigPlugin extends RestrictiveMixinConfigPlugin {
     @Override
     protected void onRestrictionCheckFailed(String mixinClassName, String reason) {
         if (!reason.matches(".*%s.*".formatted(mixinClassName)) && CCAUtils.isEnableDebug()) {
-            CrystalCarpetAdditionMod.LOGGER.warn("[CCA] \"{}\" is disabled because of \"{}\"", mixinClassName, reason);
+            CrystalCarpetAdditionMod.LOGGER.info("[CCA] \"{}\" is disabled because of \"{}\"", mixinClassName, reason);
         }
     }
 

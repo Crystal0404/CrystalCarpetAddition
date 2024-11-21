@@ -74,6 +74,7 @@ public final class CCAUtils {
      * This is for my own use
      * Others please use the one above
      */
+    @Deprecated
     public static boolean isLoad(String ruleName, String modId, String versionPredicate) {
         if (VersionChecker.doesModVersionSatisfyPredicate(modId, versionPredicate)) {
             return true;
