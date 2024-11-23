@@ -46,6 +46,8 @@ import java.util.NoSuchElementException;
 /**
  * Stop, this is not the place you should be : (
  */
+@Deprecated(forRemoval = true)
+@SuppressWarnings("removal")
 public class CCANetworkProtocolClient {
     private static final Logger LOGGER = CrystalCarpetAdditionMod.LOGGER;
 

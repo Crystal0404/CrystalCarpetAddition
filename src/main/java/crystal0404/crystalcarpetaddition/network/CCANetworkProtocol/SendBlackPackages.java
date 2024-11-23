@@ -22,6 +22,7 @@ package crystal0404.crystalcarpetaddition.network.CCANetworkProtocol;
 
 import java.util.ArrayList;
 
+@Deprecated(forRemoval = true)
 class SendBlackPackages {
     private final ArrayList<String> BlackPackage;
 

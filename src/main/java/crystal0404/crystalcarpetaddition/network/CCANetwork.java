@@ -28,6 +28,8 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
 import net.fabricmc.loader.api.FabricLoader;
 
+@Deprecated(forRemoval = true)
+@SuppressWarnings("removal")
 public class CCANetwork {
     public final static String PROTOCOL = "cca-network-v2.0";
 

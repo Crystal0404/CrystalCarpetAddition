@@ -49,6 +49,8 @@ import java.util.Set;
 /**
  * Stop, this is not the place you should be : (
  */
+@Deprecated(forRemoval = true)
+@SuppressWarnings("removal")
 public class CCANetworkProtocolServer {
     private static final Logger LOGGER = CrystalCarpetAdditionMod.LOGGER;
     private static final Set<GetClientModMap> CALL = new HashSet<>();

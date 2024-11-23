@@ -22,6 +22,7 @@ package crystal0404.crystalcarpetaddition.network.CCANetworkProtocol;
 
 import java.util.HashMap;
 
+@Deprecated(forRemoval = true)
 class ClientModList {
     private final HashMap<String, HashMap<String, String>> ClientModMap;
 

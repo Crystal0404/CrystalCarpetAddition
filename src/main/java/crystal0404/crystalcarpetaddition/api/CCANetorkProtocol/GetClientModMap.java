@@ -30,6 +30,7 @@ import java.util.HashMap;
  * This is the interface exposed by CCA,
  * which calls back the mod information of the client through the CCANetworkProtocol when the player enters the game
  */
+@Deprecated(forRemoval = true)
 @FunctionalInterface
 public interface GetClientModMap {
     void getMod(MinecraftServer server, ServerPlayerEntity player, ServerPlayNetworkHandler handler, HashMap<String, String> modMap);

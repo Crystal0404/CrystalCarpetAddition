@@ -22,6 +22,7 @@ package crystal0404.crystalcarpetaddition.config;
 
 import java.util.List;
 
+@Deprecated(forRemoval = true)
 class Config {
     private final int Version;
     private final List<String> BlackPackages;
