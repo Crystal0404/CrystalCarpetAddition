@@ -26,6 +26,7 @@ import net.minecraft.text.Text;
 /**
  * This is not available for anyone else to use!
  */
+@Deprecated(forRemoval = true)
 public class MessagePresets {
     public static final Text INSTALLATION = Text.literal(
             "\nPlease install CrystalCarpetAddition!\n"

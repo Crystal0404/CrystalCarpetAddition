@@ -29,6 +29,8 @@ import net.fabricmc.fabric.api.client.networking.v1.ClientPlayConnectionEvents;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
 import net.fabricmc.loader.api.FabricLoader;
 
+@Deprecated(forRemoval = true)
+@SuppressWarnings("removal")
 public class FabricAPI {
     public static void init() {
         if (!CCAUtils.isLoad(ModIds.FABRIC_NETWORK_API, "*")) return;

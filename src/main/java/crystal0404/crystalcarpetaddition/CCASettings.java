@@ -111,6 +111,7 @@ public class CCASettings {
      * Network
      */
 
+    @Deprecated(forRemoval = true)
     @Rule(
             categories = {CCA, NETWORK},
             conditions = CCANetworkProtocol.class

@@ -33,6 +33,8 @@ import java.io.IOException;
 import java.io.Writer;
 import java.util.ArrayList;
 
+@Deprecated(forRemoval = true)
+@SuppressWarnings("removal")
 public class ConfigInit {
     private static final Logger LOGGER = CrystalCarpetAdditionMod.LOGGER;
     private static final String file_path = FabricLoader.getInstance().getConfigDir() + "/CrystalCarpetAddition/CrystalCarpetAddition.json";

@@ -30,6 +30,8 @@ import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.util.Identifier;
 
+@Deprecated(forRemoval = true)
+@SuppressWarnings("removal")
 public class CCANetwork {
     private final static String PROTOCOL = "cca-network-v2.0";
     public final static Identifier HELLO = new Identifier(PROTOCOL, "hello");

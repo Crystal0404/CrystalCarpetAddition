@@ -26,6 +26,8 @@ import net.fabricmc.fabric.api.networking.v1.PacketSender;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayNetworkHandler;
 
+@Deprecated(forRemoval = true)
+@SuppressWarnings("removal")
 public class ClientPlayConnectionEventsJoin implements ClientPlayConnectionEvents.Join {
     @Override
     public void onPlayReady(ClientPlayNetworkHandler handler, PacketSender sender, MinecraftClient client) {
