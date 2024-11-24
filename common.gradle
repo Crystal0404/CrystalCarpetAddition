@@ -27,12 +27,6 @@ dependencies {
 	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 
 	// dependencies
-	final boolean enableFabricAPIInRuntime = false
-	if (enableFabricAPIInRuntime) {
-		modImplementation(fabricApi.module("fabric-networking-api-v1", project.fabric_api))
-	} else {
-		modCompileOnly(fabricApi.module("fabric-networking-api-v1", project.fabric_api))
-	}
 	modImplementation "com.github.gnembon:fabric-carpet:${project.carpet_versions}"
 	include(modImplementation("me.fallenbreath:conditional-mixin-fabric:${project.conditionalmixin_version}"))
 	include(implementation(annotationProcessor("io.github.llamalad7:mixinextras-fabric:${project.mixinextras_version}")))

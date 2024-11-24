@@ -71,11 +71,3 @@ cca:
     ShulkerBoxPowerOutputExpansionColour:
       name: 潜影盒红石信号输出拓展颜色设置
       desc: 设置潜影盒红石信号输出拓展生效的潜影盒颜色(默认粉色).
-
-    # ===Network===
-
-    CCANetworkProtocol:
-      name: CCA网络协议
-      desc: |-
-        它被服务器用来获取客户端模组列表, 实现模组黑名单等功能
-        更多详细信息，请参阅Github自述文件
