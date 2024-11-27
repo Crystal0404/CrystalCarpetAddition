@@ -21,7 +21,6 @@
 package crystal0404.crystalcarpetaddition;
 
 import carpet.api.settings.Rule;
-import crystal0404.crystalcarpetaddition.settings.conditions.*;
 import crystal0404.crystalcarpetaddition.utils.ModIds;
 import crystal0404.crystalcarpetaddition.utils.ShulkerBoxUtils.ColourMap;
 import crystal0404.crystalcarpetaddition.utils.annotation.Condition;
@@ -106,16 +105,4 @@ public class CCASettings {
 
     @Rule(categories = {CCA, CREATIVE})
     public static ColourMap.Colour ShulkerBoxPowerOutputExpansionColour = ColourMap.Colour.PINK;
-
-    /**
-     * Network
-     */
-
-    @Deprecated(forRemoval = true)
-    @Rule(
-            categories = {CCA, NETWORK},
-            conditions = CCANetworkProtocol.class
-    )
-    @Restriction(require = @Condition(ModIds.FABRIC_NETWORK_API))
-    public static boolean CCANetworkProtocol = false;
 }

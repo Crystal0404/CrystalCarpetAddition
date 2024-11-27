@@ -38,8 +38,5 @@
     "fabricloader": ">=${fabricloader_dependency}",
     "minecraft": "${minecraft_dependency}",
     "mixinextras": ">=${mixinextras_dependency}"
-  },
-  "recommends": {
-    "fabric-networking-api-v1": "*"
   }
 }
