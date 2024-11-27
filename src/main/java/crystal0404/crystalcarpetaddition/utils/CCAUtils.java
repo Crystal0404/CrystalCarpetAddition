@@ -41,7 +41,6 @@ public final class CCAUtils {
             .put("cca.disable.EasterEggs", Boolean.getBoolean("cca.disable.EasterEggs"))
             .put("cca.enable.debug", Boolean.getBoolean("cca.enable.debug"))
             .put("cca.enable.MagicSettings", Boolean.getBoolean("cca.enable.MagicSettings"))
-            .put("cca.enable.network.debug", Boolean.getBoolean("cca.enable.network.debug"))
             .buildOrThrow();
 
     static {
@@ -90,10 +89,6 @@ public final class CCAUtils {
 
     public static boolean isEnableDebug() {
         return Boolean.TRUE.equals(JAVA_PARAMETERS.get("cca.enable.debug"));
-    }
-
-    public static boolean isEnableNetworkDebug() {
-        return Boolean.TRUE.equals(JAVA_PARAMETERS.get("cca.enable.network.debug"));
     }
 
     public final static class DisableEasterEggs implements ConditionTester {

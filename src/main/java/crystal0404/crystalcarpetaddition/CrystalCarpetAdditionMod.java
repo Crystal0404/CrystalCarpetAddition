@@ -20,15 +20,11 @@
 
 package crystal0404.crystalcarpetaddition;
 
-import crystal0404.crystalcarpetaddition.config.ConfigInit;
-import crystal0404.crystalcarpetaddition.fabric_api.FabricAPI;
-import crystal0404.crystalcarpetaddition.network.CCANetwork;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.loader.api.FabricLoader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-@SuppressWarnings("removal")
 public class CrystalCarpetAdditionMod implements ModInitializer {
     public static final String MOD_ID = "cca";
     public static final String MOD_NAME = "Crystal Carpet Addition";
@@ -38,9 +34,6 @@ public class CrystalCarpetAdditionMod implements ModInitializer {
     @Override
     public void onInitialize() {
         version = FabricLoader.getInstance().getModContainer(MOD_ID).orElseThrow(RuntimeException::new).getMetadata().getVersion().getFriendlyString();
-        ConfigInit.init();
-        FabricAPI.init();
-        CCANetwork.init();
         CCAExtension.init();
     }
 }
