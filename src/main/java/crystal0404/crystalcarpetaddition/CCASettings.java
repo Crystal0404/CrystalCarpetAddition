@@ -29,7 +29,6 @@ import crystal0404.crystalcarpetaddition.utils.annotation.Restriction;
 @SuppressWarnings("unused")
 public class CCASettings {
     private static final String CCA = "CCA";
-    private static final String NETWORK = "Network";
     private static final String CREATIVE = "Creative";
     private static final String MC_TWEAKS = "MCTweaks";
 
@@ -40,10 +39,6 @@ public class CCASettings {
     @Rule(categories = {CCA, MC_TWEAKS})
     @Restriction(require = @Condition(value = ModIds.MC, versionPredicates = ">=1.20"))
     public static boolean AnvilCanCrushItemEntities = false;
-
-    @Rule(categories = {CCA, MC_TWEAKS})
-    @Restriction(require = @Condition(value = ModIds.MC, versionPredicates = "<1.20.4"))
-    public static boolean CEnderPearlChunkLoading = false;
 
     @Rule(categories = {CCA, MC_TWEAKS})
     @Restriction(require = @Condition(value = ModIds.MC, versionPredicates = ">=1.20.4"))
@@ -70,13 +65,8 @@ public class CCASettings {
     )
     public static boolean ItemShadowing = false;
 
-    //#if MC >= 12002
     @Rule(categories = {CCA, MC_TWEAKS})
     public static boolean MagicBox = false;
-    //#else
-    //$$ @Rule(categories = {CCA, MC_TWEAKS})
-    //$$ public static boolean MagicBox = true;
-    //#endif
 
     @Rule(categories = {CCA, MC_TWEAKS})
     public static boolean NoBatSpawn = false;

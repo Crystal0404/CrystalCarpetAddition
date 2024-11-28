@@ -13,10 +13,6 @@ cca:
       name: 铁砧可以碾碎掉落物
       desc: 允许铁砧从高处掉落时可以碾碎掉落物
 
-    CEnderPearlChunkLoading:
-      name: C珍珠加载
-      desc: carpet-extra修复版珍珠加载
-
     ComparatorIgnoresStateUpdatesFromBelow:
       name: 比较器忽略来自下方的状态更新
       desc: |-

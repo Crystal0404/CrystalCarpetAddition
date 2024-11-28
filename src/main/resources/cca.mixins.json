@@ -7,7 +7,6 @@
   "mixins": [
     "carpet.SettingsManagerMixin",
     "rule.AnvilCanCrushItems.FallingBlockEntityMixin",
-    "rule.CEnderPearlChunkLoading.EnderPearlEntityMixin",
     "rule.ComparatorIgnoresUpdatesFromBelow.ComparatorBlockMixin",
     "rule.EnderDragonPartCanUseEndPortal.EntityAccessor",
     "rule.EnderDragonPartCanUseEndPortal.EntityInvoker",
