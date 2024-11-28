@@ -1,7 +1,6 @@
 cca:
   category:
     CCA: CCA
-    Network: 网络
     Creative: 创造工具
     MCTweaks: MC调整
 
@@ -47,7 +46,9 @@ cca:
 
     ReIntroduceOldVersionRaid:
       name: 重新引入旧版袭击
-      desc: 我不能失去我的印钞机
+      desc: 使用mc1.20.1的袭击机制
+      extra:
+        "0": 我不能失去我的印钞机
 
     ReIntroduceOldVersionWitchLootTable:
       name: 重新引入旧版女巫战利品表
