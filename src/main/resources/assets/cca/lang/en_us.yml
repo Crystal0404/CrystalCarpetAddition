@@ -1,7 +1,6 @@
 cca:
   category:
     CCA: CCA
-    Network: Network
     Creative: Creative Tools
     MCTweaks: MC Tweaks
 
@@ -45,7 +44,9 @@ cca:
 
     ReIntroduceOldVersionRaid:
       name: ReIntroduceOldVersionRaid
-      desc: I can't afford to lose my money printing machine
+      desc: Raid using mc1 20 1
+      extra:
+        "0": I can't afford to lose my money printing machine
 
     ReIntroduceOldVersionWitchLootTable:
       name: ReIntroduceOldVersionWitchLootTable
