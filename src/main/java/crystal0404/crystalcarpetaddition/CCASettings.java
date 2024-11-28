@@ -37,11 +37,9 @@ public class CCASettings {
      */
 
     @Rule(categories = {CCA, MC_TWEAKS})
-    @Restriction(require = @Condition(value = ModIds.MC, versionPredicates = ">=1.20"))
     public static boolean AnvilCanCrushItemEntities = false;
 
     @Rule(categories = {CCA, MC_TWEAKS})
-    @Restriction(require = @Condition(value = ModIds.MC, versionPredicates = ">=1.20.4"))
     public static boolean ComparatorIgnoresStateUpdatesFromBelow = false;
 
     @Rule(categories = {CCA, MC_TWEAKS})
