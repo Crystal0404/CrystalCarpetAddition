@@ -13,10 +13,6 @@ cca:
       name: AnvilCanCrushItemEntities
       desc: Allows anvil dropped from a height to crush items
 
-    CEnderPearlChunkLoading:
-      name: CEnderPearlChunkLoading
-      desc: Fix EnderPearlChunkLoading from carpet-extra
-
     ComparatorIgnoresStateUpdatesFromBelow:
       name: ComparatorIgnoresStateUpdatesFromBelow
       desc: |-
