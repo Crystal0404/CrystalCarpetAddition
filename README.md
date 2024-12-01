@@ -24,7 +24,10 @@
 | 依赖         | 类型 | 环境        | 链接                                                                                                 |
 |------------|----|-----------|----------------------------------------------------------------------------------------------------|
 | Carpet     | 必选 | 客户端 / 服务端 | [Github](https://github.com/gnembon/fabric-carpet) / [Modrinth](https://modrinth.com/mod/carpet)   |
-| Fabric-API | 可选 | 客户端 / 服务端 | [Github](https://github.com/FabricMC/fabric) / [Modrinth](https://modrinth.com/mod/fabric-api)     |
+
+**注: v1.10.0以前CCANetworkProtocol规则通过`fabric-api`进行网络通信, 因此在小于1.10.0的版本中需要安装`fabric-api`, 此规则于v1.10.0中移除, 因此在大于v1.10.0版本中不再需要`fabric-api`**
+
+*[点我前往fabric-api的Modrinth下载页面](https://modrinth.com/mod/fabric-api)*
 
 ## 支持版本
 不受支持版本的issues会无条件直接关闭, 它会随时更新!
