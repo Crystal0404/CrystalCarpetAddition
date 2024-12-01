@@ -31,8 +31,12 @@ For some reason, the only way you can reach me is on Github, so if you have any 
 | Dependency | Type     | Environment     | Link                                                                                             |
 |------------|----------|-----------------|--------------------------------------------------------------------------------------------------|
 | Carpet     | Required | Client / Server | [Github](https://github.com/gnembon/fabric-carpet) / [Modrinth](https://modrinth.com/mod/carpet) |
-| Fabric-API | Optional | Client / Server | [Github](https://github.com/FabricMC/fabric) / [Modrinth](https://modrinth.com/mod/fabric-api)   |
 
+**Note: Before v1.10.0, the CCANetworkProtocol rule used `fabric-api` to communicate over the network, so `fabric-api`
+needed to be installed in versions earlier than 1.10.0, but this rule was removed in v1.10.0, so `fabric-api` is no
+needed in versions later than v1.10.0**
+
+*[Click here to go to the Modrinth download page of fabric-api](https://modrinth.com/mod/fabric-api)*
 
 ## Supported versions
 
