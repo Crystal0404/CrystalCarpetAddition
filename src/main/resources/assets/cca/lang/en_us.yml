@@ -45,8 +45,6 @@ cca:
     ReIntroduceOldVersionRaid:
       name: ReIntroduceOldVersionRaid
       desc: Raid using mc1.20.1
-      extra:
-        "0": I can't afford to lose my money printing machine
 
     ReIntroduceOldVersionWitchLootTable:
       name: ReIntroduceOldVersionWitchLootTable

@@ -21,8 +21,7 @@ cca:
     EnderDragonPartCanUseEndPortal:
       name: 末影龙部件可使用末地传送门
       desc: 允许末影龙的部件通过末地传送门
-      extra:
-        "0": 把末影龙送到主世界需要分几步?
+      extra.0: 把末影龙送到主世界需要分几步?
 
     EndermanCannotPickUpBlocksInNether:
       name: 末影人不能在下界拾取方块
@@ -47,8 +46,7 @@ cca:
     ReIntroduceOldVersionRaid:
       name: 重新引入旧版袭击
       desc: 使用mc1.20.1的袭击机制
-      extra:
-        "0": 我不能失去我的印钞机
+      extra.0: 我不能失去我的印钞机
 
     ReIntroduceOldVersionWitchLootTable:
       name: 重新引入旧版女巫战利品表
