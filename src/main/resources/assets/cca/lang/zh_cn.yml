@@ -55,6 +55,10 @@ cca:
         "0": 建议与"重新引入旧版袭击"一起使用
         "1": 它会覆盖相关数据包的修改, 如果你需要使用自定义数据包修改女巫战利品表, 请关闭此规则
 
+    RemoveVillagerTradeDistanceLimit:
+      name: 移除村民交易距离限制
+      desc: 使村民交易界面不会因玩家与村民距离过远及村民不在被加载的区块中而关闭
+
     # ===Creative Tools===
 
     ShulkerBoxPowerOutputExpansion:

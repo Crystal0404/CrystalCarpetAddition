@@ -51,6 +51,10 @@ cca:
       desc: Restored loot dropped after a witch's death to be the same as before Minecraft-1.21
       extra.0: It is recommended to use it in conjunction with the "ReIntroduceOldVersionRaid"
 
+    RemoveVillagerTradeDistanceLimit:
+      name: RemoveVillagerTradeDistanceLimit
+      desc: When the villager's chunk is uninstalled or the player is too far away from the villager, the villager's transaction screen will not be closed
+
     # ===Creative Tools===
 
     ShulkerBoxPowerOutputExpansion:

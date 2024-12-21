@@ -24,6 +24,7 @@
     "rule.ReIntroduceOldVersionRaid.RaiderEntityMixin",
     "rule.ReIntroduceOldVersionRaid.RaidMixin",
     "rule.ReIntroduceOldVersionWitchLootTable.LivingEntityMixin",
+    "rule.RemoveVillagerTradeDistanceLimit.MerchantEntityMixin",
     "rule.ShulkerBoxPowerOutputExpansion.ShulkerBoxBlockMixin"
   ],
   "client": [
