@@ -20,25 +20,31 @@
 
 package crystal0404.crystalcarpetaddition.mixins.rule.MagicBox;
 
-import com.llamalad7.mixinextras.injector.ModifyReturnValue;
-import com.llamalad7.mixinextras.sugar.Local;
+import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
+import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import crystal0404.crystalcarpetaddition.CCASettings;
 import net.minecraft.block.ShulkerBoxBlock;
+import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.screen.ScreenHandler;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 
 @Mixin(ShulkerBoxBlock.class)
 public abstract class ShulkerBoxBlockMixin {
-    @ModifyReturnValue(
+    @WrapOperation(
             method = "getComparatorOutput",
-            at = @At("RETURN")
+            at = @At(
+                    value = "INVOKE",
+                    target = "Lnet/minecraft/screen/ScreenHandler;" +
+                            "calculateComparatorOutput(Lnet/minecraft/block/entity/BlockEntity;)I"
+            )
     )
-    private int getComparatorOutputMixin(int original, @Local(argsOnly = true) World world, @Local(argsOnly = true) BlockPos pos) {
-        return CCASettings.MagicBox ?
-                ScreenHandler.calculateComparatorOutput((Inventory) world.getBlockEntity(pos)) : original;
+    private int getComparatorOutputMixin(BlockEntity entity, Operation<Integer> original) {
+        if (CCASettings.MagicBox) {
+            return ScreenHandler.calculateComparatorOutput((Inventory) entity);
+        } else {
+            return original.call(entity);
+        }
     }
 }
