@@ -48,4 +48,7 @@ public final class ModIds {
 
     // https://github.com/LlamaLad7/MixinExtras
     public static final String ME = "mixinextras";
+
+    // https://github.com/plusls/plusls-carpet-addition
+    public static final String PCA = "pca";
 }
