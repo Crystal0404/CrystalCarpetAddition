@@ -11,6 +11,9 @@ repositories {
 		url 'https://jitpack.io'
 	}
 	maven {
+		url 'https://api.modrinth.com/maven'
+	}
+	maven {
 		url 'https://maven.fallenbreath.me/releases'
 	}
 }
@@ -20,6 +23,8 @@ configurations {
 	modRuntimeOnly.exclude group: 'net.fabricmc', module: 'fabric-loader'
 }
 
+final int[] disableLithiumVersion = []
+final boolean enableLithium = true
 dependencies {
 	// loom
 	minecraft "com.mojang:minecraft:${project.minecraft_version}"
@@ -30,6 +35,11 @@ dependencies {
 	modImplementation "com.github.gnembon:fabric-carpet:${project.carpet_versions}"
 	include(modImplementation("me.fallenbreath:conditional-mixin-fabric:${project.conditionalmixin_version}"))
 	include(implementation(annotationProcessor("io.github.llamalad7:mixinextras-fabric:${project.mixinextras_version}")))
+	if (!disableLithiumVersion.contains(mcVersion) && enableLithium) {
+		modImplementation "maven.modrinth:lithium:${project.lithium_versions}"
+	} else {
+		modCompileOnly "maven.modrinth:lithium:${project.lithium_versions}"
+	}
 
 	// MIXIN_AUDITOR
 	modRuntimeOnly "me.fallenbreath:mixin-auditor:0.1.0"

@@ -18,7 +18,7 @@
  * along with Crystal Carpet Addition.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package crystal0404.crystalcarpetaddition.mixins.rule.StackableShulkerBoxesEnhancement;
+package crystal0404.crystalcarpetaddition.mixins.rule.StackableShulkerBoxesEnhancement.lithium;
 
 import carpet.CarpetSettings;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
@@ -28,39 +28,35 @@ import crystal0404.crystalcarpetaddition.utils.ModIds;
 import crystal0404.crystalcarpetaddition.utils.shulkerBoxUtils.ShulkerBoxesSet;
 import me.fallenbreath.conditionalmixin.api.annotation.Condition;
 import me.fallenbreath.conditionalmixin.api.annotation.Restriction;
-import net.minecraft.block.entity.HopperBlockEntity;
+import me.jellysquid.mods.lithium.common.hopper.HopperHelper;
 import net.minecraft.item.ItemStack;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 
 @Restriction(
-        conflict = {
-                //#if MC >= 12101
-                @Condition(value = ModIds.LITHIUM, versionPredicates = "<0.14.0"),
-                //#endif
-                @Condition(ModIds.PCA)
-        }
+        require = @Condition(ModIds.LITHIUM),
+        conflict = @Condition(ModIds.PCA)
 )
-@Mixin(HopperBlockEntity.class)
-public abstract class HopperBlockEntityMixin {
+@Mixin(HopperHelper.class)
+public abstract class HopperHelperMixin {
     @WrapOperation(
-            method = "transfer(Lnet/minecraft/inventory/Inventory;Lnet/minecraft/inventory/Inventory;" +
-                    "Lnet/minecraft/item/ItemStack;ILnet/minecraft/util/math/Direction;)Lnet/minecraft/item/ItemStack;",
+            method = "tryMoveSingleItem(Lnet/minecraft/inventory/Inventory;" +
+                    "Lnet/minecraft/inventory/SidedInventory;Lnet/minecraft/item/ItemStack;" +
+                    "ILnet/minecraft/util/math/Direction;)Z",
             at = @At(
                     value = "INVOKE",
-                    target = "Lnet/minecraft/block/entity/HopperBlockEntity;" +
-                            "canMergeItems(Lnet/minecraft/item/ItemStack;Lnet/minecraft/item/ItemStack;)Z"
+                    target = "Lnet/minecraft/item/ItemStack;getMaxCount()I"
             )
     )
-    private static boolean transferMixin(ItemStack first, ItemStack second, Operation<Boolean> original) {
+    private static int tryMoveSingleItemMixin(ItemStack instance, Operation<Integer> original) {
         if (
                 CCASettings.StackableShulkerBoxesEnhancement
                         && CarpetSettings.shulkerBoxStackSize != 1
-                        && ShulkerBoxesSet.ITEMS_SET.contains(first.getItem())
+                        && ShulkerBoxesSet.ITEMS_SET.contains(instance.getItem())
         ) {
-            return false;
+            return 1;
         } else {
-            return original.call(first, second);
+            return original.call(instance);
         }
     }
 }

@@ -43,6 +43,9 @@ public final class ModIds {
     // https://modrinth.com/mod/fabric-api
     public static final String FABRIC_NETWORK_API = "fabric-networking-api-v1";
 
+    // https://modrinth.com/mod/lithium
+    public static final String LITHIUM = "lithium";
+
     // https://www.minecraft.net
     public static final String MC = "minecraft";
 
