@@ -22,7 +22,7 @@ package crystal0404.crystalcarpetaddition;
 
 import carpet.api.settings.Rule;
 import crystal0404.crystalcarpetaddition.utils.ModIds;
-import crystal0404.crystalcarpetaddition.utils.ShulkerBoxUtils.ColourMap;
+import crystal0404.crystalcarpetaddition.utils.shulkerBoxUtils.ColourMap;
 import crystal0404.crystalcarpetaddition.utils.annotation.Condition;
 import crystal0404.crystalcarpetaddition.utils.annotation.Restriction;
 

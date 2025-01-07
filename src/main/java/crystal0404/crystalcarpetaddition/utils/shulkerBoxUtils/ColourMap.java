@@ -18,7 +18,7 @@
  * along with Crystal Carpet Addition.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package crystal0404.crystalcarpetaddition.utils.ShulkerBoxUtils;
+package crystal0404.crystalcarpetaddition.utils.shulkerBoxUtils;
 
 import com.google.common.collect.ImmutableMap;
 import crystal0404.crystalcarpetaddition.CCASettings;

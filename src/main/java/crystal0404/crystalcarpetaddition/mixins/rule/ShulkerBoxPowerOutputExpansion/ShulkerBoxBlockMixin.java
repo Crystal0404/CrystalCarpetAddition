@@ -23,7 +23,7 @@ package crystal0404.crystalcarpetaddition.mixins.rule.ShulkerBoxPowerOutputExpan
 import com.llamalad7.mixinextras.injector.ModifyReturnValue;
 import com.llamalad7.mixinextras.sugar.Local;
 import crystal0404.crystalcarpetaddition.CCASettings;
-import crystal0404.crystalcarpetaddition.utils.ShulkerBoxUtils.ColourMap;
+import crystal0404.crystalcarpetaddition.utils.shulkerBoxUtils.ColourMap;
 import net.minecraft.block.ShulkerBoxBlock;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.ShulkerBoxBlockEntity;
