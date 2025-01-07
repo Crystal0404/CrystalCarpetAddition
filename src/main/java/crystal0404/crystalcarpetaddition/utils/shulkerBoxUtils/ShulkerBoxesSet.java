@@ -24,7 +24,7 @@ import com.google.common.collect.ImmutableSet;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 
-public final class ShulkerBoxsSet {
+public final class ShulkerBoxesSet {
     public static final ImmutableSet<Item> ITEMS_SET = ImmutableSet.of(
             Items.SHULKER_BOX,
             Items.WHITE_SHULKER_BOX,

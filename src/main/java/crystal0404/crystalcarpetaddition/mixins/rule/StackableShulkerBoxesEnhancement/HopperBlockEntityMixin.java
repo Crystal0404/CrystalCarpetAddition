@@ -25,7 +25,7 @@ import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import crystal0404.crystalcarpetaddition.CCASettings;
 import crystal0404.crystalcarpetaddition.utils.ModIds;
-import crystal0404.crystalcarpetaddition.utils.shulkerBoxUtils.ShulkerBoxsSet;
+import crystal0404.crystalcarpetaddition.utils.shulkerBoxUtils.ShulkerBoxesSet;
 import me.fallenbreath.conditionalmixin.api.annotation.Condition;
 import me.fallenbreath.conditionalmixin.api.annotation.Restriction;
 import net.minecraft.block.entity.HopperBlockEntity;
@@ -49,7 +49,7 @@ public abstract class HopperBlockEntityMixin {
         if (
                 CCASettings.StackableShulkerBoxesEnhancement
                         && CarpetSettings.shulkerBoxStackSize != 1
-                        && ShulkerBoxsSet.ITEMS_SET.contains(first.getItem())
+                        && ShulkerBoxesSet.ITEMS_SET.contains(first.getItem())
         ) {
             return false;
         } else {
