@@ -25,7 +25,8 @@
     "rule.ReIntroduceOldVersionRaid.RaidMixin",
     "rule.ReIntroduceOldVersionWitchLootTable.LivingEntityMixin",
     "rule.ShulkerBoxPowerOutputExpansion.ShulkerBoxBlockMixin",
-    "rule.StackableShulkerBoxesEnhancement.HopperBlockEntityMixin"
+    "rule.StackableShulkerBoxesEnhancement.HopperBlockEntityMixin",
+    "rule.StackableShulkerBoxesEnhancement.lithium.HopperHelperMixin"
   ],
   "client": [
     "rule.WhatIsThis.Happy"
