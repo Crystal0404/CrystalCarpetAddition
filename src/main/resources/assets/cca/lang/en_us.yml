@@ -46,8 +46,8 @@ cca:
       desc: When the player is too far away from villager, the villager trading screen will not be closed
 
     StackableShulkerBoxesEnhancement:
-      desc: ShulkerBoxes sucked or filled by hoppers do not stack
-      extra.0: This rule takes effect only after the "stackableShulkerBoxes" rule of Carpet is enabled
+      desc: Only the player can make ShulkerBoxes stack
+      extra.0: This rule only work after the "stackableShulkerBoxes" rule of Carpet is enabled
 
     # ===Creative Tools===
 
