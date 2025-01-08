@@ -85,6 +85,10 @@ public class CCASettings {
     public static boolean ReIntroduceOldVersionWitchLootTable = false;
 
     @Rule(categories = {CCA, MC_TWEAKS})
+    @Restriction(require = @Condition(value = ModIds.MC, versionPredicates = ">=1.21.4"))
+    public static boolean RemoveVillagerTradeDistanceLimit = false;
+
+    @Rule(categories = {CCA, MC_TWEAKS})
     @Restriction(
             conflict = {
                     //#if MC >= 12101
