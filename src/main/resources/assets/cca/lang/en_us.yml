@@ -9,29 +9,23 @@ cca:
     # ===MC Tweaks===
 
     AnvilCanCrushItemEntities:
-      name: AnvilCanCrushItemEntities
       desc: Allows anvil dropped from a height to crush items
 
     ComparatorIgnoresStateUpdatesFromBelow:
-      name: ComparatorIgnoresStateUpdatesFromBelow
       desc: |-
         When this option is turned on, the comparator ignores state updates from below
         Means that opening the trap gate will not destroy the comparator
 
     EnderDragonPartCanUseEndPortal:
-      name: EnderDragonPartCanUseEndPortal
       desc: Allow ender dragon part to pass through end portal
 
     EndermanCannotPickUpBlocksInNether:
-      name: EndermanCannotPickUpBlocksInNether
       desc: Protect your nether terrain from being destroyed by Enderman and prevent a large number of Enderman from not despawning after picking up blocks.
 
     GatewayCannotLoadingChunks:
-      name: GatewayCannotLoadingChunks
       desc: After the entity passes through the gateway, the gateway does not loading chunks
 
     ItemShadowing:
-      name: ItemShadowing
       desc: It has a shadow! (Use the ItemStack code in section 1.16.5)
 
     MagicBox:
@@ -39,35 +33,28 @@ cca:
       desc: Control whether CastSuppressor(CCESuppressor) is available
 
     NoBatSpawn:
-      name: NoBatSpawn
       desc: Makes bats no longer spawn.
 
     ReIntroduceOldVersionRaid:
-      name: ReIntroduceOldVersionRaid
       desc: Raid using mc1.20.1
 
     ReIntroduceOldVersionWitchLootTable:
-      name: ReIntroduceOldVersionWitchLootTable
       desc: Restored loot dropped after a witch's death to be the same as before Minecraft-1.21
       extra.0: It is recommended to use it in conjunction with the "ReIntroduceOldVersionRaid"
 
     RemoveVillagerTradeDistanceLimit:
-      name: RemoveVillagerTradeDistanceLimit
       desc: When the player is too far away from villager, the villager trading screen will not be closed
 
     StackableShulkerBoxesEnhancement:
-      name: StackableShulkerBoxesEnhancement
       desc: ShulkerBoxes sucked or filled by hoppers do not stack
       extra.0: This rule takes effect only after the "stackableShulkerBoxes" rule of Carpet is enabled
 
     # ===Creative Tools===
 
     ShulkerBoxPowerOutputExpansion:
-      name: ShulkerBoxPowerOutputExpansion
       desc: |-
         Modify the output logic of the comparator detection ShulkerBox
         The number of inventory occupied is the number output!
 
     ShulkerBoxPowerOutputExpansionColour:
-      name: ShulkerBoxPowerOutputExpansionColour
       desc: Specifies the color of the ShulkerBox in effect for the Shulker Box Power Output Expansion(Pink by default).
