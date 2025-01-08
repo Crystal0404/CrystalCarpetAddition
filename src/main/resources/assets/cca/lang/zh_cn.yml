@@ -61,7 +61,7 @@ cca:
 
     StackableShulkerBoxesEnhancement:
       name: 可堆叠潜影盒增强
-      desc: 由漏斗吸取或填入的潜影盒不会堆叠
+      desc: 仅玩家才能使潜影盒堆叠
       extra.0: 在开启Carpet的"stackableShulkerBoxes"规则后此规则才会生效
 
     # ===Creative Tools===
