@@ -89,14 +89,7 @@ public class CCASettings {
     public static boolean RemoveVillagerTradeDistanceLimit = false;
 
     @Rule(categories = {CCA, MC_TWEAKS})
-    @Restriction(
-            conflict = {
-                    //#if MC >= 12101
-                    @Condition(value = ModIds.LITHIUM, versionPredicates = "<0.14.0"),
-                    //#endif
-                    @Condition(ModIds.PCA)
-            }
-    )
+    @Restriction(conflict = @Condition(ModIds.PCA))
     public static boolean StackableShulkerBoxesEnhancement = false;
 
     /**

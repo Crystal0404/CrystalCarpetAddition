@@ -33,14 +33,7 @@ import net.minecraft.item.ItemStack;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 
-@Restriction(
-        conflict = {
-                //#if MC >= 12101
-                @Condition(value = ModIds.LITHIUM, versionPredicates = "<0.14.0"),
-                //#endif
-                @Condition(ModIds.PCA)
-        }
-)
+@Restriction(conflict = @Condition(ModIds.PCA))
 @Mixin(HopperBlockEntity.class)
 public abstract class HopperBlockEntityMixin {
     @WrapOperation(
