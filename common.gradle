@@ -23,8 +23,7 @@ configurations {
 	modRuntimeOnly.exclude group: 'net.fabricmc', module: 'fabric-loader'
 }
 
-final int[] disableLithiumVersion = []
-final boolean enableLithium = true
+final boolean enableLithium = false
 dependencies {
 	// loom
 	minecraft "com.mojang:minecraft:${project.minecraft_version}"
@@ -35,7 +34,7 @@ dependencies {
 	modImplementation "com.github.gnembon:fabric-carpet:${project.carpet_versions}"
 	include(modImplementation("me.fallenbreath:conditional-mixin-fabric:${project.conditionalmixin_version}"))
 	include(implementation(annotationProcessor("io.github.llamalad7:mixinextras-fabric:${project.mixinextras_version}")))
-	if (!disableLithiumVersion.contains(mcVersion) && enableLithium) {
+	if (enableLithium) {
 		modImplementation "maven.modrinth:lithium:${project.lithium_versions}"
 	} else {
 		modCompileOnly "maven.modrinth:lithium:${project.lithium_versions}"
