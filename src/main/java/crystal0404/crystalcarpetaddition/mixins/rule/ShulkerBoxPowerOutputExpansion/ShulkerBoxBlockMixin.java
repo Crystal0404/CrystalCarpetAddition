@@ -20,48 +20,46 @@
 
 package crystal0404.crystalcarpetaddition.mixins.rule.ShulkerBoxPowerOutputExpansion;
 
-import com.llamalad7.mixinextras.injector.ModifyReturnValue;
-import com.llamalad7.mixinextras.sugar.Local;
+import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
+import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import crystal0404.crystalcarpetaddition.CCASettings;
 import crystal0404.crystalcarpetaddition.utils.shulkerBoxUtils.ColourMap;
 import net.minecraft.block.ShulkerBoxBlock;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.ShulkerBoxBlockEntity;
-import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 
 @Mixin(ShulkerBoxBlock.class)
 public abstract class ShulkerBoxBlockMixin {
-    @ModifyReturnValue(
+    @WrapOperation(
             method = "getComparatorOutput",
-            at = @At("RETURN")
+            at = @At(
+                    value = "INVOKE",
+                    target = "Lnet/minecraft/screen/ScreenHandler;" +
+                            "calculateComparatorOutput(Lnet/minecraft/block/entity/BlockEntity;)I"
+            )
     )
     private int getComparatorOutputMixin(
-            int original,
-            @Local(argsOnly = true) World world,
-            @Local(argsOnly = true) BlockPos pos
+            BlockEntity entity,
+            Operation<Integer> original
     ) {
-        if (!CCASettings.ShulkerBoxPowerOutputExpansion) return original;
+        if (!CCASettings.ShulkerBoxPowerOutputExpansion) return original.call(entity);
 
-        BlockEntity entity = world.getBlockEntity(pos);
         if (
-                entity instanceof ShulkerBoxBlockEntity
-                && ((ShulkerBoxBlockEntity) entity).getColor() == ColourMap.getSettingColour()
+                entity instanceof ShulkerBoxBlockEntity shulkerBoxBlockEntity
+                        && shulkerBoxBlockEntity.getColor() == ColourMap.getSettingColour()
         ) {
-            Inventory inventory = (Inventory) entity;
             int num = 0;
-            for (int i = 0; num != 15 && i < inventory.size(); i++) {
-                ItemStack itemStack = inventory.getStack(i);
+            for (int i = 0; num != 15 && i < shulkerBoxBlockEntity.size(); i++) {
+                ItemStack itemStack = shulkerBoxBlockEntity.getStack(i);
                 if (itemStack.isEmpty()) continue;
                 num += 1;
             }
             return num;
         } else {
-            return original;
+            return original.call(entity);
         }
     }
 }
