@@ -1,0 +1,42 @@
+{
+  "schemaVersion": 1,
+  "id": "${id}",
+  "version": "${version}",
+
+  "name": "${name}",
+  "description": "Crystal0404's Carpet!",
+  "authors": [
+    {
+      "name": "Crystal0404",
+      "contact": {
+        "homepage": "https://github.com/Crystal0404"
+      }
+    }
+  ],
+  "contact": {
+    "homepage": "https://modrinth.com/mod/crystalcarpetaddition",
+    "sources": "https://github.com/Crystal0404/CrystalCarpetAddition",
+    "issues": "https://github.com/Crystal0404/CrystalCarpetAddition/issues"
+  },
+  "license": "GPL-3.0-only",
+
+  "icon": "assets/cca/icon.png",
+
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "crystal0404.crystalcarpetaddition.CrystalCarpetAdditionMod"
+    ]
+  },
+  "mixins": [
+    "cca.mixins.json"
+  ],
+
+  "depends": {
+    "carpet": "*",
+    "conditional-mixin": ">=${conditional_mixin_dependency}",
+    "fabricloader": ">=${fabricloader_dependency}",
+    "minecraft": "${minecraft_dependency}",
+    "mixinextras": ">=${mixinextras_dependency}"
+  }
+}
