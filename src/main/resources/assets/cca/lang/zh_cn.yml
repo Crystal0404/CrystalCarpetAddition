@@ -1,0 +1,77 @@
+cca:
+  category:
+    CCA: CCA
+    Creative: 创造工具
+    MCTweaks: MC调整
+
+  rule:
+
+    # ===MC Tweaks===
+
+    AnvilCanCrushItemEntities:
+      name: 铁砧可以碾碎掉落物
+      desc: 允许铁砧从高处掉落时可以碾碎掉落物
+
+    ComparatorIgnoresStateUpdatesFromBelow:
+      name: 比较器忽略来自下方的状态更新
+      desc: |-
+        开启此选项后, 比较器会忽略来自下方的状态更新
+        意味着开启活板门不会破坏比较器
+
+    EnderDragonPartCanUseEndPortal:
+      name: 末影龙部件可使用末地传送门
+      desc: 允许末影龙的部件通过末地传送门
+      extra.0: 把末影龙送到主世界需要分几步?
+
+    EndermanCannotPickUpBlocksInNether:
+      name: 末影人不能在下界拾取方块
+      desc: 保护你的下界地形不被末影人破坏, 并且防止大量末影人因拾取方块不消失从而造成卡顿.
+
+    GatewayCannotLoadingChunks:
+      name: 折跃门不会加载区块
+      desc: 在实体穿越折跃门后, 折跃门不会加载区块
+
+    ItemShadowing:
+      name: 物品分身
+      desc: 它有一个影子! (使用了部分1.16.5的ItemStack逻辑)
+
+    MagicBox:
+      name: 魔法盒子/强转抑制器
+      desc: 控制基于类型转换的更新抑制是否可用
+
+    NoBatSpawn:
+      name: 禁用蝙蝠生成
+      desc: 让你的世界不再生成烦人的蝙蝠.
+
+    ReIntroduceOldVersionRaid:
+      name: 重新引入旧版袭击
+      desc: 使用mc1.20.1的袭击机制
+      extra.0: 我不能失去我的印钞机
+
+    ReIntroduceOldVersionWitchLootTable:
+      name: 重新引入旧版女巫战利品表
+      desc: 使女巫死亡后掉落的战利品恢复到与Minecraft-1.21版本之前一致
+      extra:
+        "0": 建议与"重新引入旧版袭击"一起使用
+        "1": 它会覆盖相关数据包的修改, 如果你需要使用自定义数据包修改女巫战利品表, 请关闭此规则
+
+    RemoveVillagerTradeDistanceLimit:
+      name: 移除村民交易距离限制
+      desc: 当玩家距离村民过远时, 村民交易界面不会因此关闭
+
+    StackableShulkerBoxesEnhancement:
+      name: 可堆叠潜影盒增强
+      desc: 仅玩家才能使潜影盒堆叠
+      extra.0: 在开启Carpet的"stackableShulkerBoxes"规则后此规则才会生效
+
+    # ===Creative Tools===
+
+    ShulkerBoxPowerOutputExpansion:
+      name: 潜影盒红石信号输出拓展
+      desc: |-
+        修改比较器检测潜影盒输出信号强度的逻辑
+        占用物品栏的数量就是输出信号的强度
+
+    ShulkerBoxPowerOutputExpansionColour:
+      name: 潜影盒红石信号输出拓展颜色设置
+      desc: 设置潜影盒红石信号输出拓展生效的潜影盒颜色(默认粉色).

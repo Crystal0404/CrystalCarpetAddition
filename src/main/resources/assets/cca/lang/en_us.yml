@@ -1,0 +1,60 @@
+cca:
+  category:
+    CCA: CCA
+    Creative: Creative Tools
+    MCTweaks: MC Tweaks
+
+  rule:
+
+    # ===MC Tweaks===
+
+    AnvilCanCrushItemEntities:
+      desc: Allows anvil dropped from a height to crush items
+
+    ComparatorIgnoresStateUpdatesFromBelow:
+      desc: |-
+        When this option is turned on, the comparator ignores state updates from below
+        Means that opening the trap gate will not destroy the comparator
+
+    EnderDragonPartCanUseEndPortal:
+      desc: Allow ender dragon part to pass through end portal
+
+    EndermanCannotPickUpBlocksInNether:
+      desc: Protect your nether terrain from being destroyed by Enderman and prevent a large number of Enderman from not despawning after picking up blocks.
+
+    GatewayCannotLoadingChunks:
+      desc: After the entity passes through the gateway, the gateway does not loading chunks
+
+    ItemShadowing:
+      desc: It has a shadow! (Use the ItemStack code in section 1.16.5)
+
+    MagicBox:
+      name: MagicBox/CCESuppressor
+      desc: Control whether CastSuppressor(CCESuppressor) is available
+
+    NoBatSpawn:
+      desc: Makes bats no longer spawn.
+
+    ReIntroduceOldVersionRaid:
+      desc: Raid using mc1.20.1
+
+    ReIntroduceOldVersionWitchLootTable:
+      desc: Restored loot dropped after a witch's death to be the same as before Minecraft-1.21
+      extra.0: It is recommended to use it in conjunction with the "ReIntroduceOldVersionRaid"
+
+    RemoveVillagerTradeDistanceLimit:
+      desc: When the player is too far away from villager, the villager trading screen will not be closed
+
+    StackableShulkerBoxesEnhancement:
+      desc: Only the player can make ShulkerBoxes stack
+      extra.0: This rule only work after the "stackableShulkerBoxes" rule of Carpet is enabled
+
+    # ===Creative Tools===
+
+    ShulkerBoxPowerOutputExpansion:
+      desc: |-
+        Modify the output logic of the comparator detection ShulkerBox
+        The number of inventory occupied is the number output!
+
+    ShulkerBoxPowerOutputExpansionColour:
+      desc: Specifies the color of the ShulkerBox in effect for the Shulker Box Power Output Expansion(Pink by default).
