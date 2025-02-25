@@ -38,7 +38,7 @@ public final class CCAUtils {
      * This is all the hidden parameters
      */
     private final static ImmutableMap<String, Boolean> JAVA_PARAMETERS = new ImmutableMap.Builder<String, Boolean>()
-            .put("cca.disable.EasterEggs", Boolean.getBoolean("cca.disable.EasterEggs"))
+            .put("cca.disable.EasterEggs", !isFalse("cca.disable.EasterEggs"))
             .put("cca.enable.debug", Boolean.getBoolean("cca.enable.debug"))
             .put("cca.enable.MagicSettings", Boolean.getBoolean("cca.enable.MagicSettings"))
             .buildOrThrow();
@@ -60,6 +60,17 @@ public final class CCAUtils {
             CrystalCarpetAdditionMod.LOGGER.error("[CCA] An unknown exception occurred while trying to find the class");
             throw new RuntimeException(ioException);
         }
+    }
+
+    @SuppressWarnings("all")
+    private static boolean isFalse(String name) {
+        boolean result = false;
+        try {
+            result = "false".equalsIgnoreCase(System.getProperty(name));
+        } catch (IllegalArgumentException | NullPointerException ignored) {
+
+        }
+        return result;
     }
 
     /**
@@ -94,7 +105,7 @@ public final class CCAUtils {
     public final static class DisableEasterEggs implements ConditionTester {
         @Override
         public boolean isSatisfied(String mixinClassName) {
-            return !Boolean.TRUE.equals(JAVA_PARAMETERS.get("cca.disable.EasterEggs"));
+            return Boolean.TRUE.equals(JAVA_PARAMETERS.get("cca.disable.EasterEggs"));
         }
     }
 

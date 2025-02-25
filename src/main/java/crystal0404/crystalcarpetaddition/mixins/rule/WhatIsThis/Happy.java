@@ -35,7 +35,7 @@ import java.util.Calendar;
 import java.util.Random;
 
 // QWQ
-@Restriction(require = @Condition(type = Condition.Type.TESTER, tester = CCAUtils.DisableEasterEggs.class))
+@Restriction(conflict = @Condition(type = Condition.Type.TESTER, tester = CCAUtils.DisableEasterEggs.class))
 @Mixin(SplashTextResourceSupplier.class)
 public abstract class Happy {
     @Inject(
