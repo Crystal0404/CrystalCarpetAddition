@@ -22,6 +22,7 @@ package crystal0404.crystalcarpetaddition.mixins.rule.ReIntroduceOldVersionRaid;
 
 import crystal0404.crystalcarpetaddition.CCASettings;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.effect.BadOmenStatusEffect;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
@@ -32,7 +33,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-@Mixin(targets = "net.minecraft.entity.effect.BadOmenStatusEffect")
+@Mixin(BadOmenStatusEffect.class)
 public abstract class BadOmenStatusEffectMixin {
     @Inject(
             method = "applyUpdateEffect",
