@@ -92,6 +92,8 @@ val loaderVersion = when (mixinCompatibilityLevel) {
 }
 
 loom {
+    accessWidenerPath.set(file("cca.accesswidener"))
+
     val commonVmArgs = listOf("-Dmixin.debug.export=true")
     runConfigs.configureEach {
         // to make sure it generates all "Minecraft Client (:subproject_name)" applications

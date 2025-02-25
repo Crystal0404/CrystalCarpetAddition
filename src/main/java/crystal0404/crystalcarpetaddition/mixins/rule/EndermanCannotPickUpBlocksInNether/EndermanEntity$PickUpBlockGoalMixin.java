@@ -23,11 +23,12 @@ package crystal0404.crystalcarpetaddition.mixins.rule.EndermanCannotPickUpBlocks
 import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 import com.llamalad7.mixinextras.sugar.Local;
 import crystal0404.crystalcarpetaddition.CCASettings;
+import net.minecraft.entity.mob.EndermanEntity;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 
-@Mixin(targets = "net.minecraft.entity.mob.EndermanEntity$PickUpBlockGoal")
+@Mixin(EndermanEntity.PickUpBlockGoal.class)
 public abstract class EndermanEntity$PickUpBlockGoalMixin {
     @ModifyExpressionValue(
             method = "tick",
