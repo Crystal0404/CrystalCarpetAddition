@@ -28,6 +28,7 @@ import me.fallenbreath.conditionalmixin.api.util.VersionChecker;
 import org.spongepowered.asm.service.MixinService;
 
 import java.io.IOException;
+import java.util.Objects;
 
 /**
  * Some tools
@@ -37,14 +38,18 @@ public final class CCAUtils {
     /**
      * This is all the hidden parameters
      */
-    private final static ImmutableMap<String, Boolean> JAVA_PARAMETERS = new ImmutableMap.Builder<String, Boolean>()
-            .put("cca.disable.EasterEggs", !isFalse("cca.disable.EasterEggs"))
-            .put("cca.enable.debug", Boolean.getBoolean("cca.enable.debug"))
-            .put("cca.enable.MagicSettings", Boolean.getBoolean("cca.enable.MagicSettings"))
+    private final static ImmutableMap<String, Key> JAVA_PARAMETERS = new ImmutableMap.Builder<String, Key>()
+            .put("cca.disable.EasterEggs", new Key(!isFalse("cca.disable.EasterEggs"), true))
+            .put("cca.enable.debug", new Key(Boolean.getBoolean("cca.enable.debug"), false))
+            .put("cca.enable.MagicSettings", new Key(Boolean.getBoolean("cca.enable.MagicSettings"), false))
             .buildOrThrow();
 
     static {
-        JAVA_PARAMETERS.forEach((k, v) -> {if (v) CrystalCarpetAdditionMod.LOGGER.warn("[CCA] -D{}=true", k);});
+        JAVA_PARAMETERS.forEach((k, v) -> {
+            if (v.getValue() != v.getDefaultValue()) {
+                CrystalCarpetAdditionMod.LOGGER.warn("[CCA] -D{}={}", k, v.getValue());
+            }
+        });
     }
 
     /**
@@ -99,25 +104,25 @@ public final class CCAUtils {
     }
 
     public static boolean isEnableDebug() {
-        return Boolean.TRUE.equals(JAVA_PARAMETERS.get("cca.enable.debug"));
+        return Objects.requireNonNull(JAVA_PARAMETERS.get("cca.enable.debug")).getValue();
     }
 
     public final static class DisableEasterEggs implements ConditionTester {
         @Override
         public boolean isSatisfied(String mixinClassName) {
-            return Boolean.TRUE.equals(JAVA_PARAMETERS.get("cca.disable.EasterEggs"));
+            return Objects.requireNonNull(JAVA_PARAMETERS.get("cca.disable.EasterEggs")).getValue();
         }
     }
 
     public final static class EnableMagicSetting implements ConditionTester, Rule.Condition {
         @Override
         public boolean isSatisfied(String mixinClassName) {
-            return Boolean.TRUE.equals(JAVA_PARAMETERS.get("cca.enable.MagicSettings"));
+            return Objects.requireNonNull(JAVA_PARAMETERS.get("cca.enable.MagicSettings")).getValue();
         }
 
         @Override
         public boolean shouldRegister() {
-            return Boolean.TRUE.equals(JAVA_PARAMETERS.get("cca.enable.MagicSettings"));
+            return Objects.requireNonNull(JAVA_PARAMETERS.get("cca.enable.MagicSettings")).getValue();
         }
     }
 }
