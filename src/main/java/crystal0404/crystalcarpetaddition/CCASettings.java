@@ -57,8 +57,7 @@ public class CCASettings {
     @Restriction(
             conflict = {
                     @Condition(ModIds.ANTI_SHADOW_PATCH),
-                    @Condition(ModIds.CARPET_FX),
-                    @Condition(ModIds.CARPET_SHADOW)
+                    @Condition(ModIds.CARPET_FX)
             }
     )
     public static boolean ItemShadowing = false;
