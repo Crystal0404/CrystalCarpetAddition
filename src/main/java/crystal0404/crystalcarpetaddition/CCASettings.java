@@ -62,6 +62,9 @@ public class CCASettings {
     )
     public static boolean ItemShadowing = false;
 
+    // I tried my best...
+    // Currently you can't use this rule to make CCE in the latest version
+    // But it can help you keep the CCE you made in the old version
     @Rule(categories = {CCA, MC_TWEAKS})
     public static boolean MagicBox = false;
 

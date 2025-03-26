@@ -20,62 +20,21 @@
 
 package crystal0404.crystalcarpetaddition.mixins.rule.MagicBox;
 
-import com.llamalad7.mixinextras.injector.v2.WrapWithCondition;
-import crystal0404.crystalcarpetaddition.CCASettings;
 import crystal0404.crystalcarpetaddition.utils.ModIds;
 import me.fallenbreath.conditionalmixin.api.annotation.Condition;
 import me.fallenbreath.conditionalmixin.api.annotation.Restriction;
-import net.minecraft.block.BlockState;
 import net.minecraft.block.BlockWithEntity;
 import net.minecraft.block.LecternBlock;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-@Restriction(require = @Condition(value = ModIds.MC, versionPredicates = ">=1.21.1"))
+@Restriction(
+        require = @Condition(value = ModIds.MC, versionPredicates = ">=1.21.1"),
+        conflict = @Condition(value = ModIds.MC, versionPredicates = ">=1.21.5")
+)
 @Mixin(LecternBlock.class)
 public abstract class LecternBlockMixin extends BlockWithEntity {
     protected LecternBlockMixin(Settings settings) {
         super(settings);
     }
-
-    @WrapWithCondition(
-            method = "onStateReplaced",
-            at = @At(
-                    value = "INVOKE",
-                    target = "Lnet/minecraft/block/BlockWithEntity;onStateReplaced" +
-                            "(Lnet/minecraft/block/BlockState;Lnet/minecraft/world/World;" +
-                            "Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/BlockState;Z)V"
-            )
-    )
-    private boolean removeOnStateReplacedMixin(
-            BlockWithEntity instance,
-            BlockState blockState,
-            World world,
-            BlockPos blockPos,
-            BlockState newState,
-            boolean b
-    ) {
-        return !CCASettings.MagicBox;
-    }
-
-    @Inject(
-            method = "onStateReplaced",
-            at = @At("TAIL")
-    )
-    private void onStateReplacedMixin(
-            BlockState state,
-            World world,
-            BlockPos pos,
-            BlockState newState,
-            boolean moved,
-            CallbackInfo ci
-    ) {
-        if (CCASettings.MagicBox) {
-            super.onStateReplaced(state, world, pos, newState, moved);
-        }
-    }
+    // I tried my best, but the relevant features are not available for the time being
 }

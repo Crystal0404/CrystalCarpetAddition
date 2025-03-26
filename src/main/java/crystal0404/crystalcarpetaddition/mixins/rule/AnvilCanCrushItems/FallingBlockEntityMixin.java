@@ -36,8 +36,13 @@ import java.util.function.Predicate;
 
 @Mixin(FallingBlockEntity.class)
 public abstract class FallingBlockEntityMixin {
+
     @Shadow
-    private BlockState block;
+    //#if MC <= 12105
+    //$$ private BlockState block;
+    //#else
+    private BlockState blockState;
+    //#endif
 
     @WrapOperation(
             method = "handleFallDamage",
@@ -52,7 +57,14 @@ public abstract class FallingBlockEntityMixin {
             Predicate<? super Entity> other,
             Operation<Predicate<Entity>> original
     ) {
-        if (CCASettings.AnvilCanCrushItemEntities && this.block.isIn(BlockTags.ANVIL)) {
+        if (
+                CCASettings.AnvilCanCrushItemEntities
+                        //#if MC >= 12105
+                        && this.blockState.isIn(BlockTags.ANVIL)
+                        //#else
+                        //$$ && this.block.isIn(BlockTags.ANVIL)
+                        //#endif
+        ) {
             return EntityPredicates.EXCEPT_CREATIVE_OR_SPECTATOR;
         } else {
             return original.call(instance, other);

@@ -17,9 +17,11 @@ preprocess {
     val mc12006 = createNode("1.20.6", 1_20_06, "")
     val mc12101 = createNode("1.21.1", 1_21_01, "")
     val mc12104 = createNode("1.21.4", 1_21_04, "")
+    val mc12105 = createNode("1.21.5", 1_21_05, "")
 
     mc12006.link(mc12101, null)
     mc12101.link(mc12104, null)
+    mc12104.link(mc12105, null)
 }
 
 tasks.register("buildAndGather") {
