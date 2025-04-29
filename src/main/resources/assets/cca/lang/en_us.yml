@@ -28,10 +28,6 @@ cca:
     ItemShadowing:
       desc: It has a shadow! (Use the ItemStack code in section 1.16.5)
 
-    MagicBox:
-      name: MagicBox/CCESuppressor
-      desc: Control whether CastSuppressor(CCESuppressor) is available
-
     NoBatSpawn:
       desc: Makes bats no longer spawn.
 
