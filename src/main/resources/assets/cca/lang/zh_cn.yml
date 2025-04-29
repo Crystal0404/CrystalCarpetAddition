@@ -35,10 +35,6 @@ cca:
       name: 物品分身
       desc: 它有一个影子! (使用了部分1.16.5的ItemStack逻辑)
 
-    MagicBox:
-      name: 魔法盒子/强转抑制器
-      desc: 控制基于类型转换的更新抑制是否可用
-
     NoBatSpawn:
       name: 禁用蝙蝠生成
       desc: 让你的世界不再生成烦人的蝙蝠.
