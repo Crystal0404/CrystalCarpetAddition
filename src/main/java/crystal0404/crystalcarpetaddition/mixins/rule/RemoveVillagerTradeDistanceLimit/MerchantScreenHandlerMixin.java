@@ -35,7 +35,6 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 
 @Mixin(MerchantScreenHandler.class)
-@Restriction(require = @Condition(value = ModIds.MC, versionPredicates = ">=1.21.4"))
 public abstract class MerchantScreenHandlerMixin {
     @Shadow
     @Final
