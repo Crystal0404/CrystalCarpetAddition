@@ -36,7 +36,7 @@
   "depends": {
     "carpet": "*",
     "conditional-mixin": ">=${conditional_mixin_dependency}",
-    "fabricloader": ">=${fabricloader_dependency}",
+    "fabricloader": ">=0.16.0",
     "minecraft": "${minecraft_dependency}",
     "mixinextras": ">=${mixinextras_dependency}"
   }

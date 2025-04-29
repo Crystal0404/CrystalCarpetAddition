@@ -3,7 +3,7 @@
   "minVersion": "0.8",
   "package": "crystal0404.crystalcarpetaddition.mixins",
   "plugin": "crystal0404.crystalcarpetaddition.utils.CCAMixinConfigPlugin",
-  "compatibilityLevel": "{{COMPATIBILITY_LEVEL}}",
+  "compatibilityLevel": "JAVA_21",
   "mixins": [
     "carpet.SettingsManagerMixin",
     "rule.AnvilCanCrushItems.FallingBlockEntityMixin",

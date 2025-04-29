@@ -43,14 +43,12 @@ public class CCASettings {
     public static boolean ComparatorIgnoresStateUpdatesFromBelow = false;
 
     @Rule(categories = {CCA, MC_TWEAKS})
-    @Restriction(require = @Condition(value = ModIds.MC, versionPredicates = ">=1.21"))
     public static boolean EnderDragonPartCanUseEndPortal = false;
 
     @Rule(categories = {CCA, MC_TWEAKS})
     public static boolean EndermanCannotPickUpBlocksInNether = false;
 
     @Rule(categories = {CCA, MC_TWEAKS})
-    @Restriction(require = @Condition(value = ModIds.MC, versionPredicates = ">=1.21"))
     public static boolean GatewayCannotLoadingChunks = false;
 
     @Rule(categories = {CCA, MC_TWEAKS})
@@ -71,23 +69,13 @@ public class CCASettings {
     @Rule(categories = {CCA, MC_TWEAKS})
     public static boolean NoBatSpawn = false;
 
-    @Rule(
-            //#if MC >= 12005 && MC <= 12006
-            //$$ categories = {CCA, MC_TWEAKS},
-            //$$ conditions = crystal0404.crystalcarpetaddition.utils.CCAUtils.EnableMagicSetting.class
-            //#else
-            categories = {CCA, MC_TWEAKS}
-            //#endif
-    )
-    @Restriction(require = @Condition(value = ModIds.MC, versionPredicates = ">=1.20.5"))
+    @Rule(categories = {CCA, MC_TWEAKS})
     public static boolean ReIntroduceOldVersionRaid = false;
 
     @Rule(categories = {CCA, MC_TWEAKS})
-    @Restriction(require = @Condition(value = ModIds.MC, versionPredicates = ">=1.21"))
     public static boolean ReIntroduceOldVersionWitchLootTable = false;
 
     @Rule(categories = {CCA, MC_TWEAKS})
-    @Restriction(require = @Condition(value = ModIds.MC, versionPredicates = ">=1.21.4"))
     public static boolean RemoveVillagerTradeDistanceLimit = false;
 
     @Rule(categories = {CCA, MC_TWEAKS})
