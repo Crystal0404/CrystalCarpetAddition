@@ -30,10 +30,10 @@ jobs:
           distribution: 'microsoft'
       - name: make gradle wrapper executable
         run: chmod +x ./gradlew
-      - name: run server mixin audit
-        run: ./gradlew runServerMixinAudit
       - name: build
         run: ./gradlew build
+      - name: run server mixin audit
+        run: ./gradlew runServerMixinAudit
       - name: capture build artifacts
         uses: actions/upload-artifact@v4
         with:
