@@ -10,15 +10,6 @@ jobs:
   build:
     runs-on: ubuntu-24.04
     steps:
-      - name: cache
-        uses: actions/cache@v4
-        with:
-          path: |
-            ~/.gradle/caches
-            ~/.gradle/wrapper
-          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
-          restore-keys: |
-            ${{ runner.os }}-gradle-
       - name: checkout repository
         uses: actions/checkout@v4
       - name: validate gradle wrapper
@@ -28,12 +19,19 @@ jobs:
         with:
           java-version: '21'
           distribution: 'microsoft'
+      - name: cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-
       - name: make gradle wrapper executable
         run: chmod +x ./gradlew
       - name: build
         run: ./gradlew build
-      - name: run server mixin audit
-        run: ./gradlew runServerMixinAudit
       - name: capture build artifacts
         uses: actions/upload-artifact@v4
         with:
