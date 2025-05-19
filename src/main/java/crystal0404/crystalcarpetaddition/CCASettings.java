@@ -21,6 +21,7 @@
 package crystal0404.crystalcarpetaddition;
 
 import carpet.api.settings.Rule;
+import carpet.api.settings.Validators;
 import crystal0404.crystalcarpetaddition.utils.ModIds;
 import crystal0404.crystalcarpetaddition.utils.shulkerBoxUtils.ColourMap;
 import crystal0404.crystalcarpetaddition.utils.annotation.Condition;
@@ -31,6 +32,7 @@ public class CCASettings {
     private static final String CCA = "CCA";
     private static final String CREATIVE = "Creative";
     private static final String MC_TWEAKS = "MCTweaks";
+    private static final String PEARL = "Pearl";
 
     /**
      * MC Tweaks
@@ -75,6 +77,21 @@ public class CCASettings {
     @Rule(categories = {CCA, MC_TWEAKS})
     @Restriction(conflict = @Condition(ModIds.PCA))
     public static boolean StackableShulkerBoxesEnhancement = false;
+
+    /**
+     * Pearl
+     */
+
+    @Rule(categories = {CCA, PEARL})
+    public static boolean RemoveHighSpeedPearls = false;
+
+    @Rule(
+            categories = {CCA, PEARL},
+            options = "40",
+            strict = false,
+            validators = Validators.NonNegativeNumber.class
+    )
+    public static int RemoveHighSpeedPearlsTime = 40;
 
     /**
      * Creative Tools
