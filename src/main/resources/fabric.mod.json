@@ -25,7 +25,7 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "crystal0404.crystalcarpetaddition.CrystalCarpetAdditionMod"
+      "com.github.crystal0404.mods.crystalcarpetaddition.CrystalCarpetAdditionMod"
     ]
   },
   "mixins": [
