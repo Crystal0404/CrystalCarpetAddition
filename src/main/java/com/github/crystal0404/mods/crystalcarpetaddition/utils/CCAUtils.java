@@ -25,7 +25,6 @@ import com.google.common.collect.ImmutableMap;
 import com.github.crystal0404.mods.crystalcarpetaddition.CrystalCarpetAdditionMod;
 import me.fallenbreath.conditionalmixin.api.mixin.ConditionTester;
 import me.fallenbreath.conditionalmixin.api.util.VersionChecker;
-import org.jetbrains.annotations.NotNull;
 import org.spongepowered.asm.service.MixinService;
 
 import java.io.IOException;
@@ -45,7 +44,7 @@ public final class CCAUtils {
             .put("cca.enable.MagicSettings", new Key(Boolean.getBoolean("cca.enable.MagicSettings"), false))
             .buildOrThrow();
 
-    private record Key(@NotNull Boolean value, @NotNull Boolean defaultValue) {
+    private record Key(boolean value, boolean defaultValue) {
 
     }
 
