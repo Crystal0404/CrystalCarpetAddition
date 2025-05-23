@@ -96,14 +96,7 @@ public abstract class RaiderEntityMixin extends PatrolEntity {
                         false,
                         true
                 );
-                if (
-                        // TODO The future needs to be cleaned this
-                        //#if MC >= 12102
-                        !((ServerWorld) this.getWorld()).getGameRules().getBoolean(GameRules.DISABLE_RAIDS)
-                        //#else
-                        //$$ !this.getWorld().getGameRules().getBoolean(GameRules.DISABLE_RAIDS)
-                        //#endif
-                ) {
+                if (!((ServerWorld) this.getWorld()).getGameRules().getBoolean(GameRules.DISABLE_RAIDS)) {
                     playerEntity.addStatusEffect(statusEffectInstance2);
                 }
             }
@@ -129,11 +122,7 @@ public abstract class RaiderEntityMixin extends PatrolEntity {
         // TODO The future needs to be cleaned this
         return ItemStack.areEqual(
                 itemStack,
-                //#if MC >= 12102
                 Raid.createOminousBanner(this.getRegistryManager().getOrThrow(RegistryKeys.BANNER_PATTERN))
-                //#else
-                //$$ Raid.getOminousBanner(this.getRegistryManager().getWrapperOrThrow(RegistryKeys.BANNER_PATTERN))
-                //#endif
         );
     }
 }

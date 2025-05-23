@@ -3,6 +3,7 @@ cca:
     CCA: CCA
     Creative: Creative Tools
     MCTweaks: MC Tweaks
+    Pearl: Pearl
 
   rule:
 
@@ -58,3 +59,12 @@ cca:
 
     ShulkerBoxPowerOutputExpansionColour:
       desc: Specifies the color of the ShulkerBox in effect for the Shulker Box Power Output Expansion(Pink by default).
+
+    # ===Pearl===
+
+    RemoveHighSpeedPearls:
+      desc: Remove pearls moving at high speed for a long time
+      extra.0: Drop into a remote wilderness?
+
+    RemoveHighSpeedPearlsTime:
+      desc: Set the survival time of high-speed moving pearls

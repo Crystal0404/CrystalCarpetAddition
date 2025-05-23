@@ -21,6 +21,7 @@
 package com.github.crystal0404.mods.crystalcarpetaddition;
 
 import carpet.api.settings.Rule;
+import carpet.api.settings.Validators;
 import com.github.crystal0404.mods.crystalcarpetaddition.utils.ModIds;
 import com.github.crystal0404.mods.crystalcarpetaddition.utils.shulkerBoxUtils.ColourMap;
 import com.github.crystal0404.mods.crystalcarpetaddition.utils.annotation.Condition;
@@ -31,6 +32,7 @@ public class CCASettings {
     private static final String CCA = "CCA";
     private static final String CREATIVE = "Creative";
     private static final String MC_TWEAKS = "MCTweaks";
+    private static final String PEARL = "Pearl";
 
     /**
      * MC Tweaks
@@ -43,14 +45,12 @@ public class CCASettings {
     public static boolean ComparatorIgnoresStateUpdatesFromBelow = false;
 
     @Rule(categories = {CCA, MC_TWEAKS})
-    @Restriction(require = @Condition(value = ModIds.MC, versionPredicates = ">=1.21"))
     public static boolean EnderDragonPartCanUseEndPortal = false;
 
     @Rule(categories = {CCA, MC_TWEAKS})
     public static boolean EndermanCannotPickUpBlocksInNether = false;
 
     @Rule(categories = {CCA, MC_TWEAKS})
-    @Restriction(require = @Condition(value = ModIds.MC, versionPredicates = ">=1.21"))
     public static boolean GatewayCannotLoadingChunks = false;
 
     @Rule(categories = {CCA, MC_TWEAKS})
@@ -68,19 +68,10 @@ public class CCASettings {
     @Rule(categories = {CCA, MC_TWEAKS})
     public static boolean NoBatSpawn = false;
 
-    @Rule(
-            //#if MC >= 12005 && MC <= 12006
-            //$$ categories = {CCA, MC_TWEAKS},
-            //$$ conditions = crystal0404.crystalcarpetaddition.utils.CCAUtils.EnableMagicSetting.class
-            //#else
-            categories = {CCA, MC_TWEAKS}
-            //#endif
-    )
-    @Restriction(require = @Condition(value = ModIds.MC, versionPredicates = ">=1.20.5"))
+    @Rule(categories = {CCA, MC_TWEAKS})
     public static boolean ReIntroduceOldVersionRaid = false;
 
     @Rule(categories = {CCA, MC_TWEAKS})
-    @Restriction(require = @Condition(value = ModIds.MC, versionPredicates = ">=1.21"))
     public static boolean ReIntroduceOldVersionWitchLootTable = false;
 
     @Rule(categories = {CCA, MC_TWEAKS})
@@ -90,6 +81,21 @@ public class CCASettings {
     @Rule(categories = {CCA, MC_TWEAKS})
     @Restriction(conflict = @Condition(ModIds.PCA))
     public static boolean StackableShulkerBoxesEnhancement = false;
+
+    /**
+     * Pearl
+     */
+
+    @Rule(categories = {CCA, PEARL})
+    public static boolean RemoveHighSpeedPearls = false;
+
+    @Rule(
+            categories = {CCA, PEARL},
+            options = "40",
+            strict = false,
+            validators = Validators.NonNegativeNumber.class
+    )
+    public static int RemoveHighSpeedPearlsTime = 40;
 
     /**
      * Creative Tools
