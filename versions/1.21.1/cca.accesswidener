@@ -1,5 +1,0 @@
-accessWidener v2 named
-# 1.21.1
-
-accessible class net/minecraft/entity/effect/BadOmenStatusEffect
-accessible class net/minecraft/entity/mob/EndermanEntity$PickUpBlockGoal
