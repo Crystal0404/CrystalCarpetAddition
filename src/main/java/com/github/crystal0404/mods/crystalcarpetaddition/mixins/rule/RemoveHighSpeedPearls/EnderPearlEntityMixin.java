@@ -18,7 +18,7 @@
  * along with Crystal Carpet Addition.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package com.github.crystal0404.mods.crystalcarpetaddition.mixins.rule.RemoveHighSpeedPearl;
+package com.github.crystal0404.mods.crystalcarpetaddition.mixins.rule.RemoveHighSpeedPearls;
 
 import com.llamalad7.mixinextras.sugar.Local;
 import com.github.crystal0404.mods.crystalcarpetaddition.CCASettings;
