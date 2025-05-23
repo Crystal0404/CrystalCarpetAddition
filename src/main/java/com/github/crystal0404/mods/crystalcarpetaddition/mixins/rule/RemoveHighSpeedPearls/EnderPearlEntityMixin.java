@@ -20,8 +20,8 @@
 
 package com.github.crystal0404.mods.crystalcarpetaddition.mixins.rule.RemoveHighSpeedPearls;
 
-import com.llamalad7.mixinextras.sugar.Local;
 import com.github.crystal0404.mods.crystalcarpetaddition.CCASettings;
+import com.llamalad7.mixinextras.sugar.Local;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.projectile.thrown.EnderPearlEntity;

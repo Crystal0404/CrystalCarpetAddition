@@ -20,10 +20,10 @@
 
 package com.github.crystal0404.mods.crystalcarpetaddition.mixins.rule.ShulkerBoxPowerOutputExpansion;
 
-import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
-import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import com.github.crystal0404.mods.crystalcarpetaddition.CCASettings;
 import com.github.crystal0404.mods.crystalcarpetaddition.utils.shulkerBoxUtils.ColourMap;
+import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
+import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import net.minecraft.block.ShulkerBoxBlock;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.ShulkerBoxBlockEntity;

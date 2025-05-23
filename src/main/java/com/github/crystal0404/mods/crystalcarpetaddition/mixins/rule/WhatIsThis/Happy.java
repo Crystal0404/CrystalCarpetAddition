@@ -20,8 +20,8 @@
 
 package com.github.crystal0404.mods.crystalcarpetaddition.mixins.rule.WhatIsThis;
 
-import com.llamalad7.mixinextras.sugar.Local;
 import com.github.crystal0404.mods.crystalcarpetaddition.utils.CCAUtils;
+import com.llamalad7.mixinextras.sugar.Local;
 import me.fallenbreath.conditionalmixin.api.annotation.Condition;
 import me.fallenbreath.conditionalmixin.api.annotation.Restriction;
 import net.minecraft.client.gui.screen.SplashTextRenderer;

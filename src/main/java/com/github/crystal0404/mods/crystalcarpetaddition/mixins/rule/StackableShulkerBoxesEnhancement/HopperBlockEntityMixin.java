@@ -21,11 +21,11 @@
 package com.github.crystal0404.mods.crystalcarpetaddition.mixins.rule.StackableShulkerBoxesEnhancement;
 
 import carpet.CarpetSettings;
-import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
-import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import com.github.crystal0404.mods.crystalcarpetaddition.CCASettings;
 import com.github.crystal0404.mods.crystalcarpetaddition.utils.ModIds;
 import com.github.crystal0404.mods.crystalcarpetaddition.utils.shulkerBoxUtils.ShulkerBoxesSet;
+import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
+import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import me.fallenbreath.conditionalmixin.api.annotation.Condition;
 import me.fallenbreath.conditionalmixin.api.annotation.Restriction;
 import net.minecraft.block.entity.HopperBlockEntity;
