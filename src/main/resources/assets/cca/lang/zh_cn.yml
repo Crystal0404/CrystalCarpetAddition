@@ -75,11 +75,11 @@ cca:
 
     # ===Pearl===
 
-    RemoveHighSpeedPearl:
+    RemoveHighSpeedPearls:
       name: 移除高速珍珠
       desc: 移除长时间高速移动的珍珠
       extra.0: 哎?给我干哪来了?
 
-    RemoveHighSpeedPearlTime:
+    RemoveHighSpeedPearlsTime:
       name: 移除高速珍珠时间
       desc: 设置高速运动珍珠的存活时间
