@@ -20,9 +20,9 @@
 
 package com.github.crystal0404.mods.crystalcarpetaddition.mixins.rule.RemoveVillagerTradeDistanceLimit;
 
+import com.github.crystal0404.mods.crystalcarpetaddition.CCASettings;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
-import com.github.crystal0404.mods.crystalcarpetaddition.CCASettings;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.screen.MerchantScreenHandler;
 import net.minecraft.village.Merchant;

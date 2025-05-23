@@ -20,9 +20,9 @@
 
 package com.github.crystal0404.mods.crystalcarpetaddition.mixins.rule.EndermanCannotPickUpBlocksInNether;
 
+import com.github.crystal0404.mods.crystalcarpetaddition.CCASettings;
 import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 import com.llamalad7.mixinextras.sugar.Local;
-import com.github.crystal0404.mods.crystalcarpetaddition.CCASettings;
 import net.minecraft.entity.mob.EndermanEntity;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;

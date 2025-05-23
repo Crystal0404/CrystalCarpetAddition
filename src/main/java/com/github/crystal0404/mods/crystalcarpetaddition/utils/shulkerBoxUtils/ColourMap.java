@@ -20,8 +20,8 @@
 
 package com.github.crystal0404.mods.crystalcarpetaddition.utils.shulkerBoxUtils;
 
-import com.google.common.collect.ImmutableMap;
 import com.github.crystal0404.mods.crystalcarpetaddition.CCASettings;
+import com.google.common.collect.ImmutableMap;
 import net.minecraft.util.DyeColor;
 
 public class ColourMap {
