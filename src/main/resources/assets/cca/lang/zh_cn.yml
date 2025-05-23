@@ -3,6 +3,7 @@ cca:
     CCA: CCA
     Creative: 创造工具
     MCTweaks: MC调整
+    Pearl: 珍珠
 
   rule:
 
@@ -75,3 +76,14 @@ cca:
     ShulkerBoxPowerOutputExpansionColour:
       name: 潜影盒红石信号输出拓展颜色设置
       desc: 设置潜影盒红石信号输出拓展生效的潜影盒颜色(默认粉色).
+
+    # ===Pearl===
+
+    RemoveHighSpeedPearls:
+      name: 移除高速珍珠
+      desc: 移除长时间高速移动的珍珠
+      extra.0: 哎?给我干哪来了?
+
+    RemoveHighSpeedPearlsTime:
+      name: 移除高速珍珠时间
+      desc: 设置高速运动珍珠的存活时间

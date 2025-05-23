@@ -41,10 +41,7 @@ public abstract class BadOmenStatusEffectMixin {
             cancellable = true
     )
     private void applyUpdateEffectMixin(
-            // TODO The future needs to be cleaned this
-            //#if MC >= 12102
             ServerWorld serverWorld,
-            //#endif
             LivingEntity entity,
             int amplifier,
             CallbackInfoReturnable<Boolean> cir

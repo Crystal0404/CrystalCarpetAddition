@@ -23,9 +23,6 @@ package com.github.crystal0404.mods.crystalcarpetaddition.mixins.rule.MagicBox;
 import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 import com.llamalad7.mixinextras.sugar.Local;
 import com.github.crystal0404.mods.crystalcarpetaddition.CCASettings;
-import com.github.crystal0404.mods.crystalcarpetaddition.utils.ModIds;
-import me.fallenbreath.conditionalmixin.api.annotation.Condition;
-import me.fallenbreath.conditionalmixin.api.annotation.Restriction;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.ShulkerBoxBlock;
 import net.minecraft.block.entity.BlockEntity;
@@ -36,7 +33,6 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 
-@Restriction(require = @Condition(value = ModIds.MC, versionPredicates = ">=1.21.1"))
 @Mixin(WorldChunk.class)
 public abstract class WorldChunkMixin {
     @Shadow

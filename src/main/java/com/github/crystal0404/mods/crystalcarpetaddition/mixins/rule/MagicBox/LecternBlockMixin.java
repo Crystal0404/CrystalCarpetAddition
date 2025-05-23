@@ -22,9 +22,6 @@ package com.github.crystal0404.mods.crystalcarpetaddition.mixins.rule.MagicBox;
 
 import com.llamalad7.mixinextras.injector.v2.WrapWithCondition;
 import com.github.crystal0404.mods.crystalcarpetaddition.CCASettings;
-import com.github.crystal0404.mods.crystalcarpetaddition.utils.ModIds;
-import me.fallenbreath.conditionalmixin.api.annotation.Condition;
-import me.fallenbreath.conditionalmixin.api.annotation.Restriction;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.BlockWithEntity;
 import net.minecraft.block.LecternBlock;
@@ -35,7 +32,6 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-@Restriction(require = @Condition(value = ModIds.MC, versionPredicates = ">=1.21.1"))
 @Mixin(LecternBlock.class)
 public abstract class LecternBlockMixin extends BlockWithEntity {
     protected LecternBlockMixin(Settings settings) {
