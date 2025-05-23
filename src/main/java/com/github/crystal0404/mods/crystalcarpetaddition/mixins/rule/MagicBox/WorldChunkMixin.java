@@ -20,9 +20,9 @@
 
 package com.github.crystal0404.mods.crystalcarpetaddition.mixins.rule.MagicBox;
 
+import com.github.crystal0404.mods.crystalcarpetaddition.CCASettings;
 import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 import com.llamalad7.mixinextras.sugar.Local;
-import com.github.crystal0404.mods.crystalcarpetaddition.CCASettings;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.ShulkerBoxBlock;
 import net.minecraft.block.entity.BlockEntity;

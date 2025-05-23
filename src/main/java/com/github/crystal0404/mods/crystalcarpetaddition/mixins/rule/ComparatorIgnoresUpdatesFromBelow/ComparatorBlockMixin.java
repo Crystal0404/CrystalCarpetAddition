@@ -20,8 +20,8 @@
 
 package com.github.crystal0404.mods.crystalcarpetaddition.mixins.rule.ComparatorIgnoresUpdatesFromBelow;
 
-import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 import com.github.crystal0404.mods.crystalcarpetaddition.CCASettings;
+import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 import net.minecraft.block.ComparatorBlock;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;

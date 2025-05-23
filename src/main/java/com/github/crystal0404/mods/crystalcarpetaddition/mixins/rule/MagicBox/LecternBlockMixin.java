@@ -20,8 +20,8 @@
 
 package com.github.crystal0404.mods.crystalcarpetaddition.mixins.rule.MagicBox;
 
-import com.llamalad7.mixinextras.injector.v2.WrapWithCondition;
 import com.github.crystal0404.mods.crystalcarpetaddition.CCASettings;
+import com.llamalad7.mixinextras.injector.v2.WrapWithCondition;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.BlockWithEntity;
 import net.minecraft.block.LecternBlock;

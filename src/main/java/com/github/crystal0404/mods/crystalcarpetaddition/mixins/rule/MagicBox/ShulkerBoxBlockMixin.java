@@ -20,9 +20,9 @@
 
 package com.github.crystal0404.mods.crystalcarpetaddition.mixins.rule.MagicBox;
 
+import com.github.crystal0404.mods.crystalcarpetaddition.CCASettings;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
-import com.github.crystal0404.mods.crystalcarpetaddition.CCASettings;
 import net.minecraft.block.ShulkerBoxBlock;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.inventory.Inventory;

@@ -20,10 +20,10 @@
 
 package com.github.crystal0404.mods.crystalcarpetaddition.mixins.rule.ItemShadowing;
 
-import com.llamalad7.mixinextras.injector.v2.WrapWithCondition;
-import com.llamalad7.mixinextras.sugar.Local;
 import com.github.crystal0404.mods.crystalcarpetaddition.CCASettings;
 import com.github.crystal0404.mods.crystalcarpetaddition.utils.ModIds;
+import com.llamalad7.mixinextras.injector.v2.WrapWithCondition;
+import com.llamalad7.mixinextras.sugar.Local;
 import me.fallenbreath.conditionalmixin.api.annotation.Condition;
 import me.fallenbreath.conditionalmixin.api.annotation.Restriction;
 import net.minecraft.entity.player.PlayerEntity;
