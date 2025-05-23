@@ -23,9 +23,9 @@ package com.github.crystal0404.mods.crystalcarpetaddition;
 import carpet.api.settings.Rule;
 import carpet.api.settings.Validators;
 import com.github.crystal0404.mods.crystalcarpetaddition.utils.ModIds;
-import com.github.crystal0404.mods.crystalcarpetaddition.utils.shulkerBoxUtils.ColourMap;
 import com.github.crystal0404.mods.crystalcarpetaddition.utils.annotation.Condition;
 import com.github.crystal0404.mods.crystalcarpetaddition.utils.annotation.Restriction;
+import com.github.crystal0404.mods.crystalcarpetaddition.utils.shulkerBoxUtils.ColourMap;
 
 @SuppressWarnings("unused")
 public class CCASettings {

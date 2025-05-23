@@ -21,8 +21,8 @@
 package com.github.crystal0404.mods.crystalcarpetaddition.utils;
 
 import carpet.api.settings.Rule;
-import com.google.common.collect.ImmutableMap;
 import com.github.crystal0404.mods.crystalcarpetaddition.CrystalCarpetAdditionMod;
+import com.google.common.collect.ImmutableMap;
 import me.fallenbreath.conditionalmixin.api.mixin.ConditionTester;
 import me.fallenbreath.conditionalmixin.api.util.VersionChecker;
 import org.spongepowered.asm.service.MixinService;

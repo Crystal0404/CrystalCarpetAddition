@@ -20,8 +20,8 @@
 
 package com.github.crystal0404.mods.crystalcarpetaddition.utils;
 
-import com.llamalad7.mixinextras.MixinExtrasBootstrap;
 import com.github.crystal0404.mods.crystalcarpetaddition.CrystalCarpetAdditionMod;
+import com.llamalad7.mixinextras.MixinExtrasBootstrap;
 import me.fallenbreath.conditionalmixin.api.mixin.RestrictiveMixinConfigPlugin;
 
 import java.util.List;
