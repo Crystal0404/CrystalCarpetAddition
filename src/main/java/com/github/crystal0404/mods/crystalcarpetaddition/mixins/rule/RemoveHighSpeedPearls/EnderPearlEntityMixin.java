@@ -57,7 +57,7 @@ public abstract class EnderPearlEntityMixin extends ThrownItemEntity {
         } else {
             this.highSpeedTime = 0;
         }
-        if (this.isAlive() && this.highSpeedTime >= CCASettings.RemoveHighSpeedPearlsTime) {
+        if (this.isAlive() && this.highSpeedTime > CCASettings.RemoveHighSpeedPearlsTime) {
             this.discard();
         }
     }
