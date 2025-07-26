@@ -61,10 +61,6 @@ dependencies {
     } else {
         modCompileOnly("maven.modrinth:lithium:${project.property("lithium_version")}")
     }
-    annotationProcessor("io.github.llamalad7:mixinextras-fabric:${project.property("mixinextras_version")}")?.let {
-        implementation(it)
-        include(it)
-    }
 }
 
 loom {
@@ -97,14 +93,12 @@ tasks.processResources {
     val modVersion = "${getModVersion()}+mc${project.property("minecraft_version")}"
     val conditionalmixin = project.property("conditionalmixin_version")
     val minecraft = project.property("minecraft_dependency")
-    val mixinextras = project.property("mixinextras_version")
 
     inputs.property("id", modId)
     inputs.property("name", modName)
     inputs.property("version", modVersion)
     inputs.property("conditional_mixin_dependency", conditionalmixin)
     inputs.property("minecraft_dependency", minecraft)
-    inputs.property("mixinextras_dependency", mixinextras)
 
     filesMatching("fabric.mod.json") {
         val valueMap = mapOf(
@@ -112,8 +106,7 @@ tasks.processResources {
             "name" to modName,
             "version" to modVersion,
             "conditional_mixin_dependency" to conditionalmixin,
-            "minecraft_dependency" to minecraft,
-            "mixinextras_dependency" to mixinextras
+            "minecraft_dependency" to minecraft
         )
         expand(valueMap)
     }
