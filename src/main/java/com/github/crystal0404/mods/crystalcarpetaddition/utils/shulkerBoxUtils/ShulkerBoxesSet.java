@@ -31,7 +31,7 @@ public final class ShulkerBoxesSet {
             Items.ORANGE_SHULKER_BOX,
             Items.MAGENTA_SHULKER_BOX,
             Items.LIGHT_BLUE_SHULKER_BOX,
-            Items.YELLOW_SHULKER_BOX ,
+            Items.YELLOW_SHULKER_BOX,
             Items.LIME_SHULKER_BOX,
             Items.PINK_SHULKER_BOX,
             Items.GRAY_SHULKER_BOX,
