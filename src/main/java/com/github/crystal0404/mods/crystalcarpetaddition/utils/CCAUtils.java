@@ -45,7 +45,6 @@ public final class CCAUtils {
             .buildOrThrow();
 
     private record Key(boolean value, boolean defaultValue) {
-
     }
 
     static {
