@@ -21,18 +21,12 @@
 package com.github.crystal0404.mods.crystalcarpetaddition.utils;
 
 import com.github.crystal0404.mods.crystalcarpetaddition.CrystalCarpetAdditionMod;
-import com.llamalad7.mixinextras.MixinExtrasBootstrap;
 import me.fallenbreath.conditionalmixin.api.mixin.RestrictiveMixinConfigPlugin;
 
 import java.util.List;
 import java.util.Set;
 
 public class CCAMixinConfigPlugin extends RestrictiveMixinConfigPlugin {
-    @Override
-    public void onLoad(String mixinPackage) {
-        MixinExtrasBootstrap.init();
-    }
-
     @Override
     protected void onRestrictionCheckFailed(String mixinClassName, String reason) {
         if (!reason.matches(".*%s.*".formatted(mixinClassName)) && CCAUtils.isEnableDebug()) {
