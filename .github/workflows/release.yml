@@ -3,17 +3,33 @@ on:
   workflow_dispatch:
     inputs:
       tag:
-        description: "Your release tag"
+        description: 'Your release tag'
         required: true
   release:
-    types: [published]
+    types:
+      - published
 
 jobs:
   publish:
+    runs-on: ubuntu-latest
     permissions:
       contents: write
-    runs-on: ubuntu-24.04
     steps:
+      - name: get tag
+        id: get_tag
+        run: |
+          if [ '${{ github.event_name }}' == 'release' ]; then
+            echo 'tag=${{ github.event.release.tag_name }}' >> $GITHUB_OUTPUT
+          else
+            echo 'tag=${{ github.event.inputs.tag }}' >> $GITHUB_OUTPUT
+          fi
+      - name: get release info
+        id: release_info
+        uses: cardinalby/git-get-release-action@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag: ${{ steps.get_tag.outputs.tag }}
       - name: checkout repository
         uses: actions/checkout@v4
       - name: validate gradle wrapper
@@ -23,20 +39,6 @@ jobs:
         with:
           java-version: '21'
           distribution: 'microsoft'
-      - name: get tag
-        run: |
-          if [ "${{ github.event_name }}" == "release" ]; then
-            echo "tag=${{ github.event.release.tag_name }}" >> $GITHUB_ENV
-          else
-            echo "tag=${{ github.event.inputs.tag }}" >> $GITHUB_ENV
-          fi
-      - name: get release info
-        id: getByTag
-        uses: cardinalby/git-get-release-action@1.2.4
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          tag: ${{ env.tag }}
       - name: cache
         uses: actions/cache@v4
         with:
@@ -48,17 +50,17 @@ jobs:
             ${{ runner.os }}-gradle-
       - name: make gradle wrapper executable
         run: chmod +x ./gradlew
+
       - name: build and publish
         run: ./gradlew build publishMods
         env:
-          BUILD_RELEASE: "true"
-          CHANGELOG: ${{ steps.getByTag.outputs.body }}
+          BUILD_RELEASE: 'true'
+          CHANGELOG: ${{ steps.release_info.outputs.body }}
           MODRINTH_API_KEY: ${{ secrets.MODRINTH_API_KEY }}
 #          CURSEFORGE_API_KEY: ${{ secrets.CURSEFORGE_API_KEY }}
+
       - name: publish to github
-        uses: Kir-Antipov/mc-publish@v3.3
+        uses: softprops/action-gh-release@v2
         with:
-          github-tag: ${{ env.tag }}
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          files: |
-            build/libs/!(*-@(shadow|sources)).jar
+          tag_name: ${{ steps.get_tag.outputs.tag }}
+          files: build/libs/*[!sources][!shadow].jar

@@ -2,9 +2,9 @@ import java.util.Calendar
 
 plugins {
     id("fabric-loom").version("1.11-SNAPSHOT")
-    id("me.fallenbreath.yamlang").version("1.4.1")
+    id("me.fallenbreath.yamlang").version("1.5.0")
     id("com.github.hierynomus.license").version("0.16.1")
-    id("me.modmuss50.mod-publish-plugin").version("0.8.4")
+    id("me.modmuss50.mod-publish-plugin").version("1.0.0")
     id("maven-publish")
 }
 
@@ -22,7 +22,7 @@ fun getModVersion(): String {
 }
 
 group = "${project.property("maven_group")}"
-version = "v${this.getModVersion()}-mc${project.property("minecraft_version")}"
+version = "v${getModVersion()}-mc${project.property("minecraft_version")}"
 
 repositories {
     maven {
