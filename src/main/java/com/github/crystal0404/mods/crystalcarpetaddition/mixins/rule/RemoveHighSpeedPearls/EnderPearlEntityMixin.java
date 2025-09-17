@@ -21,8 +21,6 @@
 package com.github.crystal0404.mods.crystalcarpetaddition.mixins.rule.RemoveHighSpeedPearls;
 
 import com.github.crystal0404.mods.crystalcarpetaddition.CCASettings;
-import com.llamalad7.mixinextras.sugar.Local;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.projectile.thrown.EnderPearlEntity;
 import net.minecraft.entity.projectile.thrown.ThrownItemEntity;
@@ -49,7 +47,7 @@ public abstract class EnderPearlEntityMixin extends ThrownItemEntity {
                     target = "Lnet/minecraft/entity/projectile/thrown/EnderPearlEntity;isAlive()Z"
             )
     )
-    private void tickMixin(CallbackInfo ci, @Local(ordinal = 0) Entity entity) {
+    private void tickMixin(CallbackInfo ci) {
         if (!CCASettings.RemoveHighSpeedPearls) return;
 
         if (this.isHighSpeed()) {
