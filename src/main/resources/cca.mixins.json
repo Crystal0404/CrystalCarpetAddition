@@ -1,37 +1,37 @@
 {
-	"required": true,
-	"package": "com.github.crystal0404.mods.crystalcarpetaddition.mixins",
-	"plugin": "com.github.crystal0404.mods.crystalcarpetaddition.utils.CCAMixinConfigPlugin",
-	"compatibilityLevel": "JAVA_21",
-	"mixins": [
-		"carpet.SettingsManagerMixin",
-		"rule.AnvilCanCrushItems.FallingBlockEntityMixin",
-		"rule.ComparatorIgnoresUpdatesFromBelow.ComparatorBlockMixin",
-		"rule.EnderDragonPartCanUseEndPortal.EntityAccessor",
-		"rule.EnderDragonPartCanUseEndPortal.EntityInvoker",
-		"rule.EnderDragonPartCanUseEndPortal.MobEntityMixin",
-		"rule.EnderDragonPartCanUseEndPortal.PortalManagerAccessor",
-		"rule.EndermanCannotPickUpBlocksInNether.EndermanEntity$PickUpBlockGoalMixin",
-		"rule.GatewayCannotLoadingChunks.EndGatewayBlockMixin",
-		"rule.ItemShadowing.ScreenHandlerMixin",
-		"rule.NoBatSpwan.BatEntityMixin",
-		"rule.ReIntroduceOldVersionRaid.BadOmenStatusEffectMixin",
-		"rule.ReIntroduceOldVersionRaid.RaiderEntityMixin",
-		"rule.ReIntroduceOldVersionRaid.RaidMixin",
-		"rule.ReIntroduceOldVersionWitchLootTable.LivingEntityMixin",
-		"rule.RemoveHighSpeedPearls.EnderPearlEntityMixin",
-		"rule.RemoveVillagerTradeDistanceLimit.MerchantScreenHandlerMixin",
-		"rule.ShulkerBoxPowerOutputExpansion.ShulkerBoxBlockMixin",
-		"rule.StackableShulkerBoxesEnhancement.HopperBlockEntityMixin",
-		"rule.StackableShulkerBoxesEnhancement.lithium.HopperHelperMixin"
-	],
-	"client": [
-		"rule.WhatIsThis.Happy"
-	],
-	"injectors": {
-		"defaultRequire": 1
-	},
-	"overwrites": {
-		"requireAnnotations": true
-	}
+  "required": true,
+  "package": "com.github.crystal0404.mods.crystalcarpetaddition.mixins",
+  "plugin": "com.github.crystal0404.mods.crystalcarpetaddition.utils.CCAMixinConfigPlugin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "carpet.SettingsManagerMixin",
+    "rule.AnvilCanCrushItems.FallingBlockEntityMixin",
+    "rule.ComparatorIgnoresUpdatesFromBelow.ComparatorBlockMixin",
+    "rule.EnderDragonPartCanUseEndPortal.EntityAccessor",
+    "rule.EnderDragonPartCanUseEndPortal.EntityInvoker",
+    "rule.EnderDragonPartCanUseEndPortal.MobEntityMixin",
+    "rule.EnderDragonPartCanUseEndPortal.PortalManagerAccessor",
+    "rule.EndermanCannotPickUpBlocksInNether.EndermanEntity$PickUpBlockGoalMixin",
+    "rule.GatewayCannotLoadingChunks.EndGatewayBlockMixin",
+    "rule.ItemShadowing.ScreenHandlerMixin",
+    "rule.NoBatSpwan.BatEntityMixin",
+    "rule.ReIntroduceOldVersionRaid.BadOmenStatusEffectMixin",
+    "rule.ReIntroduceOldVersionRaid.RaiderEntityMixin",
+    "rule.ReIntroduceOldVersionRaid.RaidMixin",
+    "rule.ReIntroduceOldVersionWitchLootTable.LivingEntityMixin",
+    "rule.RemoveHighSpeedPearls.EnderPearlEntityMixin",
+    "rule.RemoveVillagerTradeDistanceLimit.MerchantScreenHandlerMixin",
+    "rule.ShulkerBoxPowerOutputExpansion.ShulkerBoxBlockMixin",
+    "rule.StackableShulkerBoxesEnhancement.HopperBlockEntityMixin",
+    "rule.StackableShulkerBoxesEnhancement.lithium.HopperHelperMixin"
+  ],
+  "client": [
+    "rule.WhatIsThis.Happy"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "overwrites": {
+    "requireAnnotations": true
+  }
 }
