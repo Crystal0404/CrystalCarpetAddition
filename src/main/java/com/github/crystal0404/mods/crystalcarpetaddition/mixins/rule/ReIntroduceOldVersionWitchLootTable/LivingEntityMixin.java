@@ -45,7 +45,7 @@ public abstract class LivingEntityMixin extends Entity {
     }
 
     @WrapOperation(
-            method = "dropLoot",
+            method = "generateLoot",
             at = @At(
                     value = "INVOKE",
                     target = "Lnet/minecraft/registry/ReloadableRegistries$Lookup;getLootTable" +
@@ -58,7 +58,7 @@ public abstract class LivingEntityMixin extends Entity {
             Operation<LootTable> original
     ) {
         if ((LivingEntity) ((Object) this) instanceof WitchEntity && CCASettings.ReIntroduceOldVersionWitchLootTable) {
-            RegistryWrapper.Impl<Enchantment> impl = this.getWorld().getRegistryManager().getOrThrow(
+            RegistryWrapper.Impl<Enchantment> impl = this.getEntityWorld().getRegistryManager().getOrThrow(
                     RegistryKeys.ENCHANTMENT
             );
             return LootTableUtils.Witch(impl);
