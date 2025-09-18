@@ -43,7 +43,7 @@ repositories {
     }
 }
 
-val enableLithium = true
+val enableLithium = false
 dependencies {
     // To change the versions see the gradle.properties file
     minecraft("com.mojang:minecraft:${project.property("minecraft_version")}")
