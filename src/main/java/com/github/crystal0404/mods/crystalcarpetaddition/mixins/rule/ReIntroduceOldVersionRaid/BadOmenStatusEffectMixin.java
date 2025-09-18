@@ -48,7 +48,7 @@ public abstract class BadOmenStatusEffectMixin {
     ) {
         if (!CCASettings.ReIntroduceOldVersionRaid) return;
         if (entity instanceof ServerPlayerEntity serverPlayerEntity && !serverPlayerEntity.isSpectator()) {
-            cir.setReturnValue(this.cca$tryStartRaid(serverPlayerEntity, serverPlayerEntity.getWorld()));
+            cir.setReturnValue(this.cca$tryStartRaid(serverPlayerEntity, serverPlayerEntity.getEntityWorld()));
         } else {
             cir.setReturnValue(true);
         }

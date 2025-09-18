@@ -66,12 +66,12 @@ public abstract class RaiderEntityMixin extends PatrolEntity {
     )
     private void onDeathMixin(DamageSource damageSource, CallbackInfo ci) {
         // The injection point is not exact, so check the world again
-        if (!CCASettings.ReIntroduceOldVersionRaid || !(this.getWorld() instanceof ServerWorld)) return;
+        if (!CCASettings.ReIntroduceOldVersionRaid || !(this.getEntityWorld() instanceof ServerWorld)) return;
 
         if (
                 this.isPatrolLeader()
                         && this.getRaid() == null
-                        && ((ServerWorld) this.getWorld()).getRaidAt(this.getBlockPos()) == null
+                        && ((ServerWorld) this.getEntityWorld()).getRaidAt(this.getBlockPos()) == null
         ) {
             ItemStack itemStack = this.getEquippedStack(EquipmentSlot.HEAD);
             PlayerEntity playerEntity = this.cca$getPlayerEntity(damageSource.getAttacker());
@@ -96,7 +96,7 @@ public abstract class RaiderEntityMixin extends PatrolEntity {
                         false,
                         true
                 );
-                if (!((ServerWorld) this.getWorld()).getGameRules().getBoolean(GameRules.DISABLE_RAIDS)) {
+                if (!((ServerWorld) this.getEntityWorld()).getGameRules().getBoolean(GameRules.DISABLE_RAIDS)) {
                     playerEntity.addStatusEffect(statusEffectInstance2);
                 }
             }
