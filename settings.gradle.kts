@@ -12,6 +12,7 @@ pluginManagement {
                 url = uri("https://maven.aliyun.com/repository/gradle-plugin")
                 content {
                     excludeGroup("me.modmuss50")
+                    excludeGroup("me.fallenbreath")
                 }
             }
         }
