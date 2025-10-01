@@ -48,14 +48,14 @@ public abstract class BadOmenStatusEffectMixin {
     ) {
         if (!CCASettings.ReIntroduceOldVersionRaid) return;
         if (entity instanceof ServerPlayerEntity serverPlayerEntity && !serverPlayerEntity.isSpectator()) {
-            cir.setReturnValue(this.cca$tryStartRaid(serverPlayerEntity, serverPlayerEntity.getEntityWorld()));
+            cir.setReturnValue(this.tryStartRaid(serverPlayerEntity, serverPlayerEntity.getEntityWorld()));
         } else {
             cir.setReturnValue(true);
         }
     }
 
     @Unique
-    private boolean cca$tryStartRaid(ServerPlayerEntity player, ServerWorld world) {
+    private boolean tryStartRaid(ServerPlayerEntity player, ServerWorld world) {
         BlockPos pos = player.getBlockPos();
         if (world.getDifficulty() != Difficulty.PEACEFUL && world.isNearOccupiedPointOfInterest(pos)) {
             return world.getRaidManager().startRaid(player, pos) == null;

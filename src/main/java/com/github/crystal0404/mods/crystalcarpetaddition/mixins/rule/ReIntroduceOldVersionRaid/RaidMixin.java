@@ -80,7 +80,7 @@ public abstract class RaidMixin {
             @Local(ordinal = 1) int j,
             @Local(ordinal = 0, argsOnly = true) ServerWorld serverWorld
     ) {
-        return CCASettings.ReIntroduceOldVersionRaid ? () -> this.cca$getRavagerSpawnLocation(serverWorld, j, 20) : original;
+        return CCASettings.ReIntroduceOldVersionRaid ? () -> this.getRavagerSpawnLocation(serverWorld, j, 20) : original;
     }
 
     @ModifyExpressionValue(
@@ -109,7 +109,7 @@ public abstract class RaidMixin {
             Operation<Optional<BlockPos>> original
     ) {
         if (CCASettings.ReIntroduceOldVersionRaid) {
-            return this.cca$preCalculateRavagerSpawnLocation(serverWorld, this.preRaidTicks < 100 ? 1 : 0);
+            return this.preCalculateRavagerSpawnLocation(serverWorld, this.preRaidTicks < 100 ? 1 : 0);
         } else {
             return original.call(instance, serverWorld);
         }
@@ -119,7 +119,7 @@ public abstract class RaidMixin {
     @Unique
     @Nullable
     @SuppressWarnings("deprecation")
-    private BlockPos cca$getRavagerSpawnLocation(ServerWorld serverWorld, int proximity, int tries) {
+    private BlockPos getRavagerSpawnLocation(ServerWorld serverWorld, int proximity, int tries) {
         int i = proximity == 0 ? 2 : 2 - proximity;
         BlockPos.Mutable mutable = new BlockPos.Mutable();
         SpawnLocation spawnLocation = SpawnRestriction.getLocation(EntityType.RAVAGER);
@@ -159,9 +159,9 @@ public abstract class RaidMixin {
 
     // from Minecraft-1.21.1
     @Unique
-    private Optional<BlockPos> cca$preCalculateRavagerSpawnLocation(ServerWorld serverWorld, int proximity) {
+    private Optional<BlockPos> preCalculateRavagerSpawnLocation(ServerWorld serverWorld, int proximity) {
         for (int i = 0; i < 3; i++) {
-            BlockPos blockPos = this.cca$getRavagerSpawnLocation(serverWorld, proximity, 1);
+            BlockPos blockPos = this.getRavagerSpawnLocation(serverWorld, proximity, 1);
             if (blockPos != null) {
                 return Optional.of(blockPos);
             }
