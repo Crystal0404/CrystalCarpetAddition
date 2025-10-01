@@ -74,10 +74,10 @@ public abstract class RaiderEntityMixin extends PatrolEntity {
                         && ((ServerWorld) this.getEntityWorld()).getRaidAt(this.getBlockPos()) == null
         ) {
             ItemStack itemStack = this.getEquippedStack(EquipmentSlot.HEAD);
-            PlayerEntity playerEntity = this.cca$getPlayerEntity(damageSource.getAttacker());
+            PlayerEntity playerEntity = this.getPlayerEntity(damageSource.getAttacker());
             if (
                     !itemStack.isEmpty()
-                            && this.cca$hasBanner(itemStack)
+                            && this.hasBanner(itemStack)
                             && playerEntity != null
             ) {
                 StatusEffectInstance statusEffectInstance = playerEntity.getStatusEffect(StatusEffects.BAD_OMEN);
@@ -105,7 +105,7 @@ public abstract class RaiderEntityMixin extends PatrolEntity {
 
     @Unique
     @Nullable
-    private PlayerEntity cca$getPlayerEntity(Entity entity) {
+    private PlayerEntity getPlayerEntity(Entity entity) {
         if (entity instanceof PlayerEntity) {
             return (PlayerEntity) entity;
         } else if (entity instanceof WolfEntity wolfEntity) {
@@ -118,7 +118,7 @@ public abstract class RaiderEntityMixin extends PatrolEntity {
     }
 
     @Unique
-    private boolean cca$hasBanner(ItemStack itemStack) {
+    private boolean hasBanner(ItemStack itemStack) {
         return ItemStack.areEqual(
                 itemStack,
                 Raid.createOminousBanner(this.getRegistryManager().getOrThrow(RegistryKeys.BANNER_PATTERN))
