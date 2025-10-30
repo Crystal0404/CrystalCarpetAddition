@@ -1,10 +1,10 @@
 import java.util.Calendar
 
 plugins {
-    id("fabric-loom").version("1.11-SNAPSHOT")
+    id("fabric-loom").version("1.12-SNAPSHOT")
     id("me.fallenbreath.yamlang").version("1.5.0")
     id("com.github.hierynomus.license").version("0.16.1")
-    id("me.modmuss50.mod-publish-plugin").version("1.0.0")
+    id("me.modmuss50.mod-publish-plugin").version("1.1.0")
     id("maven-publish")
 }
 
