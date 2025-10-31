@@ -44,9 +44,6 @@ public final class CCAUtils {
             .put("cca.enable.MagicSettings", new Key(Boolean.getBoolean("cca.enable.MagicSettings"), false))
             .buildOrThrow();
 
-    private record Key(boolean value, boolean defaultValue) {
-    }
-
     static {
         JAVA_PARAMETERS.forEach((k, v) -> {
             if (v.value() != v.defaultValue()) {
@@ -108,6 +105,9 @@ public final class CCAUtils {
 
     public static boolean isEnableDebug() {
         return Objects.requireNonNull(JAVA_PARAMETERS.get("cca.enable.debug")).value();
+    }
+
+    private record Key(boolean value, boolean defaultValue) {
     }
 
     public final static class DisableEasterEggs implements ConditionTester {

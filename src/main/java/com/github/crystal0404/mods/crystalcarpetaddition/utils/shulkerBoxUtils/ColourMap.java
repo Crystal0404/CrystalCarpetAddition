@@ -22,7 +22,7 @@ package com.github.crystal0404.mods.crystalcarpetaddition.utils.shulkerBoxUtils;
 
 import com.github.crystal0404.mods.crystalcarpetaddition.CCASettings;
 import com.google.common.collect.ImmutableMap;
-import net.minecraft.util.DyeColor;
+import net.minecraft.world.item.DyeColor;
 
 public class ColourMap {
     // It has to be remapped because DyeColor is obfuscated and can't be used directly as a setting option

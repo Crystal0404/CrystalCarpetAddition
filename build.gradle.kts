@@ -41,13 +41,23 @@ repositories {
         name = "JitPack"
         url = uri("https://jitpack.io")
     }
+    maven {
+        name = "NeoForge"
+        url = uri("https://maven.neoforged.net/releases/")
+    }
 }
 
 val enableLithium = true
 dependencies {
     // To change the versions see the gradle.properties file
     minecraft("com.mojang:minecraft:${project.property("minecraft_version")}")
-    mappings("net.fabricmc:yarn:${project.property("yarn_mappings")}:v2")
+    @Suppress("UnstableApiUsage")
+    mappings(
+        loom.layered {
+            officialMojangMappings()
+            parchment("org.parchmentmc.data:parchment-${project.property("minecraft_version")}:${project.property("parchment_version")}@zip")
+        }
+    )
     modImplementation("net.fabricmc:fabric-loader:${project.property("loader_version")}")
 
     // dependencies

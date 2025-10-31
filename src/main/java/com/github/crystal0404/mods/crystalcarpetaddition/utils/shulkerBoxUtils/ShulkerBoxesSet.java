@@ -21,8 +21,8 @@
 package com.github.crystal0404.mods.crystalcarpetaddition.utils.shulkerBoxUtils;
 
 import com.google.common.collect.ImmutableSet;
-import net.minecraft.item.Item;
-import net.minecraft.item.Items;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
 
 public final class ShulkerBoxesSet {
     public static final ImmutableSet<Item> ITEMS_SET = ImmutableSet.of(

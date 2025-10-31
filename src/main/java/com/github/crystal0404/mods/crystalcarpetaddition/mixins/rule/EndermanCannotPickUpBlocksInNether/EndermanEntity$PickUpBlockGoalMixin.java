@@ -23,22 +23,22 @@ package com.github.crystal0404.mods.crystalcarpetaddition.mixins.rule.EndermanCa
 import com.github.crystal0404.mods.crystalcarpetaddition.CCASettings;
 import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 import com.llamalad7.mixinextras.sugar.Local;
-import net.minecraft.entity.mob.EndermanEntity;
-import net.minecraft.world.World;
+import net.minecraft.world.entity.monster.EnderMan;
+import net.minecraft.world.level.Level;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 
-@Mixin(EndermanEntity.PickUpBlockGoal.class)
+@Mixin(EnderMan.EndermanTakeBlockGoal.class)
 public abstract class EndermanEntity$PickUpBlockGoalMixin {
     @ModifyExpressionValue(
             method = "tick",
             at = @At(
                     value = "INVOKE",
-                    target = "Lnet/minecraft/block/BlockState;isIn(Lnet/minecraft/registry/tag/TagKey;)Z"
+                    target = "Lnet/minecraft/world/level/block/state/BlockState;is(Lnet/minecraft/tags/TagKey;)Z"
             )
     )
-    private boolean tickMixin(boolean original, @Local(ordinal = 0) World world) {
+    private boolean tickMixin(boolean original, @Local(ordinal = 0) Level world) {
         return CCASettings.EndermanCannotPickUpBlocksInNether ?
-                world.getRegistryKey() != World.NETHER && original : original;
+                world.dimension() != Level.NETHER && original : original;
     }
 }

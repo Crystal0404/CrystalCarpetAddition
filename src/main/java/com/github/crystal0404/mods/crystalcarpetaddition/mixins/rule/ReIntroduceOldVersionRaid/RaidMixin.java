@@ -25,18 +25,18 @@ import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import com.llamalad7.mixinextras.sugar.Local;
-import net.minecraft.block.Blocks;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.SpawnLocation;
-import net.minecraft.entity.SpawnRestriction;
-import net.minecraft.entity.effect.StatusEffect;
-import net.minecraft.entity.effect.StatusEffects;
-import net.minecraft.registry.entry.RegistryEntry;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.village.raid.Raid;
-import net.minecraft.world.Heightmap;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Holder;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.Mth;
+import net.minecraft.world.effect.MobEffect;
+import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.SpawnPlacementType;
+import net.minecraft.world.entity.SpawnPlacements;
+import net.minecraft.world.entity.raid.Raid;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.levelgen.Heightmap;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -53,19 +53,19 @@ public abstract class RaidMixin {
     private BlockPos center;
 
     @Shadow
-    private int preRaidTicks;
+    private int raidCooldownTicks;
 
     @ModifyArg(
-            method = "start",
+            method = "absorbRaidOmen",
             at = @At(
                     value = "INVOKE",
-                    target = "Lnet/minecraft/server/network/ServerPlayerEntity;" +
-                            "getStatusEffect(Lnet/minecraft/registry/entry/RegistryEntry;)" +
-                            "Lnet/minecraft/entity/effect/StatusEffectInstance;"
+                    target = "Lnet/minecraft/server/level/ServerPlayer;getEffect(" +
+                            "Lnet/minecraft/core/Holder;" +
+                            ")Lnet/minecraft/world/effect/MobEffectInstance;"
             )
     )
-    private RegistryEntry<StatusEffect> startMixin_getStatusEffect(RegistryEntry<StatusEffect> original) {
-        return CCASettings.ReIntroduceOldVersionRaid ? StatusEffects.BAD_OMEN : original;
+    private Holder<MobEffect> startMixin_getStatusEffect(Holder<MobEffect> original) {
+        return CCASettings.ReIntroduceOldVersionRaid ? MobEffects.BAD_OMEN : original;
     }
 
     @ModifyArg(
@@ -78,7 +78,7 @@ public abstract class RaidMixin {
     private Supplier<? extends BlockPos> tickMixin_findRandomRaidersSpawnLocation(
             Supplier<? extends BlockPos> original,
             @Local(ordinal = 1) int j,
-            @Local(ordinal = 0, argsOnly = true) ServerWorld serverWorld
+            @Local(ordinal = 0, argsOnly = true) ServerLevel serverWorld
     ) {
         return CCASettings.ReIntroduceOldVersionRaid ? () -> this.getRavagerSpawnLocation(serverWorld, j, 20) : original;
     }
@@ -99,17 +99,18 @@ public abstract class RaidMixin {
             method = "tick",
             at = @At(
                     value = "INVOKE",
-                    target = "Lnet/minecraft/village/raid/Raid;" +
-                            "getRaidersSpawnLocation(Lnet/minecraft/server/world/ServerWorld;)Ljava/util/Optional;"
+                    target = "Lnet/minecraft/world/entity/raid/Raid;getValidSpawnPos(" +
+                            "Lnet/minecraft/server/level/ServerLevel;" +
+                            ")Ljava/util/Optional;"
             )
     )
     private Optional<BlockPos> tickMixin_getRaidersSpawnLocation(
             Raid instance,
-            ServerWorld serverWorld,
+            ServerLevel serverWorld,
             Operation<Optional<BlockPos>> original
     ) {
         if (CCASettings.ReIntroduceOldVersionRaid) {
-            return this.preCalculateRavagerSpawnLocation(serverWorld, this.preRaidTicks < 100 ? 1 : 0);
+            return this.preCalculateRavagerSpawnLocation(serverWorld, this.raidCooldownTicks < 100 ? 1 : 0);
         } else {
             return original.call(instance, serverWorld);
         }
@@ -119,34 +120,34 @@ public abstract class RaidMixin {
     @Unique
     @Nullable
     @SuppressWarnings("deprecation")
-    private BlockPos getRavagerSpawnLocation(ServerWorld serverWorld, int proximity, int tries) {
+    private BlockPos getRavagerSpawnLocation(ServerLevel serverWorld, int proximity, int tries) {
         int i = proximity == 0 ? 2 : 2 - proximity;
-        BlockPos.Mutable mutable = new BlockPos.Mutable();
-        SpawnLocation spawnLocation = SpawnRestriction.getLocation(EntityType.RAVAGER);
+        BlockPos.MutableBlockPos mutable = new BlockPos.MutableBlockPos();
+        SpawnPlacementType spawnLocation = SpawnPlacements.getPlacementType(EntityType.RAVAGER);
 
         for (int j = 0; j < tries; j++) {
             float f = serverWorld.random.nextFloat() * (float) (Math.PI * 2);
-            int k = this.center.getX() + MathHelper.floor(
-                    MathHelper.cos(f) * 32.0F * (float) i + serverWorld.random.nextInt(5)
+            int k = this.center.getX() + Mth.floor(
+                    Mth.cos(f) * 32.0F * (float) i + serverWorld.random.nextInt(5)
             );
-            int l = this.center.getZ() + MathHelper.floor(
-                    MathHelper.sin(f) * 32.0F * (float) i + serverWorld.random.nextInt(5)
+            int l = this.center.getZ() + Mth.floor(
+                    Mth.sin(f) * 32.0F * (float) i + serverWorld.random.nextInt(5)
             );
-            int m = serverWorld.getTopY(Heightmap.Type.WORLD_SURFACE, k, l);
+            int m = serverWorld.getHeight(Heightmap.Types.WORLD_SURFACE, k, l);
             mutable.set(k, m, l);
 
-            if (!serverWorld.isNearOccupiedPointOfInterest(mutable) || proximity >= 2) {
+            if (!serverWorld.isVillage(mutable) || proximity >= 2) {
                 if (
-                        serverWorld.isRegionLoaded(
+                        serverWorld.hasChunksAt(
                                 mutable.getX() - 10,
                                 mutable.getZ() - 10,
                                 mutable.getX() + 10,
                                 mutable.getZ() + 10
                         )
-                                && serverWorld.shouldTickEntityAt(mutable)
+                                && serverWorld.isPositionEntityTicking(mutable)
                                 && (
                                 spawnLocation.isSpawnPositionOk(serverWorld, mutable, EntityType.RAVAGER)
-                                        || serverWorld.getBlockState(mutable.down()).isOf(Blocks.SNOW)
+                                        || serverWorld.getBlockState(mutable.below()).is(Blocks.SNOW)
                                         && serverWorld.getBlockState(mutable).isAir()
                         )
                 ) {
@@ -159,7 +160,7 @@ public abstract class RaidMixin {
 
     // from Minecraft-1.21.1
     @Unique
-    private Optional<BlockPos> preCalculateRavagerSpawnLocation(ServerWorld serverWorld, int proximity) {
+    private Optional<BlockPos> preCalculateRavagerSpawnLocation(ServerLevel serverWorld, int proximity) {
         for (int i = 0; i < 3; i++) {
             BlockPos blockPos = this.getRavagerSpawnLocation(serverWorld, proximity, 1);
             if (blockPos != null) {
