@@ -30,6 +30,13 @@ repositories {
         url = uri("https://maven.fabricmc.net/")
     }
     maven {
+        name = "NeoForge"
+        url = uri("https://maven.neoforged.net/releases")
+        content {
+            includeGroup("org.parchmentmc")
+        }
+    }
+    maven {
         name = "Modrinth"
         url = uri("https://api.modrinth.com/maven")
     }
@@ -40,10 +47,6 @@ repositories {
     maven {
         name = "JitPack"
         url = uri("https://jitpack.io")
-    }
-    maven {
-        name = "NeoForge"
-        url = uri("https://maven.neoforged.net/releases/")
     }
 }
 
