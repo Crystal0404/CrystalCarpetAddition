@@ -33,7 +33,7 @@ repositories {
         name = "NeoForge"
         url = uri("https://maven.neoforged.net/releases")
         content {
-            includeGroup("org.parchmentmc")
+            includeGroup("org.parchmentmc.data")
         }
     }
     maven {
