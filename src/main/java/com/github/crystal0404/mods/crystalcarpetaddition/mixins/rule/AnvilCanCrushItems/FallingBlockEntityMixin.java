@@ -23,11 +23,11 @@ package com.github.crystal0404.mods.crystalcarpetaddition.mixins.rule.AnvilCanCr
 import com.github.crystal0404.mods.crystalcarpetaddition.CCASettings;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
-import net.minecraft.block.BlockState;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.FallingBlockEntity;
-import net.minecraft.predicate.entity.EntityPredicates;
-import net.minecraft.registry.tag.BlockTags;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntitySelector;
+import net.minecraft.world.entity.item.FallingBlockEntity;
+import net.minecraft.world.level.block.state.BlockState;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -41,7 +41,7 @@ public abstract class FallingBlockEntityMixin {
     private BlockState blockState;
 
     @WrapOperation(
-            method = "handleFallDamage",
+            method = "causeFallDamage",
             at = @At(
                     value = "INVOKE",
                     target = "Ljava/util/function/Predicate;" +
@@ -53,8 +53,8 @@ public abstract class FallingBlockEntityMixin {
             Predicate<? super Entity> other,
             Operation<Predicate<Entity>> original
     ) {
-        if (CCASettings.AnvilCanCrushItemEntities && this.blockState.isIn(BlockTags.ANVIL)) {
-            return EntityPredicates.EXCEPT_CREATIVE_OR_SPECTATOR;
+        if (CCASettings.AnvilCanCrushItemEntities && this.blockState.is(BlockTags.ANVIL)) {
+            return EntitySelector.NO_CREATIVE_OR_SPECTATOR;
         } else {
             return original.call(instance, other);
         }

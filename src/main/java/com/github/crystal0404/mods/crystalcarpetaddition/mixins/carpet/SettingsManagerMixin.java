@@ -32,7 +32,7 @@ import com.llamalad7.mixinextras.injector.v2.WrapWithCondition;
 import com.llamalad7.mixinextras.sugar.Local;
 import me.fallenbreath.conditionalmixin.api.annotation.Condition;
 import me.fallenbreath.conditionalmixin.api.annotation.Restriction;
-import net.minecraft.server.command.ServerCommandSource;
+import net.minecraft.commands.CommandSourceStack;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -59,12 +59,12 @@ public abstract class SettingsManagerMixin {
             method = "listAllSettings",
             at = @At(
                     value = "INVOKE",
-                    target = "Lcarpet/utils/Messenger;m(Lnet/minecraft/server/command/ServerCommandSource;[Ljava/lang/Object;)V",
+                    target = "Lcarpet/utils/Messenger;m(Lnet/minecraft/commands/CommandSourceStack;[Ljava/lang/Object;)V",
                     ordinal = 0,
                     shift = At.Shift.AFTER
             )
     )
-    private void listAllSettingsMixin(ServerCommandSource source, CallbackInfoReturnable<Integer> cir) {
+    private void listAllSettingsMixin(CommandSourceStack source, CallbackInfoReturnable<Integer> cir) {
         if (Objects.equals(this.fancyName, "Carpet Mod")) {
             String msg = "g %s %s: %s".formatted(
                     CrystalCarpetAdditionMod.MOD_NAME,

@@ -21,24 +21,24 @@
 package com.github.crystal0404.mods.crystalcarpetaddition.mixins.rule.ReIntroduceOldVersionRaid;
 
 import com.github.crystal0404.mods.crystalcarpetaddition.CCASettings;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.EquipmentSlot;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.entity.effect.StatusEffects;
-import net.minecraft.entity.mob.PatrolEntity;
-import net.minecraft.entity.passive.WolfEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.raid.RaiderEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.registry.RegistryKeys;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.village.raid.Raid;
-import net.minecraft.world.GameRules;
-import net.minecraft.world.World;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.Mth;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.animal.wolf.Wolf;
+import net.minecraft.world.entity.monster.PatrollingMonster;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.raid.Raid;
+import net.minecraft.world.entity.raid.Raider;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.GameRules;
+import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -47,57 +47,60 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-@Mixin(RaiderEntity.class)
-public abstract class RaiderEntityMixin extends PatrolEntity {
-    protected RaiderEntityMixin(EntityType<? extends PatrolEntity> entityType, World world) {
+@Mixin(Raider.class)
+public abstract class RaiderEntityMixin extends PatrollingMonster {
+    protected RaiderEntityMixin(EntityType<? extends PatrollingMonster> entityType, Level world) {
         super(entityType, world);
     }
 
     @Shadow
     @Nullable
-    public abstract Raid getRaid();
+    public abstract Raid getCurrentRaid();
 
     @Inject(
-            method = "onDeath",
+            method = "die",
             at = @At(
                     value = "INVOKE",
-                    target = "Lnet/minecraft/entity/mob/PatrolEntity;onDeath(Lnet/minecraft/entity/damage/DamageSource;)V"
+                    target = "Lnet/minecraft/world/entity/monster/PatrollingMonster;die(" +
+                            "Lnet/minecraft/world/damagesource/DamageSource;" +
+                            ")V"
             )
     )
+    @SuppressWarnings("resource")
     private void onDeathMixin(DamageSource damageSource, CallbackInfo ci) {
         // The injection point is not exact, so check the world again
-        if (!CCASettings.ReIntroduceOldVersionRaid || !(this.getEntityWorld() instanceof ServerWorld)) return;
+        if (!CCASettings.ReIntroduceOldVersionRaid || !(this.level() instanceof ServerLevel)) return;
 
         if (
                 this.isPatrolLeader()
-                        && this.getRaid() == null
-                        && ((ServerWorld) this.getEntityWorld()).getRaidAt(this.getBlockPos()) == null
+                        && this.getCurrentRaid() == null
+                        && ((ServerLevel) this.level()).getRaidAt(this.blockPosition()) == null
         ) {
-            ItemStack itemStack = this.getEquippedStack(EquipmentSlot.HEAD);
-            PlayerEntity playerEntity = this.getPlayerEntity(damageSource.getAttacker());
+            ItemStack itemStack = this.getItemBySlot(EquipmentSlot.HEAD);
+            Player playerEntity = this.getPlayerEntity(damageSource.getEntity());
             if (
                     !itemStack.isEmpty()
                             && this.hasBanner(itemStack)
                             && playerEntity != null
             ) {
-                StatusEffectInstance statusEffectInstance = playerEntity.getStatusEffect(StatusEffects.BAD_OMEN);
+                MobEffectInstance statusEffectInstance = playerEntity.getEffect(MobEffects.BAD_OMEN);
                 int i = 1;
                 if (statusEffectInstance != null) {
                     i += statusEffectInstance.getAmplifier();
-                    playerEntity.removeStatusEffectInternal(StatusEffects.BAD_OMEN);
+                    playerEntity.removeEffectNoUpdate(MobEffects.BAD_OMEN);
                 } else {
                     i--;
                 }
-                StatusEffectInstance statusEffectInstance2 = new StatusEffectInstance(
-                        StatusEffects.BAD_OMEN,
+                MobEffectInstance statusEffectInstance2 = new MobEffectInstance(
+                        MobEffects.BAD_OMEN,
                         120000,
-                        MathHelper.clamp(i, 0, 4),
+                        Mth.clamp(i, 0, 4),
                         false,
                         false,
                         true
                 );
-                if (!((ServerWorld) this.getEntityWorld()).getGameRules().getBoolean(GameRules.DISABLE_RAIDS)) {
-                    playerEntity.addStatusEffect(statusEffectInstance2);
+                if (!((ServerLevel) this.level()).getGameRules().getBoolean(GameRules.RULE_DISABLE_RAIDS)) {
+                    playerEntity.addEffect(statusEffectInstance2);
                 }
             }
         }
@@ -105,13 +108,13 @@ public abstract class RaiderEntityMixin extends PatrolEntity {
 
     @Unique
     @Nullable
-    private PlayerEntity getPlayerEntity(Entity entity) {
-        if (entity instanceof PlayerEntity) {
-            return (PlayerEntity) entity;
-        } else if (entity instanceof WolfEntity wolfEntity) {
+    private Player getPlayerEntity(Entity entity) {
+        if (entity instanceof Player) {
+            return (Player) entity;
+        } else if (entity instanceof Wolf wolfEntity) {
             LivingEntity livingEntity = wolfEntity.getOwner();
-            if (wolfEntity.isTamed() && livingEntity instanceof PlayerEntity) {
-                return (PlayerEntity) livingEntity;
+            if (wolfEntity.isTame() && livingEntity instanceof Player) {
+                return (Player) livingEntity;
             }
         }
         return null;
@@ -119,9 +122,9 @@ public abstract class RaiderEntityMixin extends PatrolEntity {
 
     @Unique
     private boolean hasBanner(ItemStack itemStack) {
-        return ItemStack.areEqual(
+        return ItemStack.matches(
                 itemStack,
-                Raid.createOminousBanner(this.getRegistryManager().getOrThrow(RegistryKeys.BANNER_PATTERN))
+                Raid.getOminousBannerInstance(this.registryAccess().lookupOrThrow(Registries.BANNER_PATTERN))
         );
     }
 }

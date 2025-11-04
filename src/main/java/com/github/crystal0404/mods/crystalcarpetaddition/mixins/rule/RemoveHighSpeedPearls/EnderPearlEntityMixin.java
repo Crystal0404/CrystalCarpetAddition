@@ -21,30 +21,30 @@
 package com.github.crystal0404.mods.crystalcarpetaddition.mixins.rule.RemoveHighSpeedPearls;
 
 import com.github.crystal0404.mods.crystalcarpetaddition.CCASettings;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.projectile.thrown.EnderPearlEntity;
-import net.minecraft.entity.projectile.thrown.ThrownItemEntity;
-import net.minecraft.world.World;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.projectile.ThrowableItemProjectile;
+import net.minecraft.world.entity.projectile.ThrownEnderpearl;
+import net.minecraft.world.level.Level;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-@Mixin(EnderPearlEntity.class)
-public abstract class EnderPearlEntityMixin extends ThrownItemEntity {
-    public EnderPearlEntityMixin(EntityType<? extends ThrownItemEntity> entityType, World world) {
-        super(entityType, world);
-    }
-
+@Mixin(ThrownEnderpearl.class)
+public abstract class EnderPearlEntityMixin extends ThrowableItemProjectile {
     @Unique
     private int highSpeedTime = 0;
+
+    public EnderPearlEntityMixin(EntityType<? extends ThrowableItemProjectile> entityType, Level world) {
+        super(entityType, world);
+    }
 
     @Inject(
             method = "tick",
             at = @At(
                     value = "INVOKE",
-                    target = "Lnet/minecraft/entity/projectile/thrown/EnderPearlEntity;isAlive()Z"
+                    target = "Lnet/minecraft/world/entity/projectile/ThrownEnderpearl;isAlive()Z"
             )
     )
     private void tickMixin(CallbackInfo ci) {
@@ -62,6 +62,6 @@ public abstract class EnderPearlEntityMixin extends ThrownItemEntity {
 
     @Unique
     private boolean isHighSpeed() {
-        return Math.abs(this.getVelocity().getX()) > 20d || Math.abs(this.getVelocity().getZ()) > 20d;
+        return Math.abs(this.getDeltaMovement().x()) > 20d || Math.abs(this.getDeltaMovement().z()) > 20d;
     }
 }

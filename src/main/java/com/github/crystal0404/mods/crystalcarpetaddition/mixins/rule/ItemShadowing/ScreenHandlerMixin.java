@@ -26,11 +26,11 @@ import com.llamalad7.mixinextras.injector.v2.WrapWithCondition;
 import com.llamalad7.mixinextras.sugar.Local;
 import me.fallenbreath.conditionalmixin.api.annotation.Condition;
 import me.fallenbreath.conditionalmixin.api.annotation.Restriction;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.screen.ScreenHandler;
-import net.minecraft.screen.slot.Slot;
-import net.minecraft.screen.slot.SlotActionType;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.inventory.ClickType;
+import net.minecraft.world.inventory.Slot;
+import net.minecraft.world.item.ItemStack;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -42,13 +42,13 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
                 @Condition(ModIds.CARPET_FX)
         }
 )
-@Mixin(ScreenHandler.class)
+@Mixin(AbstractContainerMenu.class)
 public abstract class ScreenHandlerMixin {
     @WrapWithCondition(
-            method = "internalOnSlotClick",
+            method = "doClick",
             at = @At(
                     value = "INVOKE",
-                    target = "Lnet/minecraft/screen/slot/Slot;setStack(Lnet/minecraft/item/ItemStack;)V",
+                    target = "Lnet/minecraft/world/inventory/Slot;setByPlayer(Lnet/minecraft/world/item/ItemStack;)V",
                     ordinal = 4
             )
     )
@@ -57,22 +57,22 @@ public abstract class ScreenHandlerMixin {
     }
 
     @Inject(
-            method = "internalOnSlotClick",
+            method = "doClick",
             at = @At(
                     value = "INVOKE",
-                    target = "Lnet/minecraft/entity/player/PlayerInventory;setStack(ILnet/minecraft/item/ItemStack;)V",
+                    target = "Lnet/minecraft/world/entity/player/Inventory;setItem(ILnet/minecraft/world/item/ItemStack;)V",
                     ordinal = 1
             )
     )
     private void internalOnSlotClickMixin(
             int slotIndex,
             int button,
-            SlotActionType actionType,
-            PlayerEntity player,
+            ClickType actionType,
+            Player player,
             CallbackInfo ci,
             @Local(ordinal = 0) Slot slot,
             @Local(ordinal = 0) ItemStack itemStack
     ) {
-        if (CCASettings.ItemShadowing) slot.setStack(itemStack);
+        if (CCASettings.ItemShadowing) slot.setByPlayer(itemStack);
     }
 }

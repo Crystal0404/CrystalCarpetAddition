@@ -24,42 +24,50 @@ import com.github.crystal0404.mods.crystalcarpetaddition.CCASettings;
 import com.github.crystal0404.mods.crystalcarpetaddition.utils.LootTableUtils;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.mob.WitchEntity;
-import net.minecraft.loot.LootTable;
-import net.minecraft.registry.RegistryKey;
-import net.minecraft.registry.RegistryKeys;
-import net.minecraft.registry.RegistryWrapper;
-import net.minecraft.registry.ReloadableRegistries;
-import net.minecraft.world.World;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.server.ReloadableServerRegistries;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.monster.Witch;
+import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.storage.loot.LootTable;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 
 @Mixin(LivingEntity.class)
 public abstract class LivingEntityMixin extends Entity {
-    public LivingEntityMixin(EntityType<?> type, World world) {
+    public LivingEntityMixin(EntityType<?> type, Level world) {
         super(type, world);
     }
 
     @WrapOperation(
-            method = "generateLoot",
+            method = "dropFromLootTable(" +
+                    "Lnet/minecraft/server/level/ServerLevel;" +
+                    "Lnet/minecraft/world/damagesource/DamageSource;" +
+                    "Z" +
+                    "Lnet/minecraft/resources/ResourceKey;" +
+                    "Ljava/util/function/Consumer;" +
+                    ")V",
             at = @At(
                     value = "INVOKE",
-                    target = "Lnet/minecraft/registry/ReloadableRegistries$Lookup;getLootTable" +
-                            "(Lnet/minecraft/registry/RegistryKey;)Lnet/minecraft/loot/LootTable;"
+                    target = "Lnet/minecraft/server/ReloadableServerRegistries$Holder;getLootTable(" +
+                            "Lnet/minecraft/resources/ResourceKey;" +
+                            ")Lnet/minecraft/world/level/storage/loot/LootTable;"
             )
     )
+    @SuppressWarnings("resource")
     private LootTable dropLootMixin(
-            ReloadableRegistries.Lookup instance,
-            RegistryKey<LootTable> key,
+            ReloadableServerRegistries.Holder instance,
+            ResourceKey<LootTable> key,
             Operation<LootTable> original
     ) {
-        if ((LivingEntity) ((Object) this) instanceof WitchEntity && CCASettings.ReIntroduceOldVersionWitchLootTable) {
-            RegistryWrapper.Impl<Enchantment> impl = this.getEntityWorld().getRegistryManager().getOrThrow(
-                    RegistryKeys.ENCHANTMENT
+        if ((LivingEntity) ((Object) this) instanceof Witch && CCASettings.ReIntroduceOldVersionWitchLootTable) {
+            HolderLookup.RegistryLookup<Enchantment> impl = this.level().registryAccess().lookupOrThrow(
+                    Registries.ENCHANTMENT
             );
             return LootTableUtils.Witch(impl);
         } else {
