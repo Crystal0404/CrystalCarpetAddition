@@ -20,62 +20,62 @@
 
 package com.github.crystal0404.mods.crystalcarpetaddition.utils;
 
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.Enchantments;
-import net.minecraft.item.Items;
-import net.minecraft.loot.LootPool;
-import net.minecraft.loot.LootTable;
-import net.minecraft.loot.entry.ItemEntry;
-import net.minecraft.loot.function.EnchantedCountIncreaseLootFunction;
-import net.minecraft.loot.function.SetCountLootFunction;
-import net.minecraft.loot.provider.number.ConstantLootNumberProvider;
-import net.minecraft.loot.provider.number.UniformLootNumberProvider;
-import net.minecraft.registry.RegistryWrapper;
-import net.minecraft.registry.entry.RegistryEntry;
+import net.minecraft.core.Holder;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.item.enchantment.Enchantments;
+import net.minecraft.world.level.storage.loot.LootPool;
+import net.minecraft.world.level.storage.loot.LootTable;
+import net.minecraft.world.level.storage.loot.entries.LootItem;
+import net.minecraft.world.level.storage.loot.functions.EnchantedCountIncreaseFunction;
+import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
+import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
+import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 
 public class LootTableUtils {
-    public static LootTable Witch(RegistryWrapper.Impl<Enchantment> impl) {
-        RegistryEntry<Enchantment> enchantment = impl.getOrThrow(Enchantments.LOOTING);
-        LootPool.Builder loot = LootPool.builder()
-                .bonusRolls(ConstantLootNumberProvider.create(0.0f))
-                .with(
-                        ItemEntry.builder(Items.GLOWSTONE_DUST)
-                                .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(0.0f, 2.0f)))
-                                .apply(new EnchantedCountIncreaseLootFunction.Builder(enchantment, UniformLootNumberProvider.create(0.0f, 1.0f)))
+    public static LootTable Witch(HolderLookup.RegistryLookup<Enchantment> impl) {
+        Holder<Enchantment> enchantment = impl.getOrThrow(Enchantments.LOOTING);
+        LootPool.Builder loot = LootPool.lootPool()
+                .setBonusRolls(ConstantValue.exactly(0.0f))
+                .add(
+                        LootItem.lootTableItem(Items.GLOWSTONE_DUST)
+                                .apply(SetItemCountFunction.setCount(UniformGenerator.between(0.0f, 2.0f)))
+                                .apply(new EnchantedCountIncreaseFunction.Builder(enchantment, UniformGenerator.between(0.0f, 1.0f)))
                 )
-                .with(
-                        ItemEntry.builder(Items.SUGAR)
-                                .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(0.0f, 2.0f)))
-                                .apply(new EnchantedCountIncreaseLootFunction.Builder(enchantment, UniformLootNumberProvider.create(0.0f, 1.0f)))
+                .add(
+                        LootItem.lootTableItem(Items.SUGAR)
+                                .apply(SetItemCountFunction.setCount(UniformGenerator.between(0.0f, 2.0f)))
+                                .apply(new EnchantedCountIncreaseFunction.Builder(enchantment, UniformGenerator.between(0.0f, 1.0f)))
                 )
-                .with(
-                        ItemEntry.builder(Items.REDSTONE)
-                                .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(0.0f, 2.0f)))
-                                .apply(new EnchantedCountIncreaseLootFunction.Builder(enchantment, UniformLootNumberProvider.create(0.0f, 1.0f)))
+                .add(
+                        LootItem.lootTableItem(Items.REDSTONE)
+                                .apply(SetItemCountFunction.setCount(UniformGenerator.between(0.0f, 2.0f)))
+                                .apply(new EnchantedCountIncreaseFunction.Builder(enchantment, UniformGenerator.between(0.0f, 1.0f)))
                 )
-                .with(
-                        ItemEntry.builder(Items.SPIDER_EYE)
-                                .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(0.0f, 2.0f)))
-                                .apply(new EnchantedCountIncreaseLootFunction.Builder(enchantment, UniformLootNumberProvider.create(0.0f, 1.0f)))
+                .add(
+                        LootItem.lootTableItem(Items.SPIDER_EYE)
+                                .apply(SetItemCountFunction.setCount(UniformGenerator.between(0.0f, 2.0f)))
+                                .apply(new EnchantedCountIncreaseFunction.Builder(enchantment, UniformGenerator.between(0.0f, 1.0f)))
                 )
-                .with(
-                        ItemEntry.builder(Items.GLASS_BOTTLE)
-                                .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(0.0f, 2.0f)))
-                                .apply(new EnchantedCountIncreaseLootFunction.Builder(enchantment, UniformLootNumberProvider.create(0.0f, 1.0f)))
+                .add(
+                        LootItem.lootTableItem(Items.GLASS_BOTTLE)
+                                .apply(SetItemCountFunction.setCount(UniformGenerator.between(0.0f, 2.0f)))
+                                .apply(new EnchantedCountIncreaseFunction.Builder(enchantment, UniformGenerator.between(0.0f, 1.0f)))
                 )
-                .with(
-                        ItemEntry.builder(Items.GUNPOWDER)
-                                .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(0.0f, 2.0f)))
-                                .apply(new EnchantedCountIncreaseLootFunction.Builder(enchantment, UniformLootNumberProvider.create(0.0f, 1.0f)))
+                .add(
+                        LootItem.lootTableItem(Items.GUNPOWDER)
+                                .apply(SetItemCountFunction.setCount(UniformGenerator.between(0.0f, 2.0f)))
+                                .apply(new EnchantedCountIncreaseFunction.Builder(enchantment, UniformGenerator.between(0.0f, 1.0f)))
                 )
 
-                .with(
-                        ItemEntry.builder(Items.STICK)
-                                .weight(2)
-                                .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(0.0f, 2.0f)))
-                                .apply(new EnchantedCountIncreaseLootFunction.Builder(enchantment, UniformLootNumberProvider.create(0.0f, 1.0f)))
+                .add(
+                        LootItem.lootTableItem(Items.STICK)
+                                .setWeight(2)
+                                .apply(SetItemCountFunction.setCount(UniformGenerator.between(0.0f, 2.0f)))
+                                .apply(new EnchantedCountIncreaseFunction.Builder(enchantment, UniformGenerator.between(0.0f, 1.0f)))
                 )
-                .rolls(UniformLootNumberProvider.create(1.0f, 3.0f));
-        return LootTable.builder().pool(loot).build();
+                .setRolls(UniformGenerator.between(1.0f, 3.0f));
+        return LootTable.lootTable().withPool(loot).build();
     }
 }

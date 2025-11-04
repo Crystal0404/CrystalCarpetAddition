@@ -1,7 +1,7 @@
 import java.util.Calendar
 
 plugins {
-    id("fabric-loom").version("1.12-SNAPSHOT")
+    id("fabric-loom").version("1.13-SNAPSHOT")
     id("me.fallenbreath.yamlang").version("1.5.0")
     id("com.github.hierynomus.license").version("0.16.1")
     id("me.modmuss50.mod-publish-plugin").version("1.1.0")
@@ -30,6 +30,11 @@ repositories {
         url = uri("https://maven.fabricmc.net/")
     }
     maven {
+        name = "NeoForge"
+        url = uri("https://maven.neoforged.net/releases")
+        content { includeGroup("org.parchmentmc.data") }
+    }
+    maven {
         name = "Modrinth"
         url = uri("https://api.modrinth.com/maven")
     }
@@ -47,7 +52,17 @@ val enableLithium = true
 dependencies {
     // To change the versions see the gradle.properties file
     minecraft("com.mojang:minecraft:${project.property("minecraft_version")}")
-    mappings("net.fabricmc:yarn:${project.property("yarn_mappings")}:v2")
+    @Suppress("UnstableApiUsage")
+    mappings(
+        loom.layered {
+            officialMojangMappings()
+            if (project.hasProperty("parchment_version")) {
+                val mc = project.property("minecraft_version")
+                val parchment = project.property("parchment_version")
+                parchment("org.parchmentmc.data:parchment-${mc}:${parchment}@zip")
+            }
+        }
+    )
     modImplementation("net.fabricmc:fabric-loader:${project.property("loader_version")}")
 
     // dependencies

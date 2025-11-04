@@ -21,18 +21,18 @@
 package com.github.crystal0404.mods.crystalcarpetaddition.mixins.rule.EnderDragonPartCanUseEndPortal;
 
 import com.github.crystal0404.mods.crystalcarpetaddition.CCASettings;
-import net.minecraft.block.EndPortalBlock;
-import net.minecraft.block.Portal;
-import net.minecraft.entity.boss.dragon.EnderDragonEntity;
-import net.minecraft.entity.boss.dragon.EnderDragonPart;
-import net.minecraft.entity.mob.MobEntity;
-import net.minecraft.world.dimension.PortalManager;
+import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.PortalProcessor;
+import net.minecraft.world.entity.boss.EnderDragonPart;
+import net.minecraft.world.entity.boss.enderdragon.EnderDragon;
+import net.minecraft.world.level.block.EndPortalBlock;
+import net.minecraft.world.level.block.Portal;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-@Mixin(MobEntity.class)
+@Mixin(Mob.class)
 public abstract class MobEntityMixin {
     @Inject(
             method = "tick",
@@ -40,10 +40,10 @@ public abstract class MobEntityMixin {
     )
     private void tickMixin(CallbackInfo ci) {
         if (!CCASettings.EnderDragonPartCanUseEndPortal) return;
-        if ((MobEntity) ((Object) this) instanceof EnderDragonEntity entity) {
-            for (EnderDragonPart part : entity.getBodyParts()) {
+        if ((Mob) ((Object) this) instanceof EnderDragon entity) {
+            for (EnderDragonPart part : entity.getSubEntities()) {
                 // If it's null, skip it
-                PortalManager portalManager = ((EntityAccessor) part).getPortalManager();
+                PortalProcessor portalManager = part.portalProcess;
                 if (portalManager == null) continue;
 
                 // It should not go into other portals

@@ -22,17 +22,21 @@ package com.github.crystal0404.mods.crystalcarpetaddition.mixins.rule.Comparator
 
 import com.github.crystal0404.mods.crystalcarpetaddition.CCASettings;
 import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
-import net.minecraft.block.ComparatorBlock;
+import net.minecraft.world.level.block.ComparatorBlock;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 
 @Mixin(ComparatorBlock.class)
 public abstract class ComparatorBlockMixin {
     @ModifyExpressionValue(
-            method = "getStateForNeighborUpdate",
+            method = "updateShape",
             at = @At(
                     value = "INVOKE",
-                    target = "Lnet/minecraft/block/ComparatorBlock;canPlaceAbove(Lnet/minecraft/world/WorldView;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/BlockState;)Z"
+                    target = "Lnet/minecraft/world/level/block/ComparatorBlock;canSurviveOn(" +
+                            "Lnet/minecraft/world/level/LevelReader;" +
+                            "Lnet/minecraft/core/BlockPos;" +
+                            "Lnet/minecraft/world/level/block/state/BlockState;" +
+                            ")Z"
             )
     )
     private boolean getStateForNeighborUpdateMixin(boolean original) {

@@ -24,21 +24,22 @@ import com.github.crystal0404.mods.crystalcarpetaddition.CCASettings;
 import com.github.crystal0404.mods.crystalcarpetaddition.utils.shulkerBoxUtils.ColourMap;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
-import net.minecraft.block.ShulkerBoxBlock;
-import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.block.entity.ShulkerBoxBlockEntity;
-import net.minecraft.item.ItemStack;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.block.ShulkerBoxBlock;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.ShulkerBoxBlockEntity;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 
 @Mixin(ShulkerBoxBlock.class)
 public abstract class ShulkerBoxBlockMixin {
     @WrapOperation(
-            method = "getComparatorOutput",
+            method = "getAnalogOutputSignal",
             at = @At(
                     value = "INVOKE",
-                    target = "Lnet/minecraft/screen/ScreenHandler;" +
-                            "calculateComparatorOutput(Lnet/minecraft/block/entity/BlockEntity;)I"
+                    target = "Lnet/minecraft/world/inventory/AbstractContainerMenu;getRedstoneSignalFromBlockEntity(" +
+                            "Lnet/minecraft/world/level/block/entity/BlockEntity;" +
+                            ")I"
             )
     )
     private int getComparatorOutputMixin(
@@ -52,8 +53,8 @@ public abstract class ShulkerBoxBlockMixin {
                         && shulkerBoxBlockEntity.getColor() == ColourMap.getSettingColour()
         ) {
             int num = 0;
-            for (int i = 0; num != 15 && i < shulkerBoxBlockEntity.size(); i++) {
-                ItemStack itemStack = shulkerBoxBlockEntity.getStack(i);
+            for (int i = 0; num != 15 && i < shulkerBoxBlockEntity.getContainerSize(); i++) {
+                ItemStack itemStack = shulkerBoxBlockEntity.getItem(i);
                 if (itemStack.isEmpty()) continue;
                 num += 1;
             }

@@ -21,8 +21,8 @@
 package com.github.crystal0404.mods.crystalcarpetaddition.mixins.rule.GatewayCannotLoadingChunks;
 
 import com.github.crystal0404.mods.crystalcarpetaddition.CCASettings;
-import net.minecraft.block.EndGatewayBlock;
-import net.minecraft.world.TeleportTarget;
+import net.minecraft.world.level.block.EndGatewayBlock;
+import net.minecraft.world.level.portal.TeleportTransition;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyArg;
@@ -30,20 +30,25 @@ import org.spongepowered.asm.mixin.injection.ModifyArg;
 @Mixin(EndGatewayBlock.class)
 public abstract class EndGatewayBlockMixin {
     @ModifyArg(
-            method = "createTeleportTarget",
+            method = "getPortalDestination",
             at = @At(
                     value = "INVOKE",
-                    target = "Lnet/minecraft/world/TeleportTarget;" +
-                            "<init>(Lnet/minecraft/server/world/ServerWorld;" +
-                            "Lnet/minecraft/util/math/Vec3d;Lnet/minecraft/util/math/Vec3d;" +
-                            "FFLjava/util/Set;Lnet/minecraft/world/TeleportTarget$PostDimensionTransition;)V",
+                    target = "Lnet/minecraft/world/level/portal/TeleportTransition;<init>(" +
+                            "Lnet/minecraft/server/level/ServerLevel;" +
+                            "Lnet/minecraft/world/phys/Vec3;" +
+                            "Lnet/minecraft/world/phys/Vec3;" +
+                            "F" +
+                            "F" +
+                            "Ljava/util/Set;" +
+                            "Lnet/minecraft/world/level/portal/TeleportTransition$PostTeleportTransition;" +
+                            ")V",
                     ordinal = 1
             ),
             index = 6
     )
-    private TeleportTarget.PostDimensionTransition createTeleportTargetMixin(
-            TeleportTarget.PostDimensionTransition original
+    private TeleportTransition.PostTeleportTransition createTeleportTargetMixin(
+            TeleportTransition.PostTeleportTransition original
     ) {
-        return CCASettings.GatewayCannotLoadingChunks ? TeleportTarget.NO_OP : original;
+        return CCASettings.GatewayCannotLoadingChunks ? TeleportTransition.DO_NOTHING : original;
     }
 }

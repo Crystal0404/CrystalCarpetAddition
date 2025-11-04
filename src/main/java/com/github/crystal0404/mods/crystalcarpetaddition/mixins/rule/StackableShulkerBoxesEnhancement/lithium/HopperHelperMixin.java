@@ -29,7 +29,7 @@ import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import me.fallenbreath.conditionalmixin.api.annotation.Condition;
 import me.fallenbreath.conditionalmixin.api.annotation.Restriction;
 import net.caffeinemc.mods.lithium.common.hopper.HopperHelper;
-import net.minecraft.item.ItemStack;
+import net.minecraft.world.item.ItemStack;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 
@@ -40,12 +40,17 @@ import org.spongepowered.asm.mixin.injection.At;
 @Mixin(HopperHelper.class)
 public abstract class HopperHelperMixin {
     @WrapOperation(
-            method = "tryMoveSingleItem(Lnet/minecraft/inventory/Inventory;" +
-                    "Lnet/minecraft/inventory/SidedInventory;Lnet/minecraft/item/ItemStack;" +
-                    "Lnet/minecraft/item/ItemStack;ILnet/minecraft/util/math/Direction;)Z",
+            method = "tryMoveSingleItem(" +
+                    "Lnet/minecraft/world/Container;" +
+                    "Lnet/minecraft/world/WorldlyContainer;" +
+                    "Lnet/minecraft/world/item/ItemStack;" +
+                    "Lnet/minecraft/world/item/ItemStack;" +
+                    "I" +
+                    "Lnet/minecraft/core/Direction;" +
+                    ")Z",
             at = @At(
                     value = "INVOKE",
-                    target = "Lnet/minecraft/item/ItemStack;getMaxCount()I"
+                    target = "Lnet/minecraft/world/item/ItemStack;getMaxStackSize()I"
             )
     )
     private static int tryMoveSingleItemMixin(ItemStack instance, Operation<Integer> original) {

@@ -21,44 +21,44 @@
 package com.github.crystal0404.mods.crystalcarpetaddition.mixins.rule.ReIntroduceOldVersionRaid;
 
 import com.github.crystal0404.mods.crystalcarpetaddition.CCASettings;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.effect.BadOmenStatusEffect;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.Difficulty;
+import net.minecraft.world.effect.BadOmenMobEffect;
+import net.minecraft.world.entity.LivingEntity;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-@Mixin(BadOmenStatusEffect.class)
+@Mixin(BadOmenMobEffect.class)
 public abstract class BadOmenStatusEffectMixin {
     @Inject(
-            method = "applyUpdateEffect",
+            method = "applyEffectTick",
             at = @At("HEAD"),
             cancellable = true
     )
     private void applyUpdateEffectMixin(
-            ServerWorld serverWorld,
+            ServerLevel serverWorld,
             LivingEntity entity,
             int amplifier,
             CallbackInfoReturnable<Boolean> cir
     ) {
         if (!CCASettings.ReIntroduceOldVersionRaid) return;
-        if (entity instanceof ServerPlayerEntity serverPlayerEntity && !serverPlayerEntity.isSpectator()) {
-            cir.setReturnValue(this.tryStartRaid(serverPlayerEntity, serverPlayerEntity.getEntityWorld()));
+        if (entity instanceof ServerPlayer serverPlayerEntity && !serverPlayerEntity.isSpectator()) {
+            cir.setReturnValue(this.tryStartRaid(serverPlayerEntity, serverPlayerEntity.level()));
         } else {
             cir.setReturnValue(true);
         }
     }
 
     @Unique
-    private boolean tryStartRaid(ServerPlayerEntity player, ServerWorld world) {
-        BlockPos pos = player.getBlockPos();
-        if (world.getDifficulty() != Difficulty.PEACEFUL && world.isNearOccupiedPointOfInterest(pos)) {
-            return world.getRaidManager().startRaid(player, pos) == null;
+    private boolean tryStartRaid(ServerPlayer player, ServerLevel world) {
+        BlockPos pos = player.blockPosition();
+        if (world.getDifficulty() != Difficulty.PEACEFUL && world.isVillage(pos)) {
+            return world.getRaids().createOrExtendRaid(player, pos) == null;
         }
         return true;
     }

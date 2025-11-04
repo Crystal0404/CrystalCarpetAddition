@@ -36,5 +36,6 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Condition {
     String value();
+
     String versionPredicates() default "*";
 }

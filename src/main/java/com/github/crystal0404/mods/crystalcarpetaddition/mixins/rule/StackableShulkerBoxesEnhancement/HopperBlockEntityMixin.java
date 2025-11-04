@@ -28,8 +28,8 @@ import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import me.fallenbreath.conditionalmixin.api.annotation.Condition;
 import me.fallenbreath.conditionalmixin.api.annotation.Restriction;
-import net.minecraft.block.entity.HopperBlockEntity;
-import net.minecraft.item.ItemStack;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.block.entity.HopperBlockEntity;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 
@@ -37,12 +37,19 @@ import org.spongepowered.asm.mixin.injection.At;
 @Mixin(HopperBlockEntity.class)
 public abstract class HopperBlockEntityMixin {
     @WrapOperation(
-            method = "transfer(Lnet/minecraft/inventory/Inventory;Lnet/minecraft/inventory/Inventory;" +
-                    "Lnet/minecraft/item/ItemStack;ILnet/minecraft/util/math/Direction;)Lnet/minecraft/item/ItemStack;",
+            method = "tryMoveInItem(" +
+                    "Lnet/minecraft/world/Container;" +
+                    "Lnet/minecraft/world/Container;" +
+                    "Lnet/minecraft/world/item/ItemStack;" +
+                    "I" +
+                    "Lnet/minecraft/core/Direction;" +
+                    ")Lnet/minecraft/world/item/ItemStack;",
             at = @At(
                     value = "INVOKE",
-                    target = "Lnet/minecraft/block/entity/HopperBlockEntity;" +
-                            "canMergeItems(Lnet/minecraft/item/ItemStack;Lnet/minecraft/item/ItemStack;)Z"
+                    target = "Lnet/minecraft/world/level/block/entity/HopperBlockEntity;canMergeItems(" +
+                            "Lnet/minecraft/world/item/ItemStack;" +
+                            "Lnet/minecraft/world/item/ItemStack;" +
+                            ")Z"
             )
     )
     private static boolean transferMixin(ItemStack first, ItemStack second, Operation<Boolean> original) {

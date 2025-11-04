@@ -23,30 +23,32 @@ package com.github.crystal0404.mods.crystalcarpetaddition.mixins.rule.RemoveVill
 import com.github.crystal0404.mods.crystalcarpetaddition.CCASettings;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.screen.MerchantScreenHandler;
-import net.minecraft.village.Merchant;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.MerchantMenu;
+import net.minecraft.world.item.trading.Merchant;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 
-@Mixin(MerchantScreenHandler.class)
+@Mixin(MerchantMenu.class)
 public abstract class MerchantScreenHandlerMixin {
     @Shadow
     @Final
-    private Merchant merchant;
+    private Merchant trader;
 
     @WrapOperation(
-            method = "canUse",
+            method = "stillValid",
             at = @At(
                     value = "INVOKE",
-                    target = "Lnet/minecraft/village/Merchant;canInteract(Lnet/minecraft/entity/player/PlayerEntity;)Z"
+                    target = "Lnet/minecraft/world/item/trading/Merchant;stillValid(" +
+                            "Lnet/minecraft/world/entity/player/Player;" +
+                            ")Z"
             )
     )
-    private boolean canUseMixin(Merchant instance, PlayerEntity playerEntity, Operation<Boolean> original) {
+    private boolean canUseMixin(Merchant instance, Player playerEntity, Operation<Boolean> original) {
         if (CCASettings.RemoveVillagerTradeDistanceLimit) {
-            return this.merchant.getCustomer() == playerEntity;
+            return this.trader.getTradingPlayer() == playerEntity;
         } else {
             return original.call(instance, playerEntity);
         }

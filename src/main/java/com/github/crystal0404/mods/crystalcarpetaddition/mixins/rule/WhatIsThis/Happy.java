@@ -24,8 +24,8 @@ import com.github.crystal0404.mods.crystalcarpetaddition.utils.CCAUtils;
 import com.llamalad7.mixinextras.sugar.Local;
 import me.fallenbreath.conditionalmixin.api.annotation.Condition;
 import me.fallenbreath.conditionalmixin.api.annotation.Restriction;
-import net.minecraft.client.gui.screen.SplashTextRenderer;
-import net.minecraft.client.resource.SplashTextResourceSupplier;
+import net.minecraft.client.gui.components.SplashRenderer;
+import net.minecraft.client.resources.SplashManager;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -36,10 +36,10 @@ import java.util.Random;
 
 // QWQ
 @Restriction(conflict = @Condition(type = Condition.Type.TESTER, tester = CCAUtils.DisableEasterEggs.class))
-@Mixin(SplashTextResourceSupplier.class)
+@Mixin(SplashManager.class)
 public abstract class Happy {
     @Inject(
-            method = "get",
+            method = "getSplash",
             at = @At(
                     value = "INVOKE",
                     target = "Ljava/util/Calendar;setTime(Ljava/util/Date;)V",
@@ -47,13 +47,13 @@ public abstract class Happy {
             ),
             cancellable = true
     )
-    private void happyMixin(CallbackInfoReturnable<SplashTextRenderer> cir, @Local(ordinal = 0) Calendar calendar) {
+    private void happyMixin(CallbackInfoReturnable<SplashRenderer> cir, @Local(ordinal = 0) Calendar calendar) {
         if (
                 calendar.get(Calendar.MONTH) == Calendar.MARCH
                         && calendar.get(Calendar.DAY_OF_MONTH) == 25
         ) {
             Random random = new Random();
-            if (random.nextInt(3) == 2) cir.setReturnValue(new SplashTextRenderer("Happy birthday Crystal0404!!!"));
+            if (random.nextInt(3) == 2) cir.setReturnValue(new SplashRenderer("Happy birthday Crystal0404!!!"));
         }
     }
 }
