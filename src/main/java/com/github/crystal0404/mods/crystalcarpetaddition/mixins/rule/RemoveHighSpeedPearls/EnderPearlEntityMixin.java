@@ -33,12 +33,12 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(ThrownEnderpearl.class)
 public abstract class EnderPearlEntityMixin extends ThrowableItemProjectile {
-    @Unique
-    private int highSpeedTime = 0;
-
     public EnderPearlEntityMixin(EntityType<? extends ThrowableItemProjectile> entityType, Level world) {
         super(entityType, world);
     }
+
+    @Unique
+    private int highSpeedTime = 0;
 
     @Inject(
             method = "tick",
