@@ -21,39 +21,44 @@
 package com.github.crystal0404.mods.crystalcarpetaddition.mixins.rule.WhatIsThis;
 
 import com.github.crystal0404.mods.crystalcarpetaddition.utils.CCAUtils;
-import com.llamalad7.mixinextras.sugar.Local;
 import me.fallenbreath.conditionalmixin.api.annotation.Condition;
 import me.fallenbreath.conditionalmixin.api.annotation.Restriction;
 import net.minecraft.client.gui.components.SplashRenderer;
 import net.minecraft.client.resources.SplashManager;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.Style;
+import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.Calendar;
-import java.util.Random;
 
 // QWQ
 @Restriction(conflict = @Condition(type = Condition.Type.TESTER, tester = CCAUtils.DisableEasterEggs.class))
 @Mixin(SplashManager.class)
 public abstract class Happy {
+    @Shadow
+    @Final
+    private static Style DEFAULT_STYLE;
+
     @Inject(
             method = "getSplash",
-            at = @At(
-                    value = "INVOKE",
-                    target = "Ljava/util/Calendar;setTime(Ljava/util/Date;)V",
-                    shift = At.Shift.AFTER
-            ),
+            at = @At("HEAD"),
             cancellable = true
     )
-    private void happyMixin(CallbackInfoReturnable<SplashRenderer> cir, @Local(ordinal = 0) Calendar calendar) {
+    private void happyMixin(CallbackInfoReturnable<SplashRenderer> cir) {
+        Calendar calendar = Calendar.getInstance();
         if (
-                calendar.get(Calendar.MONTH) == Calendar.MARCH
+                Math.random() < 0.2
+                        && calendar.get(Calendar.MONTH) == Calendar.MARCH
                         && calendar.get(Calendar.DAY_OF_MONTH) == 25
         ) {
-            Random random = new Random();
-            if (random.nextInt(3) == 2) cir.setReturnValue(new SplashRenderer("Happy birthday Crystal0404!!!"));
+            cir.setReturnValue(
+                    new SplashRenderer(Component.literal("Happy birthday Crystal0404!!!").setStyle(DEFAULT_STYLE))
+            );
         }
     }
 }

@@ -23,8 +23,8 @@ package com.github.crystal0404.mods.crystalcarpetaddition.mixins.rule.EnderDrago
 import com.github.crystal0404.mods.crystalcarpetaddition.CCASettings;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.PortalProcessor;
-import net.minecraft.world.entity.boss.EnderDragonPart;
 import net.minecraft.world.entity.boss.enderdragon.EnderDragon;
+import net.minecraft.world.entity.boss.enderdragon.EnderDragonPart;
 import net.minecraft.world.level.block.EndPortalBlock;
 import net.minecraft.world.level.block.Portal;
 import org.spongepowered.asm.mixin.Mixin;

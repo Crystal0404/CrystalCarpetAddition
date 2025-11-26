@@ -37,8 +37,9 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.raid.Raid;
 import net.minecraft.world.entity.raid.Raider;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.GameRules;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.gamerules.GameRules;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -49,7 +50,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(Raider.class)
 public abstract class RaiderEntityMixin extends PatrollingMonster {
-    protected RaiderEntityMixin(EntityType<? extends PatrollingMonster> entityType, Level world) {
+    protected RaiderEntityMixin(EntityType<? extends @NotNull PatrollingMonster> entityType, Level world) {
         super(entityType, world);
     }
 
@@ -99,7 +100,7 @@ public abstract class RaiderEntityMixin extends PatrollingMonster {
                         false,
                         true
                 );
-                if (!((ServerLevel) this.level()).getGameRules().getBoolean(GameRules.RULE_DISABLE_RAIDS)) {
+                if (((ServerLevel) this.level()).getGameRules().get(GameRules.RAIDS)) {
                     playerEntity.addEffect(statusEffectInstance2);
                 }
             }

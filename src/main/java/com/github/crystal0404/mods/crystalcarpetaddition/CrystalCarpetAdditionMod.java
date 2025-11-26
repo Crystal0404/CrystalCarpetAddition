@@ -28,8 +28,8 @@ import org.slf4j.LoggerFactory;
 public class CrystalCarpetAdditionMod implements ModInitializer {
     public static final String MOD_ID = "cca";
     public static final String MOD_NAME = "Crystal Carpet Addition";
+    public static final Logger LOGGER = LoggerFactory.getLogger(MOD_NAME);
     public static String version;
-    public static Logger LOGGER = LoggerFactory.getLogger(MOD_NAME);
 
     @Override
     public void onInitialize() {

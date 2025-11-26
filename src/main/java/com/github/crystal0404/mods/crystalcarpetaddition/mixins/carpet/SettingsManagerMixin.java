@@ -26,19 +26,17 @@ import carpet.utils.Messenger;
 import carpet.utils.TranslationKeys;
 import com.github.crystal0404.mods.crystalcarpetaddition.CCAExtension;
 import com.github.crystal0404.mods.crystalcarpetaddition.CrystalCarpetAdditionMod;
-import com.github.crystal0404.mods.crystalcarpetaddition.utils.ModIds;
+import com.github.crystal0404.mods.crystalcarpetaddition.utils.annotation.Restriction;
 import com.github.crystal0404.mods.crystalcarpetaddition.utils.annotation.impl.AnnotationProcessor;
-import com.llamalad7.mixinextras.injector.v2.WrapWithCondition;
 import com.llamalad7.mixinextras.sugar.Local;
-import me.fallenbreath.conditionalmixin.api.annotation.Condition;
-import me.fallenbreath.conditionalmixin.api.annotation.Restriction;
 import net.minecraft.commands.CommandSourceStack;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Coerce;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.lang.reflect.Field;
@@ -47,12 +45,15 @@ import java.util.Objects;
 
 import static carpet.utils.Translations.tr;
 
-@Restriction(require = @Condition(ModIds.CARPET))  // Maybe something else will be stuffed in the future?
 @Mixin(SettingsManager.class)
 public abstract class SettingsManagerMixin {
     @Shadow(remap = false)
     @Final
     private String fancyName;
+
+    @Shadow(remap = false)
+    @Final
+    private Map<String, CarpetRule<?>> rules;
 
     // show version
     @Inject(
@@ -76,26 +77,32 @@ public abstract class SettingsManagerMixin {
     }
 
     // my custom annotation handling
-    @WrapWithCondition(
+    @Inject(
             method = "parseSettingsClass",
             at = @At(
                     value = "INVOKE",
-                    target = "Ljava/util/Map;put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;"
+                    target = "Ljava/util/Map;put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;",
+                    shift = At.Shift.AFTER
             ),
             remap = false
     )
-    private boolean parseSettingsClassMixin_shouldRegister(
-            Map<String, CarpetRule<?>> instance,
-            @Coerce Object k,
-            @Coerce Object v,
-            @Local(ordinal = 0) Field field
+    private void parseSettingsClassMixin(
+            Class<?> settingsClass,
+            CallbackInfo ci,
+            @Local(name = "field") Field field,
+            @Local(name = "parsed") CarpetRule<?> parsed
     ) {
+        if (!this.shouldRegister(field, parsed.name())) {
+            this.rules.remove(parsed.name());
+        }
+    }
+
+    @Unique
+    private boolean shouldRegister(Field field, String k) {
         if ((Object) this == CCAExtension.CCASettingsManager) {
-            com.github.crystal0404.mods.crystalcarpetaddition.utils.annotation.Restriction restriction = field.getAnnotation(
-                    com.github.crystal0404.mods.crystalcarpetaddition.utils.annotation.Restriction.class
-            );
+            Restriction restriction = field.getAnnotation(Restriction.class);
             if (restriction != null) {
-                return AnnotationProcessor.shouldRegister(restriction, (String) k);
+                return AnnotationProcessor.shouldRegister(restriction, k);
             }
         }
         return true;

@@ -23,9 +23,10 @@ package com.github.crystal0404.mods.crystalcarpetaddition.utils.shulkerBoxUtils;
 import com.google.common.collect.ImmutableSet;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
+import org.jetbrains.annotations.NotNull;
 
 public final class ShulkerBoxesSet {
-    public static final ImmutableSet<Item> ITEMS_SET = ImmutableSet.of(
+    public static final ImmutableSet<@NotNull Item> ITEMS_SET = ImmutableSet.of(
             Items.SHULKER_BOX,
             Items.WHITE_SHULKER_BOX,
             Items.ORANGE_SHULKER_BOX,

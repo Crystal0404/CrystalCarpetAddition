@@ -25,6 +25,7 @@ import com.github.crystal0404.mods.crystalcarpetaddition.CrystalCarpetAdditionMo
 import com.google.common.collect.ImmutableMap;
 import me.fallenbreath.conditionalmixin.api.mixin.ConditionTester;
 import me.fallenbreath.conditionalmixin.api.util.VersionChecker;
+import org.jetbrains.annotations.NotNull;
 import org.spongepowered.asm.service.MixinService;
 
 import java.io.IOException;
@@ -38,7 +39,7 @@ public final class CCAUtils {
     /**
      * This is all the hidden parameters
      */
-    private final static ImmutableMap<String, Key> JAVA_PARAMETERS = new ImmutableMap.Builder<String, Key>()
+    private final static ImmutableMap<@NotNull String, @NotNull Key> JAVA_PARAMETERS = new ImmutableMap.Builder<@NotNull String, @NotNull Key>()
             .put("cca.disable.EasterEggs", new Key(!isFalse("cca.disable.EasterEggs"), true))
             .put("cca.enable.debug", new Key(Boolean.getBoolean("cca.enable.debug"), false))
             .put("cca.enable.MagicSettings", new Key(Boolean.getBoolean("cca.enable.MagicSettings"), false))
