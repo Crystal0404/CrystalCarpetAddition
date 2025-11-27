@@ -35,6 +35,7 @@ import net.minecraft.world.entity.monster.Witch;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.storage.loot.LootTable;
+import org.jetbrains.annotations.NotNull;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 
@@ -62,11 +63,11 @@ public abstract class LivingEntityMixin extends Entity {
     @SuppressWarnings("resource")
     private LootTable dropLootMixin(
             ReloadableServerRegistries.Holder instance,
-            ResourceKey<LootTable> key,
+            ResourceKey<@NotNull LootTable> key,
             Operation<LootTable> original
     ) {
         if ((LivingEntity) ((Object) this) instanceof Witch && CCASettings.ReIntroduceOldVersionWitchLootTable) {
-            HolderLookup.RegistryLookup<Enchantment> impl = this.level().registryAccess().lookupOrThrow(
+            HolderLookup.RegistryLookup<@NotNull Enchantment> impl = this.level().registryAccess().lookupOrThrow(
                     Registries.ENCHANTMENT
             );
             return LootTableUtils.Witch(impl);

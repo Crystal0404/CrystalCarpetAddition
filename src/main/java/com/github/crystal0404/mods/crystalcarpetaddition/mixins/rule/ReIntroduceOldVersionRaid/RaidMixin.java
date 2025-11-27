@@ -37,6 +37,7 @@ import net.minecraft.world.entity.SpawnPlacements;
 import net.minecraft.world.entity.raid.Raid;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.levelgen.Heightmap;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -64,7 +65,7 @@ public abstract class RaidMixin {
                             ")Lnet/minecraft/world/effect/MobEffectInstance;"
             )
     )
-    private Holder<MobEffect> startMixin_getStatusEffect(Holder<MobEffect> original) {
+    private Holder<@NotNull MobEffect> startMixin_getStatusEffect(Holder<@NotNull MobEffect> original) {
         return CCASettings.ReIntroduceOldVersionRaid ? MobEffects.BAD_OMEN : original;
     }
 
@@ -118,9 +119,8 @@ public abstract class RaidMixin {
 
     // from Minecraft-1.21.1
     @Unique
-    @Nullable
     @SuppressWarnings("deprecation")
-    private BlockPos getRavagerSpawnLocation(ServerLevel serverWorld, int proximity, int tries) {
+    private @Nullable BlockPos getRavagerSpawnLocation(ServerLevel serverWorld, int proximity, int tries) {
         int i = proximity == 0 ? 2 : 2 - proximity;
         BlockPos.MutableBlockPos mutable = new BlockPos.MutableBlockPos();
         SpawnPlacementType spawnLocation = SpawnPlacements.getPlacementType(EntityType.RAVAGER);
