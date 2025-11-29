@@ -28,15 +28,15 @@ import com.github.crystal0404.mods.crystalcarpetaddition.CCAExtension;
 import com.github.crystal0404.mods.crystalcarpetaddition.CrystalCarpetAdditionMod;
 import com.github.crystal0404.mods.crystalcarpetaddition.utils.annotation.Restriction;
 import com.github.crystal0404.mods.crystalcarpetaddition.utils.annotation.impl.AnnotationProcessor;
+import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
+import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import com.llamalad7.mixinextras.sugar.Local;
 import net.minecraft.commands.CommandSourceStack;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
-import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.lang.reflect.Field;
@@ -50,10 +50,6 @@ public abstract class SettingsManagerMixin {
     @Shadow(remap = false)
     @Final
     private String fancyName;
-
-    @Shadow(remap = false)
-    @Final
-    private Map<String, CarpetRule<?>> rules;
 
     // show version
     @Inject(
@@ -77,34 +73,28 @@ public abstract class SettingsManagerMixin {
     }
 
     // my custom annotation handling
-    @Inject(
+    // Do not use @WrapWithCondition, it is not recommended for non-void methods
+    @WrapOperation(
             method = "parseSettingsClass",
             at = @At(
                     value = "INVOKE",
-                    target = "Ljava/util/Map;put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;",
-                    shift = At.Shift.AFTER
-            ),
-            remap = false
+                    target = "Ljava/util/Map;put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;"
+            )
     )
-    private void parseSettingsClassMixin(
-            Class<?> settingsClass,
-            CallbackInfo ci,
-            @Local(name = "field") Field field,
-            @Local(name = "parsed") CarpetRule<?> parsed
+    private Object parseSettingsClassMixin(
+            Map<String, CarpetRule<?>> instance,
+            Object k,
+            Object v,
+            Operation<Object> original,
+            @Local(name = "field") Field field
     ) {
-        if (!this.shouldRegister(field, parsed.name())) {
-            this.rules.remove(parsed.name());
-        }
-    }
-
-    @Unique
-    private boolean shouldRegister(Field field, String k) {
         if ((Object) this == CCAExtension.CCASettingsManager) {
             Restriction restriction = field.getAnnotation(Restriction.class);
-            if (restriction != null) {
-                return AnnotationProcessor.shouldRegister(restriction, k);
+            if (restriction != null && !AnnotationProcessor.shouldRegister(restriction, (String) k)) {
+                // returns to default values and does nothing
+                return null;
             }
         }
-        return true;
+        return original.call(instance, k, v);
     }
 }
