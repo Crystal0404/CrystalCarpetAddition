@@ -30,12 +30,15 @@
 *[点我前往fabric-api的Modrinth下载页面](https://modrinth.com/mod/fabric-api)*
 
 ## 支持版本
-不受支持版本的issues会无条件直接关闭, 它会随时更新!
+  不受支持版本的issues会无条件直接关闭, 它会随时更新!
 
-详细请查阅[EOL](https://crystal0404.github.io/cca-doc/eol/)
+  详细请查阅[EOL](https://crystal0404.github.io/cca-doc/eol/)
 
 ## 其他
   
   不会有Minecraft1.19.4以下的版本, 至少暂时是这样的
   
-  使用了Yarn混淆映射表来反混淆Minecarft
+  ~~使用了Yarn混淆映射表来反混淆Minecraft~~
+
+  使用Mojang的官方名称, 见 [Removing Obfuscation from Fabric](https://fabricmc.net/2025/10/31/obfuscation.html)
+  

@@ -48,7 +48,9 @@ needed in versions later than v1.10.0**
 
   Currently not supported below 1.19.4
 
-  I'm using the Yarn mappings to de-obfuscate Minecraft and insert patches.
+  ~~I'm using the Yarn mappings to de-obfuscate Minecraft and insert patches.~~
+
+  Using the official name of Mojang, see [Removing Obfuscation from Fabric](https://fabricmc.net/2025/10/31/obfuscation.html)
 
   Please report any issues to me in Chinese as much as possible
 
