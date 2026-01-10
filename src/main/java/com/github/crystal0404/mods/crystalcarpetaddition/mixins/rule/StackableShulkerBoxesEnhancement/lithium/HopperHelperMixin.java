@@ -30,14 +30,14 @@ package com.github.crystal0404.mods.crystalcarpetaddition.mixins.rule.StackableS
 //import me.fallenbreath.conditionalmixin.api.annotation.Restriction;
 //import net.caffeinemc.mods.lithium.common.hopper.HopperHelper;
 //import net.minecraft.world.item.ItemStack;
-//import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Mixin;
 //import org.spongepowered.asm.mixin.injection.At;
 
 //@Restriction(
 //        require = @Condition(value = ModIds.LITHIUM, versionPredicates = ">=0.14.0"),
 //        conflict = @Condition(ModIds.PCA)
 //)
-//@Mixin(HopperHelper.class)
+@Mixin(com.github.crystal0404.mods.crystalcarpetaddition.utils.EmptyClass.class)
 public abstract class HopperHelperMixin {
 //    @WrapOperation(
 //            method = "tryMoveSingleItem(" +

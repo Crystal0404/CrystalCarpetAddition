@@ -28,7 +28,7 @@ import me.fallenbreath.conditionalmixin.api.annotation.Condition;
 import me.fallenbreath.conditionalmixin.api.annotation.Restriction;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
-import net.minecraft.world.inventory.ClickType;
+import net.minecraft.world.inventory.ContainerInput;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 import org.spongepowered.asm.mixin.Mixin;
@@ -67,7 +67,7 @@ public abstract class ScreenHandlerMixin {
     private void internalOnSlotClickMixin(
             int slotIndex,
             int button,
-            ClickType actionType,
+            ContainerInput containerInput,
             Player player,
             CallbackInfo ci,
             @Local(ordinal = 0) Slot slot,

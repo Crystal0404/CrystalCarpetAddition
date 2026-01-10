@@ -29,6 +29,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.Mth;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EntityType;
@@ -39,6 +40,7 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.levelgen.Heightmap;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
@@ -55,6 +57,10 @@ public abstract class RaidMixin {
 
     @Shadow
     private int raidCooldownTicks;
+
+    @Shadow
+    @Final
+    private RandomSource random;
 
     @ModifyArg(
             method = "absorbRaidOmen",
@@ -126,12 +132,12 @@ public abstract class RaidMixin {
         SpawnPlacementType spawnLocation = SpawnPlacements.getPlacementType(EntityType.RAVAGER);
 
         for (int j = 0; j < tries; j++) {
-            float f = serverWorld.random.nextFloat() * (float) (Math.PI * 2);
+            float f = this.random.nextFloat() * (float) (Math.PI * 2);
             int k = this.center.getX() + Mth.floor(
-                    Mth.cos(f) * 32.0F * (float) i + serverWorld.random.nextInt(5)
+                    Mth.cos(f) * 32.0F * (float) i + this.random.nextInt(5)
             );
             int l = this.center.getZ() + Mth.floor(
-                    Mth.sin(f) * 32.0F * (float) i + serverWorld.random.nextInt(5)
+                    Mth.sin(f) * 32.0F * (float) i + this.random.nextInt(5)
             );
             int m = serverWorld.getHeight(Heightmap.Types.WORLD_SURFACE, k, l);
             mutable.set(k, m, l);
