@@ -20,48 +20,48 @@
 
 package com.github.crystal0404.mods.crystalcarpetaddition.mixins.rule.StackableShulkerBoxesEnhancement.lithium;
 
-import carpet.CarpetSettings;
-import com.github.crystal0404.mods.crystalcarpetaddition.CCASettings;
-import com.github.crystal0404.mods.crystalcarpetaddition.utils.ModIds;
-import com.github.crystal0404.mods.crystalcarpetaddition.utils.shulkerBoxUtils.ShulkerBoxesSet;
-import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
-import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
-import me.fallenbreath.conditionalmixin.api.annotation.Condition;
-import me.fallenbreath.conditionalmixin.api.annotation.Restriction;
-import net.caffeinemc.mods.lithium.common.hopper.HopperHelper;
-import net.minecraft.world.item.ItemStack;
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.injection.At;
+//import carpet.CarpetSettings;
+//import com.github.crystal0404.mods.crystalcarpetaddition.CCASettings;
+//import com.github.crystal0404.mods.crystalcarpetaddition.utils.ModIds;
+//import com.github.crystal0404.mods.crystalcarpetaddition.utils.shulkerBoxUtils.ShulkerBoxesSet;
+//import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
+//import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
+//import me.fallenbreath.conditionalmixin.api.annotation.Condition;
+//import me.fallenbreath.conditionalmixin.api.annotation.Restriction;
+//import net.caffeinemc.mods.lithium.common.hopper.HopperHelper;
+//import net.minecraft.world.item.ItemStack;
+//import org.spongepowered.asm.mixin.Mixin;
+//import org.spongepowered.asm.mixin.injection.At;
 
-@Restriction(
-        require = @Condition(value = ModIds.LITHIUM, versionPredicates = ">=0.14.0"),
-        conflict = @Condition(ModIds.PCA)
-)
-@Mixin(HopperHelper.class)
+//@Restriction(
+//        require = @Condition(value = ModIds.LITHIUM, versionPredicates = ">=0.14.0"),
+//        conflict = @Condition(ModIds.PCA)
+//)
+//@Mixin(HopperHelper.class)
 public abstract class HopperHelperMixin {
-    @WrapOperation(
-            method = "tryMoveSingleItem(" +
-                    "Lnet/minecraft/world/Container;" +
-                    "Lnet/minecraft/world/WorldlyContainer;" +
-                    "Lnet/minecraft/world/item/ItemStack;" +
-                    "Lnet/minecraft/world/item/ItemStack;" +
-                    "I" +
-                    "Lnet/minecraft/core/Direction;" +
-                    ")Z",
-            at = @At(
-                    value = "INVOKE",
-                    target = "Lnet/minecraft/world/item/ItemStack;getMaxStackSize()I"
-            )
-    )
-    private static int tryMoveSingleItemMixin(ItemStack instance, Operation<Integer> original) {
-        if (
-                CCASettings.StackableShulkerBoxesEnhancement
-                        && CarpetSettings.shulkerBoxStackSize != 1
-                        && ShulkerBoxesSet.ITEMS_SET.contains(instance.getItem())
-        ) {
-            return 1;
-        } else {
-            return original.call(instance);
-        }
-    }
+//    @WrapOperation(
+//            method = "tryMoveSingleItem(" +
+//                    "Lnet/minecraft/world/Container;" +
+//                    "Lnet/minecraft/world/WorldlyContainer;" +
+//                    "Lnet/minecraft/world/item/ItemStack;" +
+//                    "Lnet/minecraft/world/item/ItemStack;" +
+//                    "I" +
+//                    "Lnet/minecraft/core/Direction;" +
+//                    ")Z",
+//            at = @At(
+//                    value = "INVOKE",
+//                    target = "Lnet/minecraft/world/item/ItemStack;getMaxStackSize()I"
+//            )
+//    )
+//    private static int tryMoveSingleItemMixin(ItemStack instance, Operation<Integer> original) {
+//        if (
+//                CCASettings.StackableShulkerBoxesEnhancement
+//                        && CarpetSettings.shulkerBoxStackSize != 1
+//                        && ShulkerBoxesSet.ITEMS_SET.contains(instance.getItem())
+//        ) {
+//            return 1;
+//        } else {
+//            return original.call(instance);
+//        }
+//    }
 }

@@ -1,0 +1,210 @@
+plugins {
+	id 'com.github.hierynomus.license' version '0.16.1'
+	id 'net.fabricmc.fabric-loom' version "${loom_version}"
+	id 'me.fallenbreath.yamlang' version '1.5.0'
+	id 'me.modmuss50.mod-publish-plugin' version "${mpp_version}"
+	id 'maven-publish'
+}
+
+String getVersion() {
+	String modVersion = project.mod_version
+	if (modVersion.matches('.*alpha\\.\\d+')) {
+		throw new IllegalAccessException()
+	}
+	final boolean isRelease = providers.environmentVariable('IS_RELEASE').isPresent()
+	final boolean isJitpack = providers.environmentVariable('JITPACK').isPresent()
+	if (!(isRelease || isJitpack)) {
+		modVersion = modVersion.replaceAll('-beta\\.\\d+', '')
+		modVersion += "-alpha.${providers.environmentVariable('GITHUB_RUN_NUMBER').getOrElse('1')}"
+	}
+	return "${modVersion}+mc${project.minecraft_version}"
+}
+
+version = "v${this.getVersion()}"
+group = project.maven_group
+
+base {
+	archivesName = project.archives_base_name
+}
+
+repositories {
+	maven {
+		name = 'Modrinth'
+		url = 'https://api.modrinth.com/maven'
+		content {
+			includeGroup('maven.modrinth')
+		}
+	}
+	maven {
+		name = 'Fallen'
+		url = 'https://maven.fallenbreath.me/releases'
+		content {
+			includeGroup('me.fallenbreath')
+		}
+	}
+	maven {
+		name = 'JitPack'
+		url = 'https://jitpack.io'
+		content {
+			includeGroupByRegex('com\\.github\\..*')
+		}
+	}
+}
+
+dependencies {
+	// To change the versions see the gradle.properties file
+	minecraft("com.mojang:minecraft:${project.minecraft_version}")
+	
+	implementation("net.fabricmc:fabric-loader:${project.loader_version}")
+
+	// Dependencies
+	implementation("com.github.gnembon:fabric-carpet:${project.carpet_version}") { transitive = false }
+	include(implementation("me.fallenbreath:conditional-mixin-fabric:${project.conditionalmixin_version}")) { transitive = false }
+
+	// MixinAuditor
+	runtimeOnly('me.fallenbreath:mixin-auditor:0.2.0-u') { transitive = false }
+}
+
+loom {
+	accessWidenerPath.set(file('src/main/resources/cca.accesswidener'))
+
+	runConfigs.configureEach {
+		vmArgs('-Dmixin.debug.export=true')
+	}
+
+	runs {
+		create('serverMixinAudit') {
+			server()
+			vmArgs('-DmixinAuditor.audit=true')
+		}
+	}
+}
+
+yamlang {
+	targetSourceSets = [sourceSets.named('main').get()]
+	inputDir = 'assets/cca/lang'
+}
+
+processResources {
+	inputs.properties(
+			'conditional_mixin_dependency': conditionalmixin_version,
+			'id': mod_id,
+			'name': mod_name,
+			'minecraft_dependency': minecraft_dependency,
+			'version': this.getVersion()
+	)
+
+	filesMatching('fabric.mod.json') {
+		expand inputs.properties
+	}
+}
+
+tasks.withType(JavaCompile).configureEach {
+	it.options.release = 25
+	it.options.encoding = 'UTF-8'
+}
+
+java {
+	// Loom will automatically attach sourcesJar to a RemapSourcesJar task and to the "build" task
+	// if it is present.
+	// If you remove this line, sources will not be generated.
+	withSourcesJar()
+
+	sourceCompatibility = JavaVersion.VERSION_25
+	targetCompatibility = JavaVersion.VERSION_25
+}
+
+jar {
+	inputs.property('archivesName', base.archivesName)
+
+	from("LICENSE") {
+		rename { "${it}_${inputs.properties.get('archivesName')}" }
+	}
+}
+
+// see https://modmuss50.github.io/mod-publish-plugin
+publishMods {
+	dryRun = !providers.environmentVariable('GH_TOKEN').isPresent()
+	file = jar.archiveFile
+	displayName = "${archives_base_name} v${mod_version} for mc${minecraft_version}"
+	changelog = file('CHANGELOG.md').text
+	type = switch (mod_version) {
+		case { mod_version.matches('.*alpha\\.\\d+') } -> throw new IllegalAccessException()
+		case { mod_version.matches('.*beta\\.\\d+') } -> BETA
+		default -> STABLE
+	}
+	version = this.getVersion()
+	modLoaders.add('fabric')
+
+	github {
+		accessToken = providers.environmentVariable('GH_TOKEN')
+		repository = providers.environmentVariable('GITHUB_REPOSITORY').getOrElse('Crystal0404/TestMod')
+		commitish = providers.environmentVariable('COMMITISH').getOrElse('test')
+		tagName = this.getVersion()
+	}
+
+	modrinth {
+		accessToken = providers.environmentVariable('MODRINTH_API_KEY')
+		displayName = "${mod_name} v${mod_version} for mc${minecraft_version}"
+		projectId = 'G26sLP13'
+		// Currently damaged...
+//		minecraftVersionRange {
+//			List<String> range = minecraft_version_range.split(',', 2)
+//			start = range.first
+//			end = range.last
+//		}
+		minecraftVersions.add(minecraft_version)
+		requires("carpet")
+	}
+}
+
+// https://github.com/hierynomus/license-gradle-plugin
+license {
+	// use "gradle licenseFormat" to apply license headers
+	header = rootProject.file('HEADER.txt')
+	include '**/*.java'
+	skipExistingHeaders = true
+
+	headerDefinitions {
+		// ref: https://github.com/mathieucarbou/license-maven-plugin/blob/4c42374bb737378f5022a3a36849d5e23ac326ea/license-maven-plugin/src/main/java/com/mycila/maven/plugin/license/header/HeaderType.java#L48
+		// modification: add a newline at the end
+		register('SLASHSTAR_STYLE_NEWLINE') {
+			firstLine = "/*"
+			beforeEachLine = " * "
+			endLine = " */" + System.lineSeparator()
+			afterEachLine = ""
+			skipLinePattern = null
+			firstLineDetectionPattern = "(\\s|\\t)*/\\*.*\$"
+			lastLineDetectionPattern = ".*\\*/(\\s|\\t)*\$"
+			allowBlankLines = false
+			isMultiline = true
+			padLines = false
+		}
+	}
+	mapping('java', 'SLASHSTAR_STYLE_NEWLINE')
+	ext {
+		name = project.mod_name
+		author = 'Crystal0404'
+		year = Calendar.getInstance().get(Calendar.YEAR).toString()
+	}
+}
+classes.dependsOn(licenseFormatMain)
+testClasses.dependsOn(licenseFormatTest)
+
+// configure the maven publication
+publishing {
+	publications {
+		create("mavenJava", MavenPublication) {
+			artifactId = project.archives_base_name
+			from components.java
+		}
+	}
+
+	// See https://docs.gradle.org/current/userguide/publishing_maven.html for information on how to set up publishing.
+	repositories {
+		// Add repositories to publish to here.
+		// Notice: This block does NOT have the same function as the block in the top level.
+		// The repositories here will be used for publishing your artifact, not for
+		// retrieving dependencies.
+	}
+}
