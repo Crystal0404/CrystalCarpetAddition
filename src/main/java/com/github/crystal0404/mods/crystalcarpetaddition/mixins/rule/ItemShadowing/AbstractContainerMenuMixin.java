@@ -70,9 +70,9 @@ public abstract class AbstractContainerMenuMixin {
             ContainerInput containerInput,
             Player player,
             CallbackInfo ci,
-            @Local(ordinal = 0) Slot slot,
-            @Local(ordinal = 0) ItemStack itemStack
+            @Local(name = "target") Slot target,
+            @Local(name = "source") ItemStack source
     ) {
-        if (CCASettings.ItemShadowing) slot.setByPlayer(itemStack);
+        if (CCASettings.ItemShadowing) target.setByPlayer(source);
     }
 }

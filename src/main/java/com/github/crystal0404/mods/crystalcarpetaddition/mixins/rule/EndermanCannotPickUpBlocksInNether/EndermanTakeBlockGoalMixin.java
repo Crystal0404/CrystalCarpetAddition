@@ -37,7 +37,7 @@ public abstract class EndermanTakeBlockGoalMixin {
                     target = "Lnet/minecraft/world/level/block/state/BlockState;is(Lnet/minecraft/tags/TagKey;)Z"
             )
     )
-    private boolean tickMixin(boolean original, @Local(ordinal = 0) Level world) {
+    private boolean tickMixin(boolean original, @Local(name = "level") Level world) {
         return CCASettings.EndermanCannotPickUpBlocksInNether ?
                 world.dimension() != Level.NETHER && original : original;
     }

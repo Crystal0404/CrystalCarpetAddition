@@ -84,10 +84,10 @@ public abstract class RaidMixin {
     )
     private Supplier<? extends BlockPos> tickMixin_findRandomRaidersSpawnLocation(
             Supplier<? extends BlockPos> original,
-            @Local(ordinal = 1) int j,
+            @Local(name = "attempt") int attempt,
             @Local(ordinal = 0, argsOnly = true) ServerLevel serverWorld
     ) {
-        return CCASettings.ReIntroduceOldVersionRaid ? () -> this.getRavagerSpawnLocation(serverWorld, j, 20) : original;
+        return CCASettings.ReIntroduceOldVersionRaid ? () -> this.getRavagerSpawnLocation(serverWorld, attempt, 20) : original;
     }
 
     @ModifyExpressionValue(
