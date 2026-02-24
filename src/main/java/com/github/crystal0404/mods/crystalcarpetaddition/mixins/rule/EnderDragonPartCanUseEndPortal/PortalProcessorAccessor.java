@@ -26,7 +26,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.gen.Accessor;
 
 @Mixin(PortalProcessor.class)
-public interface PortalManagerAccessor {
+public interface PortalProcessorAccessor {
     @Accessor
     Portal getPortal();
 }

@@ -18,37 +18,48 @@
  * along with Crystal Carpet Addition.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package com.github.crystal0404.mods.crystalcarpetaddition.mixins.rule.NoBatSpwan;
+package com.github.crystal0404.mods.crystalcarpetaddition.mixins.rule.ReIntroduceOldVersionRaid;
 
 import com.github.crystal0404.mods.crystalcarpetaddition.CCASettings;
 import net.minecraft.core.BlockPos;
-import net.minecraft.util.RandomSource;
-import net.minecraft.world.entity.EntitySpawnReason;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.ambient.Bat;
-import net.minecraft.world.level.LevelAccessor;
-import org.jetbrains.annotations.NotNull;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.Difficulty;
+import net.minecraft.world.effect.BadOmenMobEffect;
+import net.minecraft.world.entity.LivingEntity;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-@Mixin(Bat.class)
-public abstract class BatEntityMixin {
+@Mixin(BadOmenMobEffect.class)
+public abstract class BadOmenMobEffectMixin {
     @Inject(
-            method = "checkBatSpawnRules",
+            method = "applyEffectTick",
             at = @At("HEAD"),
             cancellable = true
     )
-    private static void canSpawnMixin(
-            EntityType<@NotNull Bat> type,
-            LevelAccessor world,
-            EntitySpawnReason spawnReason,
-            BlockPos pos, RandomSource random,
+    private void applyEffectTickMixin(
+            ServerLevel serverWorld,
+            LivingEntity entity,
+            int amplifier,
             CallbackInfoReturnable<Boolean> cir
     ) {
-        if (CCASettings.NoBatSpawn) {
-            cir.setReturnValue(false);
+        if (!CCASettings.ReIntroduceOldVersionRaid) return;
+        if (entity instanceof ServerPlayer serverPlayerEntity && !serverPlayerEntity.isSpectator()) {
+            cir.setReturnValue(this.tryStartRaid(serverPlayerEntity, serverPlayerEntity.level()));
+        } else {
+            cir.setReturnValue(true);
         }
+    }
+
+    @Unique
+    private boolean tryStartRaid(ServerPlayer player, ServerLevel world) {
+        BlockPos pos = player.blockPosition();
+        if (world.getDifficulty() != Difficulty.PEACEFUL && world.isVillage(pos)) {
+            return world.getRaids().createOrExtendRaid(player, pos) == null;
+        }
+        return true;
     }
 }

@@ -60,7 +60,7 @@ public abstract class LivingEntityMixin extends Entity {
             )
     )
     @SuppressWarnings("resource")
-    private LootTable dropLootMixin(
+    private LootTable dropFromLootTableMixin(
             ReloadableServerRegistries.Holder instance,
             ResourceKey<@NotNull LootTable> key,
             Operation<LootTable> original
@@ -69,7 +69,7 @@ public abstract class LivingEntityMixin extends Entity {
             HolderLookup.RegistryLookup<@NotNull Enchantment> impl = this.level().registryAccess().lookupOrThrow(
                     Registries.ENCHANTMENT
             );
-            return LootTableUtils.Witch(impl);
+            return LootTableUtils.witch(impl);
         } else {
             return original.call(instance, key);
         }

@@ -43,7 +43,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
         }
 )
 @Mixin(AbstractContainerMenu.class)
-public abstract class ScreenHandlerMixin {
+public abstract class AbstractContainerMenuMixin {
     @WrapWithCondition(
             method = "doClick",
             at = @At(
@@ -52,7 +52,7 @@ public abstract class ScreenHandlerMixin {
                     ordinal = 4
             )
     )
-    private boolean internalOnSlotClickMixin(Slot instance, ItemStack stack) {
+    private boolean doClickMixin(Slot instance, ItemStack stack) {
         return !CCASettings.ItemShadowing;
     }
 
@@ -64,7 +64,7 @@ public abstract class ScreenHandlerMixin {
                     ordinal = 1
             )
     )
-    private void internalOnSlotClickMixin(
+    private void doClickMixin(
             int slotIndex,
             int button,
             ContainerInput containerInput,

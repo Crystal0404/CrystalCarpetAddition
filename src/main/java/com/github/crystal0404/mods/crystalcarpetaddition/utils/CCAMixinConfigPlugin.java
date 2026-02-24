@@ -20,20 +20,12 @@
 
 package com.github.crystal0404.mods.crystalcarpetaddition.utils;
 
-import com.github.crystal0404.mods.crystalcarpetaddition.CrystalCarpetAdditionMod;
 import me.fallenbreath.conditionalmixin.api.mixin.RestrictiveMixinConfigPlugin;
 
 import java.util.List;
 import java.util.Set;
 
 public class CCAMixinConfigPlugin extends RestrictiveMixinConfigPlugin {
-    @Override
-    protected void onRestrictionCheckFailed(String mixinClassName, String reason) {
-        if (!reason.matches(".*%s.*".formatted(mixinClassName)) && CCAUtils.isEnableDebug()) {
-            CrystalCarpetAdditionMod.LOGGER.info("[CCA] \"{}\" is disabled because of \"{}\"", mixinClassName, reason);
-        }
-    }
-
     @Override
     public String getRefMapperConfig() {
         return null;

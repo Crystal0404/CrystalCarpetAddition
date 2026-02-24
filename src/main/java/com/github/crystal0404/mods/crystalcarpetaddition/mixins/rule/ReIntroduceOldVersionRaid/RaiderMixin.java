@@ -49,8 +49,8 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(Raider.class)
-public abstract class RaiderEntityMixin extends PatrollingMonster {
-    protected RaiderEntityMixin(EntityType<? extends @NotNull PatrollingMonster> entityType, Level world) {
+public abstract class RaiderMixin extends PatrollingMonster {
+    protected RaiderMixin(EntityType<? extends @NotNull PatrollingMonster> entityType, Level world) {
         super(entityType, world);
     }
 
@@ -68,7 +68,7 @@ public abstract class RaiderEntityMixin extends PatrollingMonster {
             )
     )
     @SuppressWarnings("resource")
-    private void onDeathMixin(DamageSource damageSource, CallbackInfo ci) {
+    private void dieMixin(DamageSource damageSource, CallbackInfo ci) {
         // The injection point is not exact, so check the world again
         if (!CCASettings.ReIntroduceOldVersionRaid || !(this.level() instanceof ServerLevel)) return;
 

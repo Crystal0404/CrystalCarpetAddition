@@ -35,7 +35,7 @@ import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 import org.jetbrains.annotations.NotNull;
 
 public class LootTableUtils {
-    public static LootTable Witch(HolderLookup.RegistryLookup<@NotNull Enchantment> impl) {
+    public static LootTable witch(HolderLookup.RegistryLookup<@NotNull Enchantment> impl) {
         Holder<@NotNull Enchantment> enchantment = impl.getOrThrow(Enchantments.LOOTING);
         LootPool.Builder loot = LootPool.lootPool()
                 .setBonusRolls(ConstantValue.exactly(0.0f))

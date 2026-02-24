@@ -23,11 +23,11 @@ package com.github.crystal0404.mods.crystalcarpetaddition.mixins.rule.StackableS
 import carpet.CarpetSettings;
 import com.github.crystal0404.mods.crystalcarpetaddition.CCASettings;
 import com.github.crystal0404.mods.crystalcarpetaddition.utils.ModIds;
-import com.github.crystal0404.mods.crystalcarpetaddition.utils.shulkerBoxUtils.ShulkerBoxesSet;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import me.fallenbreath.conditionalmixin.api.annotation.Condition;
 import me.fallenbreath.conditionalmixin.api.annotation.Restriction;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.HopperBlockEntity;
 import org.spongepowered.asm.mixin.Mixin;
@@ -52,11 +52,11 @@ public abstract class HopperBlockEntityMixin {
                             ")Z"
             )
     )
-    private static boolean transferMixin(ItemStack first, ItemStack second, Operation<Boolean> original) {
+    private static boolean tryMoveInItemMixin(ItemStack first, ItemStack second, Operation<Boolean> original) {
         if (
                 CCASettings.StackableShulkerBoxesEnhancement
                         && CarpetSettings.shulkerBoxStackSize != 1
-                        && ShulkerBoxesSet.ITEMS_SET.contains(first.getItem())
+                        && first.is(ItemTags.SHULKER_BOXES)
         ) {
             return false;
         } else {

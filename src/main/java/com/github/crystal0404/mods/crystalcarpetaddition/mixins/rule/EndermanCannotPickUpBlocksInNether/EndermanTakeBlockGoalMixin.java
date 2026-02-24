@@ -23,13 +23,13 @@ package com.github.crystal0404.mods.crystalcarpetaddition.mixins.rule.EndermanCa
 import com.github.crystal0404.mods.crystalcarpetaddition.CCASettings;
 import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 import com.llamalad7.mixinextras.sugar.Local;
-import net.minecraft.world.entity.monster.EnderMan;
+import net.minecraft.world.entity.monster.EnderMan.EndermanTakeBlockGoal;
 import net.minecraft.world.level.Level;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 
-@Mixin(EnderMan.EndermanTakeBlockGoal.class)
-public abstract class EndermanEntity$PickUpBlockGoalMixin {
+@Mixin(EndermanTakeBlockGoal.class)
+public abstract class EndermanTakeBlockGoalMixin {
     @ModifyExpressionValue(
             method = "tick",
             at = @At(

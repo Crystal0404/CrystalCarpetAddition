@@ -20,15 +20,11 @@
 
 package com.github.crystal0404.mods.crystalcarpetaddition.utils;
 
-import carpet.api.settings.Rule;
 import com.github.crystal0404.mods.crystalcarpetaddition.CrystalCarpetAdditionMod;
 import com.google.common.collect.ImmutableMap;
-import me.fallenbreath.conditionalmixin.api.mixin.ConditionTester;
 import me.fallenbreath.conditionalmixin.api.util.VersionChecker;
 import org.jetbrains.annotations.NotNull;
-import org.spongepowered.asm.service.MixinService;
 
-import java.io.IOException;
 import java.util.Objects;
 
 /**
@@ -40,9 +36,7 @@ public final class CCAUtils {
      * This is all the hidden parameters
      */
     private final static ImmutableMap<@NotNull String, @NotNull Key> JAVA_PARAMETERS = new ImmutableMap.Builder<@NotNull String, @NotNull Key>()
-            .put("cca.disable.EasterEggs", new Key(!isFalse("cca.disable.EasterEggs"), true))
             .put("cca.enable.debug", new Key(Boolean.getBoolean("cca.enable.debug"), false))
-            .put("cca.enable.MagicSettings", new Key(Boolean.getBoolean("cca.enable.MagicSettings"), false))
             .buildOrThrow();
 
     static {
@@ -54,79 +48,16 @@ public final class CCAUtils {
     }
 
     /**
-     * Find if a class exists
-     */
-    public static boolean tryFindClass(String className) {
-        try {
-            MixinService.getService().getBytecodeProvider().getClassNode(className);
-            return true;
-        } catch (ClassNotFoundException classNotFoundException) {
-            return false;
-        } catch (IOException ioException) {
-            CrystalCarpetAdditionMod.LOGGER.error("[CCA] An unknown exception occurred while trying to find the class");
-            throw new RuntimeException(ioException);
-        }
-    }
-
-    @SuppressWarnings("all")
-    private static boolean isFalse(String name) {
-        boolean result = false;
-        try {
-            result = "false".equalsIgnoreCase(System.getProperty(name));
-        } catch (IllegalArgumentException | NullPointerException ignored) {
-
-        }
-        return result;
-    }
-
-    /**
      * Check whether the modId satisfies the version Predicate
      */
     public static boolean isLoad(String modId, String versionPredicate) {
         return VersionChecker.doesModVersionSatisfyPredicate(modId, versionPredicate);
     }
 
-    /**
-     * This is for my own use
-     * Others please use the one above
-     */
-    @Deprecated
-    public static boolean isLoad(String ruleName, String modId, String versionPredicate) {
-        if (VersionChecker.doesModVersionSatisfyPredicate(modId, versionPredicate)) {
-            return true;
-        }
-        CrystalCarpetAdditionMod.LOGGER.warn(
-                "[CCA] Rule \"{}\" is disabled, Because \"{}\" does not meet condition \"{}\"",
-                ruleName,
-                modId,
-                versionPredicate
-        );
-        return false;
-    }
-
-    public static boolean isEnableDebug() {
-        return Objects.requireNonNull(JAVA_PARAMETERS.get("cca.enable.debug")).value();
+    public static boolean isDisableDebug() {
+        return !Objects.requireNonNull(JAVA_PARAMETERS.get("cca.enable.debug")).value();
     }
 
     private record Key(boolean value, boolean defaultValue) {
-    }
-
-    public final static class DisableEasterEggs implements ConditionTester {
-        @Override
-        public boolean isSatisfied(String mixinClassName) {
-            return Objects.requireNonNull(JAVA_PARAMETERS.get("cca.disable.EasterEggs")).value();
-        }
-    }
-
-    public final static class EnableMagicSetting implements ConditionTester, Rule.Condition {
-        @Override
-        public boolean isSatisfied(String mixinClassName) {
-            return Objects.requireNonNull(JAVA_PARAMETERS.get("cca.enable.MagicSettings")).value();
-        }
-
-        @Override
-        public boolean shouldRegister() {
-            return Objects.requireNonNull(JAVA_PARAMETERS.get("cca.enable.MagicSettings")).value();
-        }
     }
 }

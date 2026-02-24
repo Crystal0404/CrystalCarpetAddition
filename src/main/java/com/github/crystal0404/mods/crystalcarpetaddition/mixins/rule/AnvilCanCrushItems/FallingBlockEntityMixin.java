@@ -48,7 +48,7 @@ public abstract class FallingBlockEntityMixin {
                             "and(Ljava/util/function/Predicate;)Ljava/util/function/Predicate;"
             )
     )
-    private Predicate<Entity> handleFallDamageMixin(
+    private Predicate<Entity> causeFallDamageMixin(
             Predicate<Entity> instance,
             Predicate<? super Entity> other,
             Operation<Predicate<Entity>> original

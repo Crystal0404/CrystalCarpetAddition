@@ -33,7 +33,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(Mob.class)
-public abstract class MobEntityMixin {
+public abstract class MobMixin {
     @Inject(
             method = "tick",
             at = @At("TAIL")
@@ -47,7 +47,7 @@ public abstract class MobEntityMixin {
                 if (portalManager == null) continue;
 
                 // It should not go into other portals
-                Portal portal = ((PortalManagerAccessor) portalManager).getPortal();
+                Portal portal = ((PortalProcessorAccessor) portalManager).getPortal();
                 if (!(portal instanceof EndPortalBlock)) continue;
 
                 ((EntityInvoker) part).invokeTickPortalTeleportation();

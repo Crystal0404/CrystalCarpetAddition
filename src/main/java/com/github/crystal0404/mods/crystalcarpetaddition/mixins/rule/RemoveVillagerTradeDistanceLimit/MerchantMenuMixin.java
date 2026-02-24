@@ -32,7 +32,7 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 
 @Mixin(MerchantMenu.class)
-public abstract class MerchantScreenHandlerMixin {
+public abstract class MerchantMenuMixin {
     @Shadow
     @Final
     private Merchant trader;
@@ -46,7 +46,7 @@ public abstract class MerchantScreenHandlerMixin {
                             ")Z"
             )
     )
-    private boolean canUseMixin(Merchant instance, Player playerEntity, Operation<Boolean> original) {
+    private boolean stillValidMixin(Merchant instance, Player playerEntity, Operation<Boolean> original) {
         if (CCASettings.RemoveVillagerTradeDistanceLimit) {
             return this.trader.getTradingPlayer() == playerEntity;
         } else {

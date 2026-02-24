@@ -45,7 +45,7 @@ public abstract class AnnotationProcessor {
     }
 
     private static void conflictInfo(String rule, Condition condition) {
-        if (!CCAUtils.isEnableDebug()) return;
+        if (CCAUtils.isDisableDebug()) return;
         CrystalCarpetAdditionMod.LOGGER.info(
                 "[CCA] Rule {} is disabled, Because of the conflict with {}({}).",
                 rule,
@@ -55,7 +55,7 @@ public abstract class AnnotationProcessor {
     }
 
     private static void requireInfo(String rule, Condition condition) {
-        if (!CCAUtils.isEnableDebug()) return;
+        if (CCAUtils.isDisableDebug()) return;
         CrystalCarpetAdditionMod.LOGGER.info(
                 "[CCA] Rule {} is disabled, Because of the require with {}({}).",
                 rule,

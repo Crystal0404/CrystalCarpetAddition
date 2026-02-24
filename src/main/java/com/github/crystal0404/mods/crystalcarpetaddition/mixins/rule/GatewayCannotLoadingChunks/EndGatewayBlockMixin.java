@@ -23,6 +23,7 @@ package com.github.crystal0404.mods.crystalcarpetaddition.mixins.rule.GatewayCan
 import com.github.crystal0404.mods.crystalcarpetaddition.CCASettings;
 import net.minecraft.world.level.block.EndGatewayBlock;
 import net.minecraft.world.level.portal.TeleportTransition;
+import net.minecraft.world.level.portal.TeleportTransition.PostTeleportTransition;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyArg;
@@ -46,8 +47,8 @@ public abstract class EndGatewayBlockMixin {
             ),
             index = 6
     )
-    private TeleportTransition.PostTeleportTransition createTeleportTargetMixin(
-            TeleportTransition.PostTeleportTransition original
+    private PostTeleportTransition getPortalDestinationMixin(
+            PostTeleportTransition original
     ) {
         return CCASettings.GatewayCannotLoadingChunks ? TeleportTransition.DO_NOTHING : original;
     }

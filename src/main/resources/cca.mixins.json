@@ -8,24 +8,21 @@
     "rule.AnvilCanCrushItems.FallingBlockEntityMixin",
     "rule.ComparatorIgnoresUpdatesFromBelow.ComparatorBlockMixin",
     "rule.EnderDragonPartCanUseEndPortal.EntityInvoker",
-    "rule.EnderDragonPartCanUseEndPortal.MobEntityMixin",
-    "rule.EnderDragonPartCanUseEndPortal.PortalManagerAccessor",
-    "rule.EndermanCannotPickUpBlocksInNether.EndermanEntity$PickUpBlockGoalMixin",
+    "rule.EnderDragonPartCanUseEndPortal.MobMixin",
+    "rule.EnderDragonPartCanUseEndPortal.PortalProcessorAccessor",
+    "rule.EndermanCannotPickUpBlocksInNether.EndermanTakeBlockGoalMixin",
     "rule.GatewayCannotLoadingChunks.EndGatewayBlockMixin",
-    "rule.ItemShadowing.ScreenHandlerMixin",
-    "rule.NoBatSpwan.BatEntityMixin",
-    "rule.ReIntroduceOldVersionRaid.BadOmenStatusEffectMixin",
-    "rule.ReIntroduceOldVersionRaid.RaiderEntityMixin",
+    "rule.ItemShadowing.AbstractContainerMenuMixin",
+    "rule.NoBatSpwan.BatMixin",
+    "rule.ReIntroduceOldVersionRaid.BadOmenMobEffectMixin",
+    "rule.ReIntroduceOldVersionRaid.RaiderMixin",
     "rule.ReIntroduceOldVersionRaid.RaidMixin",
     "rule.ReIntroduceOldVersionWitchLootTable.LivingEntityMixin",
-    "rule.RemoveHighSpeedPearls.EnderPearlEntityMixin",
-    "rule.RemoveVillagerTradeDistanceLimit.MerchantScreenHandlerMixin",
+    "rule.RemoveHighSpeedPearls.ThrownEnderpearlMixin",
+    "rule.RemoveVillagerTradeDistanceLimit.MerchantMenuMixin",
     "rule.ShulkerBoxPowerOutputExpansion.ShulkerBoxBlockMixin",
     "rule.StackableShulkerBoxesEnhancement.HopperBlockEntityMixin",
     "rule.StackableShulkerBoxesEnhancement.lithium.HopperHelperMixin"
-  ],
-  "client": [
-    "rule.WhatIsThis.Happy"
   ],
   "injectors": {
     "defaultRequire": 1

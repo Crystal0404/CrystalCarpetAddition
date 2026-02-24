@@ -33,8 +33,8 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(ThrownEnderpearl.class)
-public abstract class EnderPearlEntityMixin extends ThrowableItemProjectile {
-    public EnderPearlEntityMixin(EntityType<? extends @NotNull ThrowableItemProjectile> entityType, Level world) {
+public abstract class ThrownEnderpearlMixin extends ThrowableItemProjectile {
+    public ThrownEnderpearlMixin(EntityType<? extends @NotNull ThrowableItemProjectile> entityType, Level world) {
         super(entityType, world);
     }
 

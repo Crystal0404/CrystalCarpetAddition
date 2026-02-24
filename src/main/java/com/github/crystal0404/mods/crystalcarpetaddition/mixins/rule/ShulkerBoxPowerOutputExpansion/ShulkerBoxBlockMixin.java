@@ -21,7 +21,7 @@
 package com.github.crystal0404.mods.crystalcarpetaddition.mixins.rule.ShulkerBoxPowerOutputExpansion;
 
 import com.github.crystal0404.mods.crystalcarpetaddition.CCASettings;
-import com.github.crystal0404.mods.crystalcarpetaddition.utils.shulkerBoxUtils.ColourMap;
+import com.github.crystal0404.mods.crystalcarpetaddition.utils.ColourMap;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import net.minecraft.world.item.ItemStack;
@@ -42,7 +42,7 @@ public abstract class ShulkerBoxBlockMixin {
                             ")I"
             )
     )
-    private int getComparatorOutputMixin(
+    private int getAnalogOutputSignalMixin(
             BlockEntity entity,
             Operation<Integer> original
     ) {
