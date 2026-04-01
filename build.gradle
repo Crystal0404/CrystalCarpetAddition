@@ -153,13 +153,12 @@ publishMods {
 		accessToken = providers.environmentVariable('MODRINTH_API_KEY')
 		displayName = "${mod_name} v${mod_version} for mc${minecraft_version}"
 		projectId = 'G26sLP13'
-		// Currently damaged...
-//		minecraftVersionRange {
-//			List<String> range = minecraft_version_range.split(',', 2)
-//			start = range.first
-//			end = range.last
-//		}
-		minecraftVersions.add(minecraft_version)
+		minecraftVersionRange {
+			List<String> range = minecraft_version_range.split(',', 2)
+			start = range.first
+			end = range.last
+		}
+//		minecraftVersions.add(minecraft_version)
 		requires("carpet")
 	}
 }
