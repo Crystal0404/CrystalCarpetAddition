@@ -51,6 +51,7 @@ repositories {
 	}
 }
 
+final Boolean enable_lithium = false
 dependencies {
 	// To change the versions see the gradle.properties file
 	minecraft("com.mojang:minecraft:${project.minecraft_version}")
@@ -60,6 +61,11 @@ dependencies {
 	// Dependencies
 	implementation("com.github.gnembon:fabric-carpet:${project.carpet_version}") { transitive = false }
 	include(implementation("me.fallenbreath:conditional-mixin-fabric:${project.conditionalmixin_version}")) { transitive = false }
+	if (enable_lithium) {
+		implementation("maven.modrinth:lithium:${lithium_version}")
+	} else {
+		compileOnly("maven.modrinth:lithium:${lithium_version}")
+	}
 
 	// MixinAuditor
 	runtimeOnly('me.fallenbreath:mixin-auditor:0.2.0-u') { transitive = false }
