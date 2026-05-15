@@ -23,11 +23,11 @@ package com.github.crystal0404.mods.crystalcarpetaddition.utils;
 import com.github.crystal0404.mods.crystalcarpetaddition.CCASettings;
 import com.google.common.collect.ImmutableMap;
 import net.minecraft.world.item.DyeColor;
-import org.jetbrains.annotations.NotNull;
+import org.jspecify.annotations.Nullable;
 
 public class ColourMap {
     // It has to be remapped because DyeColor is obfuscated and can't be used directly as a setting option
-    private static final ImmutableMap<@NotNull Colour, @NotNull DyeColor> DYE_COLOR_IMMUTABLE_MAP = new ImmutableMap.Builder<@NotNull Colour, @NotNull DyeColor>()
+    private static final ImmutableMap<Colour, DyeColor> DYE_COLOR_IMMUTABLE_MAP = new ImmutableMap.Builder<Colour, DyeColor>()
             .put(Colour.PINK, DyeColor.PINK)
             .put(Colour.WHITE, DyeColor.WHITE)
             .put(Colour.LIGHT_GRAY, DyeColor.LIGHT_GRAY)
@@ -46,7 +46,7 @@ public class ColourMap {
             .put(Colour.MAGENTA, DyeColor.MAGENTA)
             .buildOrThrow();
 
-    public static DyeColor getSettingColour() {
+    public static @Nullable DyeColor getSettingColour() {
         return CCASettings.ShulkerBoxPowerOutputExpansionColour == Colour.NONE ?
                 null : DYE_COLOR_IMMUTABLE_MAP.get(CCASettings.ShulkerBoxPowerOutputExpansionColour);
     }

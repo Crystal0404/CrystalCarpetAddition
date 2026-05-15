@@ -24,9 +24,11 @@ import carpet.CarpetExtension;
 import carpet.CarpetServer;
 import carpet.api.settings.SettingsManager;
 import carpet.utils.Translations;
+import org.jspecify.annotations.NullMarked;
 
 import java.util.Map;
 
+@NullMarked
 public class CCAExtension implements CarpetExtension {
     public static final SettingsManager CCASettingsManager = new SettingsManager(
             CrystalCarpetAdditionMod.version,

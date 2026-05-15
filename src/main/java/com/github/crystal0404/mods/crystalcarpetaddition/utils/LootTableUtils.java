@@ -32,11 +32,12 @@ import net.minecraft.world.level.storage.loot.functions.EnchantedCountIncreaseFu
 import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
-import org.jetbrains.annotations.NotNull;
+import org.jspecify.annotations.NullMarked;
 
+@NullMarked
 public class LootTableUtils {
-    public static LootTable witch(HolderLookup.RegistryLookup<@NotNull Enchantment> impl) {
-        Holder<@NotNull Enchantment> enchantment = impl.getOrThrow(Enchantments.LOOTING);
+    public static LootTable witch(HolderLookup.RegistryLookup<Enchantment> impl) {
+        Holder<Enchantment> enchantment = impl.getOrThrow(Enchantments.LOOTING);
         LootPool.Builder loot = LootPool.lootPool()
                 .setBonusRolls(ConstantValue.exactly(0.0f))
                 .add(

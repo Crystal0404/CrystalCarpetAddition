@@ -21,13 +21,14 @@
 package com.github.crystal0404.mods.crystalcarpetaddition.utils;
 
 import me.fallenbreath.conditionalmixin.api.mixin.RestrictiveMixinConfigPlugin;
+import org.jspecify.annotations.Nullable;
 
 import java.util.List;
 import java.util.Set;
 
 public class CCAMixinConfigPlugin extends RestrictiveMixinConfigPlugin {
     @Override
-    public String getRefMapperConfig() {
+    public @Nullable String getRefMapperConfig() {
         return null;
     }
 
@@ -37,7 +38,7 @@ public class CCAMixinConfigPlugin extends RestrictiveMixinConfigPlugin {
     }
 
     @Override
-    public List<String> getMixins() {
+    public @Nullable List<String> getMixins() {
         return null;
     }
 }

@@ -27,7 +27,6 @@ import net.minecraft.world.entity.EntitySpawnReason;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.ambient.Bat;
 import net.minecraft.world.level.LevelAccessor;
-import org.jetbrains.annotations.NotNull;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -41,7 +40,7 @@ public abstract class BatMixin {
             cancellable = true
     )
     private static void checkBatSpawnRulesMixin(
-            EntityType<@NotNull Bat> type,
+            EntityType<Bat> type,
             LevelAccessor world,
             EntitySpawnReason spawnReason,
             BlockPos pos, RandomSource random,

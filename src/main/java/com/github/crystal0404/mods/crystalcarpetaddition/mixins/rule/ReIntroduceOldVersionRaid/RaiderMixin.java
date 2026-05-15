@@ -39,8 +39,7 @@ import net.minecraft.world.entity.raid.Raider;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.gamerules.GameRules;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
@@ -50,13 +49,12 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(Raider.class)
 public abstract class RaiderMixin extends PatrollingMonster {
-    protected RaiderMixin(EntityType<? extends @NotNull PatrollingMonster> entityType, Level world) {
+    protected RaiderMixin(EntityType<? extends PatrollingMonster> entityType, Level world) {
         super(entityType, world);
     }
 
     @Shadow
-    @Nullable
-    public abstract Raid getCurrentRaid();
+    public abstract @Nullable Raid getCurrentRaid();
 
     @Inject(
             method = "die",
@@ -108,8 +106,7 @@ public abstract class RaiderMixin extends PatrollingMonster {
     }
 
     @Unique
-    @Nullable
-    private Player getPlayerEntity(Entity entity) {
+    private @Nullable Player getPlayerEntity(Entity entity) {
         if (entity instanceof Player) {
             return (Player) entity;
         } else if (entity instanceof Wolf wolfEntity) {

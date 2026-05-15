@@ -24,7 +24,9 @@ import com.github.crystal0404.mods.crystalcarpetaddition.CrystalCarpetAdditionMo
 import com.github.crystal0404.mods.crystalcarpetaddition.utils.CCAUtils;
 import com.github.crystal0404.mods.crystalcarpetaddition.utils.annotation.Condition;
 import com.github.crystal0404.mods.crystalcarpetaddition.utils.annotation.Restriction;
+import org.jspecify.annotations.NullMarked;
 
+@NullMarked
 public abstract class AnnotationProcessor {
     public static boolean shouldRegister(Restriction restriction, String rule) {
         for (Condition condition : restriction.conflict()) {

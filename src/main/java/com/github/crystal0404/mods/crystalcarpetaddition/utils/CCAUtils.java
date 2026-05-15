@@ -23,7 +23,7 @@ package com.github.crystal0404.mods.crystalcarpetaddition.utils;
 import com.github.crystal0404.mods.crystalcarpetaddition.CrystalCarpetAdditionMod;
 import com.google.common.collect.ImmutableMap;
 import me.fallenbreath.conditionalmixin.api.util.VersionChecker;
-import org.jetbrains.annotations.NotNull;
+import org.jspecify.annotations.NullMarked;
 
 import java.util.Objects;
 
@@ -31,11 +31,12 @@ import java.util.Objects;
  * Some tools
  */
 @SuppressWarnings("unused")
+@NullMarked
 public final class CCAUtils {
     /**
      * This is all the hidden parameters
      */
-    private final static ImmutableMap<@NotNull String, @NotNull Key> JAVA_PARAMETERS = new ImmutableMap.Builder<@NotNull String, @NotNull Key>()
+    private final static ImmutableMap<String, Key> JAVA_PARAMETERS = new ImmutableMap.Builder<String, Key>()
             .put("cca.enable.debug", new Key(Boolean.getBoolean("cca.enable.debug"), false))
             .buildOrThrow();
 
