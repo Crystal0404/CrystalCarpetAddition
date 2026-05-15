@@ -40,6 +40,10 @@ cca:
       name: 禁用蝙蝠生成
       desc: 让你的世界不再生成烦人的蝙蝠.
 
+    NoMushroomRandomTickInNether:
+      name: 禁用蘑菇在下界自然生长
+      desc: 让蘑菇不能在下界自然生长, 防止你在下界长时间挂机后蘑菇泛滥成灾
+
     ReIntroduceOldVersionRaid:
       name: 重新引入旧版袭击
       desc: 使用mc1.20.1的袭击机制

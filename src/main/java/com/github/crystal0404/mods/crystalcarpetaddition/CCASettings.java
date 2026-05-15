@@ -66,6 +66,9 @@ public class CCASettings {
     public static boolean NoBatSpawn = false;
 
     @Rule(categories = {CCA, MC_TWEAKS})
+    public static boolean NoMushroomRandomTickInNether = false;
+
+    @Rule(categories = {CCA, MC_TWEAKS})
     public static boolean ReIntroduceOldVersionRaid = false;
 
     @Rule(categories = {CCA, MC_TWEAKS})

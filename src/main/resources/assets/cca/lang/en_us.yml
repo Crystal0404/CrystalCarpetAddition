@@ -32,6 +32,9 @@ cca:
     NoBatSpawn:
       desc: Makes bats no longer spawn.
 
+    NoMushroomRandomTickInNether:
+      desc: Do not let mushrooms grow naturally in the Nether
+
     ReIntroduceOldVersionRaid:
       desc: Raid using mc1.20.1
 
