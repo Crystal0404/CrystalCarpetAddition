@@ -30,6 +30,7 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.ReloadableServerRegistries;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.EntityTypes;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.level.Level;
@@ -64,7 +65,7 @@ public abstract class LivingEntityMixin extends Entity {
             ResourceKey<LootTable> key,
             Operation<LootTable> original
     ) {
-        if (this.getType() == EntityType.WITCH && CCASettings.ReIntroduceOldVersionWitchLootTable) {
+        if (this.getType() == EntityTypes.WITCH && CCASettings.ReIntroduceOldVersionWitchLootTable) {
             HolderLookup.RegistryLookup<Enchantment> impl = this.level().registryAccess().lookupOrThrow(
                     Registries.ENCHANTMENT
             );

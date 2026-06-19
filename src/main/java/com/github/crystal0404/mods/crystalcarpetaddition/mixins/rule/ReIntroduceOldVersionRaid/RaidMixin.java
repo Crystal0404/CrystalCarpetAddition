@@ -32,7 +32,7 @@ import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.EntityTypes;
 import net.minecraft.world.entity.SpawnPlacementType;
 import net.minecraft.world.entity.SpawnPlacements;
 import net.minecraft.world.entity.raid.Raid;
@@ -128,7 +128,7 @@ public abstract class RaidMixin {
     private @Nullable BlockPos getRavagerSpawnLocation(ServerLevel serverWorld, int proximity, int tries) {
         int i = proximity == 0 ? 2 : 2 - proximity;
         BlockPos.MutableBlockPos mutable = new BlockPos.MutableBlockPos();
-        SpawnPlacementType spawnLocation = SpawnPlacements.getPlacementType(EntityType.RAVAGER);
+        SpawnPlacementType spawnLocation = SpawnPlacements.getPlacementType(EntityTypes.RAVAGER);
 
         for (int j = 0; j < tries; j++) {
             float f = this.random.nextFloat() * (float) (Math.PI * 2);
@@ -151,7 +151,7 @@ public abstract class RaidMixin {
                         )
                                 && serverWorld.isPositionEntityTicking(mutable)
                                 && (
-                                spawnLocation.isSpawnPositionOk(serverWorld, mutable, EntityType.RAVAGER)
+                                spawnLocation.isSpawnPositionOk(serverWorld, mutable, EntityTypes.RAVAGER)
                                         || serverWorld.getBlockState(mutable.below()).is(Blocks.SNOW)
                                         && serverWorld.getBlockState(mutable).isAir()
                         )
