@@ -1,2 +1,2 @@
 ## New
-1. New rule `NoMushroomRandomTickInNether`
+1. Support mc26.2
