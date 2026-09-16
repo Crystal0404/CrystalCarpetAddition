@@ -28,7 +28,6 @@
 	"mixins": [
       "cca.mixins.json"
 	],
-	"accessWidener": "cca.classtweaker",
 	"depends": {
 		"carpet": "*",
 		"conditional-mixin": ">=${conditional_mixin_dependency}",
