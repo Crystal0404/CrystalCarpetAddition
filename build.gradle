@@ -72,16 +72,14 @@ dependencies {
 }
 
 loom {
-	accessWidenerPath.set(file('src/main/resources/cca.classtweaker'))
-
 	runConfigs.configureEach {
-		vmArgs('-Dmixin.debug.export=true')
+		jvmArguments.add('-Dmixin.debug.export=true')
 	}
 
 	runs {
 		create('serverMixinAudit') {
 			server()
-			vmArgs('-DmixinAuditor.audit=true')
+			jvmArguments.add('-DmixinAuditor.audit=true')
 		}
 	}
 }

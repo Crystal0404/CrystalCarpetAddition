@@ -30,8 +30,8 @@ import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.functions.EnchantedCountIncreaseFunction;
 import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
-import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
-import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
+import net.minecraft.world.level.storage.loot.providers.number.floats.ContextFloatProviders;
+import net.minecraft.world.level.storage.loot.providers.number.ints.ContextIntProviders;
 import org.jspecify.annotations.NullMarked;
 
 @NullMarked
@@ -39,45 +39,45 @@ public class LootTableUtils {
     public static LootTable witch(HolderLookup.RegistryLookup<Enchantment> impl) {
         Holder<Enchantment> enchantment = impl.getOrThrow(Enchantments.LOOTING);
         LootPool.Builder loot = LootPool.lootPool()
-                .setBonusRolls(ConstantValue.exactly(0.0f))
+                .setBonusRolls(ContextFloatProviders.exactly(0.0f))
                 .add(
                         LootItem.lootTableItem(Items.GLOWSTONE_DUST)
-                                .apply(SetItemCountFunction.setCount(UniformGenerator.between(0.0f, 2.0f)))
-                                .apply(new EnchantedCountIncreaseFunction.Builder(enchantment, UniformGenerator.between(0.0f, 1.0f)))
+                                .apply(SetItemCountFunction.setCount(ContextIntProviders.between(0, 2)))
+                                .apply(new EnchantedCountIncreaseFunction.Builder(enchantment, ContextFloatProviders.between(0.0f, 1.0f)))
                 )
                 .add(
                         LootItem.lootTableItem(Items.SUGAR)
-                                .apply(SetItemCountFunction.setCount(UniformGenerator.between(0.0f, 2.0f)))
-                                .apply(new EnchantedCountIncreaseFunction.Builder(enchantment, UniformGenerator.between(0.0f, 1.0f)))
+                                .apply(SetItemCountFunction.setCount(ContextIntProviders.between(0, 2)))
+                                .apply(new EnchantedCountIncreaseFunction.Builder(enchantment, ContextFloatProviders.between(0.0f, 1.0f)))
                 )
                 .add(
                         LootItem.lootTableItem(Items.REDSTONE)
-                                .apply(SetItemCountFunction.setCount(UniformGenerator.between(0.0f, 2.0f)))
-                                .apply(new EnchantedCountIncreaseFunction.Builder(enchantment, UniformGenerator.between(0.0f, 1.0f)))
+                                .apply(SetItemCountFunction.setCount(ContextIntProviders.between(0, 2)))
+                                .apply(new EnchantedCountIncreaseFunction.Builder(enchantment, ContextFloatProviders.between(0.0f, 1.0f)))
                 )
                 .add(
                         LootItem.lootTableItem(Items.SPIDER_EYE)
-                                .apply(SetItemCountFunction.setCount(UniformGenerator.between(0.0f, 2.0f)))
-                                .apply(new EnchantedCountIncreaseFunction.Builder(enchantment, UniformGenerator.between(0.0f, 1.0f)))
+                                .apply(SetItemCountFunction.setCount(ContextIntProviders.between(0, 2)))
+                                .apply(new EnchantedCountIncreaseFunction.Builder(enchantment, ContextFloatProviders.between(0.0f, 1.0f)))
                 )
                 .add(
                         LootItem.lootTableItem(Items.GLASS_BOTTLE)
-                                .apply(SetItemCountFunction.setCount(UniformGenerator.between(0.0f, 2.0f)))
-                                .apply(new EnchantedCountIncreaseFunction.Builder(enchantment, UniformGenerator.between(0.0f, 1.0f)))
+                                .apply(SetItemCountFunction.setCount(ContextIntProviders.between(0, 2)))
+                                .apply(new EnchantedCountIncreaseFunction.Builder(enchantment, ContextFloatProviders.between(0.0f, 1.0f)))
                 )
                 .add(
                         LootItem.lootTableItem(Items.GUNPOWDER)
-                                .apply(SetItemCountFunction.setCount(UniformGenerator.between(0.0f, 2.0f)))
-                                .apply(new EnchantedCountIncreaseFunction.Builder(enchantment, UniformGenerator.between(0.0f, 1.0f)))
+                                .apply(SetItemCountFunction.setCount(ContextIntProviders.between(0, 2)))
+                                .apply(new EnchantedCountIncreaseFunction.Builder(enchantment, ContextFloatProviders.between(0.0f, 1.0f)))
                 )
 
                 .add(
                         LootItem.lootTableItem(Items.STICK)
                                 .setWeight(2)
-                                .apply(SetItemCountFunction.setCount(UniformGenerator.between(0.0f, 2.0f)))
-                                .apply(new EnchantedCountIncreaseFunction.Builder(enchantment, UniformGenerator.between(0.0f, 1.0f)))
+                                .apply(SetItemCountFunction.setCount(ContextIntProviders.between(0, 2)))
+                                .apply(new EnchantedCountIncreaseFunction.Builder(enchantment, ContextFloatProviders.between(0.0f, 1.0f)))
                 )
-                .setRolls(UniformGenerator.between(1.0f, 3.0f));
+                .setRolls(ContextIntProviders.between(1, 3));
         return LootTable.lootTable().withPool(loot).build();
     }
 }

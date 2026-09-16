@@ -1,2 +1,2 @@
 ## New
-1. Support mc26.2
+1. Support mc26.3
