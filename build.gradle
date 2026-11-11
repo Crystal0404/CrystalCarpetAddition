@@ -68,7 +68,7 @@ dependencies {
 	}
 
 	// MixinAuditor
-	runtimeOnly('me.fallenbreath:mixin-auditor:0.2.0-u') { transitive = false }
+	runtimeOnly('me.fallenbreath:mixin-auditor:0.3.0-u') { transitive = false }
 }
 
 loom {
@@ -90,16 +90,18 @@ yamlang {
 }
 
 processResources {
-	inputs.properties(
+	def data = [
 			'conditional_mixin_dependency': conditionalmixin_version,
 			'id': mod_id,
 			'name': mod_name,
 			'minecraft_dependency': minecraft_dependency,
 			'version': this.getVersion()
-	)
+	]
+
+	inputs.properties(data)
 
 	filesMatching('fabric.mod.json') {
-		expand inputs.properties
+		expand data
 	}
 }
 
